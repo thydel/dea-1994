@@ -1,0 +1,5 @@
+$rule = \arule{tunnel}$
+$space.size = {2^8}^2$
+$génération.count = 8\kilo$
+Seul le plan 0 à été initialisé,
+contrairement au \txtit{mode d'emploie} du Margolus et Toffoli.

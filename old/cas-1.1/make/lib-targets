@@ -1,0 +1,8 @@
+$(LIBNAME).a: $(OBJS)
+	ar r $(LIBNAME).a $(OBJS)
+	$(RANLIB) $(LIBNAME).a
+
+install: $(LIBNAME).a
+	cp $(LIBNAME).a $(CELLDIR)/lib
+	if [ ! -d $(CELLDIR)/include/$(LIBNAME) ]; then mkdir $(CELLDIR)/include/$(LIBNAME); fi
+	for i in $(HEADERS); do cp $$i $(CELLDIR)/include/$(LIBNAME); done

@@ -1,0 +1,195 @@
+#!/usr/local/bin/wish -f
+
+source showVars.tcl
+
+set casdir $env(CASDIR)
+
+proc cmd_quit {} { destroy . }
+proc cmd_frame {} { browse data/frame frame }
+proc cmd_func {} { }
+
+proc out {str} { puts stdout $str; flush stdout }
+
+proc cmd_first {} { puts stdout "first; view"; flush stdout }
+proc cmd_last {} { puts stdout "last; view"; flush stdout }
+proc cmd_next {} { puts stdout "next; view"; flush stdout }
+proc cmd_prev {} { puts stdout "prev; view"; flush stdout }
+
+proc var_rand {} { return [.cas.space.param.rand.entry get] }
+proc var_solid {} { return [.cas.space.param.solid.entry get] }
+proc var_cnt {} { return [.cas.ctl.param.cnt.entry get] }
+proc var_skip {} { return [.cas.ctl.param.skip.entry get] }
+proc var_view {} { return [.cas.ctl.param.view.entry get] }
+proc var_store {} { return [.cas.ctl.param.store.entry get] }
+
+proc cmd_run {} { out "run [var_cnt]" }
+proc cmd_step {} { out "run 1" }
+proc cmd_cont {} { out "cont" }
+proc cmd_cycle {} { out "cycle [var_skip]" }
+proc cmd_forw {} { out "forw [var_skip]" }
+proc cmd_back {} { out "back [var_skip]" }
+proc cmd_rec {} { out "seq [var_view] [var_store]" }
+
+proc cmd_zero {} { out "zero; sync" }
+proc cmd_one {} { out "one; sync" }
+proc cmd_solid {} { out "solid [var_solid]; sync" }
+proc cmd_rand {} { out "rand [var_rand]; sync" }
+proc cmd_bloc {} { out "brand [var_solid] [var_rand]; sync" }
+
+#
+###
+#
+
+proc browse {dir name} {
+	global casdir
+	mk_browser .$name $name
+	browser_fill .$name $dir [exec ls -aF $casdir/$dir]
+}
+
+proc browser_getsel {w cmd} {
+	global casdir
+	set index [$w.frame.list curselection]
+	if ![llength $index] {
+		return
+	}
+	set dir [lindex [$w.label configure -text] 4]
+	set tmp [string trimright [$w.frame.list get $index] "*/@"]
+	if [file isdirectory $casdir/$dir/$tmp] {
+		if ![string compare $tmp ..] {
+			set last [string last / $dir]
+			if {$last == -1} {
+				set newdir $dir
+			} else {
+				incr last -1
+				set newdir [string range $dir 0 $last]
+			}
+		} elseif ![string compare $tmp .] {
+			set newdir $dir
+		} else {
+			set newdir $dir/$tmp
+		}
+		browser_fill $w $newdir [exec ls -aF $casdir/$newdir]
+	} else {
+		puts stdout "$cmd $casdir/$dir/$tmp"; flush stdout
+	}
+}
+
+proc browser_fill {w dir list} {
+	$w.frame.list delete 0 end
+	$w.label configure -text $dir
+	foreach arg $list { $w.frame.list insert end $arg }
+}
+
+proc mk_browser {w name} {
+	catch {destroy $w}
+	toplevel $w
+	wm title $w $name
+	wm iconname $w $name
+	wm minsize $w 1 1
+
+	label $w.label
+
+	frame $w.frame -borderwidth 10
+	scrollbar $w.frame.scrolly -relief sunken -command "$w.frame.list yview"
+	scrollbar $w.frame.scrollx -relief sunken -command "$w.frame.list xview" \
+		-orient horizontal 
+	listbox $w.frame.list -relief sunken -setgrid 1 \
+		-yscroll "$w.frame.scrolly set" \
+		-xscroll "$w.frame.scrollx set"
+	tk_listboxSingleSelect $w.frame.list
+	bind $w.frame.list <Double-Button-1> "browser_getsel $w $name"
+	pack append $w.frame \
+		$w.frame.scrolly {right filly} \
+		$w.frame.scrollx {bottom fillx} \
+		$w.frame.list {left expand fill}
+
+	button $w.close -text close -command "destroy $w"
+
+	pack append $w \
+		$w.label top \
+		$w.frame {top expand fill} \
+		$w.close {bottom fill}
+}
+
+proc mk_cmd_set {w args} {
+	frame $w
+	foreach arg $args {
+		button $w.$arg -text \
+			"[string toupper [string index $arg 0]][string range $arg 1 end]" \
+			-command "cmd_$arg"
+		pack append $w $w.$arg {left padx 10 expand}
+	}
+}
+
+proc mk_param_elt {w text length} {
+	frame $w
+	label $w.label -text $text
+	entry $w.entry -width $length -relief sunken
+	pack append $w \
+		$w.label {left} \
+		$w.entry {left}
+}
+
+proc mk_param_set {w args} {
+	frame $w
+	foreach arg $args {
+		set text [lindex $arg 0]
+		set default [lindex $arg 1]
+		mk_param_elt $w.$text $text 6
+		$w.$text.entry insert 0 $default
+		pack append $w $w.$text {left padx 10 expand}
+	}
+}
+
+proc mk_obj {w name cmd param flag info} {
+	frame $w -relief raised -borderwidth 4
+	# set opts {top padx 10 pady 10 expand fill}
+	# set opts {top expand fill}
+	set opts {top fill}
+	if [string compare $name {}] {
+		label $w.label -text $name
+		pack append $w $w.label $opts
+	}
+	if [string compare $cmd {}] {
+		eval "mk_cmd_set $w.cmd $cmd"
+		pack append $w $w.cmd $opts
+	}
+	if [string compare $param {}] {
+		eval "mk_param_set $w.param $param"
+		pack append $w $w.param $opts
+	}
+	if [string compare $flag {}] {
+		eval "mk_flag_set $w.flag $flag"
+		pack append $w $w.param $opts
+	}
+	if [string compare $info {}] {
+		eval "mk_info_set $w.info $info"
+		pack append $w $w.info $opts
+	}
+}
+
+proc mk_cas {} {
+	wm minsize . 10 10
+	# set opts {top pady 10 expand fill}
+	set opts {top pady 10}
+
+	mk_obj .cas Cas \
+		{quit func frame} {} {} {}
+	pack append . .cas {top fill}
+
+	mk_obj .cas.ctl Ctl \
+		{run step cont cycle forw back rec} \
+		{{skip 1} {cnt 1} {view 1} {store 1}} {} {}
+	pack append .cas .cas.ctl $opts
+
+	mk_obj .cas.space Space \
+		{zero one solid rand bloc} \
+		{{rand 2} {solid 16}} {} {}
+	pack append .cas .cas.space $opts
+
+	mk_obj .cas.pos Pos \
+		{first last next prev} {} {} {}
+	pack append .cas .cas.pos $opts
+}
+
+mk_cas

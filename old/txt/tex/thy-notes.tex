@@ -1,0 +1,111 @@
+\chapter{Notes diverses}
+
+Ce chapitre contient des \'el\'ements de textes partiellement redondant ou
+non ais\'ement int\'egrales au reste du m\'emoire\footnote{%
+  En autre par manque de temps.} %
+et des notes souvent sous forme de questions brute. %
+Nous pensons que la pr\'esence des premi\`eres sections au moins,
+permettra d'\'eclairer notre d\'emarche pour certaines questions soulev\'ees
+dans le reste de ce travail.
+
+\section{lambda}
+
+Il faut pond\'erer le calcul de lambda sur une r\`egle par l'application
+de lambda sur l'index de chacune des entr\'ees. %
+
+\section{anneal et life}
+
+L'\'etude de s\'eries temporelles associ\'e \`a anneal. %
+Mesure de la population et de la taille des fronti\`eres. %
+La taille des fronti\`eres est obtenu par une diff\'erence spatiale. %
+Les s\'eries obtenu ne pr\'esentent pas de caract\`ere fractal sur une
+grande \'echelle\footnote{%
+  La question de la nature du \aquote{bruit} \`a
+  petite \'echelle reste pos\'e~(comparer avec les s\'eries tir\'e de life)} %
+elles pr\'esentent par contre une invariance au changement d'\'echelle
+d'espace, \ie Les s\'erie tendent \`a \^etre identique \`a l'\'echelle du
+transient, a une dilatation du temps pr\`es, lorsque la taille de
+l'espace tends vers l'infini.
+
+Life filtr\'e~(la seconde diff\'erence spatiale) est suppos\'e fournir des
+s\'eries dot\'e d'une dimension fractale sur une grande \'echelle, mais pas
+d'invariance au changement d'\'echelle d'espace\footnote{%
+  Sauf pour la dimension fractale \'evidemment}.
+
+la quantit\'e de bruit n\'ecessaire pour faire tendre le transient vers
+l'infini et suppos\'e petite et d\'ecroissante fonction de la taille de
+l'univers. %
+Pour anneal le comportement inverse est attendu.
+
+\section{le contr\^ole lin\'eaire des r\`egle}
+
+contr\^ole lin\'eaire de la moyenne?
+\begin{itemize}
+\item param\'etrage global de comportement
+\item formulation diff\'erentielle
+\item 1 plan m\'emoire par param\`etre
+  et 1 plan m\'emoire pour les $n$ variables\footnote{%
+    Structure du mixage spatial?}, ou $n$ plan m\'emoire pour les $n$
+  variables et \'equation bool\'eenne donne la piste d'une technique de
+  transformation d'\'equation diff\'erentielle continue en \'equation
+  bool\'eenne combin\'e.
+\end{itemize}
+La dotation en espace\footnote{%
+  Dimension plus voisinage.}, %
+d'une \'equation diff\'erentielle, associ\'e \`a sa bool\'ea\-ni\-sa\-tion permet de
+garantir sa calculabilit\'e.
+
+\section{Espace, temps, lois}
+
+L'espace est constitu\'e de cellules \`a \'etat finit dot\'e d'une dimension
+et d'un r\'eseau d'interconnexion. %
+Il correspond \`a la ressource m\'emoire mesur\'e en \'etendu. %
+%%
+Le temps est un objet plus difficile \`a appr\'ehender, il correspond \`a
+la ressource commutation mesur\'e en d\'ebit, mais se ram\`ene par
+plongement \`a une manipulation d'espace, et correspond alors lui aussi
+\`a une ressource m\'emoire. %
+Il se caract\'erise \'egalement par les op\'erateurs appliqu\'e sur un
+espace-temps cellulaire, la r\'eduction op\'er\'e par ceux ci \'etant
+g\'en\'eralement une projection perpendiculaire \`a l'axe temporel.
+%%
+Les lois, ou r\`egles ou fonctions de transitions d\'efinissent des
+mapping locaux de de l'espace sur lui m\^eme. %
+Le nombre d'\'etats cellulaires et le nombre d'\'el\'ements du voisinage
+cellulaire d\'etermine la taille de l'espace de r\`egles associ\'e et le
+co\^ut de la transformation d'une r\`egles exprim\'e comme une s\'equences
+d'instructions en table de transition.
+
+\section{les AC de dimensions~1}
+
+Nous avons d\'elib\'er\'ement ignor\'e dans ce travail les AC de dimensions 1,
+qui constitue le support de la majorit\'e des recherches sur la
+structure de l'espace de r\`egles, pour nous int\'eresser aux AC de
+dimension 2. %
+Ce choix correspond \`a une volont\'e de chercher les limites pratique du
+calcul cellulaires sur des architecture mat\'erielles
+standard\footnote{%
+  Nous entendons par l\`a des r\'eseaux de stations de travail.} %.
+Nous pensons que la domination de AC de dimension 1 dans les travaux
+de recherche r\'ecent sur la structure de l'espace des r\`egles est du en
+partie\footnote{%
+  La raison primordiale \'etant a priori la volont\'e de chercher les
+  mod\`eles minimum g\'en\'erant les comportement les plus riches possibles,
+  et la facilit\'e d'analyse.} %
+\`a la relative difficult\'e de r\'ealiser des exp\'erience efficace
+sur des espaces de configurations de dimension sup\'erieur \`a~1.
+
+%%\input{tthy-notes-futur}
+
+%%
+%% Local Variables:
+%% mode: auto-fill
+%% iso-accents-minor-mode: nil
+%% TeX-master: "top"
+%% TeX-command-default: "mytex"
+%% Local IspellParsing: "latex-mode ~latin1"
+%% Local IspellPersDict: "~/.ispell_lisp"
+%% LocalWords: "lookup" lambda anneal fractal fractale param\'etrage bool\'eenne PE
+%% End:
+% LocalWords:  d'\'equation calculabilit\'e SIMD s\'equenceurs d'AC s\'equencement in
+% LocalWords:  sous-AC espace-temps mapping algo debug portabilit\'e

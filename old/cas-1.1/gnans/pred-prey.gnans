@@ -1,0 +1,14 @@
+CONTINUOUS TIME SYSTEM lokta;
+
+STATE n = 2;
+STATE p = 1.99;
+TIME t;
+
+PARAMETER a = 4;
+PARAMETER b = 3;
+PARAMETER c = 2;
+PARAMETER dd = 5;
+
+AT TIME t:
+d(n) = n * (a - b * p);
+d(p) = p * (c * n - dd);

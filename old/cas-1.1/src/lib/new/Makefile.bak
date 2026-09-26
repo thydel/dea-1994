@@ -1,0 +1,131 @@
+include $(CASDIR)/make/std-vars
+
+INCLUDES = \
+	-I$(CASDIR)/src/include \
+	-I$(CASDIR)/src/lib \
+	$(XINCLUDES) \
+	-I$(PBMINCDIR) \
+	-I$(TCLINCDIR)
+
+CFLAGS = $(INCLUDES)
+CC = gcc $(CC_DEBUG_FLAGS) $(CC_OPTIM_FLAGS)
+
+LIBNAME = new
+
+SRCS = \
+	simple.c \
+	space.c \
+	time.c \
+	func.c \
+	conex.c \
+	dump.c
+
+HIDE =
+
+HEADERS = \
+	simple.h \
+	space.h \
+	time.h \
+	func.h \
+	conex.h \
+	dump.h
+
+OBJS = $(SRCS:.c=.o)
+EXECS = $(LIBNAME).a
+
+top: $(LIBNAME).a
+
+include $(CASDIR)/make/lib-targets
+
+include $(CASDIR)/make/std-targets
+
+# debug
+
+CELL_LIBS = \
+	$(CASDIR)/lib/loop.a \
+	$(CASDIR)/lib/disp.a \
+	$(CASDIR)/lib/conex.a \
+	$(CASDIR)/lib/frame.a \
+	$(CASDIR)/lib/extract.a \
+	$(CASDIR)/lib/conexlib.a \
+	$(CASDIR)/lib/rule.a \
+	$(CASDIR)/lib/util.a \
+	$(TCLLIB)/libtcl.a
+
+LIBS = $(CELL_LIBS) $(XLIBS)
+
+bind: bind.o
+	$(CC) bind.o $(LIBS)
+
+D = moore.c
+1.c: $(D)
+	$(CC) -E $(CFLAGS) $(D) | cpb > 1.c
+
+# DO NOT DELETE THIS LINE -- make depend depends on it.
+
+simple.o: /usr/include/malloc.h /usr/include/features.h
+simple.o: /usr/include/sys/cdefs.h
+simple.o: /usr/lib/gcc-lib/i486-linux/2.4.5/include/stddef.h
+simple.o: /usr/include/assert.h /usr/include/tcl/tclExtend.h
+simple.o: /usr/include/stdio.h /usr/include/_G_config.h
+simple.o: /usr/include/tcl/tcl.h /home/uruk/thy/usr/cas/src/include/local.h
+simple.o: /home/uruk/thy/usr/cas/src/include/magic.h
+simple.o: /home/uruk/thy/usr/cas/src/lib/util/str.h
+simple.o: /home/uruk/thy/usr/cas/src/lib/frame/frame.h conex.h func.h space.h
+simple.o: time.h simple.h
+space.o: /usr/include/errno.h /usr/include/features.h
+space.o: /usr/include/sys/cdefs.h /usr/include/linux/errno.h
+space.o: /usr/include/malloc.h
+space.o: /usr/lib/gcc-lib/i486-linux/2.4.5/include/stddef.h
+space.o: /usr/include/assert.h /usr/include/tcl/tclExtend.h
+space.o: /usr/include/stdio.h /usr/include/_G_config.h /usr/include/tcl/tcl.h
+space.o: /home/uruk/thy/usr/cas/src/include/local.h
+space.o: /home/uruk/thy/usr/cas/src/include/magic.h
+space.o: /home/uruk/thy/usr/cas/src/lib/util/str.h
+space.o: /home/uruk/thy/usr/cas/src/lib/frame/frame.h space.h
+time.o: /usr/include/malloc.h /usr/include/features.h
+time.o: /usr/include/sys/cdefs.h
+time.o: /usr/lib/gcc-lib/i486-linux/2.4.5/include/stddef.h
+time.o: /usr/include/assert.h /usr/include/tcl/tclExtend.h
+time.o: /usr/include/stdio.h /usr/include/_G_config.h /usr/include/tcl/tcl.h
+time.o: /home/uruk/thy/usr/cas/src/include/local.h
+time.o: /home/uruk/thy/usr/cas/src/include/magic.h
+time.o: /home/uruk/thy/usr/cas/src/lib/util/str.h
+time.o: /home/uruk/thy/usr/cas/src/lib/frame/frame.h space.h time.h
+func.o: /usr/include/errno.h /usr/include/features.h /usr/include/sys/cdefs.h
+func.o: /usr/include/linux/errno.h /usr/include/malloc.h
+func.o: /usr/lib/gcc-lib/i486-linux/2.4.5/include/stddef.h
+func.o: /usr/include/assert.h /usr/include/tcl/tclExtend.h
+func.o: /usr/include/stdio.h /usr/include/_G_config.h /usr/include/tcl/tcl.h
+func.o: /home/uruk/thy/usr/cas/src/include/local.h
+func.o: /home/uruk/thy/usr/cas/src/include/magic.h
+func.o: /home/uruk/thy/usr/cas/src/lib/util/str.h
+func.o: /home/uruk/thy/usr/cas/src/lib/util/named.h
+func.o: /home/uruk/thy/usr/cas/src/lib/frame/frame.h conex.h func.h
+conex.o: /usr/include/malloc.h /usr/include/features.h
+conex.o: /usr/include/sys/cdefs.h
+conex.o: /usr/lib/gcc-lib/i486-linux/2.4.5/include/stddef.h
+conex.o: /usr/include/assert.h
+conex.o: /usr/lib/gcc-lib/i486-linux/2.4.5/include/varargs.h
+conex.o: /usr/include/tcl/tclExtend.h /usr/include/stdio.h
+conex.o: /usr/include/_G_config.h /usr/include/tcl/tcl.h
+conex.o: /home/uruk/thy/usr/cas/src/include/local.h
+conex.o: /home/uruk/thy/usr/cas/src/include/magic.h
+conex.o: /home/uruk/thy/usr/cas/src/lib/util/named.h conex.h
+dump.o: /usr/include/malloc.h /usr/include/features.h
+dump.o: /usr/include/sys/cdefs.h
+dump.o: /usr/lib/gcc-lib/i486-linux/2.4.5/include/stddef.h
+dump.o: /usr/include/assert.h /usr/X386/include/X11/Xlib.h
+dump.o: /usr/include/sys/types.h /usr/include/linux/types.h
+dump.o: /usr/X386/include/X11/X.h /usr/X386/include/X11/Xfuncproto.h
+dump.o: /usr/X386/include/X11/Xosdefs.h /usr/X386/include/X11/Xutil.h
+dump.o: /usr/X386/include/X11/Xos.h /usr/include/string.h
+dump.o: /usr/include/fcntl.h /usr/include/linux/fcntl.h /usr/include/unistd.h
+dump.o: /usr/include/posix_opt.h /usr/include/gnu/types.h
+dump.o: /usr/include/sys/time.h /usr/include/linux/time.h time.h
+dump.o: /usr/X386/include/X11/Xatom.h /usr/include/tcl/tclExtend.h
+dump.o: /usr/include/stdio.h /usr/include/_G_config.h /usr/include/tcl/tcl.h
+dump.o: /home/uruk/thy/usr/cas/src/include/local.h
+dump.o: /home/uruk/thy/usr/cas/src/include/magic.h
+dump.o: /home/uruk/thy/usr/cas/src/lib/util/str.h
+dump.o: /home/uruk/thy/usr/cas/src/lib/frame/frame.h space.h dump.h

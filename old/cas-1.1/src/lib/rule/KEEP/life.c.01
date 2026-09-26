@@ -1,0 +1,29 @@
+#if 0
+enum moore { SE, E, NE, S, C, N, SW, W, NW };
+#endif
+
+enum moore { NW, W, SW, N, C, S, NE, E, SE };
+
+sum8(int* i, int* o) {
+    o[0] = i[N] + i[NE] + i[E] + i[SE] + i[S] + i[SW] + i[W] + i[NW];
+}
+
+life(int* i, int* o) {
+    int sum;
+
+    sum8(i, &sum);
+    if (i[C]) {
+	if (sum < 2 || sum > 3) {
+	    o[0] = 0;
+	} else {
+	    o[0] = 1;
+	}
+    } else {
+	if (sum == 3) {
+	    o[0] = 1;
+	} else {
+	    o[0] = 0;
+	}
+    }
+}
+

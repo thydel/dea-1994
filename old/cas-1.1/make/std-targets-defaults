@@ -1,0 +1,12 @@
+depends:
+	makedepend $(INCLUDES) $(SRCS) $(HEADERS)
+
+clean:
+	rm -f $(OBJS) *~ core
+
+rmexe:
+	rm -f $(EXES)
+
+clobber: clean
+	rm -f $(EXECS)
+

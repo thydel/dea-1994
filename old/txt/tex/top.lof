@@ -1,0 +1,98 @@
+\protect \addvspace {10\p@ }
+\protect \contentsline {figure}{\protect \numberline {1.1}{\ignorespaces Une interface humaine exp\protect \relax \protect \'erimentale pour le Workbench}}{7}
+\protect \contentsline {figure}{\protect \numberline {1.2}{\ignorespaces Un glider superluminique}}{10}
+\protect \contentsline {figure}{\protect \numberline {1.3}{\ignorespaces Tranches d'espace-temps et pyramides relativistes}}{11}
+\protect \contentsline {figure}{\protect \numberline {1.4}{\ignorespaces Une s\protect \relax \protect \'equence de tranches d'espace-temps}}{12}
+\protect \contentsline {figure}{\protect \numberline {1.5}{\ignorespaces Projection relativiste fixe}}{13}
+\protect \contentsline {figure}{\protect \numberline {1.6}{\ignorespaces Projection relativiste mobile}}{14}
+\protect \contentsline {figure}{\protect \numberline {1.7}{\ignorespaces Projection relativiste sur les 3\unskip \penalty \@M \ \ignorespaces axes d'un cube d'espace-temps}}{15}
+\protect \contentsline {figure}{\protect \numberline {1.8}{\ignorespaces Transparence globale et par plan de bits}}{16}
+\protect \contentsline {figure}{\protect \numberline {1.9}{\ignorespaces Une s\protect \relax \protect \'equence de tranches d'espace-temps de la r\protect \relax \protect \`egle\unskip \penalty \@M \ \ignorespaces \protect \textsf {\unhbox \voidb@x \hbox {Anneal}}}}{17}
+\protect \contentsline {figure}{\protect \numberline {1.10}{\ignorespaces Faces du cube d'espace-temps de\unskip \penalty \@M \ \ignorespaces \protect \textsf {\unhbox \voidb@x \hbox {Qmean}}}}{18}
+\protect \contentsline {figure}{\protect \numberline {1.11}{\ignorespaces Une transparence \protect \relax \protect \'eclat\protect \relax \protect \'ee par plan de bits}}{19}
+\protect \contentsline {figure}{\protect \numberline {1.12}{\ignorespaces Une transparence utilisant tout l'espace de valeur d'une cellule}}{20}
+\protect \contentsline {figure}{\protect \numberline {1.13}{\ignorespaces Une transparence par plan de bits pour\unskip \penalty \@M \ \ignorespaces \protect \textsf {\unhbox \voidb@x \hbox {Anneal}}}}{21}
+\protect \contentsline {figure}{\protect \numberline {1.14}{\ignorespaces Une transparence par plan de bits pour\unskip \penalty \@M \ \ignorespaces \protect \textsf {\unhbox \voidb@x \hbox {Life}}}}{22}
+\protect \contentsline {figure}{\protect \numberline {1.15}{\ignorespaces Une d\protect \relax \protect \'etection de contour appliqu\protect \relax \protect \'ee sur une projection relativiste}}{23}
+\protect \contentsline {figure}{\protect \numberline {1.16}{\ignorespaces Une superposition de r\protect \relax \protect \'eduction int\protect \relax \protect \'egrale}}{31}
+\protect \contentsline {figure}{\protect \numberline {1.17}{\ignorespaces Une autre colormap pour la figure \protect \mygetdump {anneal-sum-1k-8k}}}{32}
+\protect \addvspace {10\p@ }
+\protect \contentsline {figure}{\protect \numberline {2.1}{\ignorespaces Vari\protect \relax \protect \'et\protect \relax \protect \'e des configurations initiales}}{37}
+\protect \contentsline {figure}{\protect \numberline {2.2}{\ignorespaces Transformation d'espace}}{38}
+\protect \contentsline {figure}{\protect \numberline {2.3}{\ignorespaces Visualisations par bitmap\protect \active@co \unskip \penalty \@M \ \ignorespaces d'un espace,}}{39}
+\protect \contentsline {figure}{\protect \numberline {2.4}{\ignorespaces et de plusieurs s\protect \relax \protect \'equences d'espaces.}}{41}
+\protect \contentsline {figure}{\protect \numberline {2.5}{\ignorespaces Visualisations d'espaces par un pixmap}}{42}
+\protect \contentsline {figure}{\protect \numberline {2.6}{\ignorespaces ou par plusieurs bitmaps}}{43}
+\protect \contentsline {figure}{\protect \numberline {2.7}{\ignorespaces Visualisation par lancer de rayons\unskip \penalty \@M \ \ignorespaces (ray tracing)}}{44}
+\protect \contentsline {figure}{\protect \numberline {2.8}{\ignorespaces Visualisation par films de vues ray-trac\protect \relax \protect \'ees}}{45}
+\protect \contentsline {figure}{\protect \numberline {2.9}{\ignorespaces Visualisation par surface d'\protect \relax \protect \'el\protect \relax \protect \'evation d'une r\protect \relax \protect \'eduction int\protect \relax \protect \'egrale du temps}}{50}
+\protect \contentsline {figure}{\protect \numberline {2.10}{\ignorespaces Visualisation par pixmaps des donn\protect \relax \protect \'ees de la figure\unskip \penalty \@M \ \ignorespaces \protect \mygetplot {anneal-sum}}}{51}
+\protect \contentsline {figure}{\protect \numberline {2.11}{\ignorespaces Visualisation par bitmaps de s\protect \relax \protect \'equences de r\protect \relax \protect \'eductions dif\discretionary {-}{}{}f\protect \relax \protect \'erentiel\discretionary {-}{}{}les de la r\protect \relax \protect \`egle\unskip \penalty \@M \ \ignorespaces \protect \textsf {\unhbox \voidb@x \hbox {Life}}}}{52}
+\protect \contentsline {figure}{\protect \numberline {2.12}{\ignorespaces \protect \relax \protect \'Evolution de populations de s\protect \relax \protect \'equences de r\protect \relax \protect \'eductions dif\discretionary {-}{}{}f\protect \relax \protect \'erentiel\discretionary {-}{}{}les}}{53}
+\protect \contentsline {figure}{\protect \numberline {2.13}{\ignorespaces Une r\protect \relax \protect \'eduction int\protect \relax \protect \'egrale du temps et une r\protect \relax \protect \'eduction diff\protect \relax \protect \'erentiel\discretionary {-}{}{}le d'espace}}{54}
+\protect \contentsline {figure}{\protect \numberline {2.14}{\ignorespaces Une visualisation 3D du temps, et d'un temps de r\protect \relax \protect \'eduction diff\protect \relax \protect \'erentiel\discretionary {-}{}{}le d'espace}}{55}
+\protect \contentsline {figure}{\protect \numberline {2.15}{\ignorespaces Visualisation par bitmaps de s\protect \relax \protect \'equences de r\protect \relax \protect \'eductions dif\discretionary {-}{}{}f\protect \relax \protect \'erentiel\discretionary {-}{}{}les de la r\protect \relax \protect \`egle\unskip \penalty \@M \ \ignorespaces \protect \textsf {\unhbox \voidb@x \hbox {Anneal}}}}{57}
+\protect \contentsline {figure}{\protect \numberline {2.16}{\ignorespaces \protect \relax \protect \'Evolution de la population de la r\protect \relax \protect \`egle\unskip \penalty \@M \ \ignorespaces \protect \textsf {\unhbox \voidb@x \hbox {Anneal}}}}{58}
+\protect \contentsline {figure}{\protect \numberline {2.17}{\ignorespaces \protect \relax \protect \'Evolution des deux plans de population de la r\protect \relax \protect \`egle\unskip \penalty \@M \ \ignorespaces \protect \textsf {\unhbox \voidb@x \hbox {Heart}}}}{59}
+\protect \contentsline {figure}{\protect \numberline {2.18}{\ignorespaces Un espace produit par une table import\protect \relax \protect \'e}}{62}
+\protect \contentsline {figure}{\protect \numberline {2.19}{\ignorespaces Deux visions du voisinage}}{63}
+\protect \contentsline {figure}{\protect \numberline {2.20}{\ignorespaces Le pipeline d'application}}{64}
+\protect \contentsline {figure}{\protect \numberline {2.21}{\ignorespaces Quelques r\protect \relax \protect \'eseaux d'interconnexion}}{65}
+\protect \contentsline {figure}{\protect \numberline {2.22}{\ignorespaces Mise \protect \relax \protect \`a jour par table}}{66}
+\protect \contentsline {figure}{\protect \numberline {2.23}{\ignorespaces Deux tables disjointes}}{67}
+\protect \contentsline {figure}{\protect \numberline {2.24}{\ignorespaces Deux tables non disjointes}}{68}
+\protect \contentsline {figure}{\protect \numberline {2.25}{\ignorespaces Fonction d'application pour un voisinage sp\protect \relax \protect \'ecial}}{69}
+\protect \contentsline {figure}{\protect \numberline {2.26}{\ignorespaces Structure d'un PE GAPP}}{70}
+\protect \contentsline {figure}{\protect \numberline {2.27}{\ignorespaces Sch\protect \relax \protect \'ema de la fonction d'application de la table \protect \textsf {\unhbox \voidb@x \hbox {gapp}}}}{71}
+\protect \contentsline {figure}{\protect \numberline {2.28}{\ignorespaces La structure de donn\protect \relax \protect \'ees de description de l'architecture d'un PE GAPP}}{72}
+\protect \contentsline {figure}{\protect \numberline {2.29}{\ignorespaces La fonction impl\protect \relax \protect \'ementant un PE GAPP}}{73}
+\protect \contentsline {figure}{\protect \numberline {2.30}{\ignorespaces La fabrication de la table de transition de l'AC \protect \emph {PE GAPP}}}{74}
+\protect \contentsline {figure}{\protect \numberline {2.31}{\ignorespaces La structure de donn\protect \relax \protect \'ees de la partie d\protect \relax \protect \'eclarative de la description de l'architecture d'un PE GAPP}}{75}
+\protect \contentsline {figure}{\protect \numberline {2.32}{\ignorespaces Les initialisation de la structure de donn\protect \relax \protect \'ees de la partie d\protect \relax \protect \'eclarative de la description de l'architecture d'un PE GAPP}}{76}
+\protect \contentsline {figure}{\protect \numberline {2.33}{\ignorespaces Initialisation de l'ALU d'un PE GAPP}}{77}
+\protect \contentsline {figure}{\protect \numberline {2.34}{\ignorespaces Le DFA de \protect \textsf {\unhbox \voidb@x \hbox {Life}}}}{78}
+\protect \contentsline {figure}{\protect \numberline {2.35}{\ignorespaces Une partie de l'arbre de d\protect \relax \protect \'ecodage de \protect \textbf {life}}}{79}
+\protect \contentsline {figure}{\protect \numberline {2.36}{\ignorespaces Une session avec \protect \texttt {\unhbox \voidb@x \hbox {Cantata}}}}{83}
+\protect \contentsline {figure}{\protect \numberline {2.37}{\ignorespaces Les panneaux de contr\protect \french@circumflex ole de nos modules \protect \texttt {\unhbox \voidb@x \hbox {Cantata}}}}{84}
+\protect \contentsline {figure}{\protect \numberline {2.38}{\ignorespaces D\protect \relax \protect \'efinitions de proc\protect \relax \protect \'edures de s\protect \relax \protect \'equencements}}{85}
+\protect \addvspace {10\p@ }
+\protect \contentsline {figure}{\protect \numberline {3.1}{\ignorespaces Les 128 premi\protect \relax \protect \`ere valeur de \protect \alambda et \protect \Flip , pour un calcul sur les 16384 premiers entier}}{90}
+\protect \contentsline {figure}{\protect \numberline {3.2}{\ignorespaces Les 256 premi\protect \relax \protect \`eres valeurs de la d\protect \relax \protect \'eriv\protect \relax \protect \'ee de \protect \alambda et \protect \Flip }}{91}
+\protect \contentsline {figure}{\protect \numberline {3.3}{\ignorespaces Les 512 premi\protect \relax \protect \`eres valeurs des fonctions \protect \alambda et \protect \Flip , et de leur probabilit\protect \relax \protect \'e d'apparition}}{92}
+\protect \contentsline {figure}{\protect \numberline {3.4}{\ignorespaces Plot de \protect \alambda et \protect \Flip \protect \vs leur probabilit\protect \relax \protect \'e d'apparition}}{93}
+\protect \contentsline {figure}{\protect \numberline {3.5}{\ignorespaces L'histogramme des distribution de \protect \alambda et \protect \Flip , et \protect \alambda \protect \vs \protect \Flip .}}{93}
+\protect \contentsline {figure}{\protect \numberline {3.6}{\ignorespaces Un tri des valeurs de la fonction et leurs probabilit\protect \relax \protect \'es d'apparition pour \protect \alambda et \protect \Flip }}{94}
+\protect \contentsline {figure}{\protect \numberline {3.7}{\ignorespaces Valeurs de \protect \alambda et \protect \En }}{95}
+\protect \addvspace {10\p@ }
+\protect \contentsline {figure}{\protect \numberline {4.1}{\ignorespaces Une vue\unskip \penalty \@M \ \ignorespaces 3D de la dynamique de la r\protect \relax \protect \`egle\unskip \penalty \@M \ \ignorespaces \protect \textsf {\unhbox \voidb@x \hbox {Anneal}}}}{100}
+\protect \contentsline {figure}{\protect \numberline {4.2}{\ignorespaces Une signature cellulaire}}{101}
+\protect \contentsline {figure}{\protect \numberline {4.3}{\ignorespaces Une configuration typique de la r\protect \relax \protect \`egle\unskip \penalty \@M \ \ignorespaces \protect \textsf {\unhbox \voidb@x \hbox {Anneal}}}}{102}
+\protect \contentsline {figure}{\protect \numberline {4.4}{\ignorespaces Une s\protect \relax \protect \'equence typique de la r\protect \relax \protect \`egle\unskip \penalty \@M \ \ignorespaces \protect \textsf {\unhbox \voidb@x \hbox {Anneal}}}}{103}
+\protect \contentsline {figure}{\protect \numberline {4.5}{\ignorespaces Deux configurations de la r\protect \relax \protect \`egle\unskip \penalty \@M \ \ignorespaces \protect \textsf {\unhbox \voidb@x \hbox {anneal}}}}{104}
+\protect \contentsline {figure}{\protect \numberline {4.6}{\ignorespaces Les deux configurations de la figure\unskip \penalty \@M \ \ignorespaces \protect \mygetdump {anneal-02} non retouch\protect \relax \protect \'ee}}{105}
+\protect \contentsline {figure}{\protect \numberline {4.7}{\ignorespaces \protect \relax \protect \'Evolution de la taille des fronti\protect \relax \protect \`eres de\unskip \penalty \@M \ \ignorespaces \protect \textsf {\unhbox \voidb@x \hbox {anneal}}}}{106}
+\protect \contentsline {figure}{\protect \numberline {4.8}{\ignorespaces \protect \relax \protect \'Evolution de la population de\unskip \penalty \@M \ \ignorespaces \protect \textsf {\unhbox \voidb@x \hbox {Anneal}} lors d'un changement du nombre d'\protect \french@circumflex iles}}{107}
+\protect \contentsline {figure}{\protect \numberline {4.9}{\ignorespaces Transition vers la derni\protect \relax \protect \`ere \protect \french@circumflex ile}}{108}
+\protect \contentsline {figure}{\protect \numberline {4.10}{\ignorespaces Populations normalis\protect \relax \protect \'ees pour 4\unskip \penalty \@M \ \ignorespaces espaces initiaux de tailles crois\discretionary {-}{}{}santes}}{108}
+\protect \contentsline {figure}{\protect \numberline {4.11}{\ignorespaces Une s\protect \relax \protect \'erie de zooms sur la population et la taille des fronti\protect \relax \protect \`eres}}{109}
+\protect \addvspace {10\p@ }
+\protect \contentsline {figure}{\protect \numberline {5.1}{\ignorespaces La dynamique de l'AC \protect \textsf {\unhbox \voidb@x \hbox {xu}}}}{111}
+\protect \contentsline {figure}{\protect \numberline {5.2}{\ignorespaces Un rendu d'une tranche des valeurs du dernier plan de la figure\unskip \penalty \@M \ \ignorespaces \protect \mygetdump {xu-photo-1}}}{114}
+\protect \contentsline {figure}{\protect \numberline {5.3}{\ignorespaces D'autre points de vue}}{115}
+\protect \contentsline {figure}{\protect \numberline {5.4}{\ignorespaces Et un \protect \relax \protect \'epluchage}}{116}
+\protect \contentsline {figure}{\protect \numberline {5.5}{\ignorespaces Une autre configuration initiale}}{117}
+\protect \contentsline {figure}{\protect \numberline {5.6}{\ignorespaces Et un \protect \relax \protect \'epluchage exponentiel}}{118}
+\protect \addvspace {10\p@ }
+\protect \contentsline {figure}{\protect \numberline {A.1}{\ignorespaces Le c{\protect \oe }ur de la r\protect \relax \protect \`egle\unskip \penalty \@M \ \ignorespaces \protect \textsf {\unhbox \voidb@x \hbox {Qmean}}}}{119}
+\protect \contentsline {figure}{\protect \numberline {A.2}{\ignorespaces La r\protect \relax \protect \`egle\unskip \penalty \@M \ \ignorespaces \protect \textsf {\unhbox \voidb@x \hbox {Anneal}} est impl\protect \relax \protect \'ement\protect \relax \protect \'ee via la r\protect \relax \protect \`egle\unskip \penalty \@M \ \ignorespaces \protect \textsf {\unhbox \voidb@x \hbox {Sum9}}}}{120}
+\protect \contentsline {figure}{\protect \numberline {A.3}{\ignorespaces L'interface de binding \protect \texttt {\unhbox \voidb@x \hbox {Tcl}} pour\unskip \penalty \@M \ \ignorespaces \protect \textsf {\unhbox \voidb@x \hbox {Anneal}}}}{120}
+\protect \contentsline {figure}{\protect \numberline {A.4}{\ignorespaces La r\protect \relax \protect \`egle\unskip \penalty \@M \ \ignorespaces \protect \textsf {\unhbox \voidb@x \hbox {Tube-Worm}}}}{121}
+\protect \addvspace {10\p@ }
+\protect \contentsline {figure}{\protect \numberline {B.1}{\ignorespaces \protect \texttt {\unhbox \voidb@x \hbox {gnans}} et Lokta-Volterra}}{123}
+\protect \contentsline {figure}{\protect \numberline {B.2}{\ignorespaces \protect \textsf {\unhbox \voidb@x \hbox {Fox-Rabbit}} Version 1}}{125}
+\protect \contentsline {figure}{\protect \numberline {B.3}{\ignorespaces \protect \textsf {\unhbox \voidb@x \hbox {Fox-Rabbit}} Versions\unskip \penalty \@M \ \ignorespaces 2 et\unskip \penalty \@M \ \ignorespaces 3}}{126}
+\protect \addvspace {10\p@ }
+\protect \contentsline {figure}{\protect \numberline {C.1}{\ignorespaces Cr\protect \relax \protect \'eation des structures de donn\protect \relax \protect \'ees pour le voisinage}}{128}
+\protect \contentsline {figure}{\protect \numberline {C.2}{\ignorespaces D\protect \relax \protect \'efinitions d'objets top-level}}{129}
+\protect \contentsline {figure}{\protect \numberline {C.3}{\ignorespaces D\protect \relax \protect \'efinitions des fonctions}}{130}
+\protect \addvspace {10\p@ }

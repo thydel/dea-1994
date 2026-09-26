@@ -1,0 +1,248 @@
+.de thy@WARNING
+.if \\n[thy@warning] .thy*print-warning
+..
+
+.de thy*print-warning
+.br
+\\s+4***WARNING***\\s-4
+.br
+..
+
+.de thy@H
+.if \\$1=1 \{\
+.	nr Fg 0
+.	nr Ex 0
+.	nr Ec 0
+.	nr Tb 0
+.\}
+.ds thy@chapter-name-\\$1 \\$2
+.if \\$1=1 .nr thy@do-head 0
+.H \\$1 \\\\*[thy@chapter-name-\\$1]
+.\"if \\$1=1 .nr thy@do-head 1
+.nr thy@foot-flag 1
+..
+
+.de thy@HU
+.nr Hu 1
+.nr Fg 0
+.nr Ex 0
+.nr Ec 0
+.nr Tb 0
+.ds thy@chapter-name-1 \\$1
+.ds thy@chapter-name-2
+.nr thy@do-head 0
+.HU \\\\*[thy@chapter-name-1]
+.nr thy@do-head 1
+.nr thy@foot-flag 1
+..
+
+.de thy@APP
+.nr Fg 0
+.nr Ex 0
+.nr Ec 0
+.nr Tb 0
+.EH "'\\\\\\\\nP''\\\\\\\\*[App] \\\\\\\\*[app*ind].'"
+.OH "'\\\\\\\\*[thy@annexe-name]''\\\\\\\\nP'"
+.ds thy@annexe-name \\$1
+.nr thy@do-head 0
+.APP "" "\\$1"
+.\"nr thy@do-head 1
+..
+
+.de thy@BIG
+.nr thy*big 1
+..
+
+.de thy@DUMP
+.DS
+.B1
+.sp 1
+.ie (\\n[thy@debug]&\\n[thy*big]) \{\
+.	PSPIC dump/dummy.ps
+.\}
+.el \{\
+.	ie !''\\$3' .PSPIC dump/\\$1.ps \\$3 \\$4
+.	el .PSPIC dump/\\$1.ps
+.\}
+.ds thy*tmp \\$2
+.FG \\\\*[thy*tmp] \\n(H1.
+.B2
+.DE
+.ds dump-\\$1 \\n(H1.\\n(Fg
+.SETR ref-dump-\\$1 \\\\*[dump-\\$1]
+.nr thy*big 0
+..
+
+.de thy@DUMP2
+.DS
+.B1
+.sp 1
+.ie (\\n[thy@debug]&\\n[thy*big]) \{\
+.	PSPIC dump/dummy.ps
+.\}
+.el \{\
+.	ie !''\\$4' .thy@PSMPIC 2 0 dump/\\$1.ps \\$4 \\$5
+.	el .thy@PSMPIC 2 0 dump/\\$1.ps
+.	ie !''\\$6' .thy@PSMPIC 2 1 dump/\\$2.ps \\$6 \\$7
+.	el .thy@PSMPIC 2 1 dump/\\$2.ps
+.\}
+.ds thy*tmp \\$3
+.FG \\\\*[thy*tmp] \\n(H1.
+.B2
+.DE
+.ds dump-\\$1+\\$2 \\n(H1.\\n(Fg
+.SETR ref-dump-\\$1+\\$2 \\\\*[dump-\\$1+\\$2]
+.nr thy*big 0
+..
+
+.de thy@FIG
+.DS
+.B1
+.sp 1
+.ie (\\n[thy@debug]&\\n[thy*big]) \{\
+.	PSPIC dump/dummy.ps
+.\}
+.el \{\
+.	ie !''\\$3' .PSPIC fig/\\$1.ps \\$3 \\$4
+.	el .PSPIC fig/\\$1.ps
+.\}
+.ds thy*tmp \\$2
+.FG \\\\*[thy*tmp] \\n(H1.
+.B2
+.DE
+.ds fig-\\$1 \\n(H1.\\n(Fg
+.SETR ref-fig-\\$1 \\\\*[fig-\\$1]
+.nr thy*big 0
+..
+
+.de thy@PLOT
+.DS
+.B1
+.sp 1
+.ie (\\n[thy@debug]&\\n[thy*big]) \{\
+.	PSPIC dump/dummy.ps
+.\}
+.el \{\
+.	ie !''\\$3' .PSPIC plot/\\$1.ps \\$3 \\$4
+.	el .PSPIC plot/\\$1.ps
+.\}
+.ds thy*tmp \\$2
+.FG \\\\*[thy*tmp] \\n(H1.
+.B2
+.DE
+.ds plot-\\$1 \\n(H1.\\n(Fg
+.SETR ref-plot-\\$1 \\\\*[plot-\\$1]
+.nr thy*big 0
+..
+
+.de thy@PLOT2
+.DS
+.B1
+.sp 1
+.ie (\\n[thy@debug]&\\n[thy*big]) \{\
+.	PSPIC dump/dummy.ps
+.\}
+.el \{\
+.	ie !''\\$4' .thy@PSMPIC 2 0 plot/\\$1.ps \\$4 \\$5
+.	el .thy@PSMPIC 2 0 plot/\\$1.ps
+.	ie !''\\$6' .thy@PSMPIC 2 1 plot/\\$2.ps \\$6 \\$7
+.	el .thy@PSMPIC 2 1 plot/\\$2.ps
+.\}
+.ds thy*tmp \\$3
+.FG \\\\*[thy*tmp] \\n(H1.
+.B2
+.DE
+.ds plot-\\$1+\\$2 \\n(H1.\\n(Fg
+.SETR ref-plot-\\$1+\\$2 \\\\*[plot-\\$1+\\$2]
+.nr thy*big 0
+..
+
+.de thy@PLOT2V
+.DS
+.B1
+.sp 1
+.ie (\\n[thy@debug]&\\n[thy*big]) \{\
+.	PSPIC dump/dummy.ps
+.\}
+.el \{\
+.	ie !''\\$4' .PSPIC plot/\\$1.ps \\$4 \\$5
+.	el .PSPIC plot/\\$1.ps
+.	ie !''\\$6' .PSPIC plot/\\$2.ps \\$6 \\$7
+.	el .PSPIC plot/\\$2.ps
+.\}
+.ds thy*tmp \\$3
+.FG \\\\*[thy*tmp] \\n(H1.
+.B2
+.DE
+.ds plot-\\$1+\\$2 \\n(H1.\\n(Fg
+.SETR ref-plot-\\$1+\\$2 \\\\*[plot-\\$1+\\$2]
+.nr thy*big 0
+..
+
+.de thy@TBL
+.DS
+.ds thy*tbl-name \\$1
+.ds thy*tbl-tmp \\$2
+\s-2
+.vs -2
+..
+
+.de thy@TBL-END
+.vs +2
+\s+2
+.TB \\\\*[thy*tbl-tmp] \\n(H1.
+.DE
+.ds tbl-\\*[thy*tbl-name] \\n(H1.\\n(Tb
+.SETR ref-tbl-\\*[thy*tbl-name] \\\\*[tbl-\\*[thy*tbl-name]]
+..
+
+.de thy@CODE-START
+\s8
+.VERBON
+..
+
+.de thy@CODE-END
+.VERBOFF
+\s0
+.br
+..
+
+.de thy@PCS
+.in +4n
+.ll -4n
+.vs -2
+\s-2
+.br
+.sp -1
+..
+
+.de thy@PCE
+.sp -1
+.br
+\s+2
+.vs +2
+.ll +4n
+.in -4n
+..
+
+.de thy@GET-REF
+.if \\$2=1 .ds Qrf Voir chapitre \\\\*[Qrfh], page \\\\*[Qrfp].
+.if \\$2=2 .ds Qrf (voir chapitre \\\\*[Qrfh], page \\\\*[Qrfp])
+.GETR ref-\\$1
+..
+
+.de thy@GET-FIG
+.GETST ref-\\$1 thy*tmp-fig
+.if \\$2=1 .ds Qrf Voir figure \\\\*[thy*tmp-fig], chapitre \\\\*[Qrfh], page \\\\*[Qrfp].
+.if \\$2=2 .ds Qrf (voir figure \\\\*[thy*tmp-fig], chapitre \\\\*[Qrfh], page \\\\*[Qrfp])
+.if \\$2=3 .ds Qrf Voir aussi figure \\\\*[thy*tmp-fig], chapitre \\\\*[Qrfh], page \\\\*[Qrfp].
+.GETR ref-\\$1
+..
+
+.de thy@GET-TBL
+.GETST ref-\\$1 thy*tmp-tbl
+.if \\$2=1 .ds Qrf Voir table \\\\*[thy*tmp-tbl], chapitre \\\\*[Qrfh], page \\\\*[Qrfp].
+.if \\$2=2 .ds Qrf (voir table \\\\*[thy*tmp-tbl], chapitre \\\\*[Qrfh], page \\\\*[Qrfp])
+.GETR ref-\\$1
+..
+

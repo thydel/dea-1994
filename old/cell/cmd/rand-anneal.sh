@@ -1,0 +1,1 @@
+cell -s 7 -l 100000 -k 20 -h rand-anneal-hist.out -c von-neumann-2 -t rule/rand-anneal.t -f frame/rand-anneal.f -e 8 | xdump-1 -s 7

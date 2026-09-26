@@ -1,0 +1,2 @@
+$rule = \arule{life}$
+$space.size = {2^8}^2$

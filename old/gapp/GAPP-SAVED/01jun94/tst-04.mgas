@@ -1,0 +1,37 @@
+changequote([,])
+
+define([set_frame],[
+	gapp c := ns
+	gapp ram $1 := c
+	frame2ascii eval($1 / 32)
+	print
+])
+
+define([ram0], 8)
+define([ram1], 9)
+define([ram2], 10)
+
+single
+set_frame(ram0)
+
+bloc
+set_frame(ram1)
+
+random
+set_frame(ram2)
+
+print --------------------
+
+define([get_frame],[
+	gapp ns := ram $1
+	state2ascii 1
+	print
+])
+
+gapp ns := 0; ew := 0; c := 0
+state2ascii 1
+print
+
+get_frame(ram0)
+get_frame(ram1)
+get_frame(ram2)

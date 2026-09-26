@@ -1,0 +1,37 @@
+divert(-1)
+include(`gapp-lib.mgas')
+divert dnl
+
+def([debug],[([txt])],[
+	print txt
+	gapp txt
+	state2ascii 0
+])
+
+def([hhline],[([dir],[dest],[cnt])],[
+	single
+	gapp ew := ns
+	loop([i], ifelse(cnt,,1,cnt),[
+		gapp ew := dir; c := 1
+		gapp c := cy
+		gapp ew := c; ns := c
+	])
+	gapp ram dest := c
+])
+
+def([ehline],[([dest],[cnt])],[hhline([e],dest,cnt)])
+def([whline],[([dest],[cnt])],[hhline([w],dest,cnt)])
+def([hline],[([dest],[cnt])],[
+	ehline(dest,cnt)
+	whline(dest,cnt)
+])
+
+hline(0, 16)
+#zone2ascii 0 1
+gapp ns := ram 0
+label 0
+extract 0
+gapp ns := n
+goto 0
+
+

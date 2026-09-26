@@ -1,0 +1,612 @@
+\section[Objectifs et contraintes]{Nos objectifs et contraintes pour un
+  environnement de d\'e\-ve\-lop\-pe\-ment et d'observation d'AC}
+
+Nous cherchons \`a d\'efinir et \`a r\'ealiser un environnement de
+d\'eveloppement et d'observation de ces syst\`emes. %
+Une des motivations principales de ce travail r\'eside dans le d\'esir de
+voir~(et montrer) les s\'equences anim\'ees g\'en\'er\'ees par un AC\@. %
+En effet s'il est ais\'e de construire des AC en vue de donner des
+instantan\'es photographiques d'\'etats successifs, il est plus difficile de
+les visualiser en continu filmique. %
+Bien qu'il existe des outils\footnote{%
+  \mysoftcite[Cellsim]{cellsim}, %
+  \mysoftcite{scamper}, %
+  \mysoftcite[CA~LAB]{ca_lab}~\cite[]{Rucker89}, %
+  \mysoftcite{xlife}, %
+  \mysoftcite[HODGE-C]{hodge_c}, %
+  \mysoftcite{cellang}. %
+  Les num\'eros en indice sup\'erieur entre crochets renvoient au r\'epertoire des
+  outils, donn\'e en appendice.} %
+de sp\'ecification d'AC et d'observation de leur dynamique, aucun de
+ceux dont nous connaissons l'existence ne r\'epond
+pleinement aux contraintes que nous allons d\'efinir. %
+Nous souhaitons \'egalement que cet outil permette imm\'ediatement la
+recherche et la cr\'eation de nouveaux AC, puis la constitution d'un
+catalogue d'AC connus. %
+Enfin nous esp\'erons qu'il serve \`a l'identification d'AC pouvant servir
+de primitives dans un futur langage bas\'e sur la combinaison d'AC. %
+Les qualit\'es recherch\'ees sont la rapidit\'e, l'extensibilit\'e, ainsi que la
+facilit\'e de sp\'ecification et d'interaction\footnote{%
+  La \aconcept{rapidit\'e} peut \^etre d\'efinie comme le rendement d'une
+  impl\'ementation   pour une architecture donn\'ee. %
+  Dans ce contexte, et pour une architecture cible s\'equentielle, la
+  rapidit\'e s'exprime comme le nombre d'instructions
+  \'el\'ementaires de la machine cible utilis\'ee pour simuler une
+  instruction de la machine source. %
+  Cette d\'efinition est n\'eanmoins trop g\'en\'erale, en effet, si nous
+  proposons dans le cadre de ce travail des moteurs cellulaires \`a
+  rendement constant~(\ie ind\'ependant de l'espace initial et de la
+  r\`egle de transition), il est possible de concevoir des moteurs
+  cellulaires \`a rendement variable: \mysoftcite{xlife} d\'ecoupe
+  l'espace cellulaire en blocs et permet le calcul sur des
+  configurations cellulaires virtuelles de grandes tailles;
+  \cite{Gosper84} d\'ecrit un algorithme bas\'e sur une m\'emoire cache
+  asynchrone des configurations cellulaires~(le cache contient un
+  treillis de morceaux d'espace-temps cellulaire). %
+
+  L'extensibilit\'e peut, dans notre contexte, se ramener \`a la
+  conception d'un ensemble d'objets constituant \`a la fois la bo\^ite \`a
+  outils et les \'el\'ements de base de la construction des exp\'eriences
+  cellulaires. %
+  La recherche de cette qualit\'e peut entrer en conflit avec la
+  recherche de la rapidit\'e, par exemple les variations de param\`etres
+  sur les moteurs cellulaires \`a rendement constant que nous avons
+  r\'ealis\'es passent par une phase de macro-g\'en\'eration de code source.}. %
+
+
+\subsection*{Le cadre syst\`eme, mat\'eriel, et logiciel:~les performances}
+
+Notre environnement de d\'eveloppement est Unix et X11, notre
+architecture cible est une machine standard de~10~\`a~100~mips
+et~8~\`a~64 \astrangeterm{m\'egabytes}{%
+  Nous emploierons indiff\'eremment les termes octet et byte, ainsi que
+  leurs d\'eriv\'es: kilobyte, m\'egaoctet ou gigaoctet.} %
+de m\'emoire utile. %
+Pour un AC bidimensionnel compos\'e de \asquare{256}
+cellules de~2~bits\footnote{%
+  Avec un voisinage de Moore~(9~bits de voisinage), 2~bits d'\'etats
+  donnent une table de taille 512~kilobit~($2^{2 \times  9} \times  2$), ce qui
+  est tr\`es loin des limites que nous nous sommes fix\'es, mais le passage
+  \`a trois bits de voisinage donne une table de taille
+  48~m\'egaoctets~($\frac{2^{3 \times  9} \times  3}{8}$) qui se trouve \`a la limite
+  des ressources m\'emoires consid\'er\'ees. %
+  Nous insistons cependant sur le fait que rien n'interdit en pratique
+  l'usage de telles tables, m\^eme si la connaissance de la
+  distribution des configurations locales devient n\'ecessaire pour
+  pr\'edire les performances du syst\`eme constitu\'e du triplet
+  \emph{table} de transition, \emph{configuration} initiale,
+  \emph{performance} intrins\`eque du syst\`eme de gestion m\'emoire de la
+  machine supportant l'application.} %
+avec un voisinage de Moore, le syst\`eme doit \^etre capable de calculer
+une dizaine d'\'etats par seconde~(10~Hz)\footnote{%
+  D'un point de vue \aquote{esth\'etique}, cette fr\'equence correspond \`a
+  un minimum subjectif permettant de restituer l'illusion du mouvement
+  continu~(les images t\'el\'evisuelles ont une fr\'equence de~25~Hz, les
+  images cin\'ematographiques modernes une fr\'equence de~24~Hz, les
+  images cin\'ematographiques originelles une fr\'equence de~14 \`a~20~Hz,
+  le passage \`a des fr\'equences plus \'elev\'ees est dict\'e par des
+  consid\'erations techniques li\'ees aux besoins du parlant pour le cin\'ema
+  et \`a la fr\'equence du secteur alternatif pour la t\'el\'evision). %
+  Cette fr\'equence est donc \'elev\'ee, car d'un point de vue
+  \aquote{syst\`eme} elle correspond~(pour notre espace de r\'ef\'erence
+  $256^2$) \`a un d\'ebit de~640~kilo \bialt{op\'erations}{cellules} par
+  seconde, ce qui pour une machine hypoth\'etique \`a~20~mips, correspond
+  \`a~32~instructions de la machine cible pour une instruction de la
+  machine source~(une mise \`a jour cellulaire).}. %
+Le co\^ut li\'e \`a la visualisation est plus difficile \`a \'evaluer, mais la
+cha\^ine de traitement compl\`ete~(production, extraction, visualisation)
+doit permettre l'observation d'un film \`a une fr\'equence sup\'erieure
+\`a~1~Hz\footnote{%
+  Eisenstein, Gance ou Godard par leur utilisation occasionnelle de
+  l'alternance de plans \`a une telle fr\'equence illustrent le proc\'ed\'e
+  esth\'etique. %
+
+  Cette fr\'equence correspond par ailleurs \`a un imp\'eratif ergonomique
+  subjectif concernant le \aquote{temps de r\'eponse} d'une application,
+  elle borne la taille des espaces accessibles \`a un mode de
+  visualisation s\'equentielle lorsque la contrainte de l'illusion du
+  mouvement est lev\'ee. %
+  
+  La perte de l'illusion du mouvement, n'est pas contradictoire \`a
+  l'\'etude du mouvement. %
+  Le physiologiste Marey \'etudie le vol des oiseaux:~son %
+  \aquote{fusil photographique}~(1882) et son %
+  \aquote{Chronophotographe \`a pellicule}~(1888) %
+  servent \`a l'analyse photographique du mouvement. %
+  Bien que consid\'er\'e comme pr\'ecurseur du cin\'ematographe,
+  il ne se pr\'eoccupe pas de restituer l'illusion du mouvement. %
+  En cin\'ema d'animation, la \anewterm{pixillation} utilise sciemment
+  la s\'equence contre l'illusion. %
+  \begin{quote}
+    ``L'animation n'est pas l'art des dessins qui bougent, mais l'art des
+    mouvements dessin\'es. %
+    Ce qui ce passe entre chaque image a beaucoup plus d'importance que
+    ce que l'on voit sur chaque image.'' \textsc{N. McLaren}.{\hfill$\cdots/\cdots$}%
+  \end{quote}
+  En 1941 dans ``L'\'evolution cr\'eatrice'', Bergson
+  d\'efend l'id\'ee que ``le m\'ecanisme de notre connaissance usuelle est
+  de nature cin\'ematographique''~\cite[page 305]{Bergson89}. %
+  Pour lui ``la forme n'est qu'un instantan\'e pris sur une
+  transition'', seul est r\'eel le changement continuel de forme. %
+  Il place cette m\'etaphore au c{\oe}ur d'une r\'eflexion historique qui
+  remonte \`a Z\'enon d'\'El\'ee. %
+
+  Dans son acharnement \`a d\'efendre ``L'ant\'eriorit\'e ontologique du
+  continu sur le discret'', \cite{Thom92} va jusqu'\`a proposer
+  une ``version informatis\'ee de la preuve cart\'esienne de
+  l'existence de Dieu'' d\'eclarant contradictoire la finitude du nombre
+  de neurones c\'er\'ebraux et la pens\'ee de l'infini. %
+  Sans pr\'etendre trancher une question aussi d\'ebattue, nous pouvons
+  n\'eanmoins sugg\'erer que l'\'etude des AC propose une approche \`a rebours
+  de cette question, la recherche pratique de l'immanence
+  ph\'enom\'enologique du continu rempla\c{c}ant les tentatives de
+  d\'emonstration de son ant\'eriorit\'e ontologique. %
+
+  Sur notre configuration de d\'eveloppement~(un~486DX2 avec~32~m\'egaoctets
+  de m\'emoire, le syst\`eme d'exploitation Linux et X11 pour la
+  visualisation) la fr\'equence typique pour une cha\^ine comprenant la
+  g\'en\'eration sur un voisinage de Moore~(toujours pour un espace de
+  r\'ef\'erence $256^2$) et l'extraction d'un plan m\'emoire~(constitu\'e d'un
+  des deux bits d'\'etat) dans un premier processus, pip\'e sur un processus
+  dumpant les plans cellulaires vers le serveur X11~(tournant sur la
+  m\^eme machine) est sup\'erieure \`a~10~Hz. %
+  Le d\'ecouplage des diff\'erentes op\'erations de la cha\^ine permet
+  d'obtenir une fr\'equence de g\'en\'eration sup\'erieure \`a~15~Hz~(module de
+  g\'en\'eration redirig\'e sur \texttt{/dev/null}) et une fr\'equence de
+  visualisation monochrome~(pour un seul plan de bits cellulaire)
+  sup\'erieure \`a~30~Hz, (mesur\'e via un fichier historique
+  de~8~m\'egaoctets pour~1024~g\'en\'erations). %
+  Ces mesures s'entendent en temps \'ecoul\'e r\'eel, pour un syst\`eme
+  autrement au repos, les mesures de performance de visualisation ne
+  constituent \'evidemment pas une r\'ef\'erence \`a notre travail, mais elles
+  permettent de consid\'erer, au regard des mesures de performance du
+  moteur cellulaire, que celui-ci atteint le d\'ebit plafond d'un moteur
+  \`a rendement constant, \ie la meilleure performance possible est
+  toujours garantie dans le pire des
+  cas~(espace cellulaire et portion d'espace-temps satur\'e).}. %
+Nous avons ainsi r\'ealis\'e un noyau d'objets permettant la construction
+d'exp\'eriences, sous la forme d'une librairie C, interfac\'ee \`a
+\asoft{Tcl}\footnote{%
+  Tool Command Language.}%
+~\cite[]{Ousterhout90,Ousterhout91}. %
+
+\subsection*{Sp\'ecification:~la description des exp\'eriences cellulaires}
+
+La sp\'ecification concerne les r\'eseaux d'interconnexions, les fonc\-tions
+de transitions, et le s\'equencement des op\'erations applicables sur
+l'espace. %
+Les fonc\-tions de transitions sont \'ecrites en~\asoft{C}, et sont dot\'ees
+d'une convention d'interface pr\'evue pour permettre une ind\'ependance
+des param\`etres \`a leur localisation dans la m\'emoire d'\'etats d'une
+cellule et la r\'eutilisation dans des fonctions de plus haut niveau. %
+Les r\'eseaux d'interconnexions sont d\'efinis et cr\'e\'es en~\asoft{Tcl} \`a
+partir des primitives de la librairie. %
+Les espaces sont cr\'e\'es en~\asoft{Tcl}. %
+Le s\'equencement est d\'efini par un programme~\asoft{Tcl}. %
+
+\subsection*{Interaction:~l'interface humaine}
+
+L'interaction se fait soit par l'interm\'ediaire d'un shell~\asoft{Tcl}, soit
+par une interface X11 bas\'e sur~\asoft{Tk}. %
+
+\subsection*{Visualisation:~les outils graphiques}
+
+La visualisation se fait par l'interm\'ediaire de fen\^etres X11
+pr\'esentant des s\'equences d'espaces monochromes~(plans de bits de
+l'espace cellulaire) ou couleur~(tranches de bits de l'espace
+cellulaire). %
+Les variables macroscopiques~(\'el\'ements statistiques) sont visualis\'ees
+par l'interm\'ediaire d'objets X11 sp\'ecialis\'es~(plotters). %
+
+\mydumpfull[htb]{casNew}%
+{Une interface humaine exp\'erimentale pour le Workbench}%
+{Une interface humaine exp\'erimentale et son dumper}%
+{Une interface X11 r\'ealis\'ee avec
+  \protect\mysoftcite{Tk}~\cite[]{Ousterhout90,Ousterhout91}. %
+  Le dumper pr\'esente une image typique de la transformation d'un espace
+  initial al\'eatoire de densit\'e\,\Sundemi par la
+  r\`egle~\arule{Anneal}~\cite[]{Vichniac86,Toffoli87}\footnote{%
+    \mygetrule[phrase]{anneal}} %
+  Le dumper pr\'esente \'egalement diff\'erents compteurs li\'es aux temps
+  propre de la r\`egle, du s\'equenceur, et au pool d'espaces de l'animation. %
+}
+
+\section{Les outils existants:~pas de standard}
+
+Une recherche aussi exhaustive que possible des outils publics
+existants nous a convaincu de la n\'ecessit\'e d'une utilisation critique
+de certains de ces outils, en particulier dans le domaine de la
+visualisation, associ\'e \`a une r\'ealisation exp\'erimentale ad hoc
+d'\'el\'ements d'architecture de calcul cellulaire. %
+
+Les outils de d\'eveloppement et de visualisation d'automates
+cellulaires sont peu nombreux\footnote{%
+  Bien que les r\'ealisations de \arule{Life} soit
+  innombrables, et les packages cellulaires plus ou moins g\'en\'eraux tr\`es
+  nombreux, leurs r\'ealisations minimales posant peu de probl\`emes, nous ne
+  prenons en compte que les packages dont il existe des annonces
+  explicites.}. %
+Le plus connu d'entre eux est sans doute \mysoftcite{cellsim};
+\mysoftcite{scamper} et \mysoftcite[CA~LAB]{ca_lab} sont \'egalement des
+outils disponibles depuis 1989. %
+Il existe aussi des outils sp\'ecialis\'es pour un mod\`ele d'automate
+cellulaire. %
+\mysoftcite{xlife} fournit une r\'ealisation d'ex\'ecution tr\`es rapide du
+jeu de la vie~\cite[]{Berlekamp82}, \mysoftcite[HODGE-C]{hodge_c} une
+r\'ealisation de la machine hodge-podge de
+Gerhard~\&~Schuster~\cite[]{Dewdney88}, une classe d'AC inspir\'ee par
+les r\'eactions chimiques autocatalytiques, telle que la r\'eaction de
+Beluso\mbox{v-Z}habotinski. %
+Enfin, \mysoftcite{cellang}, d'inspiration plus architecturale,
+propose un langage de description d'AC~\cite[]{Eckart92a}. %
+\nocite{Eckart92b}
+
+\section[Le calcul et la visualisation]%
+{Un nouvel environnement:~exploration par le calcul et la visualisation}
+
+Nous avons donc r\'ealis\'e un nouvel environnement\footnote{%
+  Ci-apr\`es d\'esign\'e par le terme \anewterm{workbench}.} %
+de d\'eveloppement et de visualisation d'automates cellulaires. %
+
+Nous destinons ce workbench tant \`a l'exploration de la dynamique
+des automates cellulaires~(AC), qu'\`a la construction et \`a l'\'evaluation
+d'architectures et d'algorithmes SIMD\@. %
+De plus nous proposons de consid\'erer la r\'ealisation d'algorithmes SIMD
+sur machines SISD non pas comme un palliatif \`a l'absence de machines
+SIMD, mais comme un mode d'utilisation particulier des ressources
+disponibles sur les machines SISD modernes~(50~Mips, 32~m\'egaoctets). %
+
+La programmation des calculateurs massivement parall\`eles r\'eels et
+virtuels pose le double probl\`eme du pouvoir d'expression et de
+l'efficacit\'e d'un langage au regard d'une architecture. %
+Ce probl\`eme se pose \'egalement pour les architectures SISD, mais l'on
+peut consid\'erer qu'il concerne d\'esormais l'ad\'equation des langages aux
+applications plut\^ot qu'aux architectures. %
+Optant pour une approche r\'esolument bottom-up de la recherche des
+primitives, nous proposons d'utiliser les AC comme composants
+\'el\'ementaires d'une combinatoire visant \`a la construction d'objets
+\bialt{cellulaires}{SIMD} arbitrairement complexes. %
+Ces objets se divisent en deux classes \'epist\'emologiques. %
+Nous les nommerons objets \aconcept{analytiques} et objets
+\aconcept{synth\'etiques}. %
+Les objets analytiques sont typiquement issus de l'application
+it\'erative d'une fonction simple sur un espace cellulaire initial
+al\'eatoire. %
+Ils recoupent intuitivement le champ d'\'etude traditionnel des AC\@. %
+Les objets synth\'etiques sont issus de la s\'election d'une fonction
+localement universelle, et de son application contr\^ol\'ee~(globalement
+param\'etr\'ee) sur un espace initial soigneusement configur\'e. %
+Ils correspondent aux architectures des machines SIMD\@. %
+De l'\'etude des objets analytiques nous esp\'erons tirer des
+enseignements permettant \`a terme de consid\'erer les processus
+morphog\'en\'etiques comme des \'el\'ements de programmation. %
+De la construction d'un outillage SIMD nous attendons les moyens de
+contr\^ole n\'ecessaires \`a l'\'etude des objets analytiques. %
+Cet objectif, certes ambitieux, repose pr\'ecis\'ement sur la r\'ealisation
+par \aconcept{lookup-tables} des fonctions de bas niveau manipulables
+et combinables au sein de l'environnement. %
+
+Notre \'etude est organis\'ee autour de la pr\'esentation des structures de
+donn\'ees choisies pour le workbench; ces structures de donn\'ees
+repr\'esentent \aconcept{l'espace}, \aconcept{le temps}, et
+\aconcept{les lois}:~objets \'el\'ementaires du workbench. %
+Nous proposons des exemples d'op\'erations applicables sur ces objets. %
+Nous proposons \'egalement de consid\'erer la r\'ealisation de fonctions par
+lookup-tables comme une structure de donn\'ees fondamentale, tant pour
+des raisons d'efficacit\'e, que de g\'en\'eralit\'e. %
+
+Nous consid\'erons la visualisation comme un service primordial, qui
+propose l'usage du workbench en tant que laboratoire de manipulation
+d'espace cellulaire~(l'espace, mais aussi les fonctions et les
+dynamiques). %
+Nous pr\'esentons plusieurs exemples de visualisations principalement
+associ\'ees \`a des objets analytiques. %
+Nous montrons comment peut s'effectuer le passage d'une m\'ethode
+naturaliste \`a une m\'ethode artefactuelle en proposant une r\'ealisation
+par lookup-table d'une architecture SIMD sp\'ecifique, et une m\'ethode de
+transformation d'une lookup-table quelconque en s\'equence de contr\^ole
+pour cette machine. %
+
+Constatant l'absence d'outils adapt\'es aux contraintes de la
+visualisation des espace-temps cellulaires\footnote{%
+  La visualisation de volume de donn\'ees dans un format inadapt\'e
+  conduit \`a la saturation inutile des capacit\'es m\'emoire de la machine
+  d'accueil d'un calcul cellulaire.}, %
+constatant \'egalement l'existence d'espace-temps cellulaires binaires a
+priori toriques, nous avons con\c{c}u, r\'ealis\'e et test\'e une biblioth\`eque
+de manipulation d'espace\footnote{%
+  Coupe, s\'equences de coupes sur des axes de projection variables, %
+  r\'eduction int\'egrale sur un axe arbitraire pond\'er\'e par la distance \`a
+  la surface de projection pour obtenir des effets de transparence.} %
+cellulaires aux fins de visualisation. %
+Sur cette base, nous avons par exemple pu tester l'id\'ee d'une
+visualisation relativiste des espace-temps:~%
+nous avons projet\'e le c\^one de la vitesse de la lumi\`ere\footnote{%
+  La vitesse de la lumi\`ere d'un espace-temps cellulaire est le rayon
+  du voisinage de la famille de r\`egle \`a laquelle appartient la r\`egle
+  g\'en\'eratrice de l'espace-temps.} %
+d'un espace-temps~2D sur un espace~2D, r\'esumant ainsi sur un seul
+espace~2D la dynamique de la r\`egle visualis\'ee.
+
+\mydumpfull[p]{superglider}%
+{Un glider superluminique}%
+{Un glider subluminique et un glider superluminique}%
+{Nous pr\'esentons dans cette figure la d\'ecouverte
+  d'un \aquote{glider superluminique}. %
+  Cette s\'erie d'espaces de configurations cellulaires est une s\'equence
+  de tranches d'espace-temps non align\'ees sur l'axe du temps. %
+  Malgr\'e la distorsion introduite par ce d\'ecalage, la r\`egle
+  g\'en\'eratrice de cette portion d'espace-temps est
+  parfaitement identifiable:~\arule{Life}\footnote{%
+    Les fl\`eches en haut \`a droite des deux premi\`eres photos pointent
+    une configuration cyclique de~\arule{life} reconnaissables.}. %
+  A premi\`ere vue, la cons\'equence de l'utilisation d'un axe non
+  standard pour la projection de la dynamique de~\arule{Life} est
+  d'ordre purement spatial\footnote{%
+    Cette appr\'eciation subjective n'est applicable qu'\`a l'exp\'erience
+    de la vision du \aquote{film}.}, %
+  exception faite du d\'ecalage introduit par le d\'esaxage temporel. %
+  Le carr\'e sur les photos pointe vers un objet \arule{Life} de type
+  glider, dot\'e d'une vitesse de d\'eplacement subluminique. %
+  L'observation de l'espace-temps contenant la portion pr\'esent\'ee au
+  moyen de films \`a haute fr\'equence\footnote{%
+    Sup\'erieure \`a la fr\'equence t\'el\'evisuelle.} %
+  nous a permis d'identifier \`a la vue un objet paradoxal, point\'e par
+  un cercle sur les photos:~un glider superluminique.}
+
+\noindent La figure~\mygetdump{superglider} pr\'esente un des usages
+possible de notre librairie de manipulation d'espaces dans le
+contexte du workbench:~%
+nous y pr\'esentons la d\'ecouverte d'un \aconcept{glider
+  superluminique}\footnote{%
+  nous emploierons le terme glider~(planeur) de mani\`ere g\'en\'erique, \ie
+  pour d\'esigner des objets cellulaires p\'eriodiques, \`a un d\'ecalage spatial pr\`es.}, %
+en d\'eplacement \`a une vitesse apparente double de la
+vitesse de la lumi\`ere. %
+Nous attendions \'evidemment de cette exp\'erience des aberrations
+temporelles, des illusions ou mirages inex\-plicables dans le contexte
+d'une projection parall\`ele \`a l'axe du temps. %
+N\'eanmoins les premiers r\'esultats faisaient plut\^ot appara\^itre une
+relative invariance de la perception visuelle subjective associ\'ee \`a la
+r\`egle. %
+La proc\'edure utilis\'ee produit un d\'eplacement apparent des
+configurations, mais les objets se comportent par ailleurs, c'est \`a
+dire relativement \`a l'espace apparent pour l'exp\'erimentateur, de
+mani\`ere subluminique ou luminique usuelle. %
+Ce glider, le seul que nous ayons trouv\'e~(dans l'espace-temps
+englobant la portion pr\'esent\'ee) \'etait donc pr\'evisible, puisqu'il
+correspond \`a un glider en mouvement corr\'el\'e au front de coupe, mais
+n\'eanmoins totalement surprenant. %
+Beaucoup moins pr\'evisibles nous apparaissent les cons\'equences
+g\'en\'erales d'observations exploitant syst\'ematiquement des projections
+d'espace-temps non parall\`eles \`a l'axe du temps.
+
+\myfigfullR[htb]{.75}{timepyrcub}%
+{Tranches d'espace-temps et pyramides relativistes}%
+{Sch\'emas de r\'ealisation de tranches d'espace-temps et de pyramides relativistes}%
+{Le cube, sur ces sch\'emas, repr\'esente une portion d'espace-temps pour
+  un AC~2D. %
+  L'axe du temps est indiqu\'e par la fl\`eche verticale, %
+  les pointill\'es larges sont des ar\^etes de plans de coupe. %
+  Le sch\'ema de gauche illustre la proc\'edure utilis\'ee pour r\'ealiser les
+  s\'equences de coupes pr\'esent\'ees en figure~%
+  \mygetdump{superglider}, %
+  \mygetdump{tsum-128x3-diag}, %
+  et \mygetdump{anneal-256x3-diag}. %
+  Les coupes sont calcul\'ees en \aquote{distance de Manhattan}, %
+  Nous avons con\c{c}u un calcul d'intersection bas\'e sur une
+  version~3D de l'algorithme de trac\'e de ligne de Bresenham\footnote{%
+    Nous avons modifi\'e pour cet usage la version de Bob
+    Pendleton~(1992) d\'eriv\'ee de~\cite{Heckbert90}.}. %
+  Le sch\'ema de droite illustre la proc\'edure utilis\'ee pour r\'ealiser les
+  projections relativistes\footnote{%
+    La projection est construite par \aconcept{cercles de voisinage}
+    remontant le temps, dont le rayon d\'etermine l'\^age, \'eventuellement
+    associ\'es \`a une translation spatiale figur\'ee par la fl\`eche horizontale
+    pleine.} %
+  pr\'esent\'ees en figures~%
+  \mygetdump{life-256x3-rel}, %
+  \mygetdump{life-256x3-relmov}, %
+  \mygetdump{tsum-128x3-relmovedge}, %
+  }
+
+\mydumpfull[p]{tsum-128x3-diag}%
+{Une s\'equence de tranches d'espace-temps}%
+{Une s\'equence de tranches d'espace-temps de la r\`egle~\arule{Qmean}}%
+{La r\`egle~\arule{Qmean} est pr\'esent\'ee, ainsi que les autres r\`egles
+  utilis\'ees pour la synth\`ese des images r\'ealis\'ees
+  en~\mygetref[name]{the-rules}. %
+  La figure~\mygetfig{timepyrcub} illustre la proc\'edure de r\'ealisation
+  de cette s\'equence. %
+  D'autres visualisations associ\'ees \`a la r\`egle~\arule{Qmean} sont
+  pr\'esent\'ees par les figures~%
+  \mygetdump{tsum-grey}, %
+  \mygetdump{tsum}, %
+  \mygetdump{tsum-ray-one} %
+  et \mygetdump{tsum-ray-all}.}
+
+\mydumpfull[p]{life-256x3-rel}%
+{Projection relativiste fixe}%
+{Une projection relativiste pour une cellule fixe}%
+{Une projection relativiste~\mygetfig[paren]{timepyrcub} d'un
+  espace-temps de \arule{life} pour une cellule de r\'ef\'erence fixe,
+  r\'ealis\'ee sur un espace-temps~\acube{256}, pour une densit\'e
+  initiale\,\Sundemi. %
+  La cellule de r\'ef\'erence est au centre de la projection, %
+  celle-ci appara\^it donc au sein d'un espace \aquote{\^ag\'e},
+  compos\'e en plus grand nombre d'objets point-fixe et %
+  de densit\'e moyenne  plus faible %
+  que l'espace situ\'e \`a proximit\'e des bords de la projection, %
+  de densit\'e moyenne plus \'elev\'ee et peupl\'e d'objets plus jeunes\footnote{%
+    Que l'on peut cependant qualifier d'archa\"iques du point de vue de
+    l'origine de la projection.}. %
+  Il est possible d'accentuer l'\^age des objets lointains en diminuant la
+  vitesse de la lumi\`ere utilis\'ee lors de la projection. %
+  Un tel d\'ecouplage du rayon de voisinage accro\^it le probl\`eme
+  d'interpr\'etation des projections produites.}
+
+\mydumptwothirds[htb]{life-256x3-relmov}%
+{Projection relativiste mobile}%
+{Une projection relativiste \`a cellule mo\-bile}%
+{Cette projection diff\`ere de la figure~\mygetdump{life-256x3-rel} par
+  l'ajout d'une translation appliqu\'ee \`a la cellule de r\'ef\'erence.}
+
+\mydumpfull[t]{anneal-256x3-rel}%
+{}%
+{Projection relativiste sur les 3~axes d'un cube d'espace-temps}%
+{Cette figure regroupe trois projections relativistes de la
+  r\`egle~\arule{Anneal} r\'ealis\'ees sur une m\^eme trajectoire, %
+  pour l'axe temporel et les deux axes nord-sud et est-ouest. %
+  L'origine du temps est visible dans le haut de la projection pour
+  ces deux axes.}
+
+\myfigfullR[htb]{.75}{transcub}%
+{Transparence globale et par plan de bits}%
+{Sch\'ema de r\'ealisation de r\'eductions par transparence}%
+{Comme pour la figure~\mygetfig{timepyrcub}, les cubes repr\'esentent une
+  portion d'espace-temps pour un AC 2D. %
+  La fl\`eche pointill\'ee illustre une travers\'ee orthogonale non parall\`ele
+  \`a l'axe du temps, lors d'une telle travers\'ee on peut soit r\'ealiser un
+  film\footnote{%
+    A d\'efaut de films, incompatible avec le support papier, nous
+    pr\'esentons des s\'equences associ\'ees \`a une travers\'ee non
+    orthogonale~\mygetfig[paren]{timepyrcub}.}, %
+  soit une r\'eduction int\'egrale~(une somme de la valeur de toutes
+  les cellules rencontr\'ees). %
+  Pour les r\'eductions int\'egrales destin\'ees \`a la production d'images,
+  la valeur de la cellule est pond\'er\'ee par la distance parcourue. %
+  La figure~\mygetdump{tsum-128x3-trans-byte} pr\'esente une telle
+  image. %
+  Pour les transparences non orthogonales, les effets de bord de la
+  m\'ethode utilis\'ee~(distance de Manhattan) posent un probl\`eme
+  d'interpr\'etation des d\'eformations. %
+  Les quatre cubes \`a droite symbolisent l'op\'eration de s\'eparations d'un
+  espace-temps de cellules \`a quatre bits en quatre espace-temps de
+  cellules \`a un bit. %
+  La figure~\mygetdump{tsum-128x3-trans-bits} pr\'esente des
+  transparences sur trois axes pour cinq \aquote{plans} de bits
+  de~\arule{Qmean}, %
+  La figure~\mygetdump{life-256x3-trans-bits} pour l'unique plan d'un
+  espace-temps de~\arule{life}.}
+
+\mydumpfull[htb]{anneal-256x3-diag}%
+{}%
+{Une s\'equence de tranches d'espace-temps de la r\`egle~\arule{Anneal}}%
+{Les premi\`eres coupes correspondent \`a un temps proche du temps initial,
+  mais chaque tranche pr\'esente des caract\'eristiques archa\"iques plus ou
+  moins marqu\'ees.}
+
+\mydumpfull[htb]{tsum-128x3-faces}%
+{}%
+{Faces du cube d'espace-temps de~\arule{Qmean}}%
+{Cette figure pr\'esente les six faces d'un cube d'espace-temps de la
+  r\`egle~\arule{Qmean}. %
+  Les deux faces situ\'ees dans l'axe du temps, ainsi que leur \^ages
+  sont clairement identifiables.}
+
+\mydumpfull[p]{tsum-128x3-trans-bits}%
+{}%
+{Une transparence \'eclat\'ee par plan de bits}%
+{Les cinq bits de poids fort de la r\`egle~\arule{Qmean} sont utilis\'es
+  respectivement pour r\'ealiser une
+  transparence~\mygetfig[paren]{transcub} sur les trois axes de
+  l'espace-temps. %
+  Ces s\'equences sont \`a comparer \`a la
+  figure~\mygetdump{tsum-128x3-trans-byte} utilisant la totalit\'e des
+  bits de chaque cellule pour la transparence.}
+
+\mydumpfull[p]{tsum-128x3-trans-byte}%
+{}%
+{Une transparence utilisant tout l'espace de valeur d'une cellule}%
+{Cette transparence fournit une image plus habituelle d'une
+  dynamique cellulaire consid\'er\'ee comme un voxmap\footnote{%
+    Le voxel est la version 3D du pixel.} %
+  Des exp\'eriences ant\'erieures men\'ees avec des packages de visualisation
+  scientifique \aquote{classiques}\footnote{%
+    Au sens ou ils travaillent n\'ecessairement en flottants, ou consid\`erent
+    des donn\'ees dont la localisation n'est pas implicite
+    et en tout cas ne sont pas adapt\'es \`a un travail au niveau du bit. %
+    Nous avons recherch\'e, port\'e et exp\'eriment\'e les outils suivants:~%
+    \mysoftcite[XDataSlice]{XDS} et son format %
+    \mysoftcite{HDF}, %
+    \mysoftcite{VIS-5D}~\cite[]{Hibbard94}, %
+    \mysoftcite{viewit} et %
+    \mysoftcite{LIC}~\cite[]{Cabral93}.} %
+  donnent pour ce genre de visualisation des r\'esultats proches en terme
+  d'images produites\footnote{%
+    Mais pas en termes de ressources consomm\'ees pour la production. %
+    Un autre inconv\'enient de ces packages, \'etant les erreurs
+    introduites par la conversion flottante interm\'ediaire lorsque
+    l'espace 2D de transparence produit est destin\'e \`a la r\'ealisation
+    de mesures statistiques, autant que d'images.} %
+  de ceux pr\'esent\'es ici, %
+  mais l'usage de nos fonc\-tions de manipulation d'espaces cellulaires
+  est n\'ecessaire\footnote{%
+    D'un point de vue pratique, la conversion d'un bitmap
+    tridimensionnel en voxmap de flottants, \'eventuellement reconverti
+    en voxmap de bytes, est en effet parfaitement inad\'equate.} %
+  \`a la pro\-duc\-tion des transparences par plan de bits de
+  la figure~\mygetdump{tsum-128x3-trans-bits}. %
+  La comparaison des images produites par les m\'ethodes plan de bits
+  \vs voxel, sugg\`ere l'\'etude des relations entre les deux
+  formulations, et une possible g\'en\'eralisation de la premi\`ere \`a
+  l'analyse de voxmaps.} %
+
+\mydumpfull[htb]{anneal-256x3-trans-bits}%
+{}%
+{Une transparence par plan de bits pour~\arule{Anneal}}%
+{La m\'ethode de production comment\'ee en
+  figure~\mygetfig{transcub} est utilis\'ee 
+  pour la r\`egle~\arule{Anneal}. %
+  Le nombre d'\'etats de~\arule{Anneal} \'etant \'egal \`a deux, la m\'ethode
+  \'eclat\'ee se confond avec la m\'ethode standard.}
+
+\mydumpfull[htb]{life-256x3-trans-bits}%
+{}%
+{Une transparence par plan de bits pour~\arule{Life}}%
+{La m\'ethode de production comment\'ee en
+  figure~\mygetfig{transcub} est utilis\'ee 
+  pour la r\`egle~\arule{Life}}
+
+\mydumpfull[htb]{tsum-128x3-relmovedge}%
+{}%
+{Une d\'etection de contour appliqu\'ee sur une projection relativiste}%
+{L'accumulation de transformations renforce le probl\`eme de
+  l'interpr\'etation des images produites. %
+  Ces figures illustrent les limites rencontr\'ees en combinant une
+  d\'etection de contour une \`a projection relativiste \`a cellule de
+  r\'ef\'erence mobile, appliqu\'ee sur les trois axes de projection d'un
+  cube d'espace-temps de la r\`egle~{Qmean}.}
+
+L'\'etat actuel du d\'eveloppement du workbench n'a pas encore permis
+l'exp\'erimentation de constructions complexes d'objets mixtes. %
+La mesure de variables d'\'etats macroscopiques, par exemple, utilise
+actuellement des outils externes, au lieu d'algorithmes SIMD adapt\'es \`a
+la nature discr\`ete et finie des espaces cellulaires. %
+
+%%
+%% Local Variables:
+%% mode: auto-fill
+%% iso-accents-minor-mode: nil
+%% TeX-command-default: "mytex"
+%% TeX-master: "top"
+%% Local IspellParsing: "latex-mode ~latin1"
+%% Local IspellPersDict: "~/.ispell_lisp"
+%% LocalWords: "d\'evelop pement d'AC cellsim scamper CA LAB ca lab xlife hodge"
+%% LocalWords: "HODGE-C cellang impl\'ementation d'espace-temps mips m\'egabytes"
+%% LocalWords: "byte kilobyte m\'egaoctet gigaoctet bidimensionnel Moore kilobit"
+%% LocalWords: "Eisenstein Gance Godard Marey Chronophotographe pixillation ur"
+%% LocalWords: "McLaren Bergson Z\'enon d'\'El\'ee finitude ph\'enom\'enologique DX Linux"
+%% LocalWords: "pip\'e dumpant dev null monochrome interfac\'ee Tcl Tool Command htb"
+%% LocalWords: "Language s\'equencement casNew Workbench dumper Tk Anneal shell ad"
+%% LocalWords: "s\'equenceur monochromes plotters hoc packages hodge-podge Gerhard"
+%% LocalWords: "Schuster Beluso v-Z macro-g\'en\'eration habotinski workbench SIMD"
+%% LocalWords: "SISD bottom-up lookup-tables manipulables artefactuelle NEW tsum"
+%% LocalWords: "superluminique subluminique luminique timepyrcub relativiste rel"
+%% LocalWords: "diag anneal Manhattan Bresenham Pendleton relmov relmovedge XDS"
+%% LocalWords: "Qmean the-rules tsum-grey tsum-ray-one tsum-ray-all paren voxmap"
+%% LocalWords: "est-ouest transcub trans-byte trans-bits voxel XDataSlice HDF"
+%% LocalWords: "viewit LIC bitmap bytes versus voxmaps nord-sud name"
+%% LocalWords: "lookup-table relativistes glider point-fixe"
+%% LocalWords: "espace-temps l'espace-temps superglider d\'esaxage"
+%% End:

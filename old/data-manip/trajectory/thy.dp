@@ -1,0 +1,47 @@
+. reset all
+. dimensions
+.
+call dot.dp
+.
+. the data file has an octave header
+.
+. skip 4
+. read anneal_cycle.mdata anneal
+.
+skip 0
+read ../life/lifex_hist.data life1 life2 life3
+.
+plot life
+set io terminal; write "hit any kry to continue"; read string dummy; set io
+.
+plot life for i = 1 1 500
+set io terminal; write "hit any kry to continue"; read string dummy; set io
+.
+let mean = mean life
+set io terminal; write "hit any kry to continue"; read string dummy; set io
+.
+let start = 1
+let end = 500
+let skip = 1
+histogram life for i = start skip end
+set io terminal; write "hit any kry to continue"; read string dummy; set io
+.
+relative cumulative histogram life for i = start skip end
+set io terminal; write "hit any kry to continue"; read string dummy; set io
+.
+relative frequency plot life for i = start skip end
+set io terminal; write "hit any kry to continue"; read string dummy; set io
+.
+relative cumulative frequency plot life for i = start skip end
+set io terminal; write "hit any kry to continue"; read string dummy; set io
+.
+feedback off
+loop for start = 1 10 100
+let end = start + 200
+histogram life for i = start 1 end
+end loop
+feedback
+.
+feedback off
+loop for l = 10 10 1200; relative frequency plot life for i = 1 10 l; end loop
+feedback

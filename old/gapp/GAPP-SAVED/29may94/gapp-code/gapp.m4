@@ -1,0 +1,7 @@
+define(`nbits',8)
+define(`top',127)
+define(`alloc',`define(`top',eval(top - $1))')
+define(`free',`define(`top',eval(top + $1))')
+define(`tmp',`eval(top + $1)')
+define(`alloc_name',`alloc($2)pushdef(`$1',$2)pushdef(`$1',tmp(1))')
+define(`free_name',`popdef(`$1')free($1)popdef(`$1')')

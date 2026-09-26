@@ -1,0 +1,53 @@
+itcl_class my_button {
+	constructor {config} {
+		#
+		#  Create a window with the same name as this object
+		#
+		set class [$this info class]
+		::rename $this $this-tmp-
+		::frame $this -class $class
+		::rename $this $this-win-
+		::rename $this-tmp- $this
+
+		#
+		#  Pack button into this window
+		#
+		button $this.button
+		pack $this $this.button
+
+		#
+		#  Explicitly handle config's that may have been ignored earlier
+		#
+		foreach attr $config {
+			# $this.button configure -$attr [set $attr]
+			configure -$attr [set $attr]
+		}
+	}
+
+	# ------------------------------------------------------------------
+	#  METHOD:  config - used to change public attributes
+	# ------------------------------------------------------------------
+	method configure {config} {
+		#
+		#  Explicitly handle config's that may have been ignored earlier
+		#
+		echo $config
+		foreach attr $config {
+			$this.button configure -$attr [set $attr]
+		}
+	}
+
+	# ------------------------------------------------------------------
+	#  DESTRUCTOR - destroy window containing widget
+	# ------------------------------------------------------------------
+	destructor {
+		::rename $this-win- {}
+		destroy $this
+	}
+
+	public command {} {
+		if {[winfo exist $this]} {
+			$this.button configure -command $command
+		}
+	}
+}

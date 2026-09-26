@@ -1,0 +1,10 @@
+if [ $# -eq 0 ]
+then
+	xdvi -paper a4 top&
+#	xdvi -paper a4 toptst&
+	xdvi -paper a4 _region_&
+else
+	cd $red; xdvi -paper a4 red-these&
+	cd $jm; xdvi -paper a4 jm-these&
+	cd $mnr; xdvi -paper a4 mnr-these&
+fi

@@ -1,0 +1,251 @@
+que faut il pour cuire un oeuf, un steak?
+huile, metal, air, eau, proteine, pesenteur, chaleur.
+matie`re solide, liquide, gazeuse, fuilde.
+fonction de re'ponse des corps a la temperature?
+transition de phase?
+mobilite' locale
+vitesse moyenne d'e'loingnement des particles???
+
+possibilite' de plonger life dans une re`gle conservant la quantite' de particles.
+
+si X est une serie de cliche's de life sans information sur
+les conditions initiales, que signifie las vitesse moyenne d'e'loingnement
+des particles.
+
+civilisation = ville (site?) = voyage
+civilise' != humain
+civilisation nomade?
+les nomade ne voyagent pas, c'est leur territoire qui se deplace.
+les citadins/citoyens/civilise' voyage car la ville/cite ne peut pas bouger
+// roman de sf avec une ville sur rail qui suit son point d'e'quilibre dans
+l'espace temps? (auteur fameux)
+trajectoire spatiale des individus
+distance moyennes, vitesse de divergence
+
+temps court -> une journe'e de tous les de'placement de tous les individus
+present dans paris
+temps long -> transport/voyage 1 chiffre d'affaire mondial?
+
+quantite' qualite'
+forme structure
+construction intuition
+genese description
+continue discret discontinue
+syntehtique analytique
+artificiel artefactuel naturel
+construit emergeant -> autonomie
+	transition de phase du parame`tre autonomie
+C <---> D -> parame`tre ??? transition de phase ???
+
+Q: ethymologie de algorithme et logarithme
+
+combien de particule pour faire un gaz, un liquide, un solide
+	transition de phase du parame`tre quantite'
+combien de particule pour faire cuire un oeuf
+
+Thom dans "le labyrinthe du continue (pp 140)":
+hypothe`se immanente du continue dans la physique neuronale
+par le paradoxe
+nombre fini de neurone a e'tats fini permettant de penser l'infinie
+objection: l'immanence de la pense' d'un objet n'implique pas l'immanence de l'objet pense'
+la constructiion poe'tique traditionnelle de l'infini (univers <--> grain de sable)
+n'est pas une transformation continue
+
+combien de bit pour faire cuire un oeuf
+combien de bit flip
+quelle structure d'espace
+quelle dure'e
+quelle est la taille de la loi minimum
+
+Q: axiome du choix
+	infini actuel ou potentiel. compact, ouvert
+	(voir stabilite' structurelle et morphoge'ne`se (resume' mathematique)
+
+l'algo de gosper permet de quantifier les occurence de configuration a la vole'e.
+
+fractal = indiferencie' = perte d'information ?
+dimension fractale d'un gaz a l'e'quilibre?
+(densite' d'occupation d'espace)
+dimension fractale <--> entropie ?
+
+--
+anneal possede une transition de phase = 0.5 fonction de la densite'
+de quel invariant d'echelle?
+dure'e du cycle limite?
+bassin d'attraction?
+TL = f(D, S), 0 <- D -> pow(S,d), f(T) = D
+
+AC = fonction calculable differentiellement
+
+fonction obtenu en appliquant ite'rativement (recursivement)
+la composition d'une fonction sur elle meme?
+localite'
+
+calculer experimantalement la densite' limite de anneal quand T->oo fonction de D(0)
+*et la difference avec maj
+
+quelles sont les mesures de la table (a part lambda) qui sont utilisable?
+lambda est une fonction ? a-dimensionnelle, areferentielle
+
+quelles sont les fonctions d'une chaine de bits invariant a la composition permutationelle
+la permutation des bits d'index a telle un sens?
+P(T) P(I[N])
+nature de la relation d'ordre sur T
+fonction de permutatiuon de In arguments
+
+forall i0...in f(00...0n) <= f(i0...in)
+I=arg bits, S=size(nb elts), Pn=permutation de I, T=image de transition ordone'
+une permutaion de I
+F=I!/S(union pour n=0 a n=I!(T(Pn)))
+
+--
+fft de fractale?
+--
+les lois de puissances sont invariante d'echelle?
+--
+ou sont les regles interressantes dans l'espaces des regles?
+(espace de regles <-?-> espace de hilbert?
+
+transition phonomena in CA rule space (packard, langton in gutowitz)
+classified from 1/2 random initial configuration
+but! interresting patterns occur when chaotic rules are applied
+to small patch initial condition.
+in fact when looking for interesting grotwh pattern
+even ciclic or fix point do.
+
+about some substrutcure of the space of ca rule
+for the ``satured'' (high lambda value) rule for ``good (seed)'' initial configuration.
+
+in fact that may be exactly what do people working about various diffusion model.
+
+growth phenomena occured from satured rules applied on seed configuration
+for you cant ignore initial transient.
+
+for growth see
+	``On Growth and Form - Fractal and Non-Fractal Patternsin Physics''
+	something of fractal dimension off simple 1d rule given by pg
+	stil to be buy book matching growth fractal physic
+
+*about viscosity*
+
+limit cycle rule in artefact configuration - ie macro other/higher type
+rule from simple one???
+
+--
+metrique de l'espace des re`gles
+
+lambda ponde're' par la probabilite' d'apparition des index
+(des configurations locales) parmi l'espace des configurations
+
+fonction d'une transformation de l'index
+
+// configuration - 1 espace d'etat
+
+par exemple pour le nombre bit a 1 dans une chaine de bit (fonction bit-cnt)
+
+n = 2^k;
+index < n;
+
+ponderate(index, bit-cnt) = nombre de y[n] tel que f(x) == f(y[n]) / n
+
+P(rule) = <f(index)>
+
+densite' moyenne de l'espace des config = 0.5
+densite' de config egale a la densite' moyenne
+
+algo de compression comme metrique
+mesure de la probabilite' d'une config
+
+param densite' insuffisant,
+param F = bit flip number, nombre de changemnent d'etat de la chaine lu bit a bit.
+
+--
+meme si le nombre d'etat d'un automate ge'ne're' a partir de composition
+d'automate inclu des quantite' et des protocoles complexes et induit
+une barierre me'moire pour la re'alisation de la table
+l'acces a une table virtuelle permet une manipulation statistique
+par echantillonage de'tache des effet de bord se'mantique...
+--
+continuous data -> discretisation, sampling -> signal processing
+discret events ->
+continuous value
+--
+temps(IP++) < temps(IP = *IP++)
+
+bonne architecture de machine virtuelle = bonne performance du simulateur
+(gain de performance eleve)
+equivalence d'architecture (transformation) = optimisation de simulateur
+machine infini, architecture fini.
+--
+enumeration de rule (rule reduction mapping) isotrope
+1 sum
+2 bit flip
+3 compress
+--
+maze for the mind appendix foto
+how to do it
+algo, foto bruite', machine bruite', moyenne ok
+
+seed + space = growth
+nutrient with diffusion by mean
+seed with grothw by one end
+mix(fractal?, random, noise, threshold, probability, angle)
+--
+k=2, r=1, d=0: give 4 rules, the 2 constants, 1 fixed, 1 cycle
+k=2, r=2, d=1: 16 rules
+k=2, r=3 d=1: see Wolfram
+k=2, r=5 d=1,2: 2^32 rules
+
+but if local space reduce by f (bit sum or packet sum)
+f(x) -> y, x < k^r, y < k1^r1, y < k^r, r1 < r, f1(y) -> z, z < k
+or to get better control and because z is next(x0):
+f(x) -> y
+x = seq(i = -(r/2 - 1); i = (r/2 - 1); x[i])
+x < k^r
+y < k1^r1
+y < k^r
+r1 < r
+g(y) -> z
+z < 4
+next(x) = h[z](x[0])
+where h[z] is one of the 4 k=2,r=1 rules:
+	h0(x) = 0
+	h1(x) = 1
+	h2(x) = x
+	h3(x) = !x
+
+the number of rules decrease exponentially
+and f may enforce isotropie.
+	
+for k=2, r=5, g=add: 4^(r+1) = 2^12 rules
+for k=2, r=9, g=add: 2^20 rules
+--
+sterling n! = (n/e)^n * sqrt(2 * pi * n)
+C(n, p) = n! / p! (n - p)!
+--
+speaking of pictures
+algorithmique trace
+
+1 life engieniering
+2 leave nevure pattern
+3 anneal transition
+4 lorentz attractor
+5 tree by geom algo Lsystem
+6 xu traj foto
+
+type
+continuous 2,4
+discontinuous 1,3
+nat 2
+art 1,3,5
+artif model of naural system 4,5
+--
+theoreme de pick
+coxeter h.s.m
+introduction to geometry
+wiley 1969
+
+2r+1
+2r+2r^2+1
+2r+(2r^2+1)(1+(2r)/3)
+--

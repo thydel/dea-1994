@@ -1,0 +1,15 @@
+*line1*plotLineType:    linepoints
+*line1*plotMarkType:    star
+*line2*plotLineType:    linepoints
+*line2*plotMarkType:    xmark
+*line3*plotLineType:    steps
+
+*line1*plotLineStyle:   dotted
+*line2*plotLineStyle:   dotted
+*line3*plotLineStyle:   solid
+
+*line1*foreground:      white
+*line2*foreground:      white
+*line3*foreground:      white
+*plotAreaColor:         black
+*axisColor:             white

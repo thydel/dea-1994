@@ -1,0 +1,19 @@
+%%
+%% customize lgrind style for proper inclusion in upper macros
+%%
+\def\mylgrindfile#1{%
+%%    \par\addvspace{0.1in}
+%%    \hrule
+%%    \vskip .5\baselineskip
+    \begingroup\LGfsize\LGindent\z@
+\begin{lgrind}
+    \input #1\relax
+\end{lgrind}
+    \endgroup
+%%    \vskip .5\baselineskip
+%%    \hrule
+%%    \addvspace{0.1in}
+}
+
+\LGnuminterval=1000
+\def\LGfsize{\scriptsize}

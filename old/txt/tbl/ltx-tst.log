@@ -1,0 +1,60 @@
+This is TeX, Version 3.1415 (C version 6.0) (format=latex 94.6.18)  30 JUN 1994 17:35
+**ltx-tst.ltx
+(ltx-tst.ltx
+LaTeX2e <1994/06/01> patch level 2
+(/usr/TeX/lib/texmf/tex/latex/article.cls
+Document Class: article 1994/06/02 v1.2s Standard LaTeX document class
+(/usr/TeX/lib/texmf/tex/latex/size10.clo
+File: size10.clo 1994/06/02 v1.2s Standard LaTeX file (size option)
+)
+\c@part=\count82
+\c@section=\count83
+\c@subsection=\count84
+\c@subsubsection=\count85
+\c@paragraph=\count86
+\c@subparagraph=\count87
+\c@figure=\count88
+\c@table=\count89
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+\bibindent=\dimen102
+)
+(/usr/TeX/lib/texmf/tex/amslatex/amstext.sty
+AMS-LaTeX option `amstext.sty' (1.1x, 10-Mar-1994)
+) (ltx-tst.aux)
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 5.
+LaTeX Font Info:    ... okay on input line 5.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 5.
+LaTeX Font Info:    ... okay on input line 5.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 5.
+LaTeX Font Info:    ... okay on input line 5.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 5.
+LaTeX Font Info:    ... okay on input line 5.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 5.
+LaTeX Font Info:    ... okay on input line 5.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 5.
+LaTeX Font Info:    ... okay on input line 5.
+ (neighburhood-size.tbl
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 1.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 1.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <8> on input line 13.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line 13.
+) (neighburhood-size-1.tbl)
+(neighburhood-size-2.tbl) (compute-time-100kcps.tbl) (compute-time-10mcps.tbl)
+(lifex-sum-1.tbl) (lifex-sum-2.tbl) (space-size.tbl) [1
+
+] [2] (ltx-tst.aux) ) 
+Here is how much of TeX's memory you used:
+ 284 strings out of 11062
+ 2849 string characters out of 75448
+ 67354 words of memory out of 262141
+ 3072 multiletter control sequences out of 9500
+ 6462 words of font info for 23 fonts, out of 100000 for 255
+ 14 hyphenation exceptions out of 607
+ 23i,12n,18p,194b,269s stack positions out of 300i,40n,60p,3000b,4000s
+
+Output written on ltx-tst.dvi (2 pages, 15104 bytes).

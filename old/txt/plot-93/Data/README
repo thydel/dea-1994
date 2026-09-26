@@ -1,0 +1,135 @@
+aneal-pop.data
+	function anneal
+	size 127x127
+	initial frame random
+	5640 generation
+	sampling 20
+	col 1 = population frame 0
+	show a limit cycle
+
+heart-pop.data
+	function heart
+	size 256x256
+	initial frame random
+	512 generation
+	sampling 1
+	col 1 = population frame 0
+	col 2 = population frame 1
+	show a decoupling of plane 0 and 1
+
+anneal-sum.data
+	function anneal
+	size 64x64
+	initial frame random
+	400 generation
+	vertical sum
+
+lifex-sum-1.data
+	function life
+	size 64x64
+	initial frame random
+	512 generation
+	vertical sum
+
+lifex-sum-2.data
+	function lifex
+	size 64x64
+	initial frame random
+	512 generation
+	vertical sum of life[i] xor life[i-2]
+
+lifex-hist.out
+	function lifex
+		frame 0 = life
+		frame 1 = t(i-1) xor t(i)
+		frame 2 = t(i-2) xor t(i)
+	size 128x128
+	initial frame random
+	1280 generation
+	sampling 1
+	col 1 = population frame 0
+	col 2 = population frame 1
+	col 3 = population frame 2
+
+rabbit-gnans-1.data
+{
+	CONTINUOUS TIME SYSTEM lokta;
+	
+	STATE n = 2;
+	STATE p = 1.99;
+	TIME t;
+	
+	PARAMETER a = 4;
+	PARAMETER b = 3;
+	PARAMETER c = 2;
+	PARAMETER dd = 5;
+	
+	AT TIME t:
+	d(n) = n * (a - b * p);
+	d(p) = p * (c * n - dd);
+}
+	timestep = 1
+	stoptime = 48
+	algo = RKF45
+
+rabbit-gnans-2.data
+{
+	CONTINUOUS TIME SYSTEM lokta;
+	
+	STATE n = 1;
+	STATE p = 1;
+	TIME t;
+	
+	PARAMETER a = .8;
+	PARAMETER b = .1;
+	PARAMETER c = .1;
+	PARAMETER dd = .1;
+	
+	AT TIME t:
+	d(n) = n * (a - b * p);
+	d(p) = p * (c * n - dd);
+}
+	timestep = 1
+	stoptime = 200
+	algo = Ode
+
+rabbit-1-hist.data
+	function fox-rabbit
+		frame 0 = fox
+		frame 1 = rabbit
+	size 128x128
+	100 generation
+	sampling 1
+	col 1 = population frame 0
+	col 2 = population frame 1
+
+rabbit-1-hist.data
+	function fox-rabbit
+		frame 0 = fox
+		frame 1 = rabbit
+	size 512x512
+	100 generation
+	sampling 1
+	col 1 = population frame 0
+	col 2 = population frame 1
+
+rabbit-2-hist.data
+	function fox-rabbit-1
+		frame 0 = fox
+		frame 1 = rabbit
+	size 128x128
+	200 generation
+	sampling 1
+	col 1 = population frame 0
+	col 2 = population frame 1
+
+rabbit-2-hist.data
+	function fox-rabbit-2
+		frame 0 = fox
+		frame 1 = rabbit
+	size 128x128
+	400 generation
+	sampling 1
+	col 1 = population frame 0
+	col 2 = population frame 1
+

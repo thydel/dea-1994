@@ -1,0 +1,316 @@
+subsection{Le temps, les cycles}
+Le temps $t$ est un ensemble de $N$ espaces ordonne's.
+Il supporte toutes les ope'rations sur les se'quences d'espaces.
+Celles-ci sont plus difficiles a` de'finir
+que celles portant sur les espaces.
+Leur mise en oeuvre
+ne'cessite l'encha^ssement du temps dans un se'quenceur.
+C'est pre'cise'ment
+le choix des primitives appartenant en propre au temps,
+par opposition a` celles qui doivent e^tre associe'es a` un se'quenceur
+qui pose proble`me.
+Nous espe'rons que ces proble`mes seront peu a` peu leve's a` l'usage.
+Nous tenterons ne'anmoins de de'finir,
+en faisant momentane'ment abstraction
+de la structure particulie`re d'un se'quenceur,
+une liste d'ope'rations possibles.
+
+Le temps est a` priori une se'quence d'espaces
+ge'ne're'e par l'application ite'rative
+d'une fonction de transition sur un espace initial.
+Si l'on utilise une me'taphore cine'matographique,
+il permet l'enregistrement,
+le tirage
+et le montage de films.
+Il permet e'galement
+des re'ductions d'informations diffe'rentielles sur les espaces,
+des re'ductions de se'quences de re'ductions d'espaces,
+et des transformations arbitraires.
+%%
+%% OBJECTS/TIME/STRUCT
+%%
+subsubsection{Structure}
+Le temps est un vecteur d'espaces de taille fixe
+associe' a` divers compteurs et pointeurs.
+La construction des ope'rateurs complexes sur le temps
+repose sur ces e'le'ments,
+devant permettre un acce`s plus ou moins structure'
+a` la me'moire temps.
+
+Lorsque le syste`me est re'alise' sur une machine se'quentielle,
+le temps fournit les espaces temporaires (accumulateurs)
+ne'cessaires a` la re'alisation
+de la fonction d'application synchrone
+de la fonction de transition
+sur l'ensemble des cellules de l'espace courant.
+La notion d'accumulateurs
+recevant le re'sultat de l'application d'ope'rateurs sur les espaces
+est sans doute ne'cessaire dans tous les contextes,
+mais sa re'alisation sur une machine paralle`le arbitraire,
+ou de'die'e AC pourrait s'ave'rer de'licate.footnote{
+Sur une architecture SIMD
+privile'giant le nombre de PE au de'triment
+de la me'moire locale a` chaque PE (de type GAPP),
+ou` chaque PE est associe' a` une cellule,
+et la me'moire locale de chaque PE
+aux e'tats de chaque cellule,
+la source et la cible de l'application d'une fonction de transition
+sont potentiellement la me'moire totale de la machine.
+}
+%%
+%% OBJECTS/TIME/EDIT
+%%
+subsubsection{Edition}
+Quelques ope'rateurs d'e'dition du temps.
+\begin{itemize}
+\item
+Remise a` ze'ro et incre'mentation
+d'un compteur d'application d'une fonction de transition.footnote{
+Ce compteur doit e^tre ensuite associe' a` un espace.
+En re`gle ge'ne'rale l'inclusion d'un espace
+dans un objet de plus haut niveau
+implique la cre'ation de champs nouveaux
+servant a` me'moriser le contexte d'usage de cet espace.
+Par exemple, la photo d'un espace
+doit si possible contenir des annotations
+sur les conditions expe'rimentales de sa cre'ation.
+}
+\item
+Positionnement absolu et relatif du point d'espace courant.
+\item
+Test du point courant, relatif aux bornes.
+\item
+Acce`s au point d'espace passe'.
+\item
+Application d'une fonction de transition de l'espace courant
+sur l'accumulateur.
+\item
+Echange du point d'espace courant et de l'accumulateur.
+\end{itemize}
+
+Ce genre de primitives permet la construction de proce'dures composites.
+Par exemple,
+pour enregistrer une se'quence d'espaces
+d'indice de temps multiple de $n$,
+il faut,
+apre`s initialisation de l'espace d'indice ze'ro et d'un emph{timer} a` $n$
+\begin{itemize}
+\item
+Appliquer la fonction transition du point courant sur l'accumulateur.
+\item
+De'cre'menter le timer,
+et si ze'ro incre'menter le point courant.
+\item
+Echanger le point courant et l'accumulateur.
+Optionnellement, estampiller le point courant
+avec le compteur d'application de la fonction de transition.
+\item
+Ite'rer tant que le point courant n'est pas le dernier.
+\end{itemize}
+
+Ces proce'dures doivent pouvoir e^tre construites
+par l'utilisateur
+aussi simplement que possible,
+par l'interme'diaire d'un interpre'teur.
+%%
+%% OBJECTS/TIME/REDUCT
+%%
+subsubsection{Re'ductions} 
+Il existe plusieurs types d'ope'ration de re'duction sur le temps.
+Les re'ductions des se'quences de re'ductions d'espaces
+constituent un deuxie`me niveau de re'duction arithme'tique et statistique.
+On peut par exemple
+calculer la dimension fractale
+de l'e'volution de n'importe quelle quantite'
+associe'e a` un espace.
+
+Les re'ductions d'information diffe'rentielle sur les espaces
+permettent de passer d'un ensemble d'espaces a` un espace unique.footnote{
+La taille en bit des cellules de l'espace re'sultat
+peut e^tre supe'rieure a` celle des cellules des espaces arguments.
+}
+Par exemple un espace dont chaque cellule
+est la somme de l'ensemble
+des cellules de coordonne'es spatiales $xy$ identiques,
+sur une se'quence $t$ de $n$ espace $sum from i=0 to {i=n} t sub {i} xy$.
+%% BIG
+\myplot{anneal-sum}{Somme de 400 ge'ne'rations de la re`gle textbf{anneal}} 10c
+%% BIG
+mydump{anneal-sum}{Somme de 400 ge'ne'rations de la re`gle textbf{anneal} (une autre vue)}
+La figure \myref{plot-anneal-sum}
+montre une vue perspective d'un espace somme
+de 400 ge'ne'rations de la re`gle textbf{anneal}.
+L'espace est de taille $64 times 64$.
+L'espace initial a une densite' ale'atoire $1/2$.
+La figure \myref{dump-anneal-sum}
+montre quatre vision pixmap du me^me espace
+utilisant 4 greymap diffe'rentes.
+Une autre re'duction simple est
+le xor plan de bits a` plan de bits
+de deux espaces,
+qui identifie les points d'espace
+modifie's d'un point de temps a` son successeur.
+Applique' a` un CA tel que le jeu de la vie
+qui produit des patterns statiques,
+ou de cycle 2, en nombres,
+cet ope'rateur permet
+d'e'liminer les points d'espace de cycle 1
+($t sub {n-1} \xor t sub {n}$),
+ou 1 et 2 ($t sub {n-2} \xor t sub {n}$).
+%% BIG
+mydump{life-time-xor}{Six ge'ne'rations de textbf{life}}
+La premie`re ligne de la figure \myref{dump-life-time-xor}
+montre 6 ge'ne'rations de textbf{life}
+(de 100 a 106)
+pour un espace de $64 times 64$ cellules
+et un espace initial ale'atoire de densite' $1/2$,
+la deuxie`me ligne le re'sultat
+de l'e'limination de cellules de cycle 1
+et la troisie`me de l'e'limination des cycles 1 et 2.
+Bien su^r,
+ces e'liminations ne laissent pas intactes
+les zones non e'limine'es.
+%% BIG
+\myplot{lifex}{population de textbf{life} et Cycles 1 et 2} 16c 8c
+La figure \myref{plot-lifex} montre l'e'volution
+sur 1280 ge'ne'rations
+des populations associe'es aux cycles 1 et 2,
+pour un espace de $128 times 128$ cellules
+(densite' ale'atoire initiale $1/2$).\hfil\break
+life $ = log (P0)$,
+cycle 1$ = log (P0 - P1)$,
+cycle 2$ = log ( abs(P1 - P2))$ et
+cycle > 2$ = log (P2)$.\hfil\break
+avec $P0$ pour la population standard,
+$P1$ pour la population moins les points d'espace de cycle 1
+($t sub {n-1} \xor t sub {n}$),
+et $P2$ pour la population moins les points d'espace de cycle 1 et 2
+($t sub {n-2} \xor t sub {n}$).
+A la ge'ne'ration 1280,
+il ne reste plus que des cellules engage'es
+dans un cycle 1 ou 2.
+%% BIG
+\myplot2{lifex-sum-1}{lifex-sum-2}{Somme de 512 ge'ne'rations de textbf{life} et textbf{life} filtre'}
+la figure \myref{plot-lifex-sum-1+lifex-sum-2}
+montre les contours de la somme de 512 ge'ne'rations de textbf{life} (a` gauche)
+et textbf{life} moins les points d'espace de cycle 1 et 2 (a` droite).
+%% \s-2
+%% .vs -2
+%% .so tbl/lifex-sum-1.tbl
+%% .vs +2
+%% \s+2
+\mytbl{lifex-sum-1}{caracte'ristiques texturales de l'espace de la figure \myref{plot-lifex-sum-1+lifex-sum-2} (gauche)}
+%% \s-2
+%% .vs -2
+%% .so tbl/lifex-sum-2.tbl
+%% .vs +2
+%% \s+2
+\mytbl{lifex-sum-2}{caracte'ristiques texturales de l'espace de la figure \myref{plot-lifex-sum-1+lifex-sum-2} (droite)}
+Les tables \myref{tbl-lifex-sum-1] et \*[tbl-lifex-sum-2}
+montrent le re'sultat de la commande texttt{pgmtexture}\*[Rf]
+\mysoftent{
+J. D. McCauley\hfil\break
+pgmtexture - calculate textural features on a portable graymap\hfil\break
+Copyright (C) 1991 by Texas Agricultural Experiment Station
+}
+sur deux espaces sommes de la figure \myref{plot-lifex-sum-1+lifex-sum-2}.
+
+La re'alisation d'une proce'dure de mesure de la proportion des
+cellules actives engage'es dans un point fixe
+ou un cycle de longueur 2 ou 3,
+au top level du Workbench,
+par combinaison d'objets
+et de primitives du noyau
+ou de la librairie d'application,
+constitue un objectif exemplaire de la souplesse d'usage recherche'e.
+%% BIG
+mydump{anneal-time-xor}{Six ge'ne'ration de textbf{anneal}}
+La figure \myref{dump-anneal-time-xor}
+montre le me^me traitement applique' aux ge'ne'ration 2 a` 12,
+par pas de 2,
+sur la fonction anneal dans les me^mes conditions d'espace.
+
+Les re'ductions diffe'rentielles associatives sont re'alisables
+par ite'ration cumule'e d'un ope'rateur a` nombre d'arguments fixe
+sur une fene^tre de temps.
+On peut alors les conside'rer comme l'application d'une fonction de
+transition sur un espace composite.
+
+Par exemple,
+comment transformer une se'quence de plan de bits d'un espace,
+(ou copier cette transformation en conservant la se'quence initiale),
+en se'quence des diffe'rences plan a` plan en utilisant l'ope'rateur xor.
+label{ref-time-xor}
+La fonction de transition XOR a deux arguments d'1 bit et 1 bit de
+re'sultat.  Ses parame`tres formels sont lie's aux variables de connexion
+past et pre'sent,
+(au lieu de east et west par exemple)
+et son re'sultat est lie' a` la variable de connexion pre'sent
+(au lieu de center).
+Lors de l'application de la fonction de transition l'espace
+re'sultant est stocke' dans l'accumulateur.
+Un se'quenceur peut alors
+soit copier l'accumulateur
+dans le point d'espace courant d'un temps
+accumulateur de la transformation du temps courant,
+soit dans le point d'espace passe' du temps courant.
+
+Plus ge'ne'ralement,
+si l'on conside`re le temps comme un espace de
+dimension supe'rieure,
+on peut re'aliser des projections,
+ou extraire des coupes de cet espace de dimension supe'rieure
+sur un espace de dimension infe'rieure.
+Par exemple,
+une ligne d'espace de dimension 2 permet d'extraire une
+tranche (un espace de dimension 2) d'un temps d'espace de dimension 2.
+%%
+%% OBJECTS/TIME/TRANSFORM
+%%
+subsubsection{Transformations}
+Les transformations sur le temps re'sultent soit d'une combinaison
+extraction/construction qui permet de re'aliser des films de coupes,
+soit de l'application sur chaque point d'espace du temps d'une
+transformation d'espace,
+soit de l'application d'une transformation
+d'espace sur un temps conside're' comme un espace de dimension
+supe'rieure.
+%%
+%% OBJECTS/TIME/VISUAL
+%%
+subsubsection{Visualisation}
+Les visualisations du temps utilisent les techniques e'voque'es a` propos
+de la visualisation des espaces.
+Celles ci sont pilote'es par un se'quenceur qui combine les primitives
+de manipulation du temps et les primitives de visualisation de l'espace.
+Les me^mes outils sont utilise's pour visualiser les espaces re'sultant
+de re'duction du temps.
+
+La visualisation des se'quences de re'ductions d'espace,
+utilise des plotters pour pre'senter des graphes temps/variable,
+ou multi variables
+(-population plan 1/population plan 2- par exemple),
+ou toutes combinaisons de variables,
+de re'ductions et d'expressions autorise'es
+par les outils off-line utilisables.
+%% BIG
+\myplot2{anneal-pop}{anneal-pop-detail}{anneal population}
+La figure \myref{plot-anneal-pop+anneal-pop-detail} (anneal)
+pre'sente l'e'volution de la population de la re`gle
+anneal pendant 5640 ge'ne'rations e'chantillonne'es chaque 20 ge'ne'rations.
+La taille de l'espace est $127 times 127$.
+On peut y voir un cycle limite.
+La figure \myref{plot-anneal-pop+anneal-pop-detail} (anneal detail)
+pre'sente un agrandissement sur le cycle.
+La de'tection et la mesure de cycles limites sur les populations
+est un exemple de re'duction applique'e sur une se'quence
+de re'duction.
+%% BIG
+\myplot2{heart-pop}{heart-pop-detail}{plane 0 versus plane 1}
+La figure \myref{plot-heart-pop+heart-pop-detail} (heart)
+pre'sente l'e'volution de la population du plan 0 contre l'e'volution
+de la population du plan 1 de la re`gle heart pendant 512 ge'ne'rations
+d'un espace de $256 times 256$.
+On peut y voir le de'couplage des deux variables.
+La figure \myref{plot-heart-pop+heart-pop-detail} (heart detail)
+est un agrandissement sur le de'couplage.

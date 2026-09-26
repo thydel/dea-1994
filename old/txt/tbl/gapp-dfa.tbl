@@ -1,0 +1,16 @@
+\begin{footnotesize}
+    \begin{tabular}{|l|r|r|}                                         \hline
+      \multicolumn{1}{|c}{index} &
+      \multicolumn{1}{|c|}{DFA transition} &
+      \multicolumn{1}{c|}{state set}                              \\ \hline
+      Center & 016                                    & 16        \\ \hline
+      North  & 112, 667                               & 1267      \\ \hline
+      South  & 112, 223, 667, 778                     & 123678    \\ \hline
+      East   & 112, 223, 334, 667, 778, 884           & 1234678   \\ \hline
+      West   & 112, 223, 334, 445, 667, 778, 884      & 12345678  \\ \hline
+      NE     & 112, 223, 334, 445, 555, 667, 778, 884 & 12345678  \\ \hline
+      NW     & 112, 223, 334, 445, 555, 667, 778, 884 & 12345678  \\ \hline
+      SE     & 112, 223, 334, 445, 555, 667, 778, 884 & 12345678  \\ \hline
+      SW     & 112, 223, 334, 445, 555, 667, 778, 884 & 12345678  \\ \hline
+    \end{tabular}
+\end{footnotesize}

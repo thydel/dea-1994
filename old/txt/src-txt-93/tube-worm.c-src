@@ -1,0 +1,49 @@
+tube_worm()
+{				/* moore-1+2 */
+    /* set plane 0, 1 et timers only to random */
+
+    /* try looking only frame n/(4 + timer) */
+
+    /* try with timer = 5 */
+    static int alarm_tab0[] =
+    {0, 1, 1, 1, 1, 1, 1, 1, 1,};
+
+    /* try with timer = 2, 3, 4 or 5 */
+    static int alarm_tab1[] =
+    {0, 0, 1, 1, 1, 1, 1, 1, 1,};
+
+    /* try with timer = 3, 4 or 5 */
+    static int alarm_tab2[] =
+    {0, 0, 0, 1, 1, 1, 1, 1, 1,};
+
+    /* try with timer = 1, 2 (size >= 256), 3, 4 or 5 */
+    static int alarm_tab3[] =
+    {0, 0, 1, 0, 1, 1, 1, 1, 1,};
+
+    static int *alarm_tab[] =
+    {alarm_tab0, alarm_tab1, alarm_tab2, alarm_tab3,};
+    static int timer_tab[] =
+    {0, 0, 1, 2, 3, 4, 5, 6, 7,};
+
+    int iworm, oworm, ialarm, oalarm, itimer, otimer, alarm, timer,
+     ret;
+
+    alarm = num_arg_tab[0];
+    timer = num_arg_tab[1];
+
+    if (!alarm && !timer) {
+	alarm = 2;
+	timer = 3;
+    }
+    iworm = C;
+    ialarm = L & 1;
+    itimer = (L & 7 << 1) >> 1;
+
+    oworm = !itimer;
+    oalarm = alarm_tab[alarm][_8sum()];
+    otimer = iworm & ialarm ? timer : timer_tab[itimer];
+
+    ret = oworm | oalarm << 1 | otimer << 2;
+
+    return ret;
+}

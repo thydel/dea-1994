@@ -1,0 +1,34 @@
+% Remember to use the lgrind style
+
+\File{c\-anneal.c},{00:02},{Sep  7 1994}
+\L{\LB{\K{int}\*_\V{sum\_tab\_parse}(\K{int}_\V{ac},_\K{char}\*\*_\V{av},_\K{int}_\V{n})_\{}}
+\L{\LB{____\K{static}_\K{int}_\V{tab}[10];}}
+\L{\LB{____\K{int}_\V{i};}}
+\L{\LB{}}
+\L{\LB{____\K{if}_(\V{ac}_!=_1)_\{_\K{return}_0;_\}}}
+\L{\LB{____\K{if}_(\V{strlen}(\V{av}[0])_!=_\V{n})_\{_\K{return}_0;_\}}}
+\L{\LB{____\K{for}_(\V{i}_=_0;_\V{i}_\<_\V{n};_++\V{i})_\{}}
+\L{\LB{}\Tab{8}{\K{switch}_(\V{av}[0][\V{i}])_\{}}
+\L{\LB{}\Tab{8}{__\K{case}_\S{}\'0\'\SE{}:_\V{tab}[\V{i}]_=_0;_\K{break};}}
+\L{\LB{}\Tab{8}{__\K{case}_\S{}\'1\'\SE{}:_\V{tab}[\V{i}]_=_1;_\K{break};}}
+\L{\LB{}\Tab{8}{__\K{case}_\S{}\'U\'\SE{}:_\V{tab}[\V{i}]_=_2;_\K{break};_\C{}\1\* Unchanged \*\1\CE{}}}
+\L{\LB{}\Tab{8}{__\K{case}_\S{}\'F\'\SE{}:_\V{tab}[\V{i}]_=_3;_\K{break};_\C{}\1\* Flip \*\1\CE{}}}
+\L{\LB{}\Tab{8}{__\K{default}:__\K{return}_0;}}
+\L{\LB{}\Tab{8}{\}}}
+\L{\LB{____\}}}
+\L{\LB{____\K{return}_\V{tab};}}
+\L{\LB{\}}}
+\L{\LB{}}
+\L{\LB{\K{int}\*_\V{sum9\_tab\_parse}(\K{int}_\V{ac},_\K{char}\*\*_\V{av})_\{}}
+\L{\LB{____\K{return}_\V{sum\_tab\_parse}(\V{ac},_\V{av},_10);}}
+\L{\LB{\}}}
+\L{\LB{}}
+\L{\LB{\Proc{Moore\_sum9\_tab}\V{Moore\_sum9\_tab}(\V{Moore}\*_\V{i},_\V{Local}\*_\V{o},_\K{int}\*_\V{tab})_\{}}
+\L{\LB{____\K{static}_\K{int}_\V{T}[\,]_=_\{_0,_1,_\-1,_\-1_\};}}
+\L{\LB{____\V{Local}_\V{sum};}}
+\L{\LB{}}
+\L{\LB{____\V{T}[2]_=_\V{i}\-\!\>\V{c};}}
+\L{\LB{____\V{T}[3]_=_!\V{i}\-\!\>\V{c};}}
+\L{\LB{____\V{Moore\_sum9}(\V{i},_\&\V{sum});}}
+\L{\LB{____\*\V{o}_=_\V{T}[\V{tab}[\V{sum}]];}}
+\L{\LB{\}}}

@@ -1,0 +1,349 @@
+\documentclass[a4paper,12pt,dvips]{article}
+\usepackage[francais, english]{babel}
+\usepackage{afterpage}
+\usepackage{epsfig}
+\sloppy
+\title{Quelques remarques sur la re`gle anneal}
+  \author{Thierry Delamare \vspace{8pt}\\
+  Universite' de Paris-8\\
+  De'partement d'Informatique, \\
+  2, rue de la Liberte' 93526 SAINT-DENIS CEDEX 02 \\
+  {\small Te'l: (1) 49 49 64 04, email: thy@tao.univ-paris.fr}}
+\date{20 mai 1994}
+\begin{document}
+
+\bibliographystyle{plain}
+
+\maketitle
+
+\begin{abstract}
+
+L'observation de la re`gle anneal nous conduit a` proposer
+l'existence d'une relative invariance spatiotemporelle
+des trajectoires dans l'espace des configurations
+d'espaces pour des configurations initiale de densite' proche de $1/2$.
+Nous avons mesure's la densite' et la taille des frontie`res
+des espaces cellulaires pour des tailles d'espaces de $2^{20}$ cellules
+donnant des transients de plus de $100000$ ge'ne'rations.
+Nous avons de'couvert qu'il existe des cycles limites
+dont la taille est de l'ordre de grandeur du rayon de l'espace cellulaire.
+Nous proposons plusieurs expe'riences
+permettant de comple'ter cette e'tude.
+
+\end{abstract}
+
+\section{Introduction}
+
+Les objets de notre e'tude sont les automates cellulaires (AC).
+Les AC sont des syste`mes dynamiques discret.
+Le temps, l'espace et les cellules sont des entite's discre`tes.
+Une fonction de transition (re`gle) est applique'
+de manie`re synchrone sur chacune des cellules de l'espace cellulaire.
+Cette fonction rec,oit en argument une cellule
+et un ensemble de cellules voisines
+(constituant le voisinage pour une re`gle)
+au temps $t_n$.
+Elle calcule le nouvel e'tat de la cellule (au temps $t_{n+1}$).
+
+La se'quence des $E_i$ espaces ge'ne're' par une re`gle $R$
+sur un espace initial $E_0$ conside're' comme une trajectoire
+dans l'espace des $E_{s^d}$
+(ou $s$ est la taille d'un espace cellulaire fini,
+et $d$ le nombre de dimension carte'sienne de cet espace)
+e'tats d'espaces
+constitue un des objets e'le'mentaire de notre e'tude des AC.
+La re`gle de transition conside're' comme une table en fournit un autre.
+La taille de cette table est $k^{2dr+1}$\,\footnote{
+pour une ge'ne'ralisation du voisinage de Moore}
+k e'tant le nombre d'e'tats possible pour une cellule
+(en pratique $k=2^p$ ou $p$ est le nombre de plans de bits utile de l'espace),
+$d$ le nombre de dimension de l'espace
+et $r$ le rayon du voisinage.
+%
+Le passage en parame`tre de $E_0$ permet de conside'rer
+l'ensemble des trajectoires.
+Le passage en parame`tre de $R$ introduit l'espace des re`gles.
+Le nombre de re`gles est
+\begin{equation}
+Rn_{kdr} = k^{k^{2dr+1}}.
+\label{rule-count}
+\end{equation}
+Nous proposons l'e'tude de ces objets par le calcul des trajectoires,
+pour des familles e'chantillons sur les parame`tres $E_0$ et $R$.
+
+\section{Varie'te' des objets cellulaires}
+
+Une premie`re question porte sur la nature et la varie'te'
+des $E_i$ espaces.
+L'espace initial $E_0$ peut e^tre quelconque
+et sera en ge'ne'ral\footnote{statistiquement au moins.}
+un jardin d'eden pour la re`gle $R$.
+Empiriquement, les $E_i$ espaces posse`dent une signature
+qui les rend les rend aise'ment reconnaissable par l'observateur.
+La figure \ref{figure:life-00} par exemple sera associe' a` life
+sans he'sitation.
+\afterpage{
+\begin{figure}[htb]
+\centerline{\epsfig{file=dump/life-00.eps}}
+\caption{\label{figure:life-00}Exemple d'espace cellulaire.}
+\begin{center}
+\begin{minipage}{12cm}
+\begin{small}
+Life sur un espace de taille $128^2$, au temps 128,
+pour un espace initial de densite' ale'atoire $1/2$.
+\end{small}
+\end{minipage}
+\end{center}
+\end{figure}}
+%
+Il convient, cependant de remarquer qu'une telle appre'ciation
+ne renseigne que sur la vraisemblance de l'appartenance d'un espace a` une
+trajectoire.
+Dans le cas le plus ge'ne'ral la question de l'appartenance d'un
+espace a` la trajectoire d'une re`gle (hors jardin d'eden) n'a pas de re'ponse
+en temps polyno^mial.
+En effet si la re`gle est universelle (ce qui est par exemple la cas de life)
+la de'cision peut se ramener a` l'e'nume'ration des trajectoires.
+
+On reporte la question de la varie'te' sur les trajectoires.
+Les se'quences peuvent e^tre conside're's comme un espace
+de dimension supe'rieure et on recherche alors les formes
+associe' a` une re`gle.
+La localite' du voisinage introduit une vitesse limite
+de propagation de l'information d'une cellule a` une autre
+(une vitesse de la lumie`re cellulaire e'gale au rayon du voisinage).
+L'axe du temps est un axe d'observation privile'gie',
+et les trajectoire peuvent e^tre re'duite par contraction
+de l'espace sur l'axe du temps.
+On utilise une fonction de re'duction du nombre de bits
+d'un espace, qui joue le ro^le d'une mesure effectue' sur un
+syste`me physique, pour obtenir une se'quence nume'rique temporelle.
+Le proble`me de la signature temporelle d'une re`gle,
+peut alors e^tre pose' en terme statistique.
+La mesure de la densite' d'un l'espace
+(dans le cas le plus ge'ne'ral, si $k > 2$,
+on peut conside'rer un histogramme de $2^p$ e'tat ou $p$ densite's)
+est la mesure la plus simple permettant d'obtenir une trace
+de la trajectoire d'une re`gle applique' sur une espace initial.
+La nombre des e'tats d'espaces 
+\begin{equation}
+En_{ksd} = k^{s^d}
+\label{space-count}
+\end{equation}
+impose la re'duction des espace initiaux a` un sous ensemble.
+celui ci peut e^tre fournit par la fonction inverse d'une fonction
+de re'duction de l'information d'un espace,
+utilise' comme fonction d'e'chantillonnage de l'espace des configuration initiale.
+l'e'tude de l'e'volution de la densite' par exemple,
+est fonction d'un parame`tre de densite' initiale,
+qui est l'inverse de la fonction de re'duction utilise',
+et qui permet d'effectuer un balayage statistique des e'tats
+initiaux possibles associe' a` une distribution arbitraire.
+
+Enfin l'extension de la question de la varie'te' a` l'espace des re`gles
+(qui combine les difficulte' combinatoire des e'quation \ref{rule-count}
+et \ref{space-count}) doit e'galement s'appuyer sur l'utilisation
+de fonction de re'duction de l'information associe' a` une re`gle,
+permettant le balayage des espace de re`gles.
+
+Nous pensons ne'anmoins qu'il serait utile de disposer
+d'un de'veloppement complet du calcul pour des espaces cellulaires de
+tailles re'duites, et des espaces de re`gles contraintes\footnote{
+Les re`gles additives dont life et anneal sont des repre'sentant exemplaire
+semble un bon point de de'part.}, en vue de l'obtention d'indices
+sur la nature des syme'trie, et des tendance structurelle de l'espace
+des parame`tres permettant d'orienter le calcul sur les re'gions
+sensibles des espace de tailles combinatoires.
+
+\section{Quelque re'sultat expe'rimentaux a` propos de anneal}
+
+La re`gle anneal est une re`gle additive\footnote{
+La re`gle est une fonction de la somme du voisinage.}
+dont la table secondaire est:
+\begin{verbatim}
+0000101111
+\end{verbatim}
+La figure \ref{figure:dump-anneal-00} montre une configuration
+typique de cette re`gle pour un espace initial de densite' $1/2$.
+\begin{figure}[htb]
+\centerline{\epsfig{file=dump/anneal-00.eps}}
+\caption{\label{figure:dump-anneal-00}Une configuration typique de la re`gle anneal}
+\begin{center}
+\begin{minipage}{12cm}
+\begin{small}
+anneal sur un espace de taille $256^2$, au temps 256,
+pour un espace initial de densite' ale'atoire $1/2$.
+\end{small}
+\end{minipage}
+\end{center}
+\end{figure}
+%
+La figure \ref{figure:dump-anneal-03} montre une se'quence
+typique de cette re`gle pour un espace initial de densite' $1/2$.
+\begin{figure}[htb]
+\centerline{\epsfig{file=dump/anneal-03.eps, width=\linewidth}}
+\caption{\label{figure:dump-anneal-03}Une se'quence typique de la re`gle anneal}
+\begin{center}
+\begin{minipage}{12cm}
+\begin{small}
+559 ge'ne'rations de anneal sur un espace de taille $256^2$,
+pour un espace initial de densite' ale'atoire $1/2$.
+\end{small}
+\end{minipage}
+\end{center}
+\end{figure}
+%
+La figure \ref{figure:dump-anneal-02} montre deux configurations
+de anneal pour deux espace initiaux de densite' $1/2$.
+\begin{figure}[htb]
+\centering{\epsfig{file=dump/anneal-02.eps, width=\linewidth}}
+\caption{\label{figure:dump-anneal-02}Deux configurations de la re`gle anneal}
+\begin{center}
+\begin{minipage}{12cm}
+\begin{small}
+anneal sur deux espace initiaux de densite' ale'atoire $1/2$.
+\end{small}
+\end{minipage}
+\end{center}
+\end{figure}
+Une proprie'te' inte'ressante de cette re`gle est que
+des grandeurs caracte'ristique des espaces ge'ne're',
+comme le nombres d'i^les ou la tailles des frontie`res,
+sont inde'pendante de l'e'chelle d'observation choisit,
+a` condition de coupler le changement d'e'chelle sur l'espace
+a un changement d'e'chelle sur le temps.
+La taille et l'a^ge des espaces de la figure \ref{figure:dump-anneal-02}
+ne peut e^tre de'termine' simplement.
+En fait les espaces de la figure \ref{figure:dump-anneal-02}
+ont e'te' retouche' pour faire disparai^tre les configurations
+locales stables de quelque cellules, qui permette de de'terminer
+l'e'chelle d'espace. On admettra que cet effet tend a` disparai^tre
+avec l'augmentation de tailles des espaces, et l'apparition
+d'un seuil au dela` duquel le groupe isole' de quelque cellule n'est
+plus perceptible (par l'oeil ou l'outil de mesure).
+L'espace a` gauche de la figure \ref{figure:dump-anneal-02}
+est de taille $1024^2$, son a^ge 4184 ge'ne'ration.
+L'espace a` droite de la figure \ref{figure:dump-anneal-02}
+est de taille $360^2$, son a^ge 600 ge'ne'ration.
+%
+La figure \ref{figure:dump-anneal-01} montre les deux configurations
+de la figure \ref{figure:dump-anneal-02} non retouche'.
+\begin{figure}[htb]
+\centering{\epsfig{file=dump/anneal-01.eps, width=\linewidth}}
+\caption{\label{figure:dump-anneal-01}
+Les deux configurations de la figure \ref{figure:dump-anneal-02} non retouche'}
+\end{figure}
+On peut remarquer que, de'ja` a` cette e'chelle,
+les configurations local stables ne sont plus visibles
+sans perte d'information, contrairement a` l'e'chelle de la figure \ref{figure:dump-anneal-00},
+ou de telles configurations sont visibles.
+
+Toutes les trajectoires pre'sente' ici font apparai^tre
+une diminution de la densite'.\footnote{appele' population sur les plots.}
+Cette densite' est dans le cas de anneal une quantite' inversible\,\footnote{
+au sens d'une inversion photo-ne'gative, d'un not bit a` bit applique'
+sur un espace cellulaire avant l'ope'ration de comptage.}
+La valeur du parame`tre $\lambda$\footnote{
+Le parame`tre $\lambda$ est de'fini comme le pourcentage d'entre'es de la table
+de transition dont la valeur est diffe'rente de l'e'tat ze'ro.
+$\lambda = \frac{k^{dr+1}-\#0}{k^{dr+1}}$}\cite{LiPac90,LiPacLan91}
+de anneal est exactement 1/2.
+Bien que nous ayons trouve' jusqu'a` pre'sent plus de trajectoires
+montrant une diminution de la densite' des bits a` 1,
+nous pensons qu'un meilleur contro^le sur l'e'cart de la configuration
+initiales a` la valeur $1/2 s^d$ permettrais de ve'rifier le ratio $1/2$
+pour les diminutions de densite'es.
+
+Le plot droit de la figure \ref{figure:plot-anneal-05}
+montre les densite'es des trajectoires pour 4 espaces initiaux
+de tailles $2^{128}$, $2^{256}$, $2^{512}$ et $2^{1024}$.
+La premie`re atteins un point fixe en 3563 ge'ne'rations,
+les autres atteignent un cycles limites de taille $5$, $768$ et $24$
+apre`s $6008$, $29442$ et $107869$ ge'ne'rations.
+Les cycles limites des trajectoires 2 et 4 sont infe'rieure
+d'un ordre de grandeur au rayon de l'espace,
+alors que celui de la trajectoires 3 est du me^me ordre de grandeur
+que le rayon de l'espace.
+De plus, il est visible sur le plot,
+que la densite' finale du transient est est tre`s importante pour la trajectoire 3
+contrairement aux autres, pour lesquels, tant la taille du cycle que la densite' moyennes
+de celui ci peuvent e^tre conside're' comme une valeur approche' d'un des deux points fixes
+majoritaires de anneal.
+Les densite' initiale exacte sont pour chaque trajectoires respectivement
+$8172/128^2 = .498779296875$, $32673/256^2 = .4985504150390625$,
+$130960/512^2 = .49957275390625$, $523619/1024^2 = .49936199188232421875$,
+L'e'cart a` $1/2$ e'tant toujours ne'gatif peut expliquer le destin
+vers ze'ro de toutes ces configuration.
+La question de la sensibilite' de anneal au e'cart de la densite' $1/2$,
+et en particulier du rapport entre cette densite' et le nombre de trajectoire
+n'atteignant pas un quasi points fixes, reste pour nous ouverte.
+%
+La figure \ref{figure:plot-anneal-01} montre l'e'volution de la tailles
+des frontie`res d'une trajectoire de anneal pour un espace de taille $1024^2$
+et de densite'e initiale $1/2$.
+\begin{figure}[htb]
+\centering{\epsfig{file=plot/anneal-01.eps, width=\linewidth}}
+\caption{\label{figure:plot-anneal-01}E'volution de la tailles des frontie`res de anneal}
+\begin{center}
+\begin{minipage}{12cm}
+\begin{small}
+La tailles des frontie`res est une approximation par la diffe'rence bit a` bit
+entre l'espace de ge'ne'ration $n$ et $n-1$.
+\end{small}
+\end{minipage}
+\end{center}
+\end{figure}
+%
+La figure \ref{figure:plot-anneal-02} montre sur les me^mes donne'es que celle
+de la figure \ref{figure:plot-anneal-01}, une transition sur le nombre d'i^les
+et les variation de la population associe'.
+\begin{figure}[htb]
+\centering{\epsfig{file=plot/anneal-02.eps, width=\linewidth}}
+\caption{\label{figure:plot-anneal-02} e'volution de la population de anneal lors
+d'un changement du nombre d'i^les}
+\begin{center}
+\begin{minipage}{12cm}
+\begin{small}
+Cette figure permet de comprendre l'existence des points d'inflexions
+de la courbe d'e'volution de anneal.
+\end{small}
+\end{minipage}
+\end{center}
+\end{figure}
+%
+La figure \ref{figure:plot-anneal-03} montre une autre zone de transition sur les me^mes donne'es que celle
+de la figure \ref{figure:plot-anneal-02}.
+\begin{figure}[htb]
+\centering{\epsfig{file=plot/anneal-03.eps, width=\linewidth}}
+\caption{\label{figure:plot-anneal-03} transition vers la dernie`re i^le}
+\end{figure}
+%
+La figure \ref{figure:plot-anneal-04} montre ...
+\begin{figure}[htb]
+\centering{\epsfig{file=plot/anneal-04.eps, width=\linewidth}}
+\caption{\label{figure:plot-anneal-04} ...}
+\end{figure}
+%
+La figure \ref{figure:plot-anneal-05} montre ...
+\newlength{\lengthA}
+%\setlength{\lengthA}{\textheight - 200pt}
+\setlength{\lengthA}{500pt}
+\begin{figure}[htb]
+\centering{\epsfig{file=plot/anneal-05.eps, height=\lengthA}}
+\caption{\label{figure:plot-anneal-05} ...}
+\end{figure}
+
+\bibliography{biblio}
+
+\end{document}
+
+%
+% Local Variables:
+% Local IspellParsing: "latex-mode ~qwf"
+% Local IspellPersDict: "~/.ispell_lisp"
+% LocalWords: "pt htb dump eps IspellParsing qwf dummy Moore width latex-mode"
+% LocalWords: "IspellPersDict ispell lisp LocalWords End francais english babel"
+% LocalWords: "d'espaces d'eden eden anneal paper dvips afterpage epsfig email"
+% LocalWords: "Thierry Delamare thy tao.univ-paris.fr transients height plain"
+% LocalWords: "not DENIS univ fr"
+% End:

@@ -1,0 +1,1 @@
+../src/cell -s 7 -l 500000 -k 20 -h hist.out -c moore-1 -t ../rule/anneal.t -f cycle.f -e 8 | ../src/xdump-1 -s 7

@@ -1,0 +1,154 @@
+/* ndim, from_size, to_size, mips, opc, generation */
+m4_define(compute_time, `
+scale = 10
+
+kilo = 1024
+mega = kilo*kilo
+giga = kilo*mega
+tera = kilo*giga
+
+mille = 1000
+million = mille * mille
+milliard = mille * million
+
+second = 1
+decisecond = second / 10
+centisecond = second / 100
+millisecond = second / mille
+microsecond = second / million
+
+minute = second * 60
+heure = minute * 60
+jour = heure * 24
+semaine = heure * 7
+moi = semaine * 4
+an = 365 * jour
+
+define print_big(n) {
+	oscale = scale
+	scale = 0
+	if (n >= tera) {
+		print n / tera, "T"
+	} else if (n >= giga) {
+		print n / giga , "G"
+	} else if (n >= mega) {
+		print n / mega, "M"
+	} else if (n >= kilo) {
+		print n / kilo, "K"
+	} else {
+		print n
+	}
+	scale = oscale
+	return
+}
+
+define print_time(n) {
+	oscale = scale
+	scale = 0
+	if (n < second) {
+		tmp = n / millisecond
+		print tmp, "ms"
+	} else if (n < minute) {
+		print n / 1, "s"
+	} else if (n < heure) {
+		print n / minute, "m"
+	} else if (n < jour) {
+		print n / heure, "h"
+	} else if (n < an) {
+		print n / jour, "j"
+	} else {
+		print n / an, "a"
+	}
+	scale = oscale
+	return
+}
+
+define space_size_time(dim, size, generatiop, kcps) {
+	discard = print_time(((size ^ dim) * generation) / cps)
+}
+
+/* columns */
+ndim = $1
+
+/* lines */
+from_size= $2
+to_size= $3
+nsize = (to_size - from_size) + 1
+
+/* func param */
+mips = $4
+opc = $5
+generation = $6
+cps = (mips * million) / opc
+
+print ".TS\n"
+
+print "center allbox;\n"
+
+/*
+ * TBL desc
+ */
+
+/* lines titles */
+print "c\ts\tc"
+for (size = 0; size < nsize - 1; ++size) {
+	print "\ts"
+}
+print "\n"
+
+/* line values */
+print "^\t^"
+for (size = 0; size < nsize; ++size) {
+	print "\tn"
+}
+print "\n"
+
+/* first two data lines */
+print "c\tn"
+for (size = 0; size < nsize; ++size) {
+	print "\tn"
+}
+print "\n"
+print "^\tn"
+for (size = 0; size < nsize; ++size) {
+	print "\tn"
+}
+print ".\n"
+
+/*
+ * TBL datas
+ */
+
+/* first line (line X col title and line title) */
+print "${roman {G} a sup {d}} over roman {D}$", "\t", "$a$", "\n"
+
+/* second line (line args values) */
+print "\t"
+for (size = from_size; size <= to_size; ++size) {
+	print "\t" 
+	discard = print_big(2 ^ size)
+}
+print "\n"
+
+/* third line (columns title and first line values) */
+print "$d$\t"
+dimension = 1
+print dimension, "\t"
+for (size = from_size; size <= to_size; ++size) {
+	discard = space_size_time(dimension, 2 ^ size, generation, cps)
+	print "\t"
+}
+print "\n"
+
+/* other lines */
+for (dimension = 2; dimension <= ndim; ++dimension) {
+	print "\t", dimension, "\t"
+	for (size = from_size; size <= to_size; ++size) {
+		tmp = space_size_time(dimension, 2 ^ size, generation, cps)
+		print "\t"
+	}
+	print "\n"
+}
+
+print ".TE\n"
+')

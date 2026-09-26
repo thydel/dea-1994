@@ -1,0 +1,25 @@
+% Remember to use the lgrind style
+
+\File{tcl\-conex.tcl},{16:04},{Sep 27 1994}
+\L{\LB{\C{}\V{\#} moore and vn are standard Moore and von Neumann neighborhood}}
+\CE{}\L{\LB{\K{set}_\V{moore}_[\V{ConexType}_\V{moore}_9]}}
+\L{\LB{\K{set}_\V{vn}_[\V{ConexType}_\V{vn}_5]}}
+\L{\LB{\C{}\V{\#} local mean only in center cell}}
+\CE{}\L{\LB{\K{set}_\V{local}_[\V{ConexType}_\V{local}_1]}}
+\L{\LB{}}
+\L{\LB{\C{}\V{\#} one and four state Moore}}
+\CE{}\L{\LB{\K{set}_\V{moore\_1}_[\V{ConexList}_[\V{ConexVarList}_[\V{ConexVar}_\V{\$moore}_1]]]}}
+\L{\LB{\K{set}_\V{moore\_2}_[\V{ConexList}_[\V{ConexVarList}_[\V{ConexVar}_\V{\$moore}_2]]]}}
+\L{\LB{\C{}\V{\#} von Neumann neighborhood allows 8 states per cells}}
+\CE{}\L{\LB{\K{set}_\V{vn\_3}_[\V{ConexList}_[\V{ConexVarList}_[\V{ConexVar}_\V{\$vn}_3]]]}}
+\L{\LB{\C{}\V{\#} local bits are cheap}}
+\CE{}\L{\LB{\K{set}_\V{local\_4}_[\V{ConexList}_[\V{ConexVarList}_[\V{ConexVar}_\V{\$local}_4]]]}}
+\L{\LB{}}
+\L{\LB{\C{}\V{\#} these means one rule per planes}}
+\CE{}\L{\LB{\K{set}_\V{moore\_1\_moore\_1}_\2}}
+\L{\LB{}\Tab{8}{[\V{ConexList}_[\V{ConexVarList}_[\V{ConexVar}_\V{\$moore}_1]_[\V{ConexVar}_\V{\$moore}_1]]]}}
+\L{\LB{}}
+\L{\LB{\C{}\V{\#} the thirds arg is the name of an application function}}
+\CE{}\L{\LB{\K{set}_\V{Moore\_1}_[\V{ConexSpec}_\V{\$moore\_1}_\V{\$local\_1}_\V{moore\_1}]}}
+\L{\LB{\K{set}_\V{Moore\_2}_[\V{ConexSpec}_\V{\$moore\_2}_\V{\$local\_2}_\V{moore\_2}]}}
+\L{\LB{\K{set}_\V{VN\_1}_[\V{ConexSpec}_\V{\$vn\_1}_\V{\$local\_1}_\V{vn\_1}]}}

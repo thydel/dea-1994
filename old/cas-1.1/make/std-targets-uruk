@@ -1,0 +1,12 @@
+depends:
+	makedepend -I/usr/lib/gcc-lib/i486-linux/2.4.5/include $(INCLUDES) $(SRCS) $(HEADERS)
+
+clean:
+	rm -f $(OBJS) *~ core
+
+rmexe:
+	rm -f $(EXES)
+
+clobber: clean
+	rm -f $(EXECS)
+

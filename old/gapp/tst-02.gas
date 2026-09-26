@@ -1,0 +1,12 @@
+single
+
+state2ascii
+print
+
+gapp c := ns
+gapp ram 0 := c
+
+frame2ascii 0
+
+print
+gapp ns := n

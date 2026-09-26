@@ -1,0 +1,12 @@
+define diff(tab[], n) {
+	auto i
+
+	for (i = 1; i <= n; ++i) {
+		print "diff[", i, "] = ", tab[i] - tab[i - 1], "\n"
+	}
+}
+/*
+discard = diff(fact[], lastfact)
+
+quit
+*/

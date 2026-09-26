@@ -1,0 +1,124 @@
+%% the following packages are dumped in mytex
+%%
+%%\documentclass[a4paper,12pt,dvips]{report}
+%%\usepackage[francais,english]{babel}
+%%\usepackage{amstex}
+%%\usepackage{ifthen}
+%%\usepackage{afterpage}
+%%\usepackage{epsfig}
+%%\usepackage{fancyheadings}
+%%\usepackage{natbib}
+%%\usepackage{xspace}
+%%\usepackage{verbatim}
+%%\usepackage{varioref}
+%%\usepackage{multicol}
+%%\usepackage{lgrind}
+%%\usepackage{latexsym}
+
+%% these are customisation for latex or previous package
+\usepackage{Sty/long-title-in-toc}
+\usepackage{Sty/mygrind}
+
+%% these are my latex new defs
+%% i dont know how to dump her
+\usepackage{Sty/num-in-bib}
+\usepackage{Sty/email}
+\usepackage{Sty/greydraft}
+\usepackage{Sty/simple}
+\usepackage{Sty/ref-and-cite}
+\usepackage{Sty/fig-cap}
+
+%% incoming macros
+\usepackage{Sty/spl}
+
+\includeonly{%
+  title,%
+  abstract,%
+  intro-top,%
+  obj-space,%
+  obj-time,%
+  obj-law,%
+  rule-space,%
+  about-anneal,%
+  conclusion,%
+  ann-rabbit,%
+  ann-rules,%
+  ann-caw,%
+  soft-tools,%
+  biblio%
+}
+
+\sloppy
+\selectlanguage{francais}
+%% \noextrasfrancais
+
+\addtolength{\headheight}{+0.30\headheight}
+%% \addtolength{\footskip}{+0.5\footskip}
+
+%%
+%%
+%%
+
+\begin{document}
+
+\allowhyphens
+\renewcommand{\topfraction}{0.8}
+%%\bibliographystyle{natbib}
+\bibliographystyle{thy}
+
+\pagestyle{empty}
+\include{title}
+\include{abstract}
+
+\pagestyle{fancyplain}
+\footrulewidth 0.4pt
+\plainfootrulewidth 0.4pt
+\lhead{\fancyplain{}{\sl\leftmark}}
+\chead{}
+\rhead{\fancyplain{}{\rm\thepage}}
+\lfoot{}
+\cfoot{}
+\rfoot{}
+
+%% jm choice
+\addtolength{\baselineskip}{+0.11\baselineskip}
+%% \setlength{\parskip}{\baselineskip}
+
+\pagenumbering{roman}
+\tableofcontents
+\clearpage
+\pagenumbering{arabic}
+\rfoot{\fancyplain{}{\sl\rightmark}}
+\input{nocite}
+\include{intro-top}
+\include{obj-space}
+\include{obj-time}
+\include{obj-law}
+\include{rule-space}
+\include{about-anneal}
+\include{conclusion}
+\appendix
+\include{ann-rules}
+\include{ann-rabbit}
+\include{ann-caw}
+\include{soft-tools}
+\rfoot{}
+\listoffigures
+\listoftables
+\include{biblio}
+
+\end{document}
+
+%%
+%% Local Variables:
+%% mode: auto-fill
+%% iso-accents-minor-mode: nil
+%% TeX-master: "top"
+%% TeX-command-default: "mytex"
+%% Local IspellParsing: "latex-mode ~latin1"
+%% Local IspellPersDict: "~/.ispell_lisp"
+%% LocalWords: "paper pt dvips afterpage epsfig userdict begin bop-hook gsave of"
+%% LocalWords: "translate rotate Times-Roman findfont scalefont setfont moveto"
+%% LocalWords: "setgray DRAFT grestore def end some kind title Thierry Delamare"
+%% LocalWords: "email thy tao.univ-paris.fr plain abstract stuff"
+%% End:

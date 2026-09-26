@@ -1,0 +1,11 @@
+exemple-1.plot
+	simple plot of data/exemple-1
+
+exemple-2.plot
+	exemple-1 magnified on limit cycle
+
+exemple-3.plot
+	plot data/exemple-2, pop1 versus pop2
+
+exemple-4.plot
+	exemple-3 magnified on decoupling

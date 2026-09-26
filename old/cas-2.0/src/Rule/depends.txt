@@ -1,0 +1,4 @@
+life.o: life.c conex.h lib.h
+sum_tab.o: sum_tab.c conex.h lib.h
+sum_stir_tab.o: sum_stir_tab.c conex.h lib.h
+lib.o: lib.c conex.h

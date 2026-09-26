@@ -1,0 +1,89 @@
+This is TeX, Version 3.1415 (C version 6.0) (format=latex 94.7.6)  30 SEP 1994 11:39
+**\nonstopmode\input{Notes.tex}
+(Notes.tex (/usr/TeX/lib/texmf/tex/latex/slides.cls
+Document Class: slides 1994/06/01 v2.3h Standard LaTeX document class
+(/usr/TeX/lib/texmf/tex/latex/slides.def
+File: slides.def 1994/06/01 v2.3h SLiTeX definitions
+ hacks, slides,
+\c@page=\count82
+ picture, mods,
+\@smashboxa=\box25
+\@smashboxb=\box26
+\@smashboxc=\box27
+ output,
+init) (/usr/TeX/lib/texmf/tex/latex/sfonts.def
+File: sfonts.def 1994/05/12 v2.1h Standard LaTeX slide font definitions
+
+(/usr/TeX/lib/texmf/tex/latex/OT1lcmss.fd
+File: OT1lcmss.fd 1994/05/12 v2.1h Standard LaTeX slide font definitions
+))
+\c@minutes=\count83
+\c@seconds=\count84
+\c@mv@invisible=\count85
+LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
+(Font)                  OT1/cmr/m/n --> OT1/lcmss/m/n on input line 361.
+LaTeX Font Info:    Overwriting symbol font `letters' in version `normal'
+(Font)                  OML/cmm/m/it --> OML/lcmm/m/it on input line 364.
+LaTeX Font Info:    Overwriting symbol font `symbols' in version `normal'
+(Font)                  OMS/cmsy/m/n --> OMS/lcmsy/m/n on input line 366.
+LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `normal'
+(Font)                  OMX/cmex/m/n --> OMX/lcmex/m/n on input line 368.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `invisible'
+(Font)                  OT1/cmr/m/n --> OT1/lcmss/m/In on input line 371.
+LaTeX Font Info:    Overwriting symbol font `letters' in version `invisible'
+(Font)                  OML/cmm/m/it --> OML/lcmm/m/Iit on input line 373.
+LaTeX Font Info:    Overwriting symbol font `symbols' in version `invisible'
+(Font)                  OMS/cmsy/m/n --> OMS/lcmsy/m/In on input line 375.
+LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `invisibl
+e'
+(Font)                  OMX/cmex/m/n --> OMX/lcmex/m/In on input line 377.
+)
+(/usr/TeX/lib/texmf/tex/babel/babel.sty
+Package: babel 1994/07/03 v3.4f The Babel package
+
+(/usr/TeX/lib/texmf/tex/babel/francais.sty
+(/usr/TeX/lib/texmf/tex/babel/babel.def
+File: babel.def 1994/07/03 v3.4f Babel common definitions
+\babel@savecnt=\count86
+)
+File: francais.sty 1994/06/26 v4.5c French support from the babel system
+)
+(/usr/TeX/lib/texmf/tex/babel/english.sty
+File: english.sty 1994/06/26 v3.3c English support from the babel system
+\l@american = a dialect from \language\l@english 
+)) (Notes.aux)
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 9.
+LaTeX Font Info:    ... okay on input line 9.
+LaTeX Font Info:    Checking defaults for OT1/lcmss/m/n on input line 9.
+LaTeX Font Info:    ... okay on input line 9.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 9.
+LaTeX Font Info:    ... okay on input line 9.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 9.
+LaTeX Font Info:    ... okay on input line 9.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 9.
+LaTeX Font Info:    ... okay on input line 9.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 9.
+LaTeX Font Info:    ... okay on input line 9.
+ [1
+
+] [2] [3] [4]
+Underfull \hbox (badness 1635) in paragraph at lines 102--105
+[]\OT1/lcmss/m/n/19.91 Je pro-pose de ca-ra-ct^^Seriser les vi-sua-li-sa-
+ []
+
+[5]
+Underfull \hbox (badness 1184) in paragraph at lines 122--125
+[]\OT1/lcmss/m/n/19.91 Voici une autre vi-sua-li-sa-tion pos-sible de
+ []
+
+[6] [7] [8] [9] [10] [11] (Notes.aux) ) 
+Here is how much of TeX's memory you used:
+ 412 strings out of 11042
+ 4461 string characters out of 75168
+ 50544 words of memory out of 262141
+ 3240 multiletter control sequences out of 9500
+ 4848 words of font info for 18 fonts, out of 100000 for 255
+ 14 hyphenation exceptions out of 607
+ 21i,4n,19p,200b,184s stack positions out of 300i,40n,60p,3000b,4000s
+
+Output written on Notes.dvi (11 pages, 9192 bytes).

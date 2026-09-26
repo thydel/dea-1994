@@ -1,0 +1,12 @@
+from=$1
+to=$2
+step=$3
+file=$4
+
+# sample a serie
+rm -f mk-photo-seq-tmp/*
+cd mk-photo-seq-tmp
+for i in `../loop $from $to $step`;
+do
+	ln -s ../mk-explode-$4/$i $i
+done

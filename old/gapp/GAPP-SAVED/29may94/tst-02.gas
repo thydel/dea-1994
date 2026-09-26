@@ -1,0 +1,4 @@
+gapp ns := n; ew := e
+extract 0
+extract 1
+gapp ns := n; ram 42 := c;

@@ -1,0 +1,120 @@
+extern bool Time2D_full(Time2D*);
+extern bool Time2D_next(Time2D*);
+extern void Time2D_forget(Time2D*);
+extern void Time2D_save(Time2D*);
+extern void Time2D_get_space(Time2D*, Space2D**, Space2D**);
+
+
+void Time2D_assert(Time2D* zis) {
+    assert(zis && zis->magic == magic(TIME_2D));
+    assert(zis->first >= 0 &&
+	   zis->first < zis->cnt - 2);
+    assert(zis->past >= 0 &&
+	   zis->past < zis->futur &&
+	   zis->past >= zis->first - 1 &&
+	   zis->past < zis->cnt - 1);
+    assert(zis->futur > zis->first &&
+	   zis->futur < zis->cnt);
+}
+
+bool Time2D_full(Time2D* zis) {
+    Time2D_assert(zis);
+    return zis->futur == zis->cnt - 1;
+}
+
+void Time2D_incr(Time2D* zis) {
+    assert(zis && zis->magic == magic(TIME_2D));
+    assert(zis->past < zis->futur);
+    assert(zis->space[zis->past]->time < zis->time + 1);
+    ++zis->time;
+    zis->space[zis->past]->time = zis->time;
+}
+
+void Time2D_swap(Time2D* zis, int a, int b) {
+    Space2D* tmp;
+
+    assert(zis && zis->magic == magic(TIME_2D));
+    assert(a >= 0 && b >= 0 && a <= zis->cnt && b <= zis->cnt);
+    tmp = zis->space[a];
+    zis->space[a] = zis->space[b];
+    zis->space[b] = tmp;
+}
+
+bool Time2D_next(Time2D* zis) {
+    int tmp;
+
+    Time2D_assert(zis);
+    if (zis->futur == zis->cnt - 1) {
+	if (zis->cnt == 2) {
+	    Time2D_swap(zis, zis->past, zis->futur);
+	    Time2D_incr(zis);
+	    return true;
+	}
+	return false;
+    }
+    ++zis->past;
+    ++zis->futur;
+    Time2D_incr(zis);
+    Time2D_assert(zis);
+    return true;
+}
+
+void Time2D_forget(Time2D* zis) {
+    Time2D_assert(zis);
+    Time2D_swap(zis, zis->first, zis->futur);
+    zis->past = zis->first;
+    Time2D_incr(zis);
+    zis->futur = zis->past + 1;
+    Time2D_assert(zis);
+}
+
+void Time2D_save(Time2D* zis) {
+    Time2D_assert(zis);
+    Time2D_swap(zis, zis->first, zis->futur);
+    zis->past = zis->first;
+    ++zis->first;
+    Time2D_incr(zis);
+    zis->futur = zis->past + 1;
+    Time2D_assert(zis);
+}
+
+void Time2D_get_space(Time2D* zis, Space2D** past, Space2D** futur) {
+    Time2D_assert(zis);
+    *past = zis->space[zis->past];
+    *futur = zis->space[zis->futur];
+}
+
+int cmd_Time2D_new(ClientData notUsed, Tcl_Interp* interp, int ac, char** av) {
+    static char* usage = "Space2D zsize";
+
+    Time2D* zis;
+    Space2D* space;
+    int zsize;
+    
+    void* ptr;
+    char handle[64];
+
+    if (ac != 3) {
+	Tcl_AppendResult(interp, "bad # arg: ", av[0], " ", usage, 0);
+	return TCL_ERROR;
+    }
+    
+    space = *(Space2D**)Tcl_HandleXlate(interp, Space_tbl, av[1]);
+    if (!space) {
+	return TCL_ERROR;
+    }
+
+    zsize = atoi(av[2]);
+
+    zis = Time2D_new(0, space, zsize);
+
+    Tcl_HandleAlloc(Time_tbl, handle);
+    ptr = Tcl_HandleXlate(interp, Time_tbl, handle);
+    assert(ptr);
+
+    *(Time2D**)ptr = zis;
+
+    strcpy(interp->result, handle);
+    return TCL_OK;
+}
+

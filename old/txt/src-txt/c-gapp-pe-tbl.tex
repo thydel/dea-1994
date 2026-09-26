@@ -1,0 +1,16 @@
+% Remember to use the lgrind style
+
+\File{c\-gapp\-pe\-tbl.c},{12:55},{Sep 15 1994}
+\L{\LB{\K{inline}_\K{int}_\V{Gapp\_next\_state}(\V{Gapp}\*_\V{zis},_\K{int}_\V{input})_\{}}
+\L{\LB{__\V{Bit\_Field\_explode}(\&\V{zis}\-\!\>\V{input},_\V{input});}}
+\L{\LB{__\V{gapp\_pe}(\V{zis}\-\!\>\V{alu},_\V{zis}\-\!\>\V{input}.\V{explode},_\V{zis}\-\!\>\V{output}.\V{explode});}}
+\L{\LB{__\K{return}_\V{Bit\_Field\_implode}(\&\V{zis}\-\!\>\V{output});}}
+\L{\LB{\}}}
+\L{\LB{}}
+\L{\LB{\K{void}_\V{Gapp\_mk\_pe\_table}(\V{Gapp}\*_\V{zis})_\{}}
+\L{\LB{__\K{int}_\V{i};}}
+\L{\LB{}}
+\L{\LB{__\K{for}_(\V{i}_=_0;_\V{i}_\<_\V{zis}\-\!\>\V{size};_++\V{i})_\{}}
+\L{\LB{____\V{zis}\-\!\>\V{pe\_tab}[\V{i}]_=_\V{Gapp\_next\_state}(\V{zis},_\V{i});}}
+\L{\LB{__\}}}
+\L{\LB{\}}}

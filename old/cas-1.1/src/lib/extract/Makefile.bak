@@ -1,0 +1,36 @@
+include $(CASDIR)/make/std-vars
+
+INCLUDES = \
+	-I$(CASDIR)/src/include \
+	-I$(CASDIR)/src/lib
+
+CFLAGS= $(INCLUDES)
+CC = cc $(CC_DEBUG_FLAGS) $(CC_OPTIM_FLAGS)
+
+LIBNAME = extract
+
+SRCS = \
+	extract.c \
+	extract_lib.c \
+	extract_tab.c \
+	named.c
+
+HEADERS = \
+	extract.h \
+	extract_tab.h
+
+
+OBJS = $(SRCS:.c=.o)
+EXECS = $(LIBNAME).a
+
+top: $(LIBNAME).a
+
+include $(CASDIR)/make/lib-targets
+
+include $(CASDIR)/make/std-targets
+
+# DO NOT DELETE THIS LINE -- make depend depends on it.
+
+extract.o: extract.h
+named.o: extract.h /home/uruk/thy/usr/cas/src/lib/util/named.h
+extract_tab.o: extract.h

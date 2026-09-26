@@ -1,0 +1,1 @@
+bc /usr/local/lib/libmath.b $* /dev/fd/0

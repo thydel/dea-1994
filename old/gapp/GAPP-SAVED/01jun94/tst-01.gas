@@ -1,0 +1,82 @@
+random
+extract 0
+
+label 0
+
+gapp ns := n
+extract 0
+gapp ns := n
+extract 0
+gapp ns := n
+extract 0
+gapp ns := n
+extract 0
+gapp ns := n
+extract 0
+gapp ns := n
+extract 0
+gapp ns := n
+extract 0
+gapp ns := n
+extract 0
+
+gapp ew := ns
+
+gapp ew := e
+extract 1
+gapp ew := e
+extract 1
+gapp ew := e
+extract 1
+gapp ew := e
+extract 1
+gapp ew := e
+extract 1
+gapp ew := e
+extract 1
+gapp ew := e
+extract 1
+gapp ew := e
+extract 1
+
+gapp ns := ew
+
+gapp ns := s
+extract 0
+gapp ns := s
+extract 0
+gapp ns := s
+extract 0
+gapp ns := s
+extract 0
+gapp ns := s
+extract 0
+gapp ns := s
+extract 0
+gapp ns := s
+extract 0
+gapp ns := s
+extract 0
+
+gapp ew := ns
+
+gapp ew := w
+extract 1
+gapp ew := w
+extract 1
+gapp ew := w
+extract 1
+gapp ew := w
+extract 1
+gapp ew := w
+extract 1
+gapp ew := w
+extract 1
+gapp ew := w
+extract 1
+gapp ew := w
+extract 1
+
+gapp ns := ew
+
+goto 0

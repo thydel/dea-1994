@@ -1,0 +1,7 @@
+%%
+%% numerote bib entries
+%%
+\newcounter{mybibcounter}
+\renewcommand{\@biblabel}[1]{%
+  \addtocounter{mybibcounter}{1}%
+  \themybibcounter.\ }

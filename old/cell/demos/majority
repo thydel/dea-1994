@@ -1,0 +1,57 @@
+usage="$0 [-s{ize} <power-of-two>(8)] [-l{oop} <int>] [-k{sKip} <int>] [-t{mk-Table}] [-f{mk-Frame} [-r{show-Rule}]"
+
+set -- `getopt s:l:k:tfr $*`
+if [ $? != 0 ]
+then
+	echo $usage
+	exit 2
+fi
+for i in $*
+do
+	case $i in
+	-s)
+		size="-s $2";
+		shift 2;;
+	-l)
+		loop="-l $2";
+		time=time;
+		shift 2;;
+	-k)
+		skip="-k $2";
+		shift 2;;
+	-t)
+		mk_table=true;
+		shift;;
+	-f)
+		mk_frame=true;
+		shift;;
+	-r)
+		show_rule=true;
+		shift;;
+	--)
+		shift;
+		break;;
+	esac
+done
+
+if [ "$show_rule" = true ]
+then
+	cat <<!
+majority() {
+    static int tab[] = { 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, };
+    return tab[_9_sum()];
+}
+!
+fi
+
+if [ "$mk_table" = true ]
+then
+	../mk-table -c moore-1 -f majority > majority.t
+fi
+
+if [ "$mk_frame" = true ]
+then
+	../mk-frame $size -p 0 -f fill > majority.f
+fi
+
+$time ../cell $size $loop $skip -c moore-1 -t majority.t -f majority.f -e 0 | ../xdump $size

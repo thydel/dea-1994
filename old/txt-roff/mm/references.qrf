@@ -1,0 +1,179 @@
+.\" references for mm/references
+.ds qrf*ref-ref-nombre-de-voisin-hn 2.1
+.ds qrf*ref-ref-nombre-de-voisin-pn 6
+.ds qrf*ref-ref-tbl-neighburhood-size-hn 2.1
+.ds qrf*ref-ref-tbl-neighburhood-size-pn 6
+.ds qrf*ref-ref-tbl-neighburhood-size-xx 2.1
+.ds qrf*ref-ref-tbl-neighburhood-size-1-hn 2.1
+.ds qrf*ref-ref-tbl-neighburhood-size-1-pn 7
+.ds qrf*ref-ref-tbl-neighburhood-size-1-xx 2.2
+.ds qrf*ref-ref-tbl-neighburhood-size-2-hn 2.1
+.ds qrf*ref-ref-tbl-neighburhood-size-2-pn 7
+.ds qrf*ref-ref-tbl-neighburhood-size-2-xx 2.3
+.ds qrf*ref-ref-dump-neighburhood-size-tbl-16xor9-hn 2.1.2
+.ds qrf*ref-ref-dump-neighburhood-size-tbl-16xor9-pn 8
+.ds qrf*ref-ref-dump-neighburhood-size-tbl-16xor9-xx 2.1
+.ds qrf*ref-ref-dump-tsum-128-edge-hn 2.1.4
+.ds qrf*ref-ref-dump-tsum-128-edge-pn 9
+.ds qrf*ref-ref-dump-tsum-128-edge-xx 2.2
+.ds qrf*ref-ref-dump-anneal-g128-s11-hn 2.1.5
+.ds qrf*ref-ref-dump-anneal-g128-s11-pn 10
+.ds qrf*ref-ref-dump-anneal-g128-s11-xx 2.3
+.ds qrf*ref-ref-dump-tube-worm-mix-hn 2.1.5
+.ds qrf*ref-ref-dump-tube-worm-mix-pn 11
+.ds qrf*ref-ref-dump-tube-worm-mix-xx 2.4
+.ds qrf*ref-ref-dump-tsum-grey-hn 2.1.5
+.ds qrf*ref-ref-dump-tsum-grey-pn 12
+.ds qrf*ref-ref-dump-tsum-grey-xx 2.5
+.ds qrf*ref-ref-dump-tsum-hn 2.1.5
+.ds qrf*ref-ref-dump-tsum-pn 13
+.ds qrf*ref-ref-dump-tsum-xx 2.6
+.ds qrf*ref-ref-dump-tsum-ray-one-hn 2.1.5
+.ds qrf*ref-ref-dump-tsum-ray-one-pn 15
+.ds qrf*ref-ref-dump-tsum-ray-one-xx 2.7
+.ds qrf*ref-ref-dump-tsum-ray-all-hn 2.1.5
+.ds qrf*ref-ref-dump-tsum-ray-all-pn 16
+.ds qrf*ref-ref-dump-tsum-ray-all-xx 2.8
+.ds qrf*ref-ref-tbl-space-size-hn 2.1.6
+.ds qrf*ref-ref-tbl-space-size-pn 17
+.ds qrf*ref-ref-tbl-space-size-xx 2.4
+.ds qrf*ref-ref-tbl-compute-time-100kcps-hn 2.1.6
+.ds qrf*ref-ref-tbl-compute-time-100kcps-pn 17
+.ds qrf*ref-ref-tbl-compute-time-100kcps-xx 2.5
+.ds qrf*ref-ref-tbl-compute-time-10mcps-hn 2.1.6
+.ds qrf*ref-ref-tbl-compute-time-10mcps-pn 18
+.ds qrf*ref-ref-tbl-compute-time-10mcps-xx 2.6
+.ds qrf*ref-ref-plot-anneal-sum-hn 2.2.3
+.ds qrf*ref-ref-plot-anneal-sum-pn 20
+.ds qrf*ref-ref-plot-anneal-sum-xx 2.9
+.ds qrf*ref-ref-dump-anneal-sum-hn 2.2.3
+.ds qrf*ref-ref-dump-anneal-sum-pn 20
+.ds qrf*ref-ref-dump-anneal-sum-xx 2.10
+.ds qrf*ref-ref-dump-life-time-xor-hn 2.2.3
+.ds qrf*ref-ref-dump-life-time-xor-pn 21
+.ds qrf*ref-ref-dump-life-time-xor-xx 2.11
+.ds qrf*ref-ref-plot-lifex-hn 2.2.3
+.ds qrf*ref-ref-plot-lifex-pn 21
+.ds qrf*ref-ref-plot-lifex-xx 2.12
+.ds qrf*ref-ref-plot-lifex-sum-1+lifex-sum-2-hn 2.2.3
+.ds qrf*ref-ref-plot-lifex-sum-1+lifex-sum-2-pn 22
+.ds qrf*ref-ref-plot-lifex-sum-1+lifex-sum-2-xx 2.13
+.ds qrf*ref-ref-tbl-lifex-sum-1-hn 2.2.3
+.ds qrf*ref-ref-tbl-lifex-sum-1-pn 22
+.ds qrf*ref-ref-tbl-lifex-sum-1-xx 2.7
+.ds qrf*ref-ref-tbl-lifex-sum-2-hn 2.2.3
+.ds qrf*ref-ref-tbl-lifex-sum-2-pn 23
+.ds qrf*ref-ref-tbl-lifex-sum-2-xx 2.8
+.ds qrf*ref-ref-dump-anneal-time-xor-hn 2.2.3
+.ds qrf*ref-ref-dump-anneal-time-xor-pn 23
+.ds qrf*ref-ref-dump-anneal-time-xor-xx 2.14
+.ds qrf*ref-ref-time-xor-hn 2.2.3
+.ds qrf*ref-ref-time-xor-pn 24
+.ds qrf*ref-ref-plot-anneal-pop+anneal-pop-detail-hn 2.2.5
+.ds qrf*ref-ref-plot-anneal-pop+anneal-pop-detail-pn 25
+.ds qrf*ref-ref-plot-anneal-pop+anneal-pop-detail-xx 2.15
+.ds qrf*ref-ref-plot-heart-pop+heart-pop-detail-hn 2.2.5
+.ds qrf*ref-ref-plot-heart-pop+heart-pop-detail-pn 25
+.ds qrf*ref-ref-plot-heart-pop+heart-pop-detail-xx 2.16
+.ds qrf*ref-ref-combine-func-hn 2.3.3
+.ds qrf*ref-ref-combine-func-pn 27
+.ds qrf*ref-ref-fig-func-1-hn 2.3.3
+.ds qrf*ref-ref-fig-func-1-pn 28
+.ds qrf*ref-ref-fig-func-1-xx 2.17
+.ds qrf*ref-ref-fig-apply-1-hn 2.3.3
+.ds qrf*ref-ref-fig-apply-1-pn 28
+.ds qrf*ref-ref-fig-apply-1-xx 2.18
+.ds qrf*ref-ref-mem-struct-hn 2.3.3
+.ds qrf*ref-ref-mem-struct-pn 28
+.ds qrf*ref-ref-fig-apply-2-hn 2.3.3
+.ds qrf*ref-ref-fig-apply-2-pn 29
+.ds qrf*ref-ref-fig-apply-2-xx 2.19
+.ds qrf*ref-ref-fig-func-2-hn 2.3.3
+.ds qrf*ref-ref-fig-func-2-pn 29
+.ds qrf*ref-ref-fig-func-2-xx 2.20
+.ds qrf*ref-ref-fig-func-3-hn 2.3.3
+.ds qrf*ref-ref-fig-func-3-pn 30
+.ds qrf*ref-ref-fig-func-3-xx 2.21
+.ds qrf*ref-ref-fig-func-4-hn 2.3.3
+.ds qrf*ref-ref-fig-func-4-pn 30
+.ds qrf*ref-ref-fig-func-4-xx 2.22
+.ds qrf*ref-ref-fig-func-7-hn 2.3.4
+.ds qrf*ref-ref-fig-func-7-pn 32
+.ds qrf*ref-ref-fig-func-7-xx 2.23
+.ds qrf*ref-ref-seq-vs-pipe-hn 2.3.4
+.ds qrf*ref-ref-seq-vs-pipe-pn 33
+.ds qrf*ref-ref-static-param-hn 2.3.5
+.ds qrf*ref-ref-static-param-pn 33
+.ds qrf*ref-ref-fig-gap-pe-hn 2.3.6
+.ds qrf*ref-ref-fig-gap-pe-pn 35
+.ds qrf*ref-ref-fig-gap-pe-xx 2.24
+.ds qrf*ref-ref-fig-gap-hn 2.3.6
+.ds qrf*ref-ref-fig-gap-pn 36
+.ds qrf*ref-ref-fig-gap-xx 2.25
+.ds qrf*ref-ref-fig-life-dfa-hn 2.3.7
+.ds qrf*ref-ref-fig-life-dfa-pn 38
+.ds qrf*ref-ref-fig-life-dfa-xx 2.26
+.ds qrf*ref-ref-fig-life-tree-hn 2.3.7
+.ds qrf*ref-ref-fig-life-tree-pn 38
+.ds qrf*ref-ref-fig-life-tree-xx 2.27
+.ds qrf*ref-ref-tbl-gapp-dfa-hn 2.3.7
+.ds qrf*ref-ref-tbl-gapp-dfa-pn 39
+.ds qrf*ref-ref-tbl-gapp-dfa-xx 2.9
+.ds qrf*ref-ref-tbl-gapp-dfa-hn 2.3.7
+.ds qrf*ref-ref-tbl-gapp-dfa-pn 39
+.ds qrf*ref-ref-tbl-gapp-dfa-xx 2.10
+.ds qrf*ref-ref-rule-xor9-hn 3.1
+.ds qrf*ref-ref-rule-xor9-pn 40
+.ds qrf*ref-ref-rule-anneal-hn 3.2
+.ds qrf*ref-ref-rule-anneal-pn 40
+.ds qrf*ref-ref-rule-qmean-hn 3.3
+.ds qrf*ref-ref-rule-qmean-pn 41
+.ds qrf*ref-ref-rule-tube-worm-hn 3.4
+.ds qrf*ref-ref-rule-tube-worm-pn 41
+.ds qrf*ref-ref-dump-xu-photo-1-hn Chapitre 4.
+.ds qrf*ref-ref-dump-xu-photo-1-pn 45
+.ds qrf*ref-ref-dump-xu-photo-1-xx 4.1
+.ds qrf*ref-ref-dump-xu-photo-1-top-hn Chapitre 4.
+.ds qrf*ref-ref-dump-xu-photo-1-top-pn 46
+.ds qrf*ref-ref-dump-xu-photo-1-top-xx 4.2
+.ds qrf*ref-ref-dump-xu-Cfilm-1-1-hn Chapitre 4.
+.ds qrf*ref-ref-dump-xu-Cfilm-1-1-pn 47
+.ds qrf*ref-ref-dump-xu-Cfilm-1-1-xx 4.3
+.ds qrf*ref-ref-dump-xu-Cfilm-1-2-hn Chapitre 4.
+.ds qrf*ref-ref-dump-xu-Cfilm-1-2-pn 48
+.ds qrf*ref-ref-dump-xu-Cfilm-1-2-xx 4.4
+.ds qrf*ref-ref-dump-xu-Cfilm-2-1-hn Chapitre 4.
+.ds qrf*ref-ref-dump-xu-Cfilm-2-1-pn 49
+.ds qrf*ref-ref-dump-xu-Cfilm-2-1-xx 4.5
+.ds qrf*ref-ref-dump-xu-Cfilm-2-2-hn Chapitre 4.
+.ds qrf*ref-ref-dump-xu-Cfilm-2-2-pn 50
+.ds qrf*ref-ref-dump-xu-Cfilm-2-2-xx 4.6
+.ds qrf*ref-ref-plot-rabbit-gnans-1+rabbit-gnans-2-hn Chapitre 4.
+.ds qrf*ref-ref-plot-rabbit-gnans-1+rabbit-gnans-2-pn 51
+.ds qrf*ref-ref-plot-rabbit-gnans-1+rabbit-gnans-2-xx A.1
+.ds qrf*ref-ref-plot-rabbit-1+rabbit-1-512-hn Chapitre 4.
+.ds qrf*ref-ref-plot-rabbit-1+rabbit-1-512-pn 52
+.ds qrf*ref-ref-plot-rabbit-1+rabbit-1-512-xx A.2
+.ds qrf*ref-ref-plot-rabbit-2+rabbit-3-hn Chapitre 4.
+.ds qrf*ref-ref-plot-rabbit-2+rabbit-3-pn 53
+.ds qrf*ref-ref-plot-rabbit-2+rabbit-3-xx A.3
+.ds qrf*ref-ref-dump-cas-dump+cas-cmd-1-hn Chapitre 4.
+.ds qrf*ref-ref-dump-cas-dump+cas-cmd-1-pn 59
+.ds qrf*ref-ref-dump-cas-dump+cas-cmd-1-xx C.1
+.ds qrf*ref-ref-dump-loop-1024-hn Chapitre 4.
+.ds qrf*ref-ref-dump-loop-1024-pn 60
+.ds qrf*ref-ref-dump-loop-1024-xx D.1
+.ds qrf*ref-ref-dump-anneal-sum-1k-8k-hn Chapitre 4.
+.ds qrf*ref-ref-dump-anneal-sum-1k-8k-pn 61
+.ds qrf*ref-ref-dump-anneal-sum-1k-8k-xx D.2
+.ds qrf*ref-ref-dump-anneal-sum-1k-8k-xv-hn Chapitre 4.
+.ds qrf*ref-ref-dump-anneal-sum-1k-8k-xv-pn 62
+.ds qrf*ref-ref-dump-anneal-sum-1k-8k-xv-xx D.3
+.ds qrf*ref-ref-dump-life-3d+lifex-3d-hn Chapitre 4.
+.ds qrf*ref-ref-dump-life-3d+lifex-3d-pn 63
+.ds qrf*ref-ref-dump-life-3d+lifex-3d-xx D.4
+.ds qrf*ref-ref-dump-anneal-3d-hn Chapitre 4.
+.ds qrf*ref-ref-dump-anneal-3d-pn 64
+.ds qrf*ref-ref-dump-anneal-3d-xx D.5
+.ds qrf*ref-ref-soft-ref-hn 
+.ds qrf*ref-ref-soft-ref-pn 69

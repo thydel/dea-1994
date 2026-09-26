@@ -1,0 +1,48 @@
+tube-worm(int timer-val)
+	moore[1] worm;
+	local[1] alarm;
+	local[2] timer;
+{
+	worm <- !timer;
+	alarm <- { 0, 0, 0, 1, 1, 1, 1, 1, 1, } [sum(worm)];
+	timer <- worm && alarm ? timer-val : decr(timer);
+	output worm, alarm, timer;
+	display worm;
+}
+
+rand-anneal-1()
+	von-neumann[1] random;
+	von-neumann[1] atom;
+{
+	random <- stir() random;
+	int tmp = rand(random);
+	atom <- { 0, 0, tmp, tmp ^ 1, 1, 1, } [sum(atom)];
+	output atom, random;
+	display atom;
+}
+
+rand-anneal()
+	von-neumann[1] atom;
+	local[1] random;
+{
+	output { 0, 0, random, random ^ 1, 1, 1, } [sum(atom)];
+}
+
+rand-32-anneal()
+	von-neumann[1] atom;
+	von-neumann[1] random;
+{
+	random <- stir();
+	atom <- rand-anneal() atom, rand(random);
+	output atom, random;
+}
+
+stir() von-neumann[1]; { output E & S ^ W ^ N ^ C; }
+int stir(von-neumann) { return E & S ^ W ^ N ^ C; }
+
+rand() von-neumann[1]; { output rand(von-neumann); }
+int rand(von-neumann) { return C & N & S & W & E; }
+
+int sum(von-neumann) { return C + N + E + S + W; }
+int sum(moore) { return C + N + E + S + W + NE + SE + NW + SW; }
+int decr(n) { return n ? n - 1 : n; }

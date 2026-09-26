@@ -1,0 +1,2 @@
+cell -s 10 -e 8 -t ../rule/life.t -f ../frame/random-10-0 | DISPLAY=:1 xdump -d 8 -s 10
+cell -s 10 -e 8 -t ../rule/life.t -f ../frame/random-10-0 | xdisp -x 1024 -s 1

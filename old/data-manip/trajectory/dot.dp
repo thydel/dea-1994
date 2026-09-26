@@ -1,0 +1,9 @@
+.
+. x11 with backing store
+.
+device 1 x11
+set x11 pixmap on
+.
+. no more more
+.
+set help lines 200

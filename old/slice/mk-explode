@@ -1,0 +1,14 @@
+size=$1
+file=$2
+xsize=$size
+ysize=$size
+zsize=$size
+square=`expr $xsize \* $ysize`
+
+rm -f mk-explode-tmp/*
+for i in `loop 0 $zsize 1`
+do
+	echo -n "$i "
+	pnmcut 0 `expr $ysize \* $i` $xsize $ysize $file > mk-explode-tmp/$i
+done
+echo

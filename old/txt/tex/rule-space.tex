@@ -1,0 +1,452 @@
+\chapter[Structure de l'espace des AC]%
+{Structure de l'espace des automates cellulaires}
+\mysetref{rule-space}
+
+Intuitivement, la classification des~AC est une classification
+qualitative de leurs comportements dynamiques. %
+Cette classification repose sur des mesures statistiques des
+comportements\footnote{%
+  Par exemple l'entropie %
+  $S = - \sum_{i} p_{i} \log(p_{i})$ %
+  ou l'information mutuelle~(la corr\'elation de deux distributions) %
+  $M = \sum_{i} \sum_{j} p_{ij} \log \frac{p_{ij}}{p_{i} p_{j}}$~\cite[]{Li90b}.}. %
+
+La premi\`ere question est celle de l'existence d'un certain
+comportement, une r\'eponse g\'en\'erale est donn\'ee par l'existence d'AC
+universels. %
+Un cadre g\'en\'eral est donn\'e par l'utilisation des m\'ethodes de la
+m\'ecanique statistique pour qualifier les comportements. %
+
+La deuxi\`eme question est celle du nombre d'AC d'un type donn\'e et de
+leurs localisations dans l'espace des r\`egles. %
+Cette question introduit le probl\`eme de l'existence de param\`etres
+permettant de parcourir l'espace des r\`egles. %
+
+Le probl\`eme de la classification des~AC se situe \`a l'intersection du
+probl\`eme \aquote{forward}\footnote{%
+  D\'eterminer les propri\'et\'es \`a partir de la r\`egle.} %
+et inverse\footnote{%
+  D\'eterminer la r\`egle \`a partir des propri\'et\'es.}~%
+\cite[]{Gutowitz90a}. %
+Il implique l'existence d'un ensemble de mesures r\'ealisables sur les
+r\`egles et sur leurs dynamiques. %
+
+L'existence de param\`etres de contr\^ole de la dynamique des~AC permet
+de d\'eterminer une structure pour l'espace des~AC. %
+
+%%
+%% MINIMAL VERSION
+%%
+\section{Une version minimale du probl\`eme}
+
+Les~AC \'el\'ementaires, tel que d\'efinis par~\cite{Wolfram86a}
+sont les~AC de dimension~$d = 1$, de rayon\footnote{%
+  Le nombre de cellules voisines est $d r + 1$.} %
+$r = 1$ et de nombre d'\'etats~$k = 2$. %
+Une simplification ultime consid\`ere l'espace des~AC de param\`etres %
+$d = 0$, $r = 0$, $k = 2$, %
+Ce qui donne $k^{^{d r + 1}} = 4$ r\`egles~(Z\'ero, Flip, Same, One),
+lesquelles donnent 8~dynamiques:
+
+\noindent Z(0) = 0*, Z(1) = 10*, O(0) = 01*, O(1) = 1*\\
+S(0) = 0*, S(1) = 1*, F(0) = (01)*, F(1) = (10)*
+
+soit 4~points fixes sans transitoire~(en 2 vari\'et\'es), 2 points fixes
+avec transitoire de taille 1, 2 cycles de taille 2 sans transitoire.
+
+Les~AC \'el\'ementaires, dont le nombre est~256 peuvent \^etre
+\'enum\'er\'es\footnote{%
+  Des donn\'ees statistiques peuvent \^etre obtenues pour
+  chaque r\`egle appliqu\'ee sur un espace de configuration.}, %
+mais l'\'etude des dynamiques associ\'ees \`a une r\`egle d\'epend du
+nombre~$N$ de cellules de l'espace de configuration~(qui tend
+vers l'infini) et fait n\'ecessairement appel \`a des m\'ethodes statistiques. %
+Pour $d = 1$, $k = 2$, $r = 2$, le nombre de r\`egle est $2^{32}$ et ne
+permet d\'ej\`a plus une \'enum\'eration.
+
+\mytwoplotfull[htb]{lambda}{flip}%
+{}%
+{Les 128 premi\`ere valeur de \protect\alambda et \protect\Flip, pour un calcul sur les
+  16384 premiers entier}%
+{Le param\`etre appel\'e \alambda par~\cite{Li90b} est d\'efini par %
+  $\lambda = \frac{k^{dr+1}-\#0}{k^{dr+1}}$~%
+  \mygetref[paren]{lambda}. %
+  Pour les r\`egles binaires, \alambda est une version normalis\'ee de la
+  fonction $\#_{1}(n) = n - \sum_{i=1}\lfloor n/2^{i}\rfloor$~%
+  \cite[]{Wolfram83} donnant le nombre de bits \`a~1 dans la
+  repr\'esentation binaire d'un nombre. %
+  Nous d\'efinissons \Flip pour les r\`egles binaires comme le nombre de
+  \aconcept{bit-flip} rencontr\'es en balayant les entr\'ees de la table de
+  transition~\mygetref[paren]{flip-par}. %
+  Les calculs sont fait sur les 16384 premiers entiers consid\'er\'es comme
+  autant de r\`egles d'un hypoth\'etique voisinage \`a~$\log_{2}(14)$
+  voisins.\\
+  $\#0$ d\'esigne le nombre de z\'eros de la table de transition.}
+
+\mytwoplotfull[htb]{lambda-deriv}{flip-deriv}%
+{}%
+{Les 256 premi\`eres valeurs de la d\'eriv\'ee de \protect\alambda et \protect\Flip}%
+{La d\'eriv\'ee est calcul\'ee \`a partir des donn\'ees pr\'esent\'ees en
+  figure~\mygetplot{lambda+flip}:\\ %
+  $f^{\prime}_{i} = f_{i} - f_{i-1}$.}
+
+\mytwoplotfull[htb]{lambda-prob}{flip-prob}%
+{}%
+{Les 512 premi\`eres valeurs des fonctions \protect\alambda et
+  \protect\Flip, et de leur probabilit\'e d'apparition}%
+{La distribution des valeurs d'une fonction utilis\'ee comme para\-m\`e\-tre
+  d'\'echantillonage d'un espace de r\`egles influence la nature de
+  l'\'echan\-til\-lonage. %
+  Les exp\'eriences utilisant \alambda comme param\`etre de
+  contr\^ole~(\cite{Li90b} par exemple), ne tiennent pas compte de la
+  non lin\'earit\'e de la distribution des probabilit\'es d'apparition des
+  valeurs de \alambda sur un espace de r\`egles.}
+
+\mytwoplotfull[htb]{lambda-versus-prob}{flip-versus-prob}%
+{}%
+{Plot de \protect\alambda et \protect\Flip \protect\vs leur probabilit\'e d'apparition}%
+{Nous n'avons pas actuellement d'explication compl\`ete de ces
+  r\'esultats, il est n\'eanmoins clair que \alambda et \Flip poss\`edent des
+  propri\'et\'es suffisamment diff\'erentes pour justifier la poursuite
+  d'exp\'eriences utilisant \Flip} 
+
+\mytwoplotfull[htb]{lambda-flip-hist}{lambda-versus-flip}%
+{}%
+{L'histogramme des distribution de \protect\alambda et \protect\Flip, et
+  \protect\alambda \protect\vs \protect\Flip.}%
+{Les valeurs de l'histogramme apparaissent ici non normalis\'ees, \ie en
+  nombre de bits \`a~1 pour \alambda et en nombre de bit-flips pour
+  \Flip.}
+
+\mytwoplotfull[htb]{lambda-flip-ratio-sorted}{lambda-flip-prob-sorted}%
+{}%
+{Un tri des valeurs de la fonction et leurs probabilit\'es d'apparition
+  pour \protect\alambda et \protect\Flip}%
+{Le nombre de paliers correspond au nombre de valeurs possibles pour
+  chaque fonction, faible pour notre espace \`a voisinage
+  de~$\log_{2}(14)$~bits.}
+
+\myplotfullR[htb]{.75}{E-lambda-1}%
+{}%
+{Valeurs de \protect\alambda et \protect\En}%
+{Nous avons calcul\'e les valeurs de \alambda et \En{}\footnote{%
+    \aconcept{L'ench\^assement}, voir \'equation~\ref{rs-eq1}.} %
+  pour un sous-espace \'echantillon de l'espace des r\`egles binaires \`a
+  voisinage de Moore. %
+  Le sous espace est constitu\'e des r\`egles additives, centre inclu, dont la table
+  secondaire supporte les fonctions constantes \aquote{z\'ero} et
+  \aquote{un} et la fonction \aquote{unchanged}. %
+  L'espace contient donc $3^{10} = 59049$ r\`egles. %
+  Les valeurs plot\'ees pour \En sont:~$\mEn_{centre}$,
+  $\mEn_{rayon}$ et la valeur moyenne de \En sur tous les
+  voisins. %
+  Le pic montre la position de \arule{Anneal} dans le sous-espace de
+  r\`egles. %
+  Nous avons tent\'e de corr\'eler les param\`etres calcul\'es sur l'espace des
+  r\`egles aux propri\'et\'es des trajectoires associ\'ees \`a ces r\`egles pour des
+  configurations initiales al\'eatoires de densit\'e\,\Sundemi sur des espaces
+  de tailles entre \asquare{64} et \asquare{256}, en vue de
+  d\'eterminer les restrictions suppl\'ementaires \`a appliquer \`a une
+  recherche automatique.}
+
+%%
+%% WOLFRAM CLASS
+%%
+\section{La classification de Wolfram}
+
+La classification de Wolfram est une classification de r\'ef\'erence pour
+de nombreux
+auteurs~\cite[]{Vichniac90,Li90b,Wootters90,McIntosh90,Chate90,Gutowitz90b}.
+
+Dans les quatre classes de Wolfram, %
+les classes I, II et III sont vues comme des attracteurs de syst\`emes
+dynamiques:
+
+\subsection*{classe I}
+
+\begin{itemize}
+\item point limite
+\item ou tendance \`a un \'etat spatialement homog\`ene
+\item ou les formes disparaissent avec le temps
+\item ou de petits changements sur la configuration initiale sont
+  sans effet sur l'\'etat final
+\end{itemize}
+
+\subsection*{classe II}
+
+\begin{itemize}
+\item cycle limite
+\item ou montrant une s\'equence de structure simple, stable ou
+  p\'eriodique
+\item ou les formes \'evoluent vers une taille fixe finie
+\item ou de petits changements sur la configuration initiale
+  induisent des changements sur des r\'egions de tailles finies
+\end{itemize}
+
+\subsection*{classe III}
+
+\begin{itemize}
+\item attracteur chaotique
+\item ou montrant un comportement chaotique ap\'eriodique
+\item ou les formes croissent ind\'efiniment \`a une vitesse fixe
+\item ou de petits changements sur la configuration initiale
+  induisent des changements sur des r\'egions de tailles toujours
+  croissantes
+\end{itemize}
+
+\subsection*{classe IV}
+
+\begin{itemize}
+\item comportement plus complexe que les pr\'ec\'edents, conjecture de
+  calcul universel
+\item ou montrant des structures localis\'ees complexes,
+  \'eventuellement propageantes
+\item ou les formes croissent et se contractent avec le temps
+\item ou de petits changements sur la configuration initiale
+  induisent des changements irr\'eguliers
+\end{itemize}
+
+La description des classes varie selon les auteurs. %
+On peut introduire la notion de d\'ecalage spatial
+homog\`ene~\cite[]{Li90b}, %
+souligner la difficult\'e que pr\'esente certains comportements
+interm\'ediaires~\cite[]{McIntosh90}, %
+ou proposer des interpr\'etations structurelles faisant, par exemple,
+des~AC de la classe~IV un \emph{m\'elange} d'AC de la classe~II
+et~III~\cite[]{Kayama93}. %
+Les 4 classes~(fixe, p\'eriodique, chaotique, complexe) apparaissent
+actuellement comme un point de d\'epart in\'evitable de toute tentative de
+classification. %
+La question de la structure de l'espace, et donc des param\`etres de
+contr\^ole devient alors la question premi\`ere.
+
+%%
+%% LAMBDA
+%%
+\section{Le param\`etre $\lambda$ de Langton}
+\label{ref-lambda}
+
+Le param\`etre~$\lambda$ est d\'efini comme le pourcentage d'entr\'ees de la
+table de transition dont la valeur est diff\'erente de l'\'etat z\'ero:~%
+$\lambda = \frac{k^{dr+1}-\#0}{k^{dr+1}}$. %
+
+A une petite variation de~$\lambda$~\cite[]{Langton92b} entre deux
+r\`egles correspond une petite distance de Hamming entre deux r\`egles. %
+La variation du param\`etre~$\lambda$ permet d'\'echantillonner
+un espace de r\`egles pour~$d$, $k$ et~$r$ fix\'es. %
+Chaque r\`egle est appliqu\'ee sur un ensemble de configurations
+initiales, et des mesures statistiques sont faites \`a la vol\'ee. %
+Les s\'eries temporelles de mesures sont utilis\'ees pour d\'eterminer
+l'appartenance de la r\`egle \`a une classe ou une autre. %
+On peut alors essayer d'\'etablir une corr\'elation entre~$\lambda$
+et la classe d'appartenance de l'AC. %
+
+Cette proc\'edure est a priori applicable pour d'autres param\`etres, %
+et vise \`a travers l'\'echantillonnage \`a r\'ev\'eler la structure g\'en\'erale
+que la variation du param\`etre de contr\^ole imprime \`a l'espace des r\`egles. %
+
+Une question associ\'ee \`a la structure de l'espace d\'efini par un
+param\`etre est la pr\'esence et le type d'une \'eventuelle transition de
+phase, qui associe \`a une valeur critique du param\`etre de contr\^ole une
+transition plus ou moins brusque de la classe de comportement des
+r\`egles. %
+
+Une autre question est la pr\'esence d'une tendance au continu associ\'ee
+\`a l'augmentation de la taille de l'espace des r\`egles. %
+
+%%
+%% EXPERIMENTS
+%%
+\section[param\'etrage des classes de comportements]%
+{Exp\'erimentations sur le param\'etrage des classes de comportements}
+
+Li, Packard et Langton~(\citeyear{Li90b}) proposent l'existence de
+transitions de phase contr\^ol\'ees par le param\`etre~$\lambda$. %
+Il s'agit d'une transition du premier ordre~(transition brutale) entre
+les r\`egles de type II et III, %
+ou d'une transition de deuxi\`eme ordre~(transition graduelle) associant
+les r\`egles de type IV \`a une zone d'intersection des types II et III\@. %
+Les mesures statistiques utilis\'ees sont l'entropie, l'information
+mutuelle et la vitesse de propagation des diff\'erences sur l'espace
+cellulaire\footnote{%
+  Consid\'er\'ee comme une mesure de l'impr\'edictibilit\'e de l'\'evolution
+  des \emph{formes} de l'espace cellulaire, elle devient une mesure
+  de la qualit\'e chaotique du comportement de l'AC.}. %
+Les espaces de r\`egles sont typiquement born\'es par $d <= 2$, $k < 10$,
+$r < 12$. %
+Ce type d'exp\'eriences a d'abord \'et\'e men\'e sur les~AC
+\'el\'ementaires~\cite[]{Li90a}. %
+\cite{Wootters90} \'etendent la recherche \`a des
+espaces de r\`egles plus vastes, dans le but de r\'eduire la dispersion de
+la valeur critique. %
+L'augmentation de~$r$ supprime la transition~(la valeur critique tend
+vers z\'ero), l'augmentation de~$k$ tend \`a r\'eduire la dispersion de la
+valeur critique.
+
+Toutefois, la critique d'une exp\'erience de \cite{Packard88},
+formul\'ee par \cite{Mitchell93a} fait appara\^itre les limites
+de l'hypoth\`ese de Langton sur l'\'emergence du \emph{calcul}\footnote{%
+  Il s'agit en fait de la transition vers des r\`egles dont les mesures
+  statistiques indiquent une appartenance \`a la classe IV, lesquelles
+  sont suppos\'ees universelles.} %
+\`a la fronti\`ere du chaos~\cite[]{Langton90,Langton92b}. %
+Packard utilise un algorithme g\'en\'etique pour faire \'evoluer des r\`egles
+effectuant un calcul particulier, et interpr\`ete les r\'esultats comme
+une indication de l'existence d'une pression s\'elective sur l'\'evolution
+des r\`egles vers les valeurs critiques de~$\lambda$ associ\'ees \`a une
+transition de phase et \`a la r\'ealisation d'un calcul complexe.
+
+%% 0.27 quoi
+Mitchell trouve des r\'esultats diff\'erents, et souligne la n\'ecessit\'e
+d'une meilleure compr\'ehension~(d\'efinition) des concepts utilis\'es. %
+Mitchell montre, par exemple, que l'\'evolution par algorithme g\'en\'etique
+d'une r\`egle calculant l'\'etat majoritaire de la configuration initiale
+en tendant vers un point fixe homog\`ene de l'\'etat majoritaire, %
+se trouve n\'ecessairement loin du point critique~(0.27 d'apr\`es Wooter
+et Langton) avec $\lambda$ = 0.5. %
+
+Li a par ailleurs sugg\'er\'e~\cite[]{Li89}, en apparente contradiction
+avec l'id\'ee d'une association entre calcul, complexit\'e et ph\'enom\`enes
+critiques~\cite[]{Li90b} une structure fractale~\cite[]{Mandelbrot84}
+pour la distribution des r\`egles complexes dans l'espace des r\`egles.
+
+%%
+%% PROPOSITIONS
+%%
+\section[Le param\'etrage d'ench\^assement]%
+{Proposition pour une recherche d'un param\'etrage de l'ench\^as\-sement}
+\mysetref{flip-par}
+
+Face aux probl\`emes soulev\'es par l'utilisation du param\`etre~$\lambda$,
+nous proposons quelques remarques pouvant servir de point de d\'epart \`a
+de nouvelles exp\'eriences sur la structure de l'espace des~AC.
+
+La premi\`ere remarque concerne l'existence d'autres param\`etres
+de contr\^oles que~$\lambda$. %
+Li, Packard et Langton~\cite[]{Li90b} soulignent l'importance de la
+recherche d'autres param\`etres de contr\^ole et sugg\`erent que la
+dispersion de la valeur critique pourrait \^etre r\'eduite par un
+param\`etre suppl\'ementaire~(le \emph{param\`etre myst\'erieux} permettant de
+localiser des fronti\`eres plus pr\'ecises entre les diff\'erents comportements). %
+Il nous semble n\'eanmoins peu probable qu'un seul param\`etre
+suppl\'ementaire suffise.
+
+La deuxi\`eme remarque concerne la structure ench\^ass\'ee des espaces de
+r\`egles. %
+Nous sugg\'erons que l'\'etude du degr\'e d'ench\^assement d'une r\`egle dans un
+espace permet la d\'efinition d'un nouveau param\`etre de contr\^ole.
+
+La troisi\`eme remarque concerne les techniques de r\'eductions du nombre
+de r\`egles l\'egales \`a consid\'erer pour un espace donn\'e, c'est \`a dire
+l'ablation des r\`egles anisotropiques ou ench\^ass\'ees, et la possibilit\'e
+d'utiliser un mapping interm\'ediaire.
+
+\subsection*{Le param\`etre Flip}
+
+Nous proposons l'utilisation du param\`etre~\emph{Flip} d\'efini comme le
+nombre de changements d'\'etats rencontr\'e en balayant successivement
+chaque entr\'ee de la table de transition.
+
+\[{\rm flip} =
+\frac{1}{N}\sum_{i=0}^{N-1}{\rm diff}(f_{i}-f_{(i+1){\rm mod}N})\]
+
+avec $N=k^{dr+1}$, et
+
+\[{\rm diff}(x) = \left\lbrace
+\begin{array}{l}
+  1\ {\rm if}\ x \ne 0\\ 0\ {\rm if}\ x = 0
+\end{array}
+\right.\]
+
+Si l'on plonge\footnote{%
+  Nous d\'efinissons le plongement de r\`egles comme augmentation de la
+  taille du voisinage sans influence sur les trajectoires.} %
+une r\`egle~$R_{N}$ param\'etr\'ee par~$r = N$ dans une
+r\`egle~$R_{N + 1}$, l'insensibilit\'e de la r\`egle aux deux voisins
+suppl\'ementaires se traduit par une duplication des entr\'ees de la r\`egle
+$R_{N}$. %
+Par exemple pour~$k = 2$, si pour la colonne~$i$ l'\'egalit\'e de chacune
+des~$N/2$ paires~$x_{j} = x_{j + 2^{i}}$ est v\'erifi\'ee, la colonne~$i$
+est inutilis\'ee, et soit la r\`egle est anisotropique, soit la r\`egle est
+isomorphe \`a une r\`egle d'espace de taille inf\'erieure et peut \^etre
+isotropique.
+
+La somme des degr\'es d'\'egalit\'e de chaque colonne est un candidat
+possible au r\^ole de param\`etre de contr\^ole.
+
+Parce que l'on peut construire une r\`egle pour un espace de taille
+donn\'ee en plongeant une r\`egle d'un espace de taille inf\'erieure~(par
+duplication des entr\'ees), \`a~$\lambda$ et Flip constant, puis d\'eplacer
+peu \`a peu la r\`egle vers l'espace de taille sup\'erieure en flippant des
+entr\'ees~(\'eventuellement en conservant~$\lambda$ constant), la mesure
+de Flip pourrait \^etre associ\'ee au degr\'e d'ench\^assement d'une r\`egle.
+
+L'utilisation d'un mapping interm\'ediaire permet de r\'eduire la taille
+de l'espace des r\`egles, tout en maintenant une coh\'erence forte sur le
+sous-ensemble choisi. %
+Par exemple le r\'eduction du voisinage \`a une somme excluant la cellule
+centrale, conserve un sous ensemble isotropique de r\`egle. %
+Pour~$d = 2$, $k = 2$, $r = 1$ les~$2^{512}$ r\`egles
+deviennent~$4^{9}$, en utilisant les 4 op\'erations des r\`egles
+minimales~(Z\'ero, Same, Flip, One) comme valeur de la table
+interm\'ediaire. %
+
+\subsection*{Le param\`etre d'ench\^assement}
+
+Nous d\'efinissons le param\`etre d'ench\^assement d'un voisin pour une
+r\`egle comme l'influence de ce voisin sur la r\`egle. %
+Soit une r\`egle $R$ d'un AC de $k = 2^n$ \'etats, $d$ dimensions et de
+rayon de voisinage $r$. %
+$N = k^{dr+1} = 2^b$ est le nombre d'entr\'ees de la table. %
+Pour un AC de $k = 2$ \'etats les $b = dr+1$ bits du voisinage donnent
+un vecteur $E$ de $b$ valeurs.
+
+%%\begin{eqnarray}
+%%\label{rs-eq1}
+%%        E_{b} = \frac{1}{N} \sum_{i = 0}^{N/2 - 1} R_{e_{ib}} - R_{e_{ib} + 2^b} \\
+%%        \mbox{avec : } e_{ib} = \frac{i}{2^b} 2^{b + 1} + i \bmod 2^b
+%%        = 2i + i \bmod 2^b \nonumber
+%%\end{eqnarray}
+\begin{eqnarray}
+\label{rs-eq1}
+        E_{b} = \frac{1}{N} \sum_{i = 0}^{N/2 - 1} R_{e_{ib}} - R_{e_{ib} + 2^b} \\
+        \mbox{avec : } e_{ib} = 2i + i \bmod 2^b \nonumber
+\end{eqnarray}
+
+Une valeur moyenne $E = \frac{1}{b} \sum_{i = 0}^{b} E_b$ peut \^etre
+d\'efinie, pour servir de param\`etre de contr\^ole \`a la fa\c{c}on du
+param\`etre $\lambda$ cependant d'autre r\'eduction que la moyenne
+pourrait \^etre choisie, afin d'exploiter l'information sur le degr\'e de
+sym\'etrie $R$.
+
+\begin{eqnarray}
+        E_{life} & = &
+        {0.617\ 0.617\ 0.617\ 0.617\ 0.890\ 0.617\ 0.617\ 0.617\ 0.617} \nonumber \\
+        \hat{E}_{life} & = & 0.647569 \nonumber \\
+        \lambda_{life} & = & 0.273438 \nonumber
+\end{eqnarray}
+
+Le probl\`eme de la structure de l'espace des~AC, semble \^etre un
+probl\`eme encore largement ouvert. %
+La question des formes possibles de la dynamique des~AC pour des
+espaces de r\`egles de grande taille, et la question d'une combinatoire
+de r\`egles permettant de contr\^oler l'\'emergence de ces formes ne
+poss\`edent pas actuellement de r\'eponses.
+
+%%
+%% Local Variables:
+%% mode: auto-fill
+%% iso-accents-minor-mode: nil
+%% TeX-master: "top"
+%% TeX-command-default: "mytex"
+%% Local IspellParsing: "latex-mode ~latin1"
+%% LocalWords: "forward Wolfram Flip Same One transient CLASS II III IV LAMBDA"
+%% LocalWords: "Langton Hamming l'AC EXPERIMENTS Li Packard Wootters Mitchell AC"
+%% LocalWords: "Wooter mapping flip flippant em d'AC spatialement ap\'eriodique"
+%% LocalWords: "propageantes param\'etrage l'impr\'edictibilit\'e fractale l'ench\^as"
+%% LocalWords: "sement anisotropiques anisotropique isotropique rule-space htb"
+%% LocalWords: "lambda paren flip-par lambda-deriv flip-deriv lambda-prob versus"
+%% LocalWords: "flip-prob lambda-versus-prob flip-versus-prob lambda-flip-hist"
+%% LocalWords: "lambda-versus-flip lambda-flip-ratio-sorted E-lambda sous-espace"
+%% LocalWords: "lambda-flip-prob-sorted Moore unchanged plot\'e touts Anneal"
+%% End:

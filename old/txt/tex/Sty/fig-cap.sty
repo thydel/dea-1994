@@ -1,0 +1,355 @@
+%%
+%% figures caption macros
+%%
+
+\newlength{\mylengtha}
+\newlength{\mylengthb}
+\newlength{\myheigtha}
+
+%% \myboxed{size}{stuff}
+%% size - percent of textwidth: full, twothirds, half
+%% stuff - what is inside
+%%
+\newcommand{\myboxed}[2]{%
+  \vspace{-\bigskipamount}%
+  \begin{center}%
+    \fbox{%
+      \setlength{\mylengtha}{\textwidth}%
+      \addtolength{\mylengtha}{-2\fboxsep}%
+      \addtolength{\mylengtha}{-2\fboxrule}%
+      \ifthenelse{\equal{#1}{twothirds}}{\setlength{\mylengtha}{.75\mylengtha}}{}%
+      \ifthenelse{\equal{#1}{half}}{\setlength{\mylengtha}{.50\mylengtha}}{}%
+      \begin{minipage}{\mylengtha}%
+        \setlength{\myheigtha}{.05\mylengtha}%
+        \vspace{\myheigtha}%
+        \begin{center}%
+          #2%
+        \end{center}%
+        %% \vspace{\myheigtha}%
+      \end{minipage}%
+      }%
+  \end{center}%
+  \vspace{-\bigskipamount}%
+  \vspace{-\smallskipamount}%
+  }%
+
+%% \mySboxed{size}{stuff}
+%% size - percent of textwidth: full, twothirds, half
+%% stuff - what is inside
+%%
+\newcommand{\mySboxed}[2]{%
+  \vspace{-\bigskipamount}%
+  \begin{center}%
+    \fbox{%
+      \setlength{\mylengtha}{\textwidth}%
+      \addtolength{\mylengtha}{-2\fboxsep}%
+      \addtolength{\mylengtha}{-2\fboxrule}%
+      \ifthenelse{\equal{#1}{twothirds}}{\setlength{\mylengtha}{.75\mylengtha}}{}%
+      \ifthenelse{\equal{#1}{half}}{\setlength{\mylengtha}{.50\mylengtha}}{}%
+      \begin{minipage}{\mylengtha}%
+        \setlength{\myheigtha}{.025\mylengtha}%
+        \vspace{\myheigtha}%
+        \begin{center}%
+          #2%
+        \end{center}%
+        %% \vspace{\myheigtha}%
+      \end{minipage}%
+      }%
+  \end{center}%
+  \vspace{-\bigskipamount}%
+  \vspace{-\smallskipamount}%
+  }%
+
+\newsavebox{\myboxa}
+\newsavebox{\myboxb}
+
+%% \mycapted{label}{stuff}{list-title}{caption-title}{text}
+%%
+%% label - the name for reference
+%% stuff - what is capted
+%% list-title - title that go in list of caption (same as
+%%              caption-title if empty)
+%% caption-title - title that go in the caption
+%% text - commenting text
+%%
+\newcommand{\mycapted}[5]{%
+  \settowidth{\mylengthb}{\emph{#4}}%
+  \ifthenelse{\lengthtest{\mylengthb > .8\mylengtha}}%
+  {\setlength{\mylengthb}{.8\mylengtha}}{}%
+  \sbox{\myboxa}{\centering\parbox[t]{\mylengthb}{\protect\emph{#4}}}
+  %% put the caption guts
+  #2%
+  \begin{center}%
+    %% put the caption text
+    \begin{minipage}{.9\mylengtha}%
+      \addtolength{\baselineskip}{-0.11\baselineskip}%
+      \begin{small}%
+        #5%
+      \end{small}%
+    \end{minipage}%
+    %% and the caption title
+    \ifthenelse{\equal{#3}{}\and\equal{#1}{}}{\caption[#4]{\usebox{\myboxa}}}{}%
+    \ifthenelse{\equal{#3}{}\and\not\equal{#1}{}}{\caption[#4]{\label{#1}\usebox{\myboxa}}}{}%
+    \ifthenelse{\not\equal{#3}{}\and\equal{#1}{}}{\caption[#3]{\usebox{\myboxa}}}{}%
+    \ifthenelse{\not\equal{#3}{}\and\not\equal{#1}{}}%
+    {\caption[#3]{\label{#1}\usebox{\myboxa}}}{}%
+    \smallskip%
+  \end{center}%
+  }%
+
+%% \myScapted{stuff}{text}
+%%
+%% stuff - what is capted
+%% text - commenting text
+%%
+\newcommand{\myScapted}[2]{%
+  %% put the caption guts
+  #1%
+  %% \vspace{\myheigtha}%
+  \smallskip
+  \begin{center}%
+    %% put the caption text
+    \begin{minipage}{.95\mylengtha}%
+      \addtolength{\baselineskip}{-0.22\baselineskip}%
+      \begin{center}
+        \begin{small}
+          #2%
+        \end{small}
+      \end{center}
+    \end{minipage}%
+  \end{center}%
+  %% \vspace{\myheigtha}%
+  \smallskip
+  }%
+
+%% \myfigure{placement}{size}{type}{stuff}{list-title}{caption-title}{text}
+%%
+%% placement - first arg of \figure
+%% size - \myboxed arg
+%% type - directory prefix of the figure: dump, plot, fig
+%% stuff - name of the figure file
+%% list-title: title that go in list of caption
+%% caption-title: title that go in the caption
+%% text: commenting text
+\newcommand{\myfigure}[7]{%
+  \label{#3-#4-section}%
+  \begin{figure}[#1]%
+    \myboxed{#2}{%
+      \mycapted{#3-#4}%
+      {\epsfig{file=../#3/#4,width=.9\mylengtha}}%
+      {#5}{#6}{#7}%
+      }%
+  \end{figure}%
+  }%
+
+%% \mySfigure{size}{type}{stuff}{text}
+%%
+%% size - \mySboxed arg
+%% type - directory prefix of the figure: dump, plot, fig
+%% stuff - name of the figure file
+%% text: commenting text
+\newcommand{\mySfigure}[4]{%
+    \mySboxed{#1}{\myScapted{\epsfig{file=../#2/#3,width=.95\mylengtha}}{#4}}}
+
+%% \mytwofigure{placement}{size}{type}{HV}{stuff1}{stuff2}{list-title}{caption-title}{text}
+%%              #1         #2    #3    #4  #5      #6      #7          #8             #9  
+%%
+%% placement - first arg of \figure
+%% size - \myboxed arg
+%% type - directory prefix of the figure: dump, plot, fig
+%% stuff1 - name of the figure file 1
+%% stuff2 - name of the figure file 2
+%% HV - hor-izontal or vert-ical
+%% list-title: title that go in list of caption
+%% caption-title: title that go in the caption
+%% text: commenting text
+\newcommand{\mytwofigure}[9]{%
+  \label{#3-#5+#6-section}%
+  \begin{figure}[#1]%
+    \myboxed{#2}{%
+      \mycapted{#3-#5+#6}%
+      {\ifthenelse{\equal{#4}{hor}}%
+      {\epsfig{file=../#3/#5,width=.45\mylengtha}%
+        \epsfig{file=../#3/#6,width=.45\mylengtha}}%
+      {\epsfig{file=../#3/#5,width=.9\mylengtha} \\%
+        \epsfig{file=../#3/#6,width=.9\mylengtha}}}%
+      {#7}{#8}{#9}%
+      }%
+  \end{figure}%
+  }%
+
+%% \myStwofigure{size}{type}{HV}{stuff1}{stuff2}{text}
+%%               #1    #2    #3  #4      #5      #6
+%%
+%% size - \myboxed arg
+%% type - directory prefix of the figure: dump, plot, fig
+%% stuff1 - name of the figure file 1
+%% stuff2 - name of the figure file 2
+%% HV - hor-izontal or vert-ical
+%% text: commenting text
+\newcommand{\myStwofigure}[6]{%
+  \mySboxed{#1}{%
+    \myScapted{%
+      \ifthenelse{\equal{#3}{hor}}%
+      {\epsfig{file=../#2/#4,width=.475\mylengtha}%
+        \epsfig{file=../#2/#5,width=.475\mylengtha}}%
+      {\epsfig{file=../#2/#4,width=.95\mylengtha} \\%
+        \epsfig{file=../#2/#5,width=.95\mylengtha}}}%
+    {#6}}}%
+
+\newcommand{\myStwofigureA}[6]{%
+  \mySboxed{#1}{%
+    \myScapted{%
+      \ifthenelse{\equal{#3}{hor}}%
+      {\epsfig{file=../#2/#4,width=.45\mylengtha}%
+        \hspace{.05\mylengtha}%
+        \epsfig{file=../#2/#5,width=.45\mylengtha}}%
+      {\epsfig{file=../#2/#4,width=.95\mylengtha} \\%
+        \epsfig{file=../#2/#5,width=.95\mylengtha}}}%
+    {#6}}}%
+
+\newcommand{\myStwofigureB}[7]{%
+  \mySboxed{#1}{%
+    \myScapted{%
+      \ifthenelse{\equal{#3}{hor}}%
+      {\epsfig{file=../#2/#4,width=.45\mylengtha}%
+        \hspace{.05\mylengtha}%
+        \epsfig{file=../#7/#5,width=.45\mylengtha}}%
+      {\epsfig{file=../#2/#4,width=.95\mylengtha} \\%
+        \epsfig{file=../#2/#5,width=.95\mylengtha}}}%
+    {#6}}}%
+
+%% \mySthreefigure{size}{type}{HV}{stuff1}{stuff2}{stuff3}{text}
+%%                 #1    #2    #3  #4      #5      #6      #7
+%%
+%% size - \myboxed arg
+%% type - directory prefix of the figure: dump, plot, fig
+%% stuff1 - name of the figure file 1
+%% stuff2 - name of the figure file 2
+%% HV - hor-izontal or vert-ical
+%% text: commenting text
+\newcommand{\mySthreefigure}[7]{%
+  \mySboxed{#1}{%
+    \myScapted{%
+      \ifthenelse{\equal{#3}{hor}}%
+      {\epsfig{file=../#2/#4,width=.315\mylengtha}%
+        \epsfig{file=../#2/#5,width=.315\mylengtha}%
+        \epsfig{file=../#2/#6,width=.315\mylengtha}}%
+      {\epsfig{file=../#2/#4,width=.95\mylengtha}\\%
+        \epsfig{file=../#2/#5,width=.95\mylengtha}\\%
+        \epsfig{file=../#2/#5,width=.95\mylengtha}}}%
+    {#7}}}%
+
+%% \myfigureR{placement}{size-box}{size-fig}{type}{stuff}{list-title}{caption-title}{text}
+%%
+%% placement - first arg of \figure
+%% size-box - \myboxed arg
+%% size-fig - epsfig-size arg
+%% type - directory prefix of the figure: dump, plot, fig
+%% stuff - name of the figure file
+%% list-title: title that go in list of caption
+%% caption-title: title that go in the caption
+%% text: commenting text
+\newcommand{\myfigureR}[8]{%
+  \label{#4-#5-section}%
+  \begin{figure}[#1]%
+    \myboxed{#2}{%
+      \mycapted{#4-#5}%
+      {\epsfig{file=../#4/#5,width=#3\mylengtha}}%
+      {#6}{#7}{#8}%
+      }%
+  \end{figure}%
+  }%
+
+%% \mySfigureR{size-box}{size-fig}{type}{stuff}{text}
+%%
+%% size-box - \myboxed arg
+%% size-fig - epsfig-size arg
+%% type - directory prefix of the figure: dump, plot, fig
+%% stuff - name of the figure file
+%% text: commenting text
+\newcommand{\mySfigureR}[5]{%
+  \myboxed{#1}{\myScapted{\epsfig{file=../#3/#4,width=#2\mylengtha}}{#5}}}
+
+%% \mytable[placement]{stuff}{list-title}{caption-title}{text}
+%%
+%% placement - first arg of \table
+%% stuff - name of the table file
+%% list-title: title that go in list of caption
+%% caption-title: title that go in the caption
+%% text: commenting text
+\newcommand{\mytable}[5][htbp]{%
+  \label{tbl-#2-section}%
+  \begin{table}[#1]%
+    \myboxed{full}{%
+      \mycapted{tbl-#2}%
+      {\input{../tbl/#2.tbl}}%
+      {#3}{#4}{#5}%
+      }%
+  \end{table}%
+  }%
+
+%% \mycode[placement]{size}{stuff}{list-title}{caption-title}{text}
+%%         #1         #2    #3     #4          #5             #6
+%%
+%% placement - first arg of \table
+%% size - \myboxed arg
+%% stuff - name of the code file
+%% list-title: title that go in list of caption
+%% caption-title: title that go in the caption
+%% text: commenting text
+\newcommand{\mycode}[6]{%
+  \label{code-#3-section}%
+  \begin{figure}[#1]%
+    \myboxed{#2}{%
+      \mycapted{code-#3}%
+      {\mylgrindfile{../src-txt/#3}}%
+      {#4}{#5}{#6}%
+      }%
+  \end{figure}%
+  }
+%% \mycodetwocol[placement]{stuff}{list-title}{caption-title}{text}
+%%               #1         #2     #3          #4             #5
+%%
+%% placement - first arg of \table
+%% size - \myboxed arg
+%% stuff - name of the code file
+%% list-title: title that go in list of caption
+%% caption-title: title that go in the caption
+%% text: commenting text
+\newcommand{\mycodetwocol}[5][htbp]{%
+  \label{code-#2-section}%
+  \begin{figure}[#1]%
+    \myboxed{full}{%
+      \mycapted{code-#2}%
+      {\setlength\columnseprule{.4pt}%
+        \begin{multicols}{2}%
+          \mylgrindfile{../src-txt/#2}%
+        \end{multicols}}%
+      {#3}{#4}{#5}%
+      }%
+  \end{figure}%
+  }
+
+\newcommand{\mydumpfull}[5][htbp]{\myfigure{#1}{full}{dump}{#2}{#3}{#4}{#5}}
+\newcommand{\mydumpfullR}[6][htbp]{\myfigureR{#1}{full}{#2}{dump}{#3}{#4}{#5}{#6}}
+\newcommand{\mydumptwothirds}[5][htbp]{\myfigure{#1}{twothirds}{dump}{#2}{#3}{#4}{#5}}
+\newcommand{\mydumptwothirdsR}[6][htbp]{\myfigureR{#1}{twothirds}{#2}{dump}{#3}{#4}{#5}{#6}}
+\newcommand{\mydumphalf}[5][htbp]{\myfigure{#1}{half}{dump}{#2}{#3}{#4}{#5}}
+\newcommand{\myplotfull}[5][htbp]{\myfigure{#1}{full}{plot}{#2}{#3}{#4}{#5}}
+\newcommand{\myplotfullR}[6][htbp]{\myfigureR{#1}{full}{#2}{plot}{#3}{#4}{#5}{#6}}
+\newcommand{\myplottwothirds}[5][htbp]{\myfigure{#1}{twothirds}{plot}{#2}{#3}{#4}{#5}}
+\newcommand{\myplothalf}[5][htbp]{\myfigure{#1}{half}{plot}{#2}{#3}{#4}{#5}}
+\newcommand{\myfigfull}[5][htbp]{\myfigure{#1}{full}{fig}{#2}{#3}{#4}{#5}}
+\newcommand{\myfigfullR}[6][htbp]{\myfigureR{#1}{full}{#2}{fig}{#3}{#4}{#5}{#6}}
+\newcommand{\myfigtwothirds}[5][htbp]{\myfigure{#1}{twothirds}{fig}{#2}{#3}{#4}{#5}}
+\newcommand{\myfigtwothirdsR}[6][htbp]{\myfigureR{#1}{twothirds}{#2}{fig}{#3}{#4}{#5}{#6}}
+\newcommand{\myfighalf}[5][htbp]{\myfigure{#1}{half}{fig}{#2}{#3}{#4}{#5}}
+
+\newcommand{\mytwoplotfull}[6][htbp]{\mytwofigure{#1}{full}{plot}{hor}{#2}{#3}{#4}{#5}{#6}}
+\newcommand{\mytwodumpfull}[6][htbp]{\mytwofigure{#1}{full}{dump}{hor}{#2}{#3}{#4}{#5}{#6}}
+\newcommand{\mytwoplotVfull}[6][htbp]{\mytwofigure{#1}{full}{plot}{vert}{#2}{#3}{#4}{#5}{#6}}
+\newcommand{\mytwofigfull}[6][htbp]{\mytwofigure{#1}{full}{fig}{hor}{#2}{#3}{#4}{#5}{#6}}
+
+\newcommand{\mycodefull}[5][htbp]{\mycode{#1}{full}{#2}{#3}{#4}{#5}}
+\newcommand{\mycodetwothirds}[5][htbp]{\mycode{#1}{twothirds}{#2}{#3}{#4}{#5}}

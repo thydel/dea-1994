@@ -1,0 +1,157 @@
+/* scale=10 */
+
+kilo = 1024
+mega = kilo*kilo
+giga = kilo*mega
+tera = kilo*giga
+
+define print_big_std(n) {
+	oscale = scale
+	scale = 0
+	if (n >= tera) {
+		print n / tera, "T"
+	} else if (n >= giga) {
+		print n / giga , "G"
+	} else if (n >= mega) {
+		print n / mega, "M"
+	} else if (n >= kilo) {
+		print n / kilo, "K"
+	} else if (n == 0) {
+		print 1
+	} else {
+		print n
+	}
+	scale = oscale
+	return
+}
+
+define print_big(n) {
+	if (n >= tera) {
+		print "\\s-2\\fI", n / tera, "T\\fR\\s+2"
+		return
+	}
+	if (n >= giga) {
+		print "\\s-2\\fI", n / giga , "G\\fR\\s+2"
+		return
+	}
+	if (n >= mega) {
+		if (n > (16 * mega)) {
+			print "\\s-2\\fI", n / mega, "M\\fR\\s+2"
+		} else {
+			print "\\fB", n / mega, "M\\fR"
+		}
+		return
+	}
+	if (n >= kilo) {
+		print "\\fB", n / kilo, "K\\fR"
+		return
+	}
+	print "\\fB", n, "\\fR"
+}
+
+define print_res(n) {
+	if ((n - 3) <= 40) {
+		discard = print_big(2^(n - 3))
+	} else {
+		if ((n - (40 + 3)) <= 10) {
+			print "\\s-2\\fI", 2^(n - (40 + 3)), "T", "\\fR\\s+2"
+		} else {
+			print "$size -2 { > 10 sup ", length(2^(n - 3)) - 1, "}$"
+		}
+	}
+	return
+}
+
+define print_res1(n) {
+	print n
+}
+
+define nvoisin(dim, dist) {
+	auto tmp, i
+	if (dim == 1) {
+		return (2 * dist + 1)
+	} else {
+		tmp = 0
+		for (i = dist - 1; i >= 0; --i) {
+			tmp += nvoisin(dim - 1, i);
+		}
+		return (nvoisin(dim - 1, dist) + 2 * tmp)
+	}
+}
+
+/* columns */
+ndim = 4
+/* lines */
+from_dist = 1
+to_dist = 4
+ndist = (to_dist - from_dist) + 1
+
+print ".TS\n"
+
+print "center allbox delim($$);\n"
+
+/*
+ * TBL desc
+ */
+
+/* lines titles */
+print "c\ts\tc"
+for (dist = 0; dist < ndist - 1; ++dist) {
+	print "\ts"
+}
+print "\n"
+
+/* line values */
+print "^\t^"
+for (dist = 0; dist < ndist; ++dist) {
+	print "\tn"
+}
+print "\n"
+
+/* first two data lines */
+print "c\tn"
+for (dist = 0; dist < ndist; ++dist) {
+	print "\tn"
+}
+print "\n"
+print "^\tn"
+for (dist = 0; dist < ndist; ++dist) {
+	print "\tn"
+}
+print ".\n"
+
+/*
+ * TBL datas
+ */
+
+/* first line (line X col title and line title) */
+print "$2 sup {Sphe`re(d, n) - 3}$\t$n$\n"
+
+/* second line (line args values) */
+print "\t"
+for (dist = from_dist; dist <= to_dist; ++dist) {
+	print "\t", dist
+}
+print "\n"
+
+/* third line (columns title and first line values) */
+print "$d$\t"
+dimension = 1
+print dimension, "\t"
+for (dist = from_dist; dist <= to_dist; ++dist) {
+	discard = print_res(nvoisin(dimension, dist))
+	print "\t"
+}
+print "\n"
+
+/* other lines */
+for (dimension = 2; dimension <= ndim; ++dimension) {
+	print "\t", dimension, "\t"
+	for (dist = from_dist; dist <= to_dist; ++dist) {
+		discard = print_res(nvoisin(dimension, dist))
+		print "\t"
+	}
+	print "\n"
+}
+
+print ".TE\n"

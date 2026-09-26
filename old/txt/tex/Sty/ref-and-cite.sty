@@ -1,0 +1,55 @@
+%%
+%% referencing and citing macros
+%%
+
+\newcommand{\mysetref}[1]{\label{ref-#1}}
+\newcommand{\myrulecite}[1]{\arule{#1}~\mygetrule[paren]{#1}}
+
+\newcommand{\mysoftref}[1]{$^{[\ref{soft-#1}]}$}
+\newcommand{\mysoftcite}[2][dummy]{%
+  \ifthenelse{\equal{#1}{dummy}}%
+  {\asoft{#2}\mysoftref{#2}}%
+  {\asoft{#1}\mysoftref{#2}}}
+
+%% \mycaptionname{type}{refname}
+%%
+\newcommand{\mycaptionname}[2]{%
+  \ifthenelse{\equal{#1}{tbl}}{tableau~#2}{}%
+  \ifthenelse{\equal{#1}{fig}}{figure~#2}{}%
+  \ifthenelse{\equal{#1}{dump}}{figure~#2}{}%
+  \ifthenelse{\equal{#1}{code}}{figure~#2}{}%
+  \ifthenelse{\equal{#1}{plot}}{figure~#2}{}%
+  \ifthenelse{\equal{#1}{rule}}{\mbox{\S{}\,#2}}{}%
+  \ifthenelse{\equal{#1}{ref}}{\mbox{\S{}\,#2}}{}%
+  }
+
+%% \myget{style}{type}{ref}
+%% style - how to format ref txt: raw, phrase, paren, seealso
+%% type - a caption type use to combine the ref and to make a string to refer it
+%%        (eg. tbl gives tableau)
+%% ref - the ref name
+%%
+\newcommand{\myget}[3]{%
+  \ifthenelse{\equal{#1}{raw}}%
+  {\ref{#2-#3}}{}%
+  %%
+  \ifthenelse{\equal{#1}{name}}%
+  {\mycaptionname{#2}{\ref{#2-#3}}}{}%
+  %%
+  \ifthenelse{\equal{#1}{phrase}}%
+  {Voir \mycaptionname{#2}{\ref{#2-#3}}, page~\pageref{#2-#3}.}{}%
+  %%
+  \ifthenelse{\equal{#1}{seealso}}%
+  {Voir aussi \mycaptionname{#2}{\ref{#2-#3}}, page~\pageref{#2-#3}.}{}%
+  %%
+  \ifthenelse{\equal{#1}{paren}}%
+  {(cf.\ \mycaptionname{#2}{\ref{#2-#3}}, page~\pageref{#2-#3})}{}%
+  }
+
+\newcommand{\mygetref}[2][raw]{\myget{#1}{ref}{#2}}
+\newcommand{\mygetrule}[2][raw]{\myget{#1}{rule}{#2}}
+\newcommand{\mygettbl}[2][raw]{\myget{#1}{tbl}{#2}}
+\newcommand{\mygetfig}[2][raw]{\myget{#1}{fig}{#2}}
+\newcommand{\mygetdump}[2][raw]{\myget{#1}{dump}{#2}}
+\newcommand{\mygetcode}[2][raw]{\myget{#1}{code}{#2}}
+\newcommand{\mygetplot}[2][raw]{\myget{#1}{plot}{#2}}

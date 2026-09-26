@@ -1,0 +1,55 @@
+include $(CELLDIR)/make/std-vars
+
+INCLUDES = -I$(CELLDIR)/include $(XINCLUDES)
+CFLAGS = $(INCLUDES)
+CC = gcc $(CC_DEBUG_FLAGS) $(CC_OPTIM_FLAGS)
+
+CMDNAME = life
+
+SRCS = \
+	main.c \
+	loop.c \
+	life.c
+
+HEADERS =
+
+CELL_LIBS = \
+	$(CELLDIR)/lib/conex.a \
+	$(CELLDIR)/lib/disp.a \
+	$(CELLDIR)/lib/frame.a \
+	$(CELLDIR)/lib/extract.a \
+	$(CELLDIR)/lib/util.a
+
+LIBS = $(CELL_LIBS) $(XLIBS)
+
+OBJS = $(SRCS:.c=.o)
+EXECS = $(CMDNAME)
+
+top: $(CMDNAME)
+
+include $(CELLDIR)/make/bin-targets
+
+include $(CELLDIR)/make/std-targets
+
+# DO NOT DELETE THIS LINE -- make depend depends on it.
+
+main.o: /usr/include/stdio.h /usr/include/fcntl.h /usr/include/sys/types.h
+main.o: /usr/include/sys/fcntl.h /usr/include/malloc.h loop.h
+loop.o: /usr/include/malloc.h /usr/include/assert.h
+loop.o: /usr/X386/include/X11/Xlib.h /usr/include/sys/types.h
+loop.o: /usr/X386/include/X11/X.h /usr/X386/include/X11/Xfuncproto.h
+loop.o: /usr/X386/include/X11/Xosdefs.h /usr/include/stddef.h
+loop.o: /usr/X386/include/X11/Xutil.h
+loop.o: /usr/local/home/thy/work/OUT/08jun93/cell/include/local.h
+loop.o: /usr/local/home/thy/work/OUT/08jun93/cell/include/magic.h
+loop.o: /usr/local/home/thy/work/OUT/08jun93/cell/include/frame/frame.h
+loop.o: /usr/local/home/thy/work/OUT/08jun93/cell/include/conex/conex.h
+loop.o: /usr/local/home/thy/work/OUT/08jun93/cell/include/conex/trans.h
+loop.o: /usr/local/home/thy/work/OUT/08jun93/cell/include/extract/extract.h
+loop.o: /usr/local/home/thy/work/OUT/08jun93/cell/include/disp/xdumper_mono.h
+loop.o: /usr/local/home/thy/work/OUT/08jun93/cell/include/disp/xdumper.h
+life.o: /usr/local/home/thy/work/OUT/08jun93/cell/include/local.h
+life.o: /usr/local/home/thy/work/OUT/08jun93/cell/include/magic.h
+life.o: /usr/local/home/thy/work/OUT/08jun93/cell/include/conex/bind.h
+life.o: /usr/local/home/thy/work/OUT/08jun93/cell/include/frame/frame.h
+life.o: /usr/local/home/thy/work/OUT/08jun93/cell/include/conex/conex.h

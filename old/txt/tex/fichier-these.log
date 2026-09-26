@@ -1,0 +1,47 @@
+This is TeX, Version 3.1415N (C version 6.1) (format=latex 94.9.13)  30 JAN 1995 13:19
+**\nonstopmode\input{fichier-these.tex}
+(fichier-these.tex (/usr/lib/texmf/tex/latex/latex/article.cls
+Document Class: article 1994/07/13 v1.2u Standard LaTeX document class
+(/usr/lib/texmf/tex/latex/latex/size12.clo
+File: size12.clo 1994/07/13 v1.2u Standard LaTeX file (size option)
+)
+\c@part=\count82
+\c@section=\count83
+\c@subsection=\count84
+\c@subsubsection=\count85
+\c@paragraph=\count86
+\c@subparagraph=\count87
+\c@figure=\count88
+\c@table=\count89
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+\bibindent=\dimen102
+) (fichier-these.aux)
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 2.
+LaTeX Font Info:    ... okay on input line 2.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 2.
+LaTeX Font Info:    ... okay on input line 2.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 2.
+LaTeX Font Info:    ... okay on input line 2.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 2.
+LaTeX Font Info:    ... okay on input line 2.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 2.
+LaTeX Font Info:    ... okay on input line 2.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 2.
+LaTeX Font Info:    ... okay on input line 2.
+LaTeX Info: Redefining \" on input line 2.
+LaTeX Info: Redefining \" on input line 2.
+ [1
+
+]
+(fichier-these.aux) ) 
+Here is how much of TeX's memory you used:
+ 211 strings out of 10935
+ 2072 string characters out of 67003
+ 46357 words of memory out of 262141
+ 3164 multiletter control sequences out of 9500
+ 4360 words of font info for 15 fonts, out of 200000 for 512
+ 14 hyphenation exceptions out of 607
+ 22i,4n,21p,155b,98s stack positions out of 300i,40n,60p,3000b,4000s
+
+Output written on fichier-these.dvi (1 page, 1588 bytes).

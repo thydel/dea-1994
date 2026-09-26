@@ -1,0 +1,20 @@
+\documentclass[a4paper, 12pt]{article}
+% \usepackage[francais, english]{babel}
+% \usepackage{a4}
+
+\sloppy
+%\includeonly{rule-space pg-notes thy-notes}
+
+\begin{document}
+\nocite{*}
+
+\bibliographystyle{plain}
+
+%\include{rule-space}
+%\include{pg-notes}
+%\include{thy-notes}
+\include{objects}
+
+\bibliography{biblio}
+
+\end{document}

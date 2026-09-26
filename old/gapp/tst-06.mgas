@@ -1,0 +1,28 @@
+divert(-1)
+include(`gapp-lib.mgas')
+divert dnl
+
+def([debug],[([txt])],[
+	print txt
+	gapp txt
+	state2ascii 0
+])
+
+gapp c := 1
+gapp ram 0 := c; c := 0
+gapp ns := c; ew := c
+debug([nop])
+debug([ew := ram 0])
+debug([nop])
+debug([ns := ram 0; ew := 0])
+debug([nop])
+debug([ew := ram 0])
+debug([nop])
+debug([ns := 0; ew := 0; c := 1])
+debug([nop])
+debug([ew := ram 0])
+debug([nop])
+debug([ns := ram 0; ew := 0])
+debug([nop])
+debug([ew := ram 0])
+debug([nop])

@@ -1,0 +1,195 @@
+bash$ export DISPLAY=:1
+bash$ life.sh
+Command terminated by signal 11
+0.04user 0.01system 0:00.32elapsed 15%CPU (0avgtext+0avgdata 0maxresident)k
+0inputs+0outputs (86major+116minor)pagefaults 0swaps
+bash$ sh -x life.sh
++ size=8
++ loop=1024
++ time ../src/cell -s 8 -l 1024 -k 0 -e 8 -t ../rule/life.t -f ../frame/random-0-1
++ ../src/xdump-1 -s 8
+Command terminated by signal 11
+0.02user 0.02system 0:00.14elapsed 28%CPU (0avgtext+0avgdata 0maxresident)k
+0inputs+0outputs (77major+116minor)pagefaults 0swaps
+bash$ sh -x life.sh
++ size=8
++ loop=1024
++ time ../src/cell -s 8 -l 1024 -k 0 -e 8 -t ../rule/life.t -f ../frame/random-0-1
++ ../src/xdump-1 -s 8
+7.10user 0.06system 0:17.13elapsed 41%CPU (0avgtext+0avgdata 0maxresident)k
+0inputs+0outputs (78major+111minor)pagefaults 0swaps
+bash$ cd ../brain/
+bash$ brain.sh
+../src/cell: cannot open frame frame/random-0-1
+No such file or directory
+bash$ cd ..
+bash$ pwd
+/home/local/thy/P8/usr/DEA/cell
+bash$ cd demos/
+bash$ ls
+anneal		     majority		  tube-worm-a0-t5.pbm  tube-worm-a3-t1.pbm  tube-worm.h
+anneal.col	     majority.f		  tube-worm-a1-t2.pbm  tube-worm-a3-t2.pbm  tube-worm.p
+anneal.f	     majority.t		  tube-worm-a1-t3.pbm  tube-worm-a3-t3.pbm  tube-worm.s
+anneal.t	     moore-1.col	  tube-worm-a1-t4.pbm  tube-worm-a3-t4.pbm  tube-worm.t
+last		     rand-anneal	  tube-worm-a1-t5.pbm  tube-worm-a3-t5.pbm
+last.pbm	     rand-anneal.f	  tube-worm-a2-t3.pbm  tube-worm-mix.pbm
+last.pgm	     rand-anneal.t	  tube-worm-a2-t4.pbm  tube-worm.a
+life.col	     tube-worm		  tube-worm-a2-t5.pbm  tube-worm.f
+bash$ tube-worm 
+X Error of failed request:  BadMatch (invalid parameter attributes)
+  Major opcode of failed request:  72 (X_PutImage)
+  Serial number of failed request:  14
+  Current serial number in output stream:  108
+bash$ tube-worm  -?
+getopt: invalid option -- ?
+
+bash$ tube-worm  -h
+X Error of failed request:  BadMatch (invalid parameter attributes)
+  Major opcode of failed request:  72 (X_PutImage)
+  Serial number of failed request:  14
+  Current serial number in output stream:  552
+bash$ tube-worm  -H
+
+skip default to timer + 3 (show only frame n/(timer + 4))
+
+alarm = 0 means alarm if neighbourgs >= 1
+alarm = 1 means alarm if neighbourgs >= 2
+alarm = 2 means alarm if neighbourgs >= 3
+alarm = 3 means alarm if neighbourgs >= 2 && neighbourgs != 3
+
+try alarm = 0 with timer = 5
+try alarm = 1 with timer = 2-5
+try alarm = 2 timer = 3-5
+try alarm = 3 timer = 1, 2 and size >= 256, 3-5
+bash$ tube-worm  -C
+
+bash$ tube-worm  -C -s 9
+
+bash$ tube-worm  -C -s 9 -k 0
+
+bash$ tube-worm  -C -s 9 -a 2 -i 3 -k 7
+
+bash$ tube-worm  -C -s 9 -a 2 -i 3 -k 6
+
+bash$ tube-worm  -C -s 9 -a 2 -i 3
+
+bash$ tube-worm  -C -s 10 -a 3 -i 5
+
+[1]+  Stopped                 tube-worm -C -s 10 -a 3 -i 5
+bash$ fg
+tube-worm -C -s 10 -a 3 -i 5
+
+[1]+  Stopped                 tube-worm -C -s 10 -a 3 -i 5
+bash$ fg
+tube-worm -C -s 10 -a 3 -i 5
+
+[1]+  Stopped                 tube-worm -C -s 10 -a 3 -i 5
+bash$ fg
+tube-worm -C -s 10 -a 3 -i 5
+
+bash$ tube-worm  -C -s 9 -a 1 -i 2
+
+bash$ tube-worm  -C -s 7 -a 1 -i 2
+
+bash$ tube-worm -C -a 1 -i 2
+
+bash$ tube-worm -C -s 7 -a 1 -i 3
+
+bash$ tube-worm -C -s 8 -a 1 -i 3
+
+bash$ tube-worm -C -s 8 -a 1 -i 4
+
+bash$ tube-worm -C -s 7 -a 1 -i 4
+
+bash$ tube-worm -C -s 9 -a 1 -i 4
+
+bash$ tube-worm -C -s 9 -a 1 -i 5
+
+bash$ tube-worm -C -s 9 -a 0 -i 5
+
+bash$ tube-worm -C -s 9 -a 2 -i 3
+
+bash$ tube-worm -C -s 7 -a 2 -i 3
+
+bash$ tube-worm -C -s 7 -a 2 -i 4
+
+bash$ tube-worm -C -s 8 -a 2 -i 4
+
+bash$ tube-worm -C -s 7 -a 2 -i 5
+
+bash$ tube-worm -C -s 8 -a 2 -i 5
+
+bash$ tube-worm -C -s 8 -a 2 -i 3
+
+bash$ tube-worm -C -s 10 -a 2 -i 3
+
+bash$ tube-worm -C -s 10 -a 2 -i 4
+
+bash$ sh -n tube-worm -C -s 10 -a 2 -i 3
+bash$ sh -x tube-worm -C -s 10 -a 2 -i 3
++ again=false
++ cell_extract=-e 0
++ dump_extract=
++ dump=xdump
++ alarm=2
++ timer=3
++ nargs=7
+++ getopt ZCHDhs:l:k:e:TFRr:a:i:SP -C -s 10 -a 2 -i 3
++ set -- -C -s 10 -a 2 -i 3 --
++ [ 0 != 0 ]
++ cell_extract=
++ dump_extract=-d 8 -E
++ shift
++ size=-s 10
++ mk_frame=true
++ shift 2
++ alarm=2
++ mk_table=true
++ shift 2
++ timer=3
++ mk_table=true
++ shift 2
++ shift
++ break
++ [ -z  ]
+++ expr 3 + 3
++ skip=-k 6
++ [  = true ]
++ [ true = true ]
++ cmd=../src/mk-table -c moore-1+7 -f tube-worm -a 2 -a 3 > tube-worm.t
++ [  = true ]
++ eval ../src/mk-table -c moore-1+7 -f tube-worm -a 2 -a 3 > tube-worm.t
+++ ../src/mk-table -c moore-1+7 -f tube-worm -a 2 -a 3
++ [ true = true ]
++ [ 3 -ge 4 ]
++ [ 3 -ge 1 ]
++ cmd=../src/mk-frame -s 10 -p 0  -f fill -p 1  -f fill -p 2  -f fill -p 3  -f fill > tube-worm.f
++ [  = true ]
++ eval ../src/mk-frame -s 10 -p 0 -f fill -p 1 -f fill -p 2 -f fill -p 3 -f fill > tube-worm.f
+++ ../src/mk-frame -s 10 -p 0 -f fill -p 1 -f fill -p 2 -f fill -p 3 -f fill
++ [  = true ]
++ [  = true ]
++ [ 7 = 0 -a -f tube-worm.a -a -f tube-worm.t -a -f tube-worm.f -a false = true ]
++ cmd= ../src/cell -s 10  -k 6  -c moore-1+7 -t tube-worm.t -f tube-worm.f   | ../src/xdump -s 10 -d 8 -E
++ [  = true ]
++ [ 7 != 0 ]
++ echo  ../src/cell -s 10  -k 6  -c moore-1+7 -t tube-worm.t -f tube-worm.f   | ../src/xdump -s 10 -d 8 -E
++ eval ../src/cell -s 10 -k 6 -c moore-1+7 -t tube-worm.t -f tube-worm.f | ../src/xdump -s 10 -d 8 -E
+++ ../src/cell -s 10 -k 6 -c moore-1+7 -t tube-worm.t -f tube-worm.f
+++ ../src/xdump -s 10 -d 8 -E
+
+bash$ ../src/cell -s 10 -k 6 -c moore-1+7 -t tube-worm.t -f tube-worm.f > /spare/cell/1
+
+[1]+  Stopped                 ../src/cell -s 10 -k 6 -c moore-1+7 -t tube-worm.t -f tube-worm.f >/spare/cell/1
+bash$ fg
+../src/cell -s 10 -k 6 -c moore-1+7 -t tube-worm.t -f tube-worm.f >/spare/cell/1
+
+[1]+  Stopped                 ../src/cell -s 10 -k 6 -c moore-1+7 -t tube-worm.t -f tube-worm.f >/spare/cell/1
+bash$ fg
+../src/cell -s 10 -k 6 -c moore-1+7 -t tube-worm.t -f tube-worm.f >/spare/cell/1
+
+[1]+  Stopped                 ../src/cell -s 10 -k 6 -c moore-1+7 -t tube-worm.t -f tube-worm.f >/spare/cell/1
+bash$ fg
+../src/cell -s 10 -k 6 -c moore-1+7 -t tube-worm.t -f tube-worm.f >/spare/cell/1
+
+bash$ 

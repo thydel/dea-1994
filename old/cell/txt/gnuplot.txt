@@ -1,0 +1,120 @@
+set noparametric
+#set contour
+#set parametric
+
+#set sample 16
+#set isosample 16
+#set hidden3d
+#set data style lines
+#splot 'annealx-sum.ascii' using 3
+
+plot \
+	'rabbit-hist.out' using 1 with lines, \
+	'rabbit-hist.out' using 2 with lines; \
+	pause -1
+
+plot \
+	'rabbit-1-hist.out' using 1 with lines, \
+	'rabbit-1-hist.out' using 2 with lines; \
+	pause -1
+
+plot \
+	'rabbit-2-hist.out' using 1 with lines, \
+	'rabbit-2-hist.out' using 2 with lines; \
+	pause -1
+
+#plot \
+	[0:100] \
+	'lifex-hist.data' using 1 with lines, \
+	'lifex-hist.data' using 2 with lines, \
+	'lifex-hist.data' using 3 with lines; \
+	pause -1
+
+#plot \
+	[100:1280] \
+	'lifex-hist.data' using 1 with lines, \
+	'lifex-hist.data' using 2 with lines, \
+	'lifex-hist.data' using 3 with lines; \
+	pause -1
+
+#plot \
+	[1:1277] \
+	'lifex-hist.data' using 1 with lines, \
+	'lifex-hist.data' using 2 with lines, \
+	'lifex-hist.data' using 3 with lines; \
+	# pause -1
+
+#plot \
+	[1:1277] \
+	'lifex-hist.data' using 1 with lines, \
+	'lifex-hist.data' using 4 with lines, \
+	'lifex-hist.data' using 5 with lines; \
+	# pause -1
+
+#plot \
+	'annealx-hist.data' using 1 with lines, \
+	'annealx-hist.data' using 4 with lines, \
+	'annealx-hist.data' using 5 with lines; \
+	# pause -1
+
+#plot \
+	[0:100] \
+	'lifex-hist.data' using 4 with lines, \
+	'lifex-hist.data' using 5 with lines; \
+	pause -1
+
+#plot \
+	[100:1280] \
+	'lifex-hist.data' using 4 with lines, \
+	'lifex-hist.data' using 5 with lines; \
+	pause -1
+
+#plot \
+	[800:1300] \
+	'< gawk "{print \$1}" lifex-hist.data' with line, \
+	'< gawk "{print \$3}" lifex-hist.data' with line,\
+	'< gawk "{print \$4}" lifex-hist.data' with line; \
+	# pause -1
+
+#plot \
+	[700:800] \
+	'< gawk "{print \$1}" lifex-hist.data' with line, \
+	'< gawk "{print \$3}" lifex-hist.data' with line,\
+	'< gawk "{print \$4}" lifex-hist.data' with line, \
+	'< gawk "{print \$1 - \$3}" lifex-hist.data' with line, \
+	'< gawk "{print \$1 - \$4}" lifex-hist.data' with line, \
+	'< gawk "{print \$3 - \$4}" lifex-hist.data' with line; \
+	# pause -1
+
+#plot \
+	[700:800] \
+	'< gawk "{print \$1 - \$3}" lifex-hist.data' with line, \
+	'< gawk "{print \$1 - \$4}" lifex-hist.data' with line, \
+	'< gawk "{print \$3 - \$4}" lifex-hist.data' with line; \
+	# pause -1
+
+#splot \
+	[100:400] \
+	[100:400] \
+	[100:400] \
+	[100:400] \
+	[100:400] \
+	'lifex-hist.data' \
+	using 3:4:5 with lines; \
+	# pause -1
+
+#plot \
+	[500:700] \
+	'< gawk "{print \$1 - 200}" lifex-hist.data' using 1 with line, \
+	'lifex-hist.data' using 3 with line,\
+	'lifex-hist.data' using 4 with line; pause -1
+
+#plot 'lifex-hist.data' using 1:3 with line; pause -1
+#plot 'lifex-hist.data' using 1:4 with line; pause -1
+#plot 'lifex-hist.data' using 3:4 with line; pause -1
+#plot [150:400] [0:400] 'lifex-hist.data' using 3:4 with line; pause -1
+
+#splot 'lifex-hist.data' using 1:3:4 with line; pause -1
+#splot [500:1000] [500:1000] [500:100] 'lifex-hist.data' using 1:3:4 with line; pause -1
+#splot 'lifex-hist.gobi-2' using 1:2:3 with lines; pause -1
+#splot 'annealx-hist.data' using 1:3:4 with lines; pause -1

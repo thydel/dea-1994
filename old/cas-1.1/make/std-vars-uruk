@@ -1,0 +1,14 @@
+CC_OPTIM_FLAGS = -O2
+CC_DEBUG_FLAGS = -g
+
+RANLIB = ranlib
+CB = indent
+
+XINCLUDES = -I/usr/X386/include
+XLIBS = -L/usr/X386/lib -lX11 -lieee -lm
+
+TCLINCDIR = /usr/include/tcl
+TCLLIBDIR = /usr/lib
+
+PBMINCDIR = /usr/X386/include/X11
+PBMLIBDIR = /usr/X386/lib

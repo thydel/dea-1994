@@ -1,0 +1,127 @@
+Log from Gnans version 1.0.0
+Created by @faust
+Starting at not implemented
+[not implemented]: change_value storeincrement: 0 -> 0.1
+[not implemented]: Integrate from 0 to 100
+[not implemented]: change_value storeincrement: 0.1 -> 0
+[not implemented]: Integrate from 0 to 100
+[not implemented]: change_value stoptime: 100 -> 16
+[not implemented]: Integrate from 0 to 16
+[not implemented]: change_value a: 4 -> 0.1
+[not implemented]: change_value b: 3 -> 0.1
+[not implemented]: change_value c: 2 -> 0.1
+[not implemented]: change_value dd: 5 -> 0.1
+[not implemented]: change_value n: 2 -> 1
+[not implemented]: Integrate from 0 to 16
+[not implemented]: change_value p: 1.99 -> 1
+[not implemented]: Integrate from 0 to 16
+[not implemented]: switch algorithm (Ode)
+[not implemented]: change_value timestep: 0 -> 1
+[not implemented]: Integrate from 0 to 16
+[not implemented]: change_value b: 0.1 -> 0.01
+[not implemented]: Integrate from 0 to 16
+[not implemented]: change_value stoptime: 16 -> 100
+[not implemented]: Integrate from 0 to 100
+[not implemented]: change_value b: 0.01 -> 0.1
+[not implemented]: Integrate from 0 to 100
+[not implemented]: change_value b: 0.1 -> 0.05
+[not implemented]: Integrate from 0 to 100
+[not implemented]: change_value c: 0.1 -> 0.05
+[not implemented]: Integrate from 0 to 100
+[not implemented]: change_value c: 0.05 -> 0.01
+[not implemented]: Integrate from 0 to 100
+[not implemented]: change_value a: 0.1 -> 0.3
+[not implemented]: Integrate from 0 to 100
+[not implemented]: change_value dd: 0.1 -> 0.14
+[not implemented]: Integrate from 0 to 100
+[not implemented]: change_value dd: 0.14 -> 0.01
+[not implemented]: Integrate from 0 to 100
+[not implemented]: change_value dd: 0.01 -> 0.07
+[not implemented]: Integrate from 0 to 100
+[not implemented]: change_value b: 0.05 -> 0.01
+[not implemented]: Integrate from 0 to 100
+[not implemented]: change_value b: 0.01 -> 0.2
+[not implemented]: Integrate from 0 to 100
+[not implemented]: change_value a: 0.3 -> 0.4
+[not implemented]: Integrate from 0 to 100
+[not implemented]: change_value dd: 0.07 -> 0.45
+[not implemented]: Integrate from 0 to 100
+[not implemented]: change_value c: 0.01 -> 0.3
+[not implemented]: Integrate from 0 to 100
+[not implemented]: change_value a: 0.4 -> 0.1
+[not implemented]: change_value b: 0.2 -> 0.1
+[not implemented]: change_value c: 0.3 -> 0.1
+[not implemented]: change_value dd: 0.45 -> 0.1
+[not implemented]: Integrate from 0 to 100
+[not implemented]: change_value b: 0.1 -> 1
+[not implemented]: Integrate from 0 to 100
+[not implemented]: change_value c: 0.1 -> 1
+[not implemented]: Integrate from 0 to 100
+[not implemented]: change_value b: 1 -> 0.09
+[not implemented]: change_value c: 1 -> 0.08
+[not implemented]: Integrate from 0 to 100
+[not implemented]: change_value b: 0.09 -> 0.099
+[not implemented]: Integrate from 0 to 100
+[not implemented]: change_value c: 0.08 -> 0.07
+[not implemented]: Integrate from 0 to 100
+[not implemented]: change_value a: 0.1 -> 0.12
+[not implemented]: Integrate from 0 to 100
+[not implemented]: change_value a: 0.12 -> 0.09
+[not implemented]: Integrate from 0 to 100
+[not implemented]: change_value stoptime: 100 -> 200
+[not implemented]: Integrate from 0 to 200
+[not implemented]: change_value dd: 0.1 -> 0.13
+[not implemented]: Integrate from 0 to 200
+[not implemented]: change_value dd: 0.13 -> 0.16
+[not implemented]: Integrate from 0 to 200
+[not implemented]: change_value dd: 0.16 -> 0.99
+[not implemented]: Integrate from 0 to 200
+[not implemented]: gnans_error, severity = warning, ``Integration error # 3 between time 127.298 and time 128
+Error description:
+--------------------------------------
+Error tolerances too small. Relerr, Abserr increased
+appropriately for continuing''
+[not implemented]: change_value dd: 0.99 -> 0.11
+[not implemented]: Integrate from 0 to 200
+[not implemented]: change_value dd: 0.11 -> 0.2
+[not implemented]: Integrate from 0 to 200
+[not implemented]: change_value dd: 0.2 -> 0.1
+[not implemented]: change_value a: 0.09 -> 0.06
+[not implemented]: Integrate from 0 to 200
+[not implemented]: change_value c: 0.07 -> 0.05
+[not implemented]: Integrate from 0 to 200
+[not implemented]: change_value c: 0.05 -> 0.08
+[not implemented]: Integrate from 0 to 200
+[not implemented]: change_value c: 0.08 -> 0.09
+[not implemented]: Integrate from 0 to 200
+[not implemented]: change_value c: 0.09 -> 0.11
+[not implemented]: Integrate from 0 to 200
+[not implemented]: change_value c: 0.11 -> 0.1
+[not implemented]: Integrate from 0 to 200
+[not implemented]: change_value c: 0.1 -> 0.3
+[not implemented]: change_value c: 0.3 -> 0.15
+[not implemented]: Integrate from 0 to 200
+[not implemented]: change_value c: 0.15 -> 0.01
+[not implemented]: Integrate from 0 to 200
+[not implemented]: change_value c: 0.01 -> 0.07
+[not implemented]: Integrate from 0 to 200
+[not implemented]: change_value c: 0.07 -> 0.09
+[not implemented]: Integrate from 0 to 200
+[not implemented]: change_value c: 0.09 -> 0.1
+[not implemented]: Integrate from 0 to 200
+[not implemented]: change_value b: 0.099 -> 0.1
+[not implemented]: Integrate from 0 to 200
+[not implemented]: change_value a: 0.06 -> 0.05
+[not implemented]: Integrate from 0 to 200
+[not implemented]: change_value a: 0.05 -> 0.06
+[not implemented]: Integrate from 0 to 200
+[not implemented]: change_value a: 0.06 -> 0.07
+[not implemented]: Integrate from 0 to 200
+[not implemented]: change_value a: 0.07 -> 0.09
+[not implemented]: Integrate from 0 to 200
+[not implemented]: gnans_error, severity = message, ``SIGHUP received, displaying variables''
+[not implemented]: Display_vars
+[not implemented]: gnans_error, severity = message, ``SIGHUP received, displaying variables''
+[not implemented]: Display_vars
+[not implemented]: Quit
+[not implemented]: Log file closed

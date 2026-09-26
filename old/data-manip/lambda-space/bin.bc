@@ -1,0 +1,155 @@
+define main(n) {
+	auto i, nn, saved_scale
+
+	saved_scale = scale
+
+	scale = 5
+	nn = 2^n
+	for (i = 0; i < nn; ++i) {
+ 		one_cnt[i] = one_cnt(n, i)
+		flip_cnt[i] = flip_cnt(n, i)
+	}
+	for (i = 1; i < nn; ++i) {
+ 		one_cnt_diff[i] = one_cnt[i] - one_cnt[i - 1]
+ 		flip_cnt_diff[i] = flip_cnt[i] - flip_cnt[i - 1]
+	}
+	for (i = 0; i < nn; ++i) {
+ 		one_cnt_ratio[i] = one_cnt[i] / n
+		flip_cnt_ratio[i] = flip_cnt[i] / n
+	}
+	for (i = 0; i < nn; ++i) {
+ 		sum_cnt_ratio[i] = (one_cnt_ratio[i] + flip_cnt_ratio[i]) / 2
+	}
+	for (i = 1; i < nn; ++i) {
+ 		one_cnt_ratio_diff[i] = one_cnt_ratio[i] - one_cnt_ratio[i - 1]
+ 		flip_cnt_ratio_diff[i] = flip_cnt_ratio[i] - flip_cnt_ratio[i - 1]
+	}
+	for (i = 0; i < nn; ++i) {
+		discard = ++one_cnt_hist[one_cnt[i]]
+		discard = ++flip_cnt_hist[flip_cnt[i]]
+	}
+	for (i = 0; i <= n; ++i) {
+		one_cnt_hist_ratio[i] = one_cnt_hist[i] / nn
+		flip_cnt_hist_ratio[i] = flip_cnt_hist[i] / nn
+	}
+	for (i = 0; i < nn; ++i) {
+		one_cnt_prob[i] = one_cnt_hist[one_cnt[i]] / nn
+		flip_cnt_prob[i] = flip_cnt_hist[flip_cnt[i]] / nn
+	}
+	for (i = 1; i < nn; ++i) {
+		one_cnt_prob_diff[i] = one_cnt_prob[i] - one_cnt_prob[i - 1]
+		flip_cnt_prob_diff[i] = flip_cnt_prob[i] - flip_cnt_prob[i - 1]
+	}
+	discard = do_print()
+
+	scale = saved_scale
+}
+
+define do_print() {
+	auto saved_obase
+
+	saved_obase = obase
+
+	for (i = 0; i < nn; ++i) {
+
+	if (0) {
+		obase = 10
+		print i
+		print "\t"
+		obase = 2
+		print i
+		print "\t"
+		obase = 10
+	}
+	if (1) {
+		print i
+		print "\t"
+ 		print one_cnt[i]
+		print "\t"
+		print flip_cnt[i]
+		print "\t"
+ 		print one_cnt_diff[i]
+		print "\t"
+		print flip_cnt_diff[i]
+		print "\t"
+ 		print one_cnt_ratio[i]
+		print "\t"
+		print flip_cnt_ratio[i]
+		print "\t"
+ 		print one_cnt_ratio_diff[i]
+		print "\t"
+		print flip_cnt_ratio_diff[i]
+		print "\t"
+		print one_cnt_prob[i]
+		print "\t"
+		print flip_cnt_prob[i]
+		print "\t"
+		print one_cnt_prob_diff[i]
+		print "\t"
+		print flip_cnt_prob_diff[i]
+		print "\t"
+ 		print one_cnt_hist[i]
+		print "\t"
+		print flip_cnt_hist[i]
+		print "\t"
+ 		print one_cnt_hist_ratio[i]
+		print "\t"
+		print flip_cnt_hist_ratio[i]	
+		print "\t"
+		print sum_cnt_ratio[i]	
+	}
+		print "\n"
+	}
+
+	obase = saved_obase
+}
+
+define evenp(n) {
+	return (n % 2)
+}
+
+define one_cnt(cnt, pat) {
+	auto i, sum, saved_scale
+
+	saved_scale = scale
+
+	scale = 0
+	for (i = 0; i < cnt; ++i) {
+		if (evenp(pat)) {
+			sum = sum + 1
+		}
+		pat = pat / 2
+	}
+
+	scale = saved_scale
+
+	return (sum)
+}
+
+define flip_cnt(cnt, pat) {
+	auto i, first, prev, current, sum, saved_scale
+
+	saved_scale = scale
+
+	scale = 0
+	first = prev = evenp(pat)
+	pat = pat / 2
+	for (i = 1; i < cnt; ++i) {
+		current = evenp(pat)
+		if (current != prev) {
+			sum = sum + 1
+		}
+		prev = current
+		pat = pat / 2
+	}
+	if (current != first) {
+		sum = sum + 1
+	}
+
+	scale = saved_scale
+
+	return (sum)
+}
+
+discard = main(14)
+quit

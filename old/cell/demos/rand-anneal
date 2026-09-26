@@ -1,0 +1,72 @@
+usage="$0 [-s{ize} <power-of-two>(8)] [-l{oop} <int>] [-k{sKip} <int>] [-e{xtract-plane} <int>] [-t{mk-Table}] [-f{mk-Frame} [-r{show-Rule}]"
+
+extract=0
+
+set -- `getopt s:l:k:e:tfr $*`
+if [ $? != 0 ]
+then
+	echo $usage
+	exit 2
+fi
+for i in $*
+do
+	case $i in
+	-s)
+		size="-s $2";
+		shift 2;;
+	-l)
+		loop="-l $2";
+		time=time;
+		shift 2;;
+	-k)
+		skip="-k $2";
+		shift 2;;
+	-e)
+		extract=$2;
+		shift 2;;
+	-t)
+		mk_table=true;
+		shift;;
+	-f)
+		mk_frame=true;
+		shift;;
+	-r)
+		show_rule=true;
+		shift;;
+	--)
+		shift;
+		break;;
+	esac
+done
+
+if [ "$show_rule" = true ]
+then
+	cat <<!
+rand_anneal() /* von-neumann-2 */
+{
+    static int tab[] = { 0, 0, 0, 1, 1, 1, };
+    int sum;
+    int stir;
+    int rand;
+
+    sum = C0 + N0 + E0 + S0 + W0;
+    stir = E1 & S1 ^ W1 ^ N1 ^ C1;
+    rand = C1 & N1 & S1 & W1 & E1;
+    tab[2] = rand;
+    tab[3] = rand ^ 1;
+    return tab[sum] | stir << 1;
+}
+!
+fi
+
+if [ "$mk_table" = true ]
+then
+	../mk-table -c von-neumann-2 -f rand-anneal > rand-anneal.t
+fi
+
+if [ "$mk_frame" = true ]
+then
+	../mk-frame $size -p 0 -f fill -p 1 -f fill > rand-anneal.f
+fi
+
+$time ../cell $size $loop $skip -c von-neumann-2 -t rand-anneal.t -f rand-anneal.f -e $extract | ../xdump $size

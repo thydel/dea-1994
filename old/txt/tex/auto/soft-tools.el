@@ -1,0 +1,32 @@
+(TeX-add-style-hook "soft-tools"
+ (function
+  (lambda ()
+    (LaTeX-add-labels
+     "soft-cellsim"
+     "soft-scamper"
+     "soft-ca_lab"
+     "soft-xlife"
+     "soft-hodge_c"
+     "soft-cellang"
+     "soft-pbm"
+     "soft-groff"
+     "soft-ghostscript"
+     "soft-xv"
+     "soft-gnuplot"
+     "soft-Khoros"
+     "soft-cantata"
+     "soft-qrt"
+     "soft-vart"
+     "soft-pgmtexture"
+     "soft-gnans"
+     "soft-Tcl"
+     "soft-Tk"
+     "soft-XDS"
+     "soft-isovis"
+     "soft-HDF"
+     "soft-VIS-5D"
+     "soft-viewit"
+     "soft-LIC"
+     "soft-Octave"
+     "soft-Rlab"))))
+

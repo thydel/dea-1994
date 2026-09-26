@@ -1,0 +1,139 @@
+changequote([,])
+
+# std
+
+define([cat],[$1$2$3$4$5$6$7$8$9])
+define([repeat],[ifelse($1,1,,[$0(decr($1),[$2])])$2])
+define([for],[pushdef([$1],$2)ifelse($2,$3,,[cat($5,$0([$1],eval($2+$4),[$3],[$4],[$5]))])popdef([$1])])
+define([for_bis],[pushdef([$1],$2)ifelse($2,$3,,[cat($5,$0([$1],$4,[$3],[$4],[$5]))])popdef([$1])])
+define([loop],[for([$1],0,$2,1,[$3])])
+define([def],[define([$1],bind$2 shift(shift($@)) ubind$2)])
+define([bind],[bind1(1,$@)])
+define([bind1],[ifelse($2,,,[[pushdef([$2],]cat($,$1)[)]$0(eval($1 + 1),shift(shift($@)))])])
+define([ubind],[ifelse($1,,,[[popdef([$1])]$0(shift($@))])])
+define([bind_def],[bind_def1(1,$@)])
+define([bind_def1],[ifelse($2,,,[[pushdef([$2],[$3])]$0(eval($1 + 1),shift(shiftshift(($@))))])])
+define([ubind_def],[ifelse($1,,,[[popdef([$1])]$0(shift($@))])])
+
+# gapp
+
+define([nbits],8)
+define([top],127)
+define([alloc],[define([top],eval(top - $1))])
+define([free],[define([top],eval(top + $1))])
+define([tmp],[eval(top + $1)])
+define([alloc_name],[alloc($2)pushdef([$1],$2)pushdef([$1],tmp(1))])
+define([free_name],[popdef([$1])free($1)popdef([$1])])
+
+# inside lib
+
+def([one],[([dest], [size])],[
+	gapp c := 1;
+	loop([i], ifelse(size,,1,size),[
+		gapp ram eval(dest + i) := c;
+	])
+])
+
+def([zero],[([dest], [size])],[
+	gapp c := 0;
+	loop([i], ifelse(size,,1,size),[
+		gapp ram eval(dest + i) := c;
+	])
+])
+
+def([and],[([src1], [src2], [dest], [size])],[
+	loop([i], ifelse(size,,1,size),[
+		gapp ns := ram eval(src1 + i); c := 0;
+		gapp ew := ram eval(ifelse(src2,,src1,src2) + i);
+		gapp c := cy;
+		gapp ram eval(ifelse(dest,,src1,dest) + i) := c;
+	])
+])
+
+def([or],[([src1], [src2], [dest], [size])],[
+	loop([i], ifelse(size,,1,size),[
+		gapp ns := ram eval(src1 + i); c := 1;
+		gapp ew := ram eval(ifelse(src2,,src1,src2) + i);
+		gapp c := cy;
+		gapp ram eval(ifelse(dest,,src1,dest) + i) := c;
+	])
+])
+
+def([xor],[([src1], [src2], [dest], [size])],[
+	loop([i], ifelse(size,,1,size),[
+		gapp ns := ram eval(src1 + i); c := 0;
+		gapp ew := ram eval(ifelse(src2,,src1,src2) + i);
+		gapp ram eval(ifelse(dest,,src1,dest) + i) := sm;
+	])
+])
+
+def([not],[([src], [dest], [size])],[
+	loop([i], ifelse(size,,1,size),[
+		gapp ns := ram src; ew := 0; c := 1;
+		gapp ram ifelse(dest,,src,dest) := sm;
+	])
+])
+
+def([mov],[([src], [dest], [size])],[
+	loop([i], ifelse(size,,1,size),[
+		gapp c := ram eval(src + i);
+		gapp ram eval(dest + i) := c;
+	])
+])
+
+def([add], [([src1], [src2], [dest], [size])],[
+	gapp ns := ram src1; c := 0;
+	gapp ew := ram src2;
+	gapp ram ifelse(dest,,src1,dest) := sm; c := cy;
+	for([i], 1, ifelse(size,,1,size), 1,[
+		gapp ns := ram eval(src1 + i);
+		gapp ew := ram eval(ifelse(src2,,src1,src2) + i);
+		gapp ram eval(ifelse(dest,,src1,dest) + i) := sm; c := cy;
+	])
+	gapp ram eval(ifelse(dest,,src1,dest) + ifelse(size,,1,size)) := c;
+])
+
+def([sub], [([src1], [src2], [dest], [size])],[
+	gapp ns := ram src1; c := 0;
+	gapp ew := ram src2;
+	gapp ram ifelse(dest,,src1,dest) := sm; c := bw;
+	for([i], 1, ifelse(size,,1,size), 1,[
+		gapp ns := ram eval(src1 + i);
+		gapp ew := ram eval(ifelse(src2,,src1,src2) + i);
+		gapp ram eval(ifelse(dest,,src1,dest) + i) := sm; c := bw;
+	])
+	gapp ram eval(ifelse(dest,,src1,dest) + ifelse(size,,1,size)) := c;
+])
+
+def([umul], [([ande], [ande_size], [ateur], [ateur_size], [result])],[
+	alloc_name([carry], 1)
+	zero(eval(ande_size + ateur_size), result)
+	loop([i], ateur_size,[
+		gapp c := 0;
+		loop([j], ande_size,[
+			gapp ram carry := c;
+			gapp ns := ram eval(ateur + i);
+			gapp ew := ram eval(ande + j); c := 0;
+			gapp c := cy; ns := ram eval(result + i + j);
+			gapp ew := ram carry;
+			gapp ram eval(result + i + j) := sm; c := cy;
+		])
+		gapp ram eval(result + i + ande_size) := c;
+	])
+	free_name([carry])
+])
+
+# dest = (test == 1) ? src1 : (test == 0 ? src2 : *garbage*)
+# dest = (test & src1) | (!test & src2)
+def([cond], [([test],[src1],[src2],[dest])], [
+	alloc_name([iftrue], 1)
+	alloc_name([iffalse], 1)
+
+	and(test, src1, iftrue)
+	not(test, iffalse)
+	and(iffalse, src2, iffalse)
+	or(iftrue, iffalse, dest)
+
+	free_name([iftrue])
+	free_name([iffalse])
+])

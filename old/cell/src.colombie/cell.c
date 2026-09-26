@@ -1,0 +1,967 @@
+#include <unistd.h>
+#include <stdio.h>
+#include <fcntl.h>
+#include <assert.h>
+#include <malloc.h>
+#include <memory.h>
+
+#define DEBUG 0
+
+typedef struct {
+    char* name;
+    int (*func)();
+} Func;
+
+extern Func tconex[];
+extern Func tconex_size[];
+int (*Func_get(Func*, char*))();
+
+char* cmd_name;
+int debug;
+
+unsigned char* transition;
+unsigned char* transition1;
+unsigned char* transition2;
+int* cnt_transition;
+int transition_size;
+int transition_size1;
+int transition_size2;
+unsigned char* state;
+unsigned char* futur_state;
+
+char* usage = 
+    "[-s{size} <power-of-two>] [-l{oop} <int>] [-{s}k{ip} <int>] [-e{xtract} <int>] -[c{onex> <name>] -f{rame} <file> -t{ransition} <file> [-o{utput file} <file>] [-h{ist}] [-D{ebug}] [-{o}v{erlay} <0|1>] [-{s}u{m} <file>] [-{l}a{st} <file>] [-x{dump}]";
+
+int main(int ac, char** av) {
+    extern char *optarg;
+    extern int optind;
+    
+    int c;
+    int errflg;
+    int side;
+    int size;
+
+    int shift;
+    int loop;
+    char* conex_name;
+    char* frame_name;
+    char* transition_name;
+    char* output_name;
+    char* last_name;
+    int (*conex)();
+    int (*conex_size)();
+    int frame_file;
+    int transition_file;
+    int output_file;
+    int sum_file;
+    int last_file;
+    int cnt_file;
+    int skip;
+    int extract;
+    char* hist;
+    int overlay;
+    int sum;
+    char* sum_name;
+    char* cnt_name;
+    int zoom;
+    
+    cmd_name = av[0];
+    errflg = 0;
+
+    shift = 8;
+    loop = 1024 * 1024;
+    conex_name = "moore-1";
+    frame_name = "fff";
+    transition_name = "ttt";
+    output_name = 0;
+/*    last_name = "last.pbm"; */
+    last_name = 0;
+    skip = 0;
+    extract = -1;
+    hist = 0;
+    overlay = 0;
+    sum_name = 0;
+    cnt_name = 0;
+    zoom = 0;
+
+    while ((c = getopt(ac, av, "s:l:k:e:c:f:t:o:h:Dv:u:a:n:z:")) != EOF)
+	switch (c) {
+	  case 's':
+	    shift = atoi(optarg);
+	    break;
+	  case 'l':
+	    loop = atoi(optarg);
+	    break;
+	  case 'z':
+	    zoom = atoi(optarg);
+	    break;
+	  case 'v':
+	    overlay = atoi(optarg);
+	    break;
+	  case 'u':
+	    sum_name = malloc(strlen(optarg) + 1);
+	    strcpy(sum_name, optarg);
+	    break;
+	  case 'a':
+	    last_name = malloc(strlen(optarg) + 1);
+	    strcpy(last_name, optarg);
+	    break;
+	  case 'n':
+	    cnt_name = malloc(strlen(optarg) + 1);
+	    strcpy(cnt_name, optarg);
+	    break;
+	  case 'k':
+	    skip = atoi(optarg);
+	    break;
+	  case 'e':
+	    extract = atoi(optarg);
+	    break;
+	  case 'c':
+	    conex_name = malloc(strlen(optarg) + 1);
+	    strcpy(conex_name, optarg);
+	    break;
+	  case 'f':
+	    frame_name = malloc(strlen(optarg) + 1);
+	    strcpy(frame_name, optarg);
+	    break;
+	  case 't':
+	    transition_name = malloc(strlen(optarg) + 1);
+	    strcpy(transition_name, optarg);
+	    break;
+	  case 'o':
+	    output_name = malloc(strlen(optarg) + 1);
+	    strcpy(output_name, optarg);
+	    break;
+	  case 'h':
+	    hist = malloc(strlen(optarg) + 1);
+	    strcpy(hist, optarg);
+	    break;
+	  case 'D':
+	    debug = 1;
+	    break;
+	  case '?':
+	    errflg++;
+	}
+    
+    if (errflg) {
+	fprintf(stderr, "%s, usage: %s\n", cmd_name, usage);
+	exit(1);
+    }
+    
+    for (; optind < ac; optind++) {
+	fprintf(stderr, "%s, usage: %s\n", cmd_name, usage);
+	exit(1);
+    }
+
+    side = 1 << shift;
+    size = side * side;
+    state = malloc(size);
+    futur_state = malloc(size);
+
+    conex = Func_get(tconex, conex_name);
+    if (!conex) {
+	fprintf(stderr, "%s: %s not found\n", cmd_name, conex_name);
+	exit(1);
+    }
+    conex_size = Func_get(tconex_size, conex_name);
+    assert(conex_size);
+    transition_size = conex_size();
+
+    frame_file = open(frame_name, O_RDONLY);
+    if (frame_file == -1) {
+	fprintf(stderr, "%s: cannot open frame %s\n", cmd_name, frame_name);
+	perror("");
+	exit(1);
+    }
+    read(frame_file, state, size);
+
+    transition_file = open(transition_name, O_RDONLY);
+    if (transition_file == -1) {
+	fprintf(stderr, "%s: cannot open transition table %s\n", cmd_name, transition_name);
+	perror("");
+	exit(1);
+    }
+    transition = malloc(transition_size);
+    read(transition_file, transition, transition_size);
+    cnt_transition = malloc(transition_size * sizeof(int));
+    memset(cnt_transition, 0, transition_size * sizeof(int));
+
+    if (output_name) {
+	output_file = creat(output_name, 0666);
+	if (output_file == -1) {
+	    fprintf(stderr, "%s: cannot open output table %s\n", cmd_name, output_name);
+	    perror("");
+	    exit(1);
+	}
+    } else {
+	output_file = 1;
+    }
+
+    if (sum_name) {
+	sum_file = creat(sum_name, 0666);
+	if (sum_file == -1) {
+	    fprintf(stderr, "%s: cannot open sum file %s\n", cmd_name, sum_name);
+	    perror("");
+	    exit(1);
+	}
+    } else {
+	sum_file = -1;
+    }
+
+    if (cnt_name) {
+	cnt_file = creat(cnt_name, 0666);
+	if (cnt_file == -1) {
+	    fprintf(stderr, "%s: cannot open cnt file %s\n", cmd_name, cnt_name);
+	    perror("");
+	    exit(1);
+	}
+    } else {
+	cnt_file = -1;
+    }
+
+    if (last_name) {
+	last_file = creat(last_name, 0666);
+	if (last_file == -1) {
+	    fprintf(stderr, "%s: cannot open last file %s\n", cmd_name, last_name);
+	    perror("");
+	    exit(1);
+	}
+    } else {
+	last_file = -1;
+    }
+
+    return main_loop(loop, shift, conex, skip, extract, hist, output_file, overlay, sum_file,
+		     last_file, cnt_file, zoom);
+}
+
+int ftransition(int index)
+{
+    /* fprintf(stderr, "%d\n", index); */
+    return transition[index];
+}
+
+#if DEBUG
+#define TRANSITION(index) ftransition(index)
+#else
+#define TRANSITION(index) (cnt_transition[index]++, transition[index])
+#endif
+
+#define VON_NEUMANN_1_SIZE (1 << 4 + 1)
+
+#define VON_NEUMANN_1 \
+    index = north[side - 1] << 8 | center[side - 1] << 7 | south[side - 1] << 6; \
+    index |=   *north++ << 5 |    *center++ << 4 |    *south++ << 3; \
+    index |=   *north++ << 2 |    *center++ << 1 |    *south++; \
+    *futur++ = TRANSITION((index & 2) >> 1 | (index & 070) >> 2 | (index & 128) >> 3); \
+    for (i = count; i--;) { \
+	index = index << 3 & 0x000001ff | *north++ << 2 | *center++ << 1 | *south++; \
+	*futur++ = TRANSITION((index & 2) >> 1 | (index & 070) >> 2 | (index & 128) >> 3); \
+    } \
+    index = index << 3 & 0x000001ff | north[-side] << 2 | center[-side] << 1 | south[-side]; \
+    *futur++ = TRANSITION((index & 2) >> 1 | (index & 070) >> 2 | (index & 128) >> 3);
+
+#define VON_NEUMANN_2_SIZE (1 << (4 + 1) * 2)
+
+#define VON_NEUMANN_2 \
+    index = north[side - 1] << 16 | center[side - 1] << 14 | south[side - 1] << 12; \
+    index |=   *north++ << 10 |    *center++ << 8  |    *south++ << 6; \
+    index |=   *north++ << 4  |    *center++ << 2  |    *south++; \
+    *futur++ = \
+    TRANSITION((index & 12) >> 2 | (index & 07700) >> 4 | (index & 0xc000) >> 6); \
+    for (i = count; i--;) { \
+	index = index << 6 & 0x0003ffff | *north++ << 4 | *center++ << 2 | *south++; \
+        *futur++ = \
+        TRANSITION((index & 12) >> 2 | (index & 07700) >> 4 | (index & 0xc000) >> 6); \
+    } \
+    index = index << 6 & 0x0003ffff | north[-side] << 4 | center[-side] << 2 | south[-side]; \
+    *futur++ = \
+    TRANSITION((index & 12) >> 2 | (index & 07700) >> 4 | (index & 0xc000) >> 6);
+
+#define VON_NEUMANN_1_7_SIZE (1 << 4 + 1 + 7)
+
+#define VON_NEUMANN_1_7 \
+    local = (*center & 0x000000fe) << 5; \
+    index = north[side - 1] << 8 | center[side - 1] << 7 | south[side - 1] << 6; \
+    index |=   *north++ << 5 |    *center++ << 4 |    *south++ << 3; \
+    index |=   *north++ << 2 |    *center++ << 1 |    *south++; \
+    *futur++ = \
+    TRANSITION(local | (index & 2) >> 1 | (index & 070) >> 2 | (index & 128) >> 3); \
+    for (i = count; i--;) { \
+	local = (*center & 0x000000fe) << 5; \
+	index = index << 3 & 0x000001ff | *north++ << 2 | *center++ << 1 | *south++; \
+	*futur++ = \
+	TRANSITION(local | (index & 2) >> 1 | (index & 070) >> 2 | (index & 128) >> 3); \
+    } \
+    local = (*center & 0x000000fe) << 5; \
+    index = index << 3 & 0x000001ff | north[-side] << 2 | center[-side] << 1 | south[-side]; \
+    *futur++ = \
+    TRANSITION(local | (index & 2) >> 1 | (index & 070) >> 2 | (index & 128) >> 3);
+
+#define VON_NEUMANN_2_6_SIZE (1 << (4 + 1) * 2 + 6)
+
+#define VON_NEUMANN_2_6 \
+    local = (*center & 0x000000fc) << 8; \
+    index = (north[side - 1] & 3) << 16 | \
+            (center[side - 1] & 3) << 14 | (south[side - 1] & 3) << 12; \
+    index |=   (*north++ & 3) << 10 |    (*center++ & 3) << 8 |    (*south++ & 3) << 6; \
+    index |=   (*north++ & 3) << 4  |     (*center & 3) << 2  |    (*south++ & 3); \
+    *futur++ = \
+    TRANSITION(local | (index & 12) >> 2 | (index & 07700) >> 4 | (index & 0xc000) >> 6); \
+    for (i = count; i--;) { \
+        local = (*center++ & 0x000000fc) << 8; \
+	index = index << 6 | \
+	        (*north++ & 3) << 4 | (*center & 3) << 2 | (*south++ & 3); \
+        *futur++ = \
+        TRANSITION(local | (index & 12) >> 2 | (index & 07700) >> 4 | (index & 0xc000) >> 6); \
+    } \
+    local = (*center++ & 0x000000fc) << 8; \
+    index = index << 6 | (north[-side] & 3) << 4 | \
+            (center[-side] & 3) << 2 | (south[-side] & 3); \
+    *futur++ = \
+    TRANSITION(local | (index & 12) >> 2 | (index & 07700) >> 4 | (index & 0xc000) >> 6);
+
+#define MOORE_1_SIZE (1 << 8 + 1)
+
+#define MOORE_1 \
+    index = north[side - 1] << 8 | center[side - 1] << 7 | south[side - 1] << 6; \
+    index |=   *north++ << 5 |    *center++ << 4 |    *south++ << 3; \
+    index |=   *north++ << 2 |    *center++ << 1 |    *south++; \
+    *futur++ = TRANSITION(index); \
+    for (i = count; i--;) { \
+	index = index << 3 & 0x000001ff | *north++ << 2 | *center++ << 1 | *south++; \
+	*futur++ = TRANSITION(index); \
+    } \
+    index = index << 3 & 0x000001ff | north[-side] << 2 | center[-side] << 1 | south[-side]; \
+    *futur++ = TRANSITION(index);
+
+#define _MOORE_1 \
+    index = north[side - 1] << 8 | center[side - 1] << 7 | south[side - 1] << 6; \
+    index |=   *north++ << 5 |    *center++ << 4 |    *south++ << 3; \
+    index |=   *north++ << 2 |    *center++ << 1 |    *south++; \
+    *futur++ = TRANSITION(index); \
+    for (i = count << 3; i--;) { \
+	index = index << 3 & 0x000001ff | (*north & 1) << 2 | (*center & 1) << 1 | *south & 1; \
+	*futur = TRANSITION(index); \
+	index = index << 3 & 0x000001ff | (*north & 2) >> 1 << 2 | (*center & 2) >> 1 << 1 | (*south & 2) >> 1; \
+	*futur |= TRANSITION(index) << 1; \
+	index = index << 3 & 0x000001ff | (*north & 4) >> 2 << 2 | (*center & 4) >> 2 << 1 | (*south & 4) >> 2; \
+	*futur |= TRANSITION(index) << 2; \
+	index = index << 3 & 0x000001ff | (*north & 8) >> 3 << 2 | (*center & 8) >> 3 << 1 | (*south & 8) >> 3; \
+	*futur |= TRANSITION(index) << 3; \
+	index = index << 3 & 0x000001ff | (*north & 16) >> 4 << 2 | (*center & 16) >> 4 << 1 | (*south & 16) >> 4; \
+	*futur |= TRANSITION(index) << 4; \
+	index = index << 3 & 0x000001ff | (*north & 32) >> 5 << 2 | (*center & 32) >> 5 << 1 | (*south & 32) >> 5; \
+	*futur |= TRANSITION(index) << 5; \
+	index = index << 3 & 0x000001ff | (*north & 64) >> 6 << 2 | (*center & 64) >> 6 << 1 | (*south & 64) >> 6; \
+	*futur |= TRANSITION(index) << 6; \
+	index = index << 3 & 0x000001ff | (*north++ & 128) >> 7 << 2 | (*center++ & 128) >> 7 << 1 | (*south++ & 128) >> 7; \
+	*futur++ |= TRANSITION(index) << 7; \
+    } \
+    index = index << 3 & 0x000001ff | north[-side] << 2 | center[-side] << 1 | south[-side]; \
+    *futur++ = TRANSITION(index);
+
+#if 0
+
+#define MOORE_T_8_SIZE (1 << 11 + 8)
+
+#define MOORE_T_8 \
+    w_index = north[side - 1] + center[side - 1] + south[side - 1]; \
+    c_index = *north++ + *south++; \
+    local = *center++; \
+    e_index = *north + *center + *south; \
+    index = w_index + c_index + e_index; \
+    *futur++ = TRANSITION(index | local << 11); \
+    for (i = count; i--;) { \
+        w_index = c_index + local; \
+	c_index = e_index - *center; \
+	local = *center; \
+	e_index = *++north + *++center + *++south; \
+        index = w_index + c_index + e_index; \
+	*futur++ = TRANSITION(index | local << 11); \
+    } \
+    w_index = c_index + local; \
+    c_index = e_index - *center; \
+    local = *center; \
+    e_index = north[-side] + center[-side] + south[-side]; \
+    ++north; ++center, ++south; \
+    index = w_index + c_index + e_index; \
+    *futur++ = TRANSITION(index | local << 11);
+
+#else
+
+#define MOORE_T_8_SIZE (1 << 12 + 8)
+
+#define MOORE_T_8 \
+    w_index = north[side - 1] + center[side - 1] + south[side - 1]; \
+    c_index = *north++ + (c1 = *center++) + *south++; \
+    e_index = *north++ + (c2 = *center++) + *south++; \
+    index = (w_index + c_index + e_index); \
+    *futur++ = TRANSITION(index - c1 | c1 << 12); \
+    c1 = c2; \
+    for (i = count; i--;) { \
+        w_index = c_index; \
+	c_index = e_index; \
+	e_index = *north++ + (c2 = *center++) + *south++; \
+        index = (w_index + c_index + e_index); \
+	*futur++ = TRANSITION(index - c1 | c1 << 12); \
+	c1 = c2; \
+    } \
+    w_index = c_index; \
+    c_index = e_index; \
+    e_index = north[-side] + center[-side] + south[-side]; \
+    index = (w_index + c_index + e_index); \
+    *futur++ = TRANSITION(index - c1 | c1 << 12);
+
+#endif
+
+#define MOORE_2_SIZE (1 << (8 + 1) * 2)
+
+#define MOORE_2 \
+    index = north[side - 1] << 16 | center[side - 1] << 14 | south[side - 1] << 12; \
+    index |=   *north++ << 10 |    *center++ << 8  |    *south++ << 6; \
+    index |=   *north++ << 4  |    *center++ << 2  |    *south++; \
+    *futur++ = TRANSITION(index); \
+    for (i = count; i--;) { \
+	index = index << 6 & 0x0003ffff | *north++ << 4 | *center++ << 2 | *south++; \
+	*futur++ = TRANSITION(index); \
+    } \
+    index = index << 6 & 0x0003ffff | north[-side] << 4 | center[-side] << 2 | south[-side]; \
+    *futur++ = TRANSITION(index);
+
+#define MOORE_1_7_SIZE (1 << 8 + 1 + 7)
+
+#define MOORE_1_7 \
+    local = (*center & 0x000000fe) << 8; \
+    index = (north[side - 1] & 1) << 8 | \
+            (center[side - 1] & 1) << 7 | (south[side - 1] & 1) << 6; \
+    index |=   (*north++ & 1) << 5 |    (*center++ & 1) << 4 |    (*south++ & 1) << 3; \
+    index |=   (*north++ & 1) << 2 |      (*center & 1) << 1 |    (*south++ & 1); \
+    *futur++ = TRANSITION(local | index); \
+    for (i = count; i--;) { \
+	local = (*center++ & 0x000000fe) << 8; \
+	index = index << 3 & 0x000001ff | \
+	        (*north++ & 1) << 2 | (*center & 1) << 1 | (*south++ & 1); \
+	*futur++ = TRANSITION(local | index); \
+    } \
+    local = (*center++ & 0x000000fe) << 8; \
+    index = index << 3 & 0x000001ff | (north[-side] & 1) << 2 | \
+            (center[-side] & 1) << 1 | (south[-side] & 1); \
+    *futur++ = TRANSITION(local | index);
+
+#define MOORE_2x2_2_SIZE (1 << (8 + 1) * 2 + 2)
+
+#define MOORE_2x2_2 \
+    local1 = (*center & 3 << 2) << 18; \
+    local2 = (*center & 3) << 18; \
+    index1 = north[side - 1] << 16 | center[side - 1] << 14 | south[side - 1] << 12; \
+    index2 = north[side - 1] << 14 | center[side - 1] << 12 | south[side - 1] << 10; \
+    index1 |=   *north   << 10 |    *center   << 8  |    *south   << 6; \
+    index2 |=   *north++ << 8  |    *center++ << 6  |    *south++ << 4; \
+    index1 |=   *north   << 4  |    *center   << 2  |    *south; \
+    index2 |=   *north++ << 2  |    *center++       |    *south++ >> 2; \
+    *futur++ = transition1[local1 | index1] | transition2[local2 | index2] << 2; \
+    for (i = count; i--;) { \
+        local1 = (*center & 3 << 2) << 18; \
+        local2 = (*center & 3) << 18; \
+	index1 = index1 << 6 & 0x0003ffff | *north   << 4 | *center << 2 | *south; \
+	index2 = index2 << 6 & 0x0003ffff | *north++ << 2 | *center++    | *south++ >> 2; \
+	*futur++ = transition1[local1 | index1] | transition2[local2 | index2] << 2; \
+    } \
+    local1 = (*center & 3 << 2) << 18; \
+    local2 = (*center & 3) << 18; \
+    index1 = index1 << 6 & 0x3ffff | north[-side] << 4 | center[-side] << 2 | south[-side]; \
+    index2 = index2 << 6 & 0x3ffff | north[-side] << 2 | center[-side] | south[-side] >> 2; \
+    *futur++ = transition1[local1 | index1] | transition2[local2 | index2] << 2;
+
+extract_all(unsigned char* itab, unsigned char* otab, int size)
+{
+    char* p;
+    int s;
+
+    p = otab;
+    s = size >> 3;
+
+    extract0(itab, p, size);
+    p += s;
+    extract1(itab, p, size);
+    p += s;
+    extract2(itab, p, size);
+    p += s;
+    extract3(itab, p, size);
+    p += s;
+    extract4(itab, p, size);
+    p += s;
+    extract5(itab, p, size);
+    p += s;
+    extract6(itab, p, size);
+    p += s;
+    extract7(itab, p, size);
+    p += s;
+}
+
+rextract_all(unsigned char* itab, unsigned char* otab, int size)
+{
+    char* p;
+    int s;
+
+    p = otab;
+    s = size >> 3;
+
+    rextract0(itab, p, size);
+    p += s;
+    rextract1(itab, p, size);
+    p += s;
+    rextract2(itab, p, size);
+    p += s;
+    rextract3(itab, p, size);
+    p += s;
+    rextract4(itab, p, size);
+    p += s;
+    rextract5(itab, p, size);
+    p += s;
+    rextract6(itab, p, size);
+    p += s;
+    rextract7(itab, p, size);
+    p += s;
+}
+
+int extract0(unsigned char*, unsigned char*, int);
+int extract1(unsigned char*, unsigned char*, int);
+int extract2(unsigned char*, unsigned char*, int);
+int extract3(unsigned char*, unsigned char*, int);
+int extract4(unsigned char*, unsigned char*, int);
+int extract5(unsigned char*, unsigned char*, int);
+int extract6(unsigned char*, unsigned char*, int);
+int extract7(unsigned char*, unsigned char*, int);
+
+int rextract0(unsigned char*, unsigned char*, int);
+int rextract1(unsigned char*, unsigned char*, int);
+int rextract2(unsigned char*, unsigned char*, int);
+int rextract3(unsigned char*, unsigned char*, int);
+int rextract4(unsigned char*, unsigned char*, int);
+int rextract5(unsigned char*, unsigned char*, int);
+int rextract6(unsigned char*, unsigned char*, int);
+int rextract7(unsigned char*, unsigned char*, int);
+
+extract_2(register unsigned char* itab, unsigned char* otab, int side)
+{
+    static unsigned char t0[] = { 0, 3 << 6, };
+    static unsigned char t1[] = { 0, 3 << 4, };
+    static unsigned char t2[] = { 0, 3 << 2, };
+    static unsigned char t3[] = { 0, 3, };
+	
+    register unsigned char* p0;
+    register unsigned char* p1;
+    int i;
+    int j;
+    int k;
+
+    k = side >> 2;
+    p0 = otab;
+    p1 = otab + k;
+
+    for (i = side; i--;) {
+	for (j = side >> 3; j--;) {
+	    *p0 = t0[*itab++ & 1];
+	    *p0 |= t1[*itab++ & 1];
+	    *p0 |= t2[*itab++ & 1];
+	    *p0 |= t3[*itab++ & 1];
+	    *p1++ = *p0++;
+	    *p0 = t0[*itab++ & 1];
+	    *p0 |= t1[*itab++ & 1];
+	    *p0 |= t2[*itab++ & 1];
+	    *p0 |= t3[*itab++ & 1];
+ 	    *p1++ = *p0++;
+	}
+	p0 += k;
+	p1 += k;
+    }
+}
+
+int (*te[])(unsigned char*, unsigned char*, int) = {
+    extract0,
+    extract1,
+    extract2,
+    extract3,
+    extract4,
+    extract5,
+    extract6,
+    extract7,
+    rextract0,
+    rextract1,
+    rextract2,
+    rextract3,
+    rextract4,
+    rextract5,
+    rextract6,
+    rextract7,
+    extract_all,
+    rextract_all,
+};
+
+do_zoom_1(unsigned char* itab, unsigned char* otab, int size) {
+#if 0
+    int i;
+    int j;
+
+    for (i = 0; i < size; ++i) {
+	for (j = 0; j < size; ++j) {
+	    otab[i][j] = itab[i][j];
+	    otab[i][j + 1] = itab[i][j];
+	    otab[i + 1][j] = itab[i][j];
+	    otab[i + 1][j + 1] = itab[i][j];
+	}
+    }
+#endif
+}
+
+do_zoom_2(unsigned char* itab, unsigned char* otab, int size) {
+#if 0
+    int i;
+    int j;
+
+    for (i = 0; i < size; ++i) {
+	for (j = 0; j < size; ++j) {
+	    otab[i][j] = itab[i][j];
+	    otab[i][j + 1] = itab[i][j];
+	    otab[i][j + 2] = itab[i][j];
+	    otab[i + 1][j] = itab[i][j];
+	    otab[i + 1][j + 1] = itab[i][j];
+	    otab[i + 1][j + 2] = itab[i][j];
+	    otab[i + 2][j] = itab[i][j];
+	    otab[i + 2][j + 1] = itab[i][j];
+	    otab[i + 2][j + 2] = itab[i][j];
+	}
+    }
+#endif
+}
+
+do_zoom(unsigned char* itab, unsigned char* otab, int size, int zoom) {
+    if (zoom == 1) do_zoom_1(itab, otab, size);
+    else if (zoom == 2) do_zoom_2(itab, otab, size);
+}
+
+do_hist(unsigned char* itab, FILE* out, int size) {
+    int i;
+    int p0;
+    int p1;
+    int p2, p3, p4, p5, p6, p7;
+    
+    p0 = p1 = p2 = p3 = p4 = p5 = p6 = p7 = 0;
+    for (i = 0; i < size; ++i) {
+	p0 += itab[i] & 1;
+	p1 += (itab[i] & 2) >> 1;
+	p2 += (itab[i] & 4) >> 2;
+	p3 += (itab[i] & 8) >> 3;
+	p4 += (itab[i] & 16) >> 4;
+	p5 += (itab[i] & 32) >> 5;
+	p6 += (itab[i] & 64) >> 6;
+	p7 += (itab[i] & 128) >> 7;
+    }
+    fprintf(out, "%d %d %d %d %d %d %d %d\n", p0, p1, p2, p3, p4, p5, p6, p7);
+    fflush(out);
+}
+
+int sum_cnt = 0;
+do_sum(unsigned char* tab, int* sum, int cnt) {
+    while (cnt--) {
+	if (1) {
+	    *sum++ += (*tab++ & (1 << 3)) >> 3;
+	} else {
+	    *sum++ += *tab++ & 1;
+	}
+    }
+    ++sum_cnt;
+}
+
+grey_sum(unsigned char* grey, int* sum, int cnt) {
+    float div;
+    
+    if (sum_cnt < 256) {
+	div = 256 / sum_cnt;
+    } else {
+	div = sum_cnt / 256;
+    }
+
+    while (cnt--) {
+	*grey++ = *sum++ / div;
+    }
+}
+
+main_loop(int loop, int shift, int (*conex)(), int skip, int do_extract, char* hist, int output_file, int overlay, int sum_file, int last_file, int cnt_file, int zoom)
+{
+    unsigned char* otab;
+    unsigned char* tmp;
+    int side;
+    int size;
+    int skip_cnt;
+    int tsize;
+    FILE* histfile;
+    int* sum_tab;
+    unsigned char *grey_tab;
+    
+    side = 1 << shift;
+    size = side * side;
+    skip_cnt = skip;
+    
+    if (do_extract < 16) {
+	tsize = size >> 3;
+    } else if (do_extract == 16) {
+	tsize = size;
+    } else if (do_extract == 17) {
+	tsize = size;
+    } else if (do_extract == 18) {
+	tsize = size >> 1;
+    }
+    
+    otab = malloc(tsize);
+    
+    sum_tab = malloc(size * sizeof(int));
+    memset(sum_tab, 0, size * sizeof(int));
+
+    grey_tab = malloc(size);
+    
+    if (hist) {
+	histfile = fopen(hist, "w");
+    }
+    while (loop--) {
+	if (debug) {
+	    fprintf(stderr, "%d ", loop);
+	}
+	if (sum_file != -1) {
+	    do_sum(state, sum_tab, size);
+	}
+	if (skip_cnt-- == 0) {
+	    skip_cnt = skip;
+	    if (hist) {
+		do_hist(state, histfile, size);
+	    }
+	    if (do_extract != -1) {
+		if (do_extract == 18) {
+		    extract_2(state, otab, side);
+		} else {
+		    te[do_extract](state, otab, size);
+		}
+		if (overlay) {
+		    lseek(output_file, 0L, SEEK_SET);
+		}
+		write(output_file, otab, tsize);
+	    } else {
+		if (overlay) {
+		    lseek(output_file, 0L, SEEK_SET);
+		}
+		write(output_file, state, size);
+	    }
+	}
+	conex(state, futur_state, transition, side, size);
+	tmp = state;
+	state = futur_state;
+	futur_state = tmp;
+    }
+    if (last_file != -1) {
+	char buf[1024];
+	int fd;
+
+	if (0) {
+	    write(last_file, state, size);
+	}
+	te[do_extract - 8](state, otab, size);
+	sprintf(buf, "P4\n%d %d\n", side, side);
+	write(last_file, buf, strlen(buf));
+	write(last_file, otab, tsize);
+
+	fd = creat("last.pgm", 0666);
+	sprintf(buf, "P5\n%d %d\n%d\n", side, side, 255);
+	write(fd, buf, strlen(buf));
+	write(fd, state, size);
+	close(fd);
+    }
+    if (cnt_file != -1) {
+	int fd, i;
+	FILE* ascii;
+
+	write(cnt_file, cnt_transition, transition_size * sizeof(int));
+	fd = creat("cnt.ascii", 0666);
+	close(fd);
+	ascii = fopen("cnt.ascii", "w");
+	for (i = 0; i < transition_size; ++i) {
+	    fprintf(ascii, "%d %d\n", i, cnt_transition[i]);
+	}
+	fclose(ascii);
+    }
+    if (sum_file != -1) {
+	char buf[1024];
+	int fd, x, y;
+	FILE* ascii;
+
+	write(sum_file, sum_tab, size * sizeof(int));
+	
+	fd = creat("sum.ascii", 0666);
+	close(fd);
+	ascii = fopen("sum.ascii", "w");
+	for (x = 0; x < side; ++x) {
+	    for (y = 0; y < side; ++y) {
+		if (0) {
+		    fprintf(ascii, "%d %d %d\n", x, y, sum_tab[x * side + y]);
+		} else {
+		    fprintf(ascii, "%d\n", sum_tab[x * side + y]);
+		}
+	    }
+	    fprintf(ascii, "\n");
+	}
+	grey_sum(grey_tab, sum_tab, size);
+	fd = creat("sum.pgm", 0666);
+	sprintf(buf, "P5\n%d %d\n%d\n", side, side, 255);
+	write(fd, buf, strlen(buf));
+	write(fd, grey_tab, size);
+	close(fd);
+    }
+    return 0;
+}
+
+#define CELL(name, CONEX) \
+name(char* past, char* futur, char* transition, int side, int size) { \
+    int i; \
+    int j; \
+    register unsigned char* north; \
+    register unsigned char* center; \
+    register unsigned char* south; \
+    register int index; \
+    int w_index; \
+    int c_index; \
+    int e_index; \
+    int c1; \
+    int c2; \
+    int index1; \
+    int index2; \
+    register int local; \
+    int local1; \
+    int local2; \
+    int count; \
+	\
+	count = side - 2; \
+	north = past + size - side; \
+	center = past; \
+	south = center + side; \
+	CONEX; \
+	north = past; \
+	center = north + side; \
+	south = center + side; \
+	for (j = count; j--;) { \
+	    CONEX; \
+	} \
+	north = past + size - (side << 1); \
+	center = north + side; \
+	south = past; \
+	CONEX; \
+}
+
+CELL(von_neumann_1, VON_NEUMANN_1)
+int von_neumann_1_size() { return VON_NEUMANN_1_SIZE; }
+
+CELL(von_neumann_2, VON_NEUMANN_2)
+int von_neumann_2_size() { return VON_NEUMANN_2_SIZE; }
+
+CELL(von_neumann_1_7, VON_NEUMANN_1_7)
+int von_neumann_1_7_size() { return VON_NEUMANN_1_7_SIZE; }
+
+CELL(von_neumann_2_6, VON_NEUMANN_2_6)
+int von_neumann_2_6_size() { return VON_NEUMANN_2_6_SIZE; }
+
+CELL(moore_1, MOORE_1)
+int moore_1_size() { return MOORE_1_SIZE; }
+
+CELL(moore_t_8, MOORE_T_8)
+int moore_t_8_size() { return MOORE_T_8_SIZE; }
+
+CELL(moore_2, MOORE_2)
+int moore_2_size() { return MOORE_2_SIZE; }
+
+CELL(moore_1_7, MOORE_1_7)
+int moore_1_7_size() { return MOORE_1_7_SIZE; }
+
+CELL(moore_2x2_2, MOORE_2x2_2)
+int moore_2x2_2_size() { return MOORE_2x2_2_SIZE; }
+
+extern moore_128_128_1_0();
+int moore_128_128_1_0_size() { return MOORE_1_SIZE; }
+
+extern moore_256_256_1_0();
+int moore_256_256_1_0_size() { return MOORE_1_SIZE; }
+
+extern moore_256_256_2_0();
+int moore_256_256_2_0_size() { return MOORE_2_SIZE; }
+
+extern von_neumann_256_256_1_0();
+int von_neumann_256_256_1_0_size() { return VON_NEUMANN_1_SIZE; }
+
+extern von_neumann_256_256_2_0();
+int von_neumann_256_256_2_0_size() { return VON_NEUMANN_2_SIZE; }
+
+#define VON_NEUMANN_3_SIZE (1 << (4 + 1) * 3)
+
+extern von_neumann_64_64_3_0();
+int von_neumann_64_64_3_0_size() { return VON_NEUMANN_3_SIZE; }
+
+extern von_neumann_256_256_3_0();
+int von_neumann_256_256_3_0_size() { return VON_NEUMANN_3_SIZE; }
+
+#define VON_NEUMANN_4_SIZE (1 << (4 + 1) * 4)
+
+extern von_neumann_256_256_4_0();
+int von_neumann_256_256_4_0_size() { return VON_NEUMANN_4_SIZE; }
+
+Func tconex[] = {
+    "von-neumann-1", von_neumann_1,
+    "von-neumann-2", von_neumann_2,
+    "von-neumann-1+7", von_neumann_1_7,
+    "von-neumann-2+6", von_neumann_2_6,
+    "moore-128-128-1-0", moore_128_128_1_0,
+    "moore-256-256-1-0", moore_256_256_1_0,
+    "moore-256-256-2-0", moore_256_256_2_0,
+    "von-neumann-256-256-1-0", von_neumann_256_256_1_0,
+    "von-neumann-256-256-2-0", von_neumann_256_256_2_0,
+    "von-neumann-64-64-3-0", von_neumann_256_256_3_0,
+    "von-neumann-256-256-3-0", von_neumann_256_256_3_0,
+    "von-neumann-256-256-4-0", von_neumann_256_256_4_0,
+    "moore-1", moore_1,
+    "moore-t-8", moore_t_8,
+    "moore-2", moore_2,
+    "moore-1+7", moore_1_7,
+    "moore-2x2+2", moore_2x2_2,
+    0, 0,
+};
+
+Func tconex_size[] = {
+    "von-neumann-1", von_neumann_1_size,
+    "von-neumann-2", von_neumann_2_size,
+    "von-neumann-1+7", von_neumann_1_7_size,
+    "von-neumann-2+6", von_neumann_2_6_size,
+    "moore-128-128-1-0", moore_128_128_1_0_size,
+    "moore-256-256-1-0", moore_256_256_1_0_size,
+    "moore-256-256-2-0", moore_256_256_2_0_size,
+    "von-neumann-256-256-1-0", von_neumann_256_256_1_0_size,
+    "von-neumann-256-256-2-0", von_neumann_256_256_2_0_size,
+    "von-neumann-64-64-3-0", von_neumann_256_256_3_0_size,
+    "von-neumann-256-256-3-0", von_neumann_256_256_3_0_size,
+    "von-neumann-256-256-4-0", von_neumann_256_256_4_0_size,
+    "moore-1", moore_1_size,
+    "moore-t-8", moore_t_8_size,
+    "moore-2", moore_2_size,
+    "moore-1+7", moore_1_7_size,
+    "moore-2x2+2", moore_2x2_2_size,
+    0, 0,
+};
+
+int (*Func_get(Func* tab, char* name))()
+{
+    int i;
+
+    for (i = 0; tab[i].name; ++i) {
+	if (!strcmp(name, tab[i].name)) {
+	    return tab[i].func;
+	}
+    }
+    return 0;
+}
+

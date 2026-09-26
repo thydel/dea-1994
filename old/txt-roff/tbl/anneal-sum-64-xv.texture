@@ -1,0 +1,16 @@
+
+Angle                          0         45         90        135        Avg
+Angular Second Moment  2.131e-02  1.581e-02  2.114e-02  1.582e-02  1.852e-02
+Contrast               1.339e+02  2.341e+02  1.196e+02  2.313e+02  1.797e+02
+Correlation            9.610e-01  9.320e-01  9.652e-01  9.328e-01  9.477e-01
+Variance               1.720e+03  1.721e+03  1.718e+03  1.721e+03  1.720e+03
+Inverse Diff Moment    8.211e-01  6.884e-01  8.262e-01  6.891e-01  7.562e-01
+Sum Average            1.427e+02  1.426e+02  1.427e+02  1.426e+02  1.427e+02
+Sum Variance           2.654e+04  2.640e+04  2.654e+04  2.641e+04  2.647e+04
+Sum Entropy            2.015e+00  2.082e+00  2.015e+00  2.081e+00  2.048e+00
+Entropy                2.327e+00  2.625e+00  2.316e+00  2.622e+00  2.472e+00
+Difference Variance    3.663e-05  2.399e-05  3.682e-05  2.404e-05  3.037e-05
+Difference Entropy     5.216e-01  8.048e-01  5.022e-01  8.026e-01  6.578e-01
+Meas of Correlation-1 -7.457e-01 -5.849e-01 -7.515e-01 -5.864e-01 -6.671e-01
+Meas of Correlation-2  9.681e-01  9.412e-01  9.687e-01  9.415e-01  9.549e-01
+Max Correlation Coeff  7.578e-01  5.638e-01  7.615e-01  5.649e-01  6.620e-01

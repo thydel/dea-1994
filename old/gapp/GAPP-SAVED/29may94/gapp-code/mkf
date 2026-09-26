@@ -1,0 +1,11 @@
+(
+	echo "include(\`file.m4')"
+	echo "$1(\c"
+	while [ $# -gt 2 ]
+	do
+		shift
+		echo "$1,\c"
+	done
+	shift
+	echo "$1)"
+) | m4 -B16384 | sed -e 's/^	*//' -e '/^ *$/d' -e '/^#/d'

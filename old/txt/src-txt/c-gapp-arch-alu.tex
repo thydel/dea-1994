@@ -1,0 +1,35 @@
+
+%%  \documentclass{article}
+%%  \usepackage{multicol}
+%%  \begin{document}
+  \begin{footnotesize}
+  
+\begin{multicols}{2}
+\begin{verbatim}
+ | NS EW  C |   | SM CY BW
+0|  0  0  0 |  0|  0  0  0
+2|  0  1  0 |  5|  1  0  1
+4|  1  0  0 |  4|  1  0  0
+6|  1  1  0 |  2|  0  1  0
+1|  0  0  1 |  5|  1  0  1
+3|  0  1  1 |  3|  0  1  1
+5|  1  0  1 |  2|  0  1  0
+7|  1  1  1 |  7|  1  1  1
+\end{verbatim}
+
+\begin{flushleft}
+\verb%static int gapp_alu[] = {%
+\\* \verb%    0,  /*%\mbox{ 0 }\verb%*/%
+\\* \verb%    5,  /*%\mbox{ 1 }\verb%*/%
+\\* \verb%    5,  /*%\mbox{ 2 }\verb%*/%
+\\* \verb%    3,  /*%\mbox{ 3 }\verb%*/%
+\\* \verb%    4,  /*%\mbox{ 4 }\verb%*/%
+\\* \verb%    2,  /*%\mbox{ 5 }\verb%*/%
+\\* \verb%    2,  /*%\mbox{ 6 }\verb%*/%
+\\* \verb%    7   /*%\mbox{ 7 }\verb%*/ };%
+\end{flushleft}
+\end{multicols}
+
+  \end{footnotesize}
+%%  \end{document}
+  

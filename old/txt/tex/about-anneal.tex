@@ -1,0 +1,315 @@
+\chapter[remarques sur la r\`egle Anneal]%
+{Quelques remarques sur la r\`egle Anneal}
+\mysetref{about-anneal}
+
+L'observation de la r\`egle~\arule{Anneal} nous conduit \`a proposer l'existence
+d'une relative invariance spatiotemporelle des trajectoires dans
+l'espace des configurations d'espaces pour des configurations initiales
+de densit\'e proche de\,\undemi. %
+Nous avons mesur\'e la densit\'e et la taille des fronti\`eres des espaces
+cellulaires pour des tailles d'espaces de $2^{20}$~cellules donnant
+des transitoires de plus de 100000~g\'en\'erations. %
+Nous avons d\'ecouvert qu'il existe des cycles limites dont la taille
+est de l'ordre de grandeur du rayon de l'espace cellulaire. %
+Nous proposons plusieurs exp\'eriences permettant de compl\'eter cette
+\'etude. %
+
+\section{Trajectoires et espaces de trajectoires}
+
+\mydumpfull[p]{anneal-3d}%
+{}%
+{Une vue~3D de la dynamique de la r\`egle~\arule{Anneal}}%
+{Cette image sugg\`ere l'int\'er\^et d'une \'etude des textures produites par
+  les plongement~3D d'AC~2D dont la dynamique, \`a l'image
+  de~\arule{Anneal}, tend \`a produire des fronti\`eres.}
+
+\mydumptwothirdsR[t]{.75}{life-00}%
+{Une signature cellulaire}%
+{Exemple de signature d'espace cellulaire.}%
+{\arule{Life} sur un espace de taille $128^2$, au temps 128, pour un espace
+  initial de densit\'e al\'eatoire\,\Sundemi.}
+
+\mydumptwothirdsR[t]{.75}{anneal-00}%
+{}%
+{Une configuration typique de la r\`egle~\arule{Anneal}}%
+{\arule{Anneal} sur un espace de taille $256^2$, au temps 256,
+  pour un espace initial de densit\'e al\'eatoire\,\Sundemi.}
+
+\mydumpfull[t]{anneal-03}%
+{}%
+{Une s\'equence typique de la r\`egle~\arule{Anneal}}%
+{559 g\'en\'erations de~\arule{anneal} sur un espace de taille $256^2$,
+  pour un espace initial de densit\'e al\'eatoire\,\Sundemi.}
+
+\mydumpfull[t]{anneal-02}%
+{}%
+{Deux configurations de la r\`egle~\arule{anneal}}%
+{anneal sur deux espaces initiaux de densit\'e al\'eatoire\,\Sundemi.}
+
+\mydumpfull[t]{anneal-01}%
+{}%
+{Les deux configurations de la figure~\protect\mygetdump{anneal-02} non retouch\'ee}%
+{Contrairement \`a la figure~\mygetdump{anneal-00}, les configurations
+  locales stables ne sont plus visibles sans perte d'information.}
+
+\myplotfull[t]{anneal-01}%
+{}%
+{\'Evolution de la taille des fronti\`eres de~\arule{anneal}}%
+{La taille des fronti\`eres est une approximation par la diff\'erence bit
+  \`a bit entre l'espace de g\'en\'eration~$n$ et~$n-1$.}
+
+\myplotfull[t]{anneal-02}%
+{}%
+{\'Evolution de la population de~\arule{Anneal} lors
+  d'un changement du nombre d'\^iles}%
+{Cette figure permet de comprendre l'existence des points d'inflexions
+  de la courbe d'\'evolution de anneal.}
+
+\myplotfull[p]{anneal-03}%
+{}%
+{Transition vers la derni\`ere \^ile}%
+{Une autre zone de transition sur les m\^emes donn\'ees que celle de la
+  figure~\mygetplot{anneal-02}.}
+
+\myplotfull[p]{anneal-04}%
+{}%
+{Populations normalis\'ees pour 4~espaces initiaux de tailles crois\-santes}%
+{R\'eductions int\'egrales normalis\'ees des populations des trajectoires
+  associ\'ees \`a 4~espaces initiaux de tailles respectives:~$2^{128}$,
+  $2^{256}$, $2^{512}$ et $2^{1024}$. %
+  Le plot de gauche pr\'esente le logarithme de la taille des frontieres.}
+
+\myplotfullR[p]{.8}{anneal-05}%
+{}%
+{Une s\'erie de zooms sur la population et la taille des fronti\`eres}%
+{Les quatres plots du haut pr\'esentent quatres zooms successifs sur la
+  population et la s\'equence tri\'ee des populations. %
+  Les quatres plots du bas zooment sur la taille des fronti\`eres.}
+
+Les objets de notre \'etude sont les automates cellulaires~(AC). %
+Les AC sont des syst\`emes dynamiques discrets. %
+Le temps, l'espace et les cellules sont des entit\'es discr\`etes. %
+Une fonction de transition~(r\`egle) est appliqu\'ee de mani\`ere synchrone
+sur chacune des cellules de l'espace cellulaire. %
+Cette fonction re\c{c}oit en argument une cellule et un ensemble de
+cellules voisines~(constituant le voisinage pour une r\`egle) %
+au temps~$t_n$. %
+Elle calcule le nouvel \'etat de la cellule~(au temps~$t_{n+1}$). %
+
+La s\'equence des~$E_i$ espaces g\'en\'er\'ee par une r\`egle~$R$ sur un espace
+initial~$E_0$ consid\'er\'e comme une trajectoire dans l'espace
+des~$E_{s^d}$~(ou~$s$ est la taille d'un espace cellulaire fini, %
+et~$d$ le nombre de dimension cart\'esienne de cet espace) \'etats d'espaces
+constitue un des objets \'el\'ementaires de notre \'etude des~AC\@. %
+La r\`egle de transition consid\'er\'ee comme une table en fournit un autre. %
+La taille de cette table est~$k^{2dr+1}$~(pour une g\'en\'eralisation du
+voisinage de Moore), %
+$k$ \'etant le nombre d'\'etats possibles pour une cellule~%
+(en pratique~$k=2^p$ ou $p$~est le nombre de plans de bits utile de
+l'espace), $d$~le nombre de dimensions de l'espace et $r$~le rayon du
+voisinage. %
+Le passage en param\`etre de~$E_0$ permet de consid\'erer l'ensemble des
+trajectoires. %
+Le passage en param\`etre de~$R$ introduit l'espace des r\`egles. %
+Le nombre de r\`egles est:
+%%
+\begin{equation}
+  Rn_{kdr} = k^{k^{2dr+1}}. %
+  \label{rule-count}
+\end{equation}
+%%
+Nous proposons l'\'etude de ces objets par le calcul des trajectoires,
+pour des familles \'echantillons sur les param\`etres~$E_0$ et~$R$. %
+
+\section{Vari\'et\'e des objets cellulaires}
+
+Une premi\`ere question porte sur la nature et la vari\'et\'e des~$E_i$
+espaces. %
+L'espace initial~$E_0$ peut \^etre quelconque et sera en
+g\'en\'eral\footnote{%
+  Statistiquement au moins.} %
+un Jardin d'Eden pour la r\`egle~$R$. %
+Empiriquement, les~$E_i$ espaces poss\`edent une signature qui
+les rend ais\'ement reconnaissable par l'observateur. %
+La figure~\mygetdump{life-00} par exemple sera associ\'ee \`a~\arule{Life}
+sans h\'esitation. %
+Il convient cependant de remarquer qu'une telle appr\'eciation ne
+renseigne que sur la vraisemblance de l'appartenance d'un espace \`a une
+trajectoire. %
+Dans le cas le plus g\'en\'eral la question de l'appartenance d'un espace
+\`a la trajectoire d'une r\`egle~(hors Jardin d'Eden) n'a pas de r\'eponse
+en temps polyn\^omial. %
+En effet si la r\`egle est universelle~(ce qui est par exemple la cas
+de~\arule{Life}) la d\'ecision peut se ramener \`a l'\'enum\'eration des
+trajectoires. %
+
+On reporte la question de la vari\'et\'e sur les trajectoires. %
+Les s\'equences peuvent \^etre consid\'er\'es comme un espace de dimension
+sup\'erieure et on recherche alors les formes
+associ\'ees \`a une r\`egle. %
+La localit\'e du voisinage introduit une vitesse limite de propagation
+de l'information d'une cellule \`a une autre~(une vitesse de la lumi\`ere
+cellulaire \'egale au rayon du voisinage). %
+L'axe du temps est un axe d'observation privil\'egi\'e, et les trajectoires
+peuvent \^etre r\'eduites par contraction de l'espace sur l'axe du temps. %
+On utilise une fonction de r\'eduction du nombre de bits d'un espace,
+qui joue le r\^ole d'une mesure effectu\'ee sur un syst\`eme physique, %
+pour obtenir une s\'equence num\'erique temporelle. %
+Le probl\`eme de la signature temporelle d'une r\`egle peut alors \^etre
+pos\'e en termes statistiques. %
+La mesure de la densit\'e d'un espace~%
+(dans le cas le plus g\'en\'eral, si $k > 2$, on peut consid\'erer un
+histogramme de $2^p$ \'etat ou $p$ densit\'es) %
+est la mesure la plus simple permettant d'obtenir une trace de la
+trajectoire d'une r\`egle appliqu\'ee sur une espace initial. %
+Le nombre des \'etats d'espaces:
+%%
+\begin{equation}
+  En_{ksd} = k^{s^d}
+  \label{space-count}
+\end{equation}
+%%
+impose la r\'eduction des espace initiaux \`a un sous-ensemble. %
+Celui-ci peut \^etre fourni par la fonction inverse d'une fonction de
+r\'eduction de l'information d'un espace, utilis\'ee comme fonction
+d'\'echantillonnage de l'espace des configurations initiales. %
+L'\'etude de l'\'evolution de la densit\'e par exemple, est fonction d'un
+param\`etre de densit\'e initiale, qui est l'inverse de la fonction de
+r\'eduction utilis\'ee, et qui permet d'effectuer un balayage statistique
+des \'etats initiaux possibles associ\'e \`a une distribution arbitraire. %
+Enfin l'extension de la question de la vari\'et\'e \`a l'espace des r\`egles
+(qui combine les difficult\'es combinatoires des \'equation~\ref{rule-count}
+et~\ref{space-count}) doit \'egalement s'appuyer sur l'utilisation de
+fonction de r\'eduction de l'information associ\'ee \`a une r\`egle, permettant
+le balayage des espaces de r\`egles. %
+
+Nous pensons n\'eanmoins qu'il serait utile de disposer d'un
+d\'eveloppement complet du calcul pour des espaces cellulaires de
+tailles r\'eduites, et des espaces de r\`egles contraintes\footnote{%
+  Les r\`egles additives, dont~\arule{Life} et~\arule{Anneal} sont des
+  repr\'esentants exemplaires, semble un bon point de d\'epart.}, %
+en vue de l'obtention d'indices sur la nature des sym\'etrie, et des
+tendances structurelles de l'espace des param\`etres permettant d'orienter
+le calcul sur les r\'egions sensibles des espace de tailles
+combinatoires. %
+
+\section[r\'esultat exp\'erimentaux]%
+{Quelques r\'esultats exp\'erimentaux \`a propos de Anneal}
+
+La r\`egle~\arule{Anneal} est une r\`egle additive\footnote{%
+  La r\`egle est une fonction de la somme du voisinage. %
+  \mygetrule[phrase]{anneal}} %
+dont la table secondaire est:
+\begin{verbatim}
+0000101111
+\end{verbatim}
+La figure~\mygetdump{anneal-00} montre une configuration typique
+de cette r\`egle pour un espace initial de densit\'e\,\undemi, %
+la figure~\mygetdump{anneal-03} une s\'equence typique de
+cette r\`egle pour un espace initial de densit\'e\,\undemi %
+et la figure~\mygetdump{anneal-02} montre deux configurations de
+\arule{Anneal} pour deux espaces initiaux de densit\'e\,\undemi. %
+
+Une propri\'et\'e int\'eressante de cette r\`egle est que des grandeurs
+caract\'eristiques des espaces g\'en\'er\'es, comme le nombres d'\^iles ou la
+tailles des fronti\`eres, sont ind\'ependantes de l'\'echelle d'observation
+choisie, \`a condition de coupler le changement d'\'echelle sur l'espace
+\`a un changement d'\'echelle sur le temps. %
+La taille et l'\^age des espaces de la figure~\mygetdump{anneal-02}
+ne peuvent \^etre d\'etermin\'es simplement. %
+En fait les espaces de la figure~\mygetdump{anneal-02} ont \'et\'e
+retouch\'es pour faire dispara\^itre les configurations locales stables de
+quelque cellules, qui permettent de d\'eterminer l'\'echelle d'espace. %
+On admettra que cet effet tend \`a dispara\^itre avec l'augmentation de
+tailles des espaces, et l'apparition d'un seuil au del\`a duquel le
+groupe isol\'e de quelques cellules n'est plus perceptible~(par l'{\oe}il
+ou l'outil de mesure). %
+L'espace \`a gauche de la figure~\mygetdump{anneal-02} est de
+taille~$1024^2$, son \^age 4184~g\'en\'erations, %
+l'espace droit est de taille~$360^2$, son \^age 600~g\'en\'erations.
+
+\noindent%
+La figure~\mygetdump{anneal-01} montre les deux configurations de
+la figure~\mygetdump{anneal-02} non retouch\'ee. %
+On peut remarquer que, d\'ej\`a \`a cette \'echelle, les configurations
+locales stables ne sont plus visibles sans perte d'information,
+contrairement \`a l'\'echelle de la figure~\mygetdump{anneal-00}, ou de
+telles configurations sont visibles. %
+
+Toutes les trajectoires pr\'esent\'ees ici font appara\^itre une diminution de
+la densit\'e\footnote{%
+  Appel\'ee population sur les plots.}. %
+Cette densit\'e est dans le cas de~\arule{Anneal} une quantit\'e
+inversible\footnote{%
+  Au sens d'une inversion photo-n\'egative, d'un inverseur bit \`a bit appliqu\'e
+  sur un espace cellulaire avant l'op\'eration de comptage.}, %
+La valeur du param\`etre $\lambda$\footnote{%
+  Le param\`etre $\lambda$ est d\'efini comme le pourcentage d'entr\'ees de
+  la table de transition dont la valeur est diff\'erente de l'\'etat z\'ero. %
+  $\lambda = \frac{k^{dr+1}-\#0}{k^{dr+1}}$}~\cite{Li90a,Li90b}
+de~\arule{Anneal} est exactement\,\undemi. %
+Bien que nous ayons trouv\'e jusqu'\`a pr\'esent plus de trajectoires
+montrant une diminution de la densit\'e des bits \`a~1, nous pensons qu'un
+meilleur contr\^ole sur l'\'ecart de la configuration initiale \`a la
+valeur\,\undemi~$s^d$ permettrait de v\'erifier le ratio\,\undemi pour
+les diminutions de densit\'es. %
+
+Le plot droit de la figure~\mygetplot{anneal-05} montre les
+densit\'es des trajectoires pour 4~espaces initiaux de tailles
+$2^{128}$, $2^{256}$, $2^{512}$ et $2^{1024}$. %
+La premi\`ere atteint un point fixe en 3563~g\'en\'erations, les autres
+atteignent un cycle limite de taille $5$, $768$ et~$24$ apr\`es~$6008$,
+$29442$ et $107869$~g\'en\'erations. %
+Les cycles limites des trajectoires~2 et~4 sont inf\'erieurs d'un ordre
+de grandeur au rayon de l'espace, alors que celui de la trajectoire~3
+est du m\^eme ordre de grandeur que le rayon de l'espace. %
+De plus, il est visible sur le plot, que la densit\'e finale du
+transitoire est tr\`es importante pour la trajectoire~3 contrairement
+aux autres, pour lesquels, tant la taille du cycle que la densit\'e
+moyenne de celui-ci peuvent \^etre consid\'er\'ees comme une valeur approch\'ee
+d'un des deux points fixes majoritaires de~\arule{Anneal}. %
+Les densit\'es initiales exactes sont pour chaque trajectoire
+respectivement:~%
+$8172/128^2 = 0.498779296875$, %
+$32673/256^2 = 0.4985504150390625$, %
+$130960/512^2 = 0.49957275390625$, %
+$523619/1024^2 = 0.49936199188232421875$, %
+L'\'ecart \`a\,\undemi \'etant toujours n\'egatif peut expliquer le destin
+vers z\'ero de toutes ces configurations. %
+La question de la sensibilit\'e de~\arule{Anneal} aux \'ecarts de la
+densit\'e\,\undemi, et en particulier du rapport entre cette densit\'e et
+le nombre de trajectoire n'atteignant pas un quasi point fixe, reste
+pour nous ouverte. %
+
+Une question sugg\'er\'ee par ces exp\'eriences est celle de la taille des
+transitoires de~\arule{anneal} au regard de la taille moyenne des
+transitoires de la famille de r\`egle associ\'ee \`a un voisinage. %
+Le probl\`eme de la fabrication d'une r\`egle de taille de
+transitoire donn\'e~(\'eventuellement maximum), ne poss\`ede pas de r\'eponse
+simple. %
+Nous proposons de consid\'erer la r\`egle~\arule{anneal} comme prototype
+pour l'\'etude de cette question. %
+
+\noindent%
+La figure~\mygetplot{anneal-01} montre l'\'evolution de la taille
+des fronti\`eres d'une trajectoire de~\arule{Anneal} pour un espace de
+taille~$1024^2$ et de densit\'e initiale\,\undemi. %
+La figure~\mygetplot{anneal-02} montre sur les m\^emes donn\'ees que
+celle de la figure~\mygetplot{anneal-01}, une transition sur le
+nombre d'\^iles et les variations de la population associ\'ee. %
+
+%%
+%% Local Variables:
+%% mode: auto-fill
+%% iso-accents-minor-mode: nil
+%% TeX-master: "top"
+%% TeX-command-default: "mytex"
+%% Local IspellParsing: "latex-mode ~latin1"
+%% Local IspellPersDict: "~/.ispell_lisp"
+%% LocalWords: "pt htb dump eps IspellParsing qwf dummy Moore width latex-mode"
+%% LocalWords: "IspellPersDict ispell lisp LocalWords End francais english babel"
+%% LocalWords: "d'espaces d'eden eden anneal paper dvips afterpage epsfig email"
+%% LocalWords: "Thierry Delamare thy tao.univ-paris.fr transitoires height plain"
+%% LocalWords: "not DENIS univ fr about-anneal d'AC d'Eden photo-n\'egative"
+%% LocalWords: "santes zooment"
+%% End:

@@ -1,0 +1,68 @@
+% Remember to use the lgrind style
+
+\File{tcl\-func.tcl},{22:55},{Sep  6 1994}
+\L{\LB{\C{}\V{\#} VN shift}}
+\CE{}\L{\LB{\K{set}_\V{vnfunclist}_\2}}
+\L{\LB{__[\K{list}_\V{north}_\V{south}_\V{east}_\V{west}]}}
+\L{\LB{}}
+\L{\LB{\C{}\V{\#} VN op}}
+\CE{}\L{\LB{\K{foreach}_\V{func}_\{\V{and}_\V{or}_\V{xor}\}_\{}}
+\L{\LB{__\K{foreach}_\V{narg}_\{4_5\}_\{}}
+\L{\LB{____\K{lappend}_\V{vnfunclist}_\V{\$func\$narg}}}
+\L{\LB{__\}}}
+\L{\LB{\}}}
+\L{\LB{}}
+\L{\LB{\K{foreach}_\V{func}_\V{\$vnfunclist}_\{}}
+\L{\LB{__\V{Func}_\V{cmd}_\V{VN\_\$func}_\V{\$VN\_1}_\V{VN\_\$func}}}
+\L{\LB{__\V{VN\_\$func}_\V{rbind}}}
+\L{\LB{__\K{lappend}_\V{func\_list}_\V{VN\_\$func}}}
+\L{\LB{\}}}
+\L{\LB{}}
+\L{\LB{\C{}\V{\#} Moore op}}
+\CE{}\L{\LB{\K{foreach}_\V{func}_\{\V{and}_\V{or}_\V{xor}\}_\{}}
+\L{\LB{__\K{foreach}_\V{narg}_\{4_5_8_9\}_\{}}
+\L{\LB{____\K{lappend}_\V{moorefunclist}_\V{\$func\$narg}}}
+\L{\LB{__\}}}
+\L{\LB{\}}}
+\L{\LB{}}
+\L{\LB{\K{foreach}_\V{func}_\V{\$moorefunclist}_\{}}
+\L{\LB{__\V{Func}_\V{cmd}_\V{Moore\_\$func}_\V{\$Moore\_1}_\2}}
+\L{\LB{____\V{Moore\_\$func}}}
+\L{\LB{__\V{Moore\_\$func}_\V{rbind}}}
+\L{\LB{__\K{lappend}_\V{func\_list}_\V{Moore\_\$func}}}
+\L{\LB{\}}}
+\L{\LB{}}
+\L{\LB{\C{}\V{\#} SumTab}}
+\CE{}\L{\LB{\V{Func}_\V{cmd}_\V{sum4\_tab}_\V{\$VN\_1}_\V{VN\_sum4\_tab}_\2}}
+\L{\LB{__\V{sum4\_tab\_parse}}}
+\L{\LB{\V{Func}_\V{cmd}_\V{sum5\_tab}_\V{\$VN\_1}_\V{VN\_sum5\_tab}_\2}}
+\L{\LB{__\V{sum5\_tab\_parse}}}
+\L{\LB{\V{Func}_\V{cmd}_\V{sum8\_tab}_\2}}
+\L{\LB{__[\V{ConexSpec}_\V{\$moore\_1}_\V{\$local\_1}_\V{moore\_1}]_\2}}
+\L{\LB{__\V{Moore\_sum8\_tab}_\V{sum8\_tab\_parse}}}
+\L{\LB{\V{Func}_\V{cmd}_\V{sum9\_tab}_\2}}
+\L{\LB{__[\V{ConexSpec}_\V{\$moore\_1}_\V{\$local\_1}_\V{moore\_1}]_\2}}
+\L{\LB{__\V{Moore\_sum9\_tab}_\V{sum9\_tab\_parse}}}
+\L{\LB{}}
+\L{\LB{\K{linsert}_\V{func\_list}_0_\V{sum4\_tab}_\V{sum5\_tab}_\2}}
+\L{\LB{__\V{sum8\_tab}_\V{sum9\_tab}}}
+\L{\LB{}}
+\L{\LB{\K{set}_\V{casdir}_\V{\$env}(\V{CASDIR})}}
+\L{\LB{}}
+\L{\LB{\C{}\V{\#} Cellsim tbl}}
+\CE{}\L{\LB{\V{Func}_\V{cmd}_\V{tunnel}_\2}}
+\L{\LB{__[\V{ConexSpec}_\V{\$vn\_3}_\V{\$local\_3}_\V{vn\_3}]_\2}}
+\L{\LB{__\-\V{f}_\V{tunnel}.\V{pgm}}}
+\L{\LB{\V{Func}_\V{cmd}_\V{brain}_\2}}
+\L{\LB{__[\V{ConexSpec}_\V{\$moore\_2}_\V{\$local\_2}_\V{moore\_2}]_\2}}
+\L{\LB{__\-\V{f}_\V{\$casdir}\1\V{data}\1\V{cellsim}\1\V{Rules}\1\V{brain}.\V{pgm}}}
+\L{\LB{}}
+\L{\LB{\K{linsert}_\V{func\_list}_0_\V{tunnel}_\V{brain}}}
+\L{\LB{}}
+\L{\LB{\K{set}_\V{life}}\Tab{16}{\S{}\"00U100000\"\SE{}}}
+\L{\LB{\K{set}_\V{ink8}}\Tab{16}{\S{}\"UUU1UUUUU\"\SE{}}}
+\L{\LB{\K{set}_\V{maj9}}\Tab{16}{\S{}\"0000011111\"\SE{}}}
+\L{\LB{\K{set}_\V{anneal9}}\Tab{16}{\S{}\"0000101111\"\SE{}}}
+\L{\LB{}}
+\L{\LB{\V{sum8\_tab}_\V{rbind}_\V{\$life}}}
+\L{\LB{\V{sum9\_tab}_\V{rbind}_\V{\$anneal9}}}

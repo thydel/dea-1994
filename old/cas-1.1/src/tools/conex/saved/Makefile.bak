@@ -1,0 +1,30 @@
+include $(CELLDIR)/make/std-vars
+
+INCLUDES = -I$(CELLDIR)/include
+CFLAGS = $(INCLUDES)
+CC = gcc $(CC_DEBUG_FLAGS) $(CC_OPTIM_FLAGS)
+
+CMDNAME = conex
+
+SRCS = \
+	$(CMDNAME).c \
+	cell.c \
+	cgen.c \
+	str.c
+
+HEADERS =
+
+CELL_LIBS = $(CELLDIR)/lib
+
+LIBS = $(CELL_LIBS)/util.a
+
+OBJS = $(SRCS:.c=.o)
+EXECS = $(CMDNAME)
+
+top: $(CMDNAME)
+
+include $(CELLDIR)/make/bin-targets
+
+include $(CELLDIR)/make/std-targets
+
+# DO NOT DELETE THIS LINE -- make depend depends on it.

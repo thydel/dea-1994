@@ -1,0 +1,666 @@
+\documentclass[a4paper,dvips]{slides}
+\usepackage[francais,english]{babel}
+\usepackage{ifthen}
+\usepackage{epsfig}
+\usepackage{xspace}
+
+\usepackage{Sty/fig-cap}
+\usepackage{Sty/simple}
+
+%%\onlyslides{1-999}
+
+\renewcommand{\arule}[1]{\emph{\mbox{#1}}} % CA rule
+\renewcommand{\asquare}[1]{\ensuremath{#1^{2}}}
+\newcommand{\agen}[1]{gen.\,#1}
+\newcommand{\agencnt}[1]{#1\,gen.}
+\newcommand{\aplane}[1]{bit #1}
+
+\newenvironment{mynote}{\begin{note}\begin{scriptsize}}{\end{scriptsize}\end{note}}
+
+\newcommand{\mytitle}[1]{\begin{center}\begin{large}#1\end{large}\end{center}}
+\newcommand{\mystitle}[1]{\begin{center}#1\end{center}}
+
+\newcommand{\myslide}[3]{%
+  \begin{slide}
+    \mystitle{#1}
+    \vspace{\bigskipamount}
+    #2
+  \end{slide}
+  \begin{mynote}
+    #3
+  \end{mynote}
+}
+
+\sloppy
+\selectlanguage{francais}
+
+\begin{document}
+
+\addtolength{\textheight}{\topmargin}
+\addtolength{\textheight}{\headheight}
+\addtolength{\textheight}{\headsep}
+\addtolength{\textheight}{\footskip}
+
+\setlength{\topmargin}{0pt}
+\setlength{\headheight}{0pt}
+\setlength{\headsep}{0pt}
+\setlength{\footskip}{0pt}
+
+%%
+%%% INTRO
+%%
+
+%%
+%% TALK TITLE
+%%
+\begin{center}
+  \begin{Large}
+    Exploration et visualisation\\
+    d'espaces du calcul cellulaire
+  \end{Large}
+  \bigskip
+  \begin{large}
+    Thierry Delamare\\
+  \end{large}
+  \bigskip
+  \bigskip
+  DEA d'intelligence artificielle\\
+  Universit\'e Paris-8 et Paris-13\\
+  \bigskip
+  \today
+  \bigskip
+\end{center}
+\bigskip
+\bigskip
+\bigskip
+\mySfigure{twothirds}{dump}{qmean-9-384}%
+{\arule{Qmean} \asquare{512} \agen{384} \aplane{3}}
+
+%%
+%% TALK STRUCTURE
+%%
+%%\begin{slide}
+%%  \mytitle{Structure de l'expos\'e\,:}
+%%  
+%%  Les r\`egles utilis\'ees.
+%%
+%%  Les architectures des moteurs r\'ealis\'es.
+%%
+%%  Les visualisations r\'ealis\'ees.
+%%
+%%  D\`es r\`egles aux espaces de r\`egles.
+%%  
+%%  Du cellulaire au SIMD.
+%%\end{slide}
+
+\begin{slide}
+  \begin{center}
+    \begin{Large}
+      Th\`emes de l'expos\'e\,:
+    \end{Large}
+  \end{center}
+  
+  R\`egles et espaces de r\`egles.
+  
+  Architecture des moteurs de calcul et \'equi\-valence cellulaires-SIMD.
+  
+  Exploration et visualisation de trajectoires.
+\end{slide}
+
+%%
+%%% RULES USED
+%%
+\begin{slide}
+  \mytitle{Trois r\`egles additives\\
+    et leurs tables secondaires\,:}
+  \begin{tabbing}
+    XXXXXX\=\kill
+    \arule{Life}\>\texttt{00U100000}\\
+    \arule{Anneal}\>\texttt{0000101111}\\
+    \arule{Qmean}\>\texttt{mask = 3; match = 0; delta = -1;}\\
+  \end{tabbing}
+  \begin{scriptsize}
+    \vspace{-\bigskipamount}
+    \begin{tabbing}
+      XX\=\kill
+      \>\texttt{/* Qmean secondary table computation */}\\
+      \>\texttt{/* Construct Mean */}\\
+      \>\texttt{m = (SUM + C) / 9;}\\
+      \>\texttt{/* Destruct it */}\\
+      \>\texttt{return~m~\&~mask~==~match~?~m~:~m~+~delta;}
+    \end{tabbing}
+  \end{scriptsize}
+  \bigskip
+  \mySthreefigure{full}{dump}{hor}{life-00}{anneal-00}{qmean-9-300}%
+  {\begin{scriptsize}
+    \arule{Life} \asquare{128} \agen{128},
+    \arule{Anneal} \asquare{256} \agen{256},\\
+    \arule{Qmean} \asquare{512} \agen{300} \aplane{3}
+    \end{scriptsize}}
+\end{slide}
+
+%%\begin{mynote}
+%%  THE RULES USED
+%%
+%%  Toutes ces r\`egles travaillent sur des espaces de dimension 2, en
+%%  voisinnage de Moore.
+%%
+%%  Toutes sont des r\`egles additives.\\
+%%  Leurs tables de transitions peuvent \`etre exprim\'e par une table
+%%  secondaire, dont les entr\'ees sont fonction de la somme du voisinnage.
+%%
+%%  \arule{Life} et \arule{Anneal} sont des r\`egle binaire (le nombre
+%%  d'\'etats par cellule est 2).
+%%
+%%  Le nombre d'\'etats de \arule{Qmean} est 256.
+%%
+%%  La r\`egle \arule{Anneal} est un vote majoritaire perturb\'e.
+%%  Vichniac la n\^ome \arule{M46789}, le nom \arule{Anneal} est du \`a
+%%  Margolus et Toffoli.
+%%
+%%  La r\`egle \arule{Qmean} \`a une taille virtuelle de $2^{72}$ bytes.
+%%  Sa table secondaire \`a une taille de $2^{12}$ bytes.
+%%  
+%%  Le moteur cellulaire utilis\'e pour \arule{Qmean} fournit un
+%%  voisinnage virtuel compos\'e  de la cellule centrale (C) et de la
+%%  somme des huit voisins (SUM).
+%%
+%%  J'ais d\'efini \arule{Qmean} pour tester ce moteur cellulaire.
+%%
+%%  LIFE BITMAP
+%%
+%%  Chaque visualisation identifie la r\`egle utilis\'e, la taille de
+%%  l'espace et la g\'en\'eration ou la s\'equence de g\'en\'eration visualis\'ee.
+%%  
+%%  Cette visualisation montre une configuration cellulaire
+%%  situ\'e sur une trajectoire.
+%%
+%%  La configuration cellulaire initiale des trajectoires visualis\'e est
+%%  par d\'efaut une chaine de bit obtenu par tirage \`a pile ou face.
+%%
+%%  ANNEAL BITMAP
+%%
+%%  Les configurations cellulaire des chaines de bits dot\'e d'une
+%%  structure d'interconnection locale.
+%%
+%%  Le choix d'une structure d'interconnection fixe un des param\`etre
+%%  (une des dimensions) du calcul cellulaire.
+%%
+%%  Un autre param\`etre est donn\'e par la r\`egle ou fonction de transition.
+%%  A structure d'interconnexion constante le nombre de r\`egle est fini.
+%%
+%%  Le dernier param\`etre est fix\'e par le choix d'une configuration
+%%  cellulaire initiale.
+%%\end{mynote}
+
+%%
+%%% CELLULAR MOTORS
+%%
+
+\begin{slide}
+  \mytitle{Les moteurs\,:}
+  \myStwofigureA{full}{fig}{hor}{apply-1}{func-4}%
+  {Pipeline d'application de \arule{Life} et \arule{Anneal}\\
+    et deux tables non disjointes}
+  \mySfigure{full}{fig}{func-7}%
+  {Fonction d'application du voisinage de \arule{Qmean}}
+\end{slide}
+
+%%\begin{mynote}
+%%  MOTOR PIPELINE
+%%
+%%  Cette figure montre comment pipeliner la fonction de mapping pour un
+%%  voisinage de Moore, r\'eduisant l'obtention d'un nouvel index \`a
+%%  1~shift et 3~copies, \`a la place des 9~copies n\'ecessaires en
+%%  l'absence de pipeline.
+%%
+%%  TWO TABLE
+%%
+%%  Mise en {\oe}uvre de deux AC coordonn\'es par l'interm\'ediaire de deux
+%%  r\'eseaux d'interconnexions non disjoints partageant un m\^eme espace
+%%  d'exploitation, permettant la transmission d'information d'un plan
+%%  cellulaire \`a l'autre.
+%%
+%%  SPECIAL NEIGHBOURHOOD
+%%
+%%  Une fonction d'application pour un voisinage de Moore o\`u l'addition
+%%  des cellules sources remplace leur concat\'enation. %
+%%  Les connexions barr\'ees sont activ\'ees au cycle~2, et les connexions
+%%  doublement barr\'ees au cycle~3 du pipeline.
+%%\end{mynote}
+
+%%
+%% ANNEAL SPECIAL SECTION
+%%
+
+\begin{slide}
+  \mystitle{Leur utilisation pour l'exploration}
+  \mySfigure{full}{plot}{anneal-04}%
+  {Populations et tailles des fronti\`eres normalis\'ees pour 4~espaces
+    initiaux de taille crois\-sante}%
+  \mySfigure{full}{plot}{anneal-02}%
+  {\'Evolution de la population de~\arule{Anneal} lors
+    d'un changement du nombre d'\^iles}%
+\end{slide}
+
+%%\begin{mynote}
+%%  La taille des fronti\`eres est une approximation par la diff\'erence bit
+%%  \`a bit entre l'espace de g\'en\'eration~$n$ et~$n-1$.
+%%
+%%  Cette figure permet de comprendre l'existence des points
+%%  d'inflexions de la courbe d'\'evolution de anneal.
+
+%%  R\'eductions int\'egrales normalis\'ees des populations des trajectoires
+%%  associ\'ees \`a 4~espaces initiaux de tailles respectives:~$2^{128}$,
+%%  $2^{256}$, $2^{512}$ et $2^{1024}$. %
+%%  Le plot de gauche pr\'esente le logarithme du plot de droite.
+%%\end{mynote}
+
+%%
+%%% VISUALISATIONS DONE
+%%
+
+%%
+%% LIFE XOR SEQUENCE AND SUM CONTOUR PLOT
+%%
+\begin{slide}
+  \mytitle{Visualisations\,:}
+  \mystitle{Diff\'erences et accumulations}
+  \mySfigure{full}{dump}{life-time-xor}%
+  {\arule{Life} \asquare{64} \agencnt{6}}
+  \myStwofigure{full}{plot}{hor}{lifex-sum-1}{lifex-sum-2}%
+  {\arule{Life} \asquare{64} \agencnt{512}}
+\end{slide}
+
+%%\begin{mynote}
+%%  LIFE XOR SEQUENCE
+%%
+%%  qualification des visualisation par le type de r\'eduction op\'er\'e.
+%%
+%%  Modes de r\'eduction:\\
+%%  Extraction\\
+%%  Accumulation\\
+%%  Diff\'erence\\
+%%  Relativiste.
+%%  
+%%  S\'equence de r\'eductions diff\'erentielles.
+%%
+%%  LIFE AND LIFE XOR SUM CONTOUR PLOT
+%%
+%%  Visualisation par countours\\
+%%  une readuction par accumulation\\
+%%  une r\'eduction par accumulation de diff\'erence.
+%%
+%%  Filtre de mise en valeur des propri\'et\'es de la trajectoire\\
+%%  Par exemple, possible r\'ev\'elateur d'invariant par changement
+%%  d'echelle d'espace pour life.
+%%
+%%  R\'ev\'elateur de l'activit\'e au fronti\`eres pour anneal.
+%%\end{mynote}
+
+%%
+%% LIFE AND LIFE XOR, 3D VIS
+%%
+\begin{slide}
+  \mystitle{Espace-temps}
+  \mySfigure{full}{dump}{life-3d-New}%
+  {\arule{Life} \asquare{64} \agencnt{512}}
+\end{slide}
+
+%%\begin{mynote}
+%%  extraxion
+%%
+%%  diff\'erence + extraxion
+%%\end{mynote}
+
+  \mySthreefigure{full}{dump}{hor}{tsum-128x3-diag-1}{anneal-256-rel}{life-256x3-relmov}%
+  {foobar}
+  \mySthreefigure{full}{dump}{hor}{tsum-128-faces}{tsum-128-trans-byte}{tsum-128-trans-bits}%
+  {barfoo}
+  \myStwofigureB{full}{dump}{hor}{tsum-ray-one}{anneal-sum}{foo}{plot}
+\begin{slide}
+  \mySfigure{full}{dump}{slide-2}{foo}
+\end{slide}
+
+%%
+%% LIFE FIXED AND MOBILE RELATIVISTIC PROJECTION
+%% ANNEAL FIXED RELATIVISTIC PROJECTION
+%%
+\begin{slide}
+  \mystitle{Projections relativistes \`a cellule de r\'ef\'erence fixe et mobile}
+  \myStwofigureA{full}{dump}{hor}{life-256x3-rel}{life-256x3-relmov}%
+  {\arule{life} \acube{256}}
+  %%
+  \mystitle{Projection relativiste sur les 3~axes d'un cube d'espace-temps}
+  \mySfigure{full}{dump}{anneal-256x3-rel}%
+  {\arule{Anneal} \acube{256}}  
+\end{slide}
+
+%%\begin{mynote}
+%%  LIFE FIXED RELATIVISTIC PROJECTION
+%%
+%%  Extraction relativiste.\\
+%%  R\'ev\'elateur dense de la structure globale de l'espace-temps.
+%%
+%%  LIFE MOBILE RELATIVISTIC PROJECTION
+%%
+%%  ANNEAL FIXED RELATIVISTIC PROJECTION
+%%\end{mynote}
+
+%%
+%%% FROM RULES TO RULE SPACE
+%%
+\begin{slide}
+  \mytitle{Des r\`egles aux espaces de r\`egles\,:}
+  \begin{footnotesize}
+    Soit une r\`egle $R$ d'un AC de $k = 2^n$ \'etats,\\
+    $d$ dimensions et de rayon de voisinage $r$.\\
+    $N = k^{dr+1} = 2^b$ est le nombres d'entr\'ees de la table.
+  \end{footnotesize}
+  \begin{eqnarray}
+    \footnotesize
+    \lambda & = & (N-\#0)/N \nonumber \\
+    \small
+    {\rm flip} & = & \frac{1}{N}\sum_{i=0}^{N-1}{\rm
+      diff}(R_{i}-R_{(i+1){\rm mod}N}) \nonumber \\
+    {\rm diff}(x) & = & \left\lbrace
+    \begin{array}{l}
+      1\ {\rm if}\ x \ne 0\\ 0\ {\rm if}\ x = 0
+    \end{array} \right. \nonumber
+  \end{eqnarray}
+  \begin{footnotesize}
+    Pour un AC de $k = 2$ \'etats les $b = dr+1$ bits du voisinage donnent
+    un vecteur $E$ de $b$ valeurs.
+  \end{footnotesize}
+  \begin{eqnarray}
+    E_{b}& = &\frac{1}{N} \sum_{i = 0}^{N/2 - 1} R_{e_{ib}} -
+    R_{e_{ib} + 2^b} \nonumber \\
+    e_{ib}& = &2i + i \bmod 2^b \nonumber \\
+    \hat{E}& = &\frac{1}{b} \sum_{i = 0}^{b} E_b \nonumber
+  \end{eqnarray}
+\end{slide}
+
+%%
+%% ENCHASSEMENT
+%%
+\begin{slide}
+  \mystitle{Valeurs de \alambda et de l'ench\^assement pour les
+    $\frac{0\cdots 500}{59049}$ AC additifs \texttt{01U}}
+  \mySfigure{full}{plot}{E-lambda-1}%
+  {Valeurs de \protect\alambda et $E$}
+  \begin{eqnarray}
+    E_{life} & = & {0.617\cdots 0.890\cdots 0.617} \nonumber \\
+    \hat{E}_{life} & = & 0.647569 \nonumber \\
+    \lambda_{life} & = & 0.273438 \nonumber
+  \end{eqnarray}
+\end{slide}
+
+%%\begin{mynote}
+%%  Nous avons calcul\'e les valeurs de \alambda et \En{} pour un
+%%  sous-espace \'echantillon de l'espace des r\`egles binaires \`a
+%%  voisinage de Moore.
+%%
+%%  Le sous espace est constitu\'e des r\`egles additives, centre inclu,
+%%  dont la table secondaire supporte les fonctions constantes
+%%  \aquote{z\'ero} et \aquote{un} et la fonction \aquote{unchanged}.
+%%  
+%%  L'espace contient donc $3^{10} = 59049$ r\`egles.
+%%
+%%  Les valeurs plot\'ees pour \En sont:~$En_{centre}$, $En_{rayon}$
+%%  et la valeur moyenne de \En sur tous les  voisins.
+%%
+%%  Le pic montre la position de \arule{Anneal} dans le sous-espace de
+%%  r\`egles.
+%%\end{mynote}
+
+%%
+%% FROM CA TO SIMD
+%%
+\begin{slide}
+  \mytitle{Du cellulaire au SIMD\,:}
+  Transformation d'une architecture SIMD en AC \`a voisinage sp\'ecial pour la
+  m\'emoire et les instruction.
+  \myStwofigureA{full}{fig}{hor}{gap-pe}{gap}%
+  {Structure d'un PE GAPP\\
+    et fonction d'application de la table \arule{Gapp}}
+  Transformation de la table de transition d'un AC en DFA compilable en
+  algoritme SIMD.
+  \myStwofigureA{full}{fig}{hor}{life-tree}{life-dfa}%
+  {Une partie de l'arbre de d\'ecodage de \arule{Life}\\
+    et Le DFA de \arule{Life}}
+\end{slide}
+
+%%\begin{mynote}
+%%  PE GAPP
+%%
+%%  Reproduite d'apr\`es NCR85a sans faire figurer le registre CM
+%%
+%%  PE GAPP TABLE
+%%
+%%  Les fl\`eches figurant sur le sch\'ema indique les chemins de donn\'ees des
+%%  bits constituant l'index de la table \arule{gapp}. %
+%%  Les conditions d'affectation et les temps de cycles internes \`a la
+%%  fonction d'application sont indiqu\'es \`a droite du sch\'ema.
+%%\end{mynote}
+
+%%
+%%% CONCLUSION
+%%
+\begin{slide}
+  \begin{center}
+    \begin{Large}
+      Conclusion
+    \end{Large}
+  \end{center}
+  \mytitle{Propositions pour une \'etude pratique des espaces du calcul
+    cellulaire\,:}
+
+  Un usage g\'en\'eralis\'e de table de transitions.
+  \begin{itemize}
+  \item Des moteurs rapides pour le calcul cellulaire sur machine
+    s\'equentielle.
+  \item Des transformations cellulaire-SIMD.
+  \end{itemize}
+  Des m\'ethodes de visualisations d'espace-temps.
+
+  Une mesure de l'ench\^assement des tables de transitions.
+\end{slide}
+
+%%
+%% TUBE-WORM MOSAIC
+%%
+\begin{slide}
+  \mystitle{Huit variations sur les param\`etres statiques d'une r\`egle}
+  \mySfigure{full}{dump}{tube-worm-mix}%
+  {\arule{Tube-Worm} \asquare{256}}
+\end{slide}
+
+%%\begin{mynote}
+%%  TUBE-WORM MOSAIC
+%%  
+%%  Une composition construite avec 8~s\'equences~(de haut en bas), de
+%%  8~espaces chacune~(de gauche \`a droite) de la r\`egle appliqu\'ee sur le
+%%  m\^eme espace initial.
+%%  
+%%  L'axe vertical est celui de la variation dans l'espace des r\`egles,
+%%  via une variation des param\`etres statique de tube-worm.
+%%\end{mynote}
+
+%%
+%%
+%% ANNEAL 3D
+%%
+\begin{slide}
+  \mystitle{R\'eduction implicite par extraction}
+  \mySfigure{full}{dump}{anneal-3d}{\arule{Anneal} \acube{512}}
+\end{slide}
+
+%%\begin{mynote}
+%%  ANNEAL 3D
+%%
+%%  R\'eduction par extraction implicite\\
+%%  par projection solide d'espace-temps 3-D.
+%%
+%%  R\'ev\'elateur des textures et des structures construite de
+%%  l'espace-temps.
+%%\end{mynote}
+
+%%
+%% ANNEAL SUM ELEVATION SURFACE
+%%
+\begin{slide}
+  \mystitle{Surface d'\'el\'evation d'une r\'eduction explicite\,: $\sum_{i=0}^{n-1}t_{i}xy$}
+  \mySfigure{full}{plot}{anneal-sum}%
+  {\arule{Anneal} \asquare{64} \agencnt{400}}
+\end{slide}
+
+%%\begin{mynote}
+%%  ANNEAL SUM ELEVATION SURFACE
+%%
+%%  R\'eduction par accumulation explicite.
+%%
+%%  + R\'eduction par extraction implicite.
+%%
+%%  La r\'eduction se fait par projection sur un plan de sommation
+%%  parall\`element \`a l'axe du temps.
+%%
+%%  
+%%\end{mynote}
+
+%%
+%% QMEAN RAY-TRACED 
+%%
+\begin{slide}
+  \mystitle{Visualisation par lancer de rayons\\
+    sur iso-surface d'espace-temps}
+  \mySfigure{full}{dump}{tsum-ray-one}%
+  {\arule{Qmean} \acube{128}}
+\end{slide}
+
+%%\begin{mynote}
+%%  QMEAN RAY-TRACED
+%%
+%%  Extraction double:\\
+%%  iso-surface explicite et implicite de projection 3D -> 2D
+%%
+%%  espace initial = gen 8192 de \arule{Anneal}.
+%%\end{mynote}
+
+%%
+%% QMEAN SIX FACES OF SPACE-TIME AND QMEAN CELL TRANSPARENCY
+%%
+\begin{slide}
+  \mystitle{Faces de cube d'espace-temps et Transparence utilisant
+    tout l'espace de valeur d'une cellule}
+  \myStwofigure{full}{dump}{vert}{tsum-128x3-faces}{tsum-128x3-trans-byte}%
+  {\arule{Qmean} \acube{128}}
+\end{slide}
+
+%%\begin{mynote}
+%%  QMEAN SIX FACES OF SPACE-TIME
+%%  
+%%  Ce sont des trances d'espace-temps.
+%%  
+%%  QMEAN CELL TRANSPARENCY
+%%  
+%%  R\'eduction par accumulation.
+%%\end{mynote}
+
+%%
+%% QMEAN BIT-PLANES TRANSPARENCY
+%%
+\begin{slide}
+  \mySfigure{full}{dump}{tsum-128x3-trans-bits}%
+  {\arule{Qmean} \acube{128}}
+\end{slide}
+
+%%\begin{mynote}
+%%  QMEAN BIT-PLANES TRANSPARENCY
+%%
+%%  Extraction (tranche d'etats) + Accumulation
+%%
+%%  Transparence \'eclat\'ee par plan de bits.
+%%
+%%  Les cinq bits de poids fort de la r\`egle sont utilis\'es respectivement
+%%  pour r\'ealiser une transparence sur les trois axes de l'espace-temps.
+%%\end{mynote}
+
+%%
+%% QMEAN SLICE SEQUENCE
+%%
+\begin{slide}
+  \mystitle{S\'equence de tranches d'espace-temps}
+  \mySfigure{full}{dump}{tsum-128x3-diag}%
+  {\arule{Qmean} \acube{128}}
+\end{slide}
+
+%%\begin{mynote}
+%%  QMEAN SLICE SEQUENCE
+%%  
+%%  R\'eduction par Extraction.
+%%  
+%%  Tranche non perpendiculaire \`a l'axe du temps.
+%%  
+%%  R\'ealis\'es en g\'eom\'etrie discr\`ete (distance de Manhattan).
+%%\end{mynote}
+
+%%% XU
+%%
+\begin{slide}
+  \mystitle{Un AC irr\'eductible \`a sa table}
+  \mySfigure{full}{dump}{xu-photo-1}%
+  {La dynamique de l'AC \arule{Xu}}%
+\end{slide}
+
+%%\begin{mynote}
+%%  Un cube d'espace-temps d'ar\`ete~128, rendu par ray-tracing
+%%  d'iso-sur\-face. %
+%%\end{mynote}
+
+%%
+%%
+%%
+\begin{slide}
+  \mySfigure{full}{dump}{xu-photo-1-top}%
+  {Un rendu d'une tranche des valeurs du dernier
+    plan de la figure pr\'ec\'edente}%
+\end{slide}
+
+%%
+%%
+%%
+\begin{slide}
+  \mySfigure{full}{dump}{xu-Cfilm-1-1}%
+  {D'autres points de vues sur la dynamique de \arule{Xu}}%
+\end{slide}
+
+%%
+%%
+%%
+\begin{slide}
+  \mySfigure{full}{dump}{xu-Cfilm-1-2}%
+  {Et un \'epluchage par iso-surface}%
+\end{slide}
+
+%%\begin{mynote}
+%%  {R\'ealis\'e en variant lin\'eairement la valeur de seuil d'extraction d'iso-sur\-face}
+%%\end{mynote}
+
+\end{document}
+
+%% Local Variables: 
+%% mode: auto-fill
+%% iso-accents-minor-mode: nil
+%% TeX-master: t
+%% Local IspellParsing: "latex-mode ~latin1"
+%% Local IspellPersDict: "~/.ispell_lisp"
+%% LocalWords: "paper dvips slides francais english babel ifthen epsfig xspace"
+%% LocalWords: "Sty fig-cap gen mynote pt Thierry Delamare DEA twothirds dump XX"
+%% LocalWords: "qmean SIMD XXXXXX Anneal mask secondary computation Construct it"
+%% LocalWords: "Mean SUM Destruct return hor anneal apply func santes lifex-sum"
+%% LocalWords: "life-time-xor lifex-sum Espace-temps d-New relativiste rel tsum"
+%% LocalWords: "relmov d'espace-temps anneal-sum iso-surface tsum-ray-one tsum"
+%% LocalWords: "trans-byte trans-bits diag E-lambda tube-worm-mix Tube-Worm PE"
+%% LocalWords: "gap-pe GAPP gap gapp life-tree life-dfa DFA cellulaire-SIMD l'AC"
+%% LocalWords: "xu-photo xu xu-Cfilm \'equi"
+%% End: 

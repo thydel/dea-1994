@@ -1,0 +1,10 @@
+CC_OPTIM_FLAGS = -O2
+CC_DEBUG_FLAGS = -g
+
+XINCLUDES = -I/usr/X386/include
+XLIBS = -lm -L/usr/X386/lib -lX11 -lsocket -lnsl -lXbsd
+RANLIB = true
+CB = cb
+TCLDIR = /usr/local/tcl/src
+TCLLIB = $(TCLDIR)/tclX6.4c
+

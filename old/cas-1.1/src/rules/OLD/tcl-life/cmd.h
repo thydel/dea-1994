@@ -1,0 +1,9 @@
+int cmd_trans(ClientData, Tcl_Interp*, int, char**);
+int cmd_trans_next(ClientData, Tcl_Interp*, int, char**);
+int cmd_trans_extract(ClientData, Tcl_Interp*, int, char**);
+int cmd_frame(ClientData, Tcl_Interp*, int, char**);
+int cmd_frame_fill(ClientData, Tcl_Interp*, int, char**);
+int cmd_plane(ClientData, Tcl_Interp*, int, char**);
+int cmd_plane_extract(ClientData, Tcl_Interp*, int, char**);
+int cmd_dump(ClientData, Tcl_Interp*, int, char**);
+int cmd_dump_next(ClientData, Tcl_Interp*, int, char**);

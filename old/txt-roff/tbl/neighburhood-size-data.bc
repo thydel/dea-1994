@@ -1,0 +1,50 @@
+scale = 10
+
+define l(x) {
+  auto e, f, i, m, n, v, z
+
+  /* return something for the special case. */
+  if (x <= 0) return (1 - 10^scale)
+
+  /* Precondition x to make .5 < x < 2.0. */
+  z = scale;
+  scale += 4;
+  f = 2;
+  i=0
+  while (x >= 2) {  /* for large numbers */
+    f *= 2;
+    x = sqrt(x);
+  }
+  while (x <= .5) {  /* for small numbers */
+    f *= 2;
+    x = sqrt(x);
+  }
+
+  /* Set up the loop. */
+  v = n = (x-1)/(x+1)
+  m = n*n
+
+  /* Sum the series. */
+  for (i=3; 1; i+=2) {
+    e = (n *= m) / i
+    if (e == 0) {
+      v = f*v
+      scale = z
+      return (v/1)
+    }
+    v += e
+  }
+}
+
+define nvoisin(dim, dist) {
+	return ((2 * dist + 1) ^ dim)
+}
+
+for (dim = 1; dim < 100; ++dim) {
+	for (dist = 1; dist < 100; ++dist) {
+		print l(nvoisin(dim, dist)), "\n"
+	}
+	print "\n"
+}
+
+quit

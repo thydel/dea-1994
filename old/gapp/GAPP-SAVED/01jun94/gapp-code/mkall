@@ -1,0 +1,6 @@
+cat $* | (
+	while x=`line`
+	do
+		mkfc $x
+	done
+)

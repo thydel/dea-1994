@@ -1,0 +1,10 @@
+dir ../../lib/new
+dir ../../lib/extract
+dir ../../lib/frame
+dir ../../lib/util
+dir ../../lib/conexlib
+dir ../../lib/rule
+dir /usr/uruk/tcldev/tcl7.3
+dir /usr/uruk/tcldev/tclX7.3a/src
+dir ..
+break cmd_Time2D

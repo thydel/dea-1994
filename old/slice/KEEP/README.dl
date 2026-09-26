@@ -1,0 +1,28 @@
+
+[ For the mathematically challenged (meaning me, until I looked it up),
+  Bresenham's algorithm is a neato and efficient way to enumerate all of
+  (actually "most of") the points between two endpoints.  Most such
+  algorythms take as an input parameter the resolution wanted -- since
+  it would be a waste to calculate at a higher resolution than you use
+  (you'd just have a lot of points that would "go in the same place").
+  This algorythm uses only integer arithmetic and assumes that you want
+  all the contiguous points which can be represented with integers.  
+
+  I expect that there's something like this in the X11 Phigs code.  But
+  since this submission is short and clean and relatively easy to under-
+  stand, I think it's useful and am therefore posting it.  Note that it
+  has no man page or README or Makefile, and in the average case I would
+  reject a submission absent of any of those three.  If I get a flood of
+  small C functions in response to this submission, I'll have to make up
+  some rules about what they have to include.  Heck, perhaps I'll start
+  a library and post updates to it.  (That's not a promise!) 
+
+  --vix ]
+
+This is something I've hoped to see on the net for years. And I can't
+guess how many times I've seen requests for something like this. It
+turned out to be trivial to build, once I spent a couple of weeks of
+my spare time researching it... (I don't have a lot of spare time. :-)
+So here it is, a simple, fast, 3D version of Bresenham's line drawing
+algorithm.
+

@@ -1,0 +1,106 @@
+pi=3.14159265358979323846
+
+define sterling(n) {
+	return ((n / e(1))^n * sqrt(2 * pi * n))
+}
+
+define fact(n) {
+	auto i
+
+	if (n < 1) {
+		return (1)
+	}
+	if (!fact[n]) {
+		fact[n] = n * fact(n - 1)
+	}
+	return (fact[n])
+}
+
+define pow2(n) {
+	if (!pow2[n]) {
+		pow2[n] = 2^n
+	}
+	return (pow2[n])
+}
+
+define cnp(n, p) {
+	return (fact(n) / (fact(p) * fact(n - p)))
+}
+
+define evenp(n) {
+	return (n % 2)
+}
+
+define one_cnt(cnt, pat) {
+	auto i, sum, saved_scale
+
+	saved_scale = scale
+
+	scale = 0
+	for (i = 0; i < cnt; ++i) {
+		if (evenp(pat)) {
+			sum = sum + 1
+		}
+		pat = pat / 2
+	}
+
+	scale = saved_scale
+
+	return (sum)
+}
+
+define bit_cnt_prob(n, p) {
+	return (cnp(n, p) / pow2(n))
+}
+
+define bit_cnt_log(n, p) {
+	auto tmp
+
+	tmp = cnp(n, p)
+	tmp = l(tmp)
+	return (tmp)
+}
+
+define int_bit_cnt_prob(k, n) {
+	return (bit_cnt_prob(k, one_cnt(k, n)))
+}
+
+define entrop(k) {
+	auto n, i, tmp
+
+	n = pow2(n)
+	for (i = 0; i < n; ++i) {
+		tmp = int_bit_cnt_prob(k, i)
+		tmp = tmp * l(tmp)
+		print -tmp, "\n"
+	}
+}
+
+define probn(k) {
+	auto n, i, tmp
+
+	n = pow2(k)
+	for (i = 0; i < n; ++i) {
+		tmp = int_bit_cnt_prob(k, i)
+		print "prob_n[", i, "] = ", tmp, "\n"
+	}
+}
+
+define probk(k) {
+	auto n, i, tmp
+
+	for (i = 0; i <= k; ++i) {
+		tmp = bit_cnt_prob(k, i)
+		print "prob_k[", i, "] = ", tmp, "\n"
+	}
+}
+
+define log(k) {
+	auto n, i, tmp
+
+	for (i = 0; i <= k; ++i) {
+		tmp = bit_cnt_log(k, i)
+		print "log_k[", i, "] = ", tmp, "\n"
+	}
+}
+

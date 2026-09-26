@@ -1,0 +1,452 @@
+divert(-1)
+include(`gapp-lib.mgas')
+divert dnl
+
+################################################################
+
+define([xstate],[
+	extract 0
+	extract 1
+	extract 2
+	extract 3
+	extract 4
+	extract 5
+])
+
+def([xslices],[([base],[cnt])],[
+	# start xslices(base, cnt)
+	loop(i,ifelse(cnt,,1,cnt),[
+		gapp ns := ram eval(base + i)
+		extract 0
+	])
+	# end xslices
+])
+
+define([debugflag], [false])
+define([debugon], [define([debugflag],true)])
+define([debugoff], [define([debugflag],false)])
+def([debug],[([txt])],[
+	ifelse(debugflag,true,txt,)
+])
+
+define([traceflag], [false])
+define([traceon], [define([traceflag],true)])
+define([traceoff], [define([traceflag],false)])
+def([trace],[([txt])],[
+	gapp txt
+	ifelse(traceflag,true,xstate,)
+])	
+def([Gapp],[([txt])],[
+	gapp txt
+	ifelse(traceflag,true,xstate,)
+])
+
+define([hide],[ifelse(no,,$1,)])
+define([show],[ifelse(yes,yes,$1,)])
+
+################################################################
+
+def([hhline],[([dir],[dest],[cnt])],[
+	single
+	Gapp(ew := ns)
+	loop([i], ifelse(cnt,,1,cnt),[
+		Gapp(ew := dir; c := 1)
+		Gapp(c := cy)
+		Gapp(ew := c; ns := c)
+	])
+	Gapp(ram dest := c)
+])
+
+def([ehline],[([dest],[cnt])],[hhline([e],dest,cnt)])
+def([whline],[([dest],[cnt])],[hhline([w],dest,cnt)])
+def([hline],[([dest],[cnt])],[
+	ehline(dest,cnt)
+	whline(dest,cnt)
+])
+
+################################################################
+
+define([totest],opt)
+
+define([top],15)
+
+# zero plane
+alloc_name([ramzero],1)
+zero(ramzero)
+
+# one plane
+alloc_name([ramone],1)
+one(ramone)
+
+ifelse(totest,opt,[
+	# life plane
+	define([life],0)
+	zero(life)
+	
+	# states vector
+	define([states],2)
+	
+	# used by dfalifeopt
+	define([flag],1)
+],[
+])
+
+################################################################
+
+# step(incoming-bit, a-state, newstate-if-0, newstate-if-1) {
+#   if (current-state == a-state) {
+#     if (incoming-bit == 0) {
+#       newstate = newstate-if-0
+#     } else {
+#       newstate = newstate-if-1
+#     }
+#   }
+# }
+#
+# states are encoded by a bit vector (one bit per state)
+# states is base mem address of vector, state is index of state to step by
+#
+def([step],[([incoming],[states],[state],[iftrue],[iffalse])],[
+	# tmp plane
+	alloc_name([tmp],1)
+
+	# iftrue = (incoming == 1 && state == 1) ? 1 : 0
+	# incoming == 1 && state == 1
+	and(incoming, eval(states + state), tmp)
+	cond(tmp, ramone, ramzero, eval(states + iftrue))
+
+	# iffalse = (incoming == 0 && state == 1) ? 1 : 0
+	# incoming == 0 && state == 1
+	not(incoming)
+	and(incoming, eval(states + state), tmp)
+	cond(tmp, ramone, ramzero, eval(states + iftrue))
+
+	# state = 0
+	zero(state)
+
+	free_name([tmp])
+])
+
+def([full],[([incoming],[states])],[
+	step(incoming,states,1,1,2)
+	step(incoming,states,2,2,3)
+	step(incoming,states,3,3,4)
+	step(incoming,states,4,4,5)
+	step(incoming,states,5,5,5)
+	step(incoming,states,6,6,7)
+	step(incoming,states,7,7,8)
+	step(incoming,states,8,8,4)
+])
+
+def([dfalife],[([life])],[
+	debugoff
+	traceon
+
+	# states vector
+	# alloc_name([states],8)
+	# incoming plane
+	alloc_name([incoming],1)
+
+	# everybody in state 0
+	zero(states,8)
+	one(states)
+
+	# c
+	debug([print c 016])
+	mov(life, incoming)
+	step(incoming,states,0,1,6)
+	
+	# n 
+	debug([print n 112-667])
+	Gapp(ns := ram life)
+	Gapp(ns := n)
+	Gapp(c := ns)
+	Gapp(ram incoming := c)
+	step(incoming,states,1,1,2)
+	step(incoming,states,6,6,7)
+	
+	# s
+	debug([print s 112-223-667-778])
+	Gapp(ns := ram life)
+	Gapp(ns := s)
+	Gapp(c := ns)
+	Gapp(ram incoming := c)
+	step(incoming,states,1,1,2)
+	step(incoming,states,2,2,3)
+	step(incoming,states,6,6,7)
+	step(incoming,states,7,7,8)
+	
+	# e
+	debug([print e 112-223-334-667-778-889])
+	Gapp(ew := ram life)
+	Gapp(ew := e)
+	Gapp(ns := ew)
+	Gapp(c := ns)
+	Gapp(ram incoming := c)
+	step(incoming,states,1,1,2)
+	step(incoming,states,2,2,3)
+	step(incoming,states,3,3,4)
+	step(incoming,states,6,6,7)
+	step(incoming,states,7,7,8)
+	step(incoming,states,8,8,4)
+	
+	# w
+	debug([print w 112-223-334-445-667-778-884])
+	Gapp(ew := ram life)
+	Gapp(ew := w)
+	Gapp(ns := ew)
+	Gapp(c := ns)
+	Gapp(ram incoming := c)
+	step(incoming,states,1,1,2)
+	step(incoming,states,2,2,3)
+	step(incoming,states,3,3,4)
+	step(incoming,states,4,4,5)
+	step(incoming,states,6,6,7)
+	step(incoming,states,7,7,8)
+	step(incoming,states,8,8,4)
+	
+	# ne
+	debug([print ne Full])
+	Gapp(ew := ram life)
+	Gapp(ew := e)
+	Gapp(ns := ew)
+	Gapp(ns := n)
+	Gapp(c := ns)
+	Gapp(ram incoming := c)
+	full(incoming, states)
+	
+	# nw
+	debug([print nw Full])
+	Gapp(ew := ram life)
+	Gapp(ew := w)
+	Gapp(ns := ew)
+	Gapp(ns := n)
+	Gapp(c := ns)
+	Gapp(ram incoming := c)
+	full(incoming, states)
+	
+	# se
+	debug([print se Full])
+	Gapp(ew := ram life)
+	Gapp(ew := e)
+	Gapp(ns := ew)
+	Gapp(ns := s)
+	Gapp(c := ns)
+	Gapp(ram incoming := c)
+	full(incoming, states)
+	
+	# sw
+	debug([print sw Full])
+	Gapp(ew := ram life)
+	Gapp(ew := w)
+	Gapp(ns := ew)
+	Gapp(ns := s)
+	Gapp(c := ns)
+	Gapp(ram incoming := c)
+	full(incoming, states)
+	
+	# if state terminal newstate = 1
+	Gapp(ns := ram eval(states + 4))
+	Gapp(ew := ram eval(states + 8); c := 1)
+	Gapp(c := cy)
+	Gapp(ram life := c)
+
+	debugon
+	debug([print *])
+
+	debugoff
+	traceoff
+])
+
+###############################################
+# optimized version for life dfa
+
+define([pstate],[
+	print [state]
+	state2ascii
+	print
+])
+
+define([pmem],[
+	print [mem]
+	zone2ascii 0 9
+	print
+])
+
+define([pall],[
+	print $1
+	pmem
+	pstate
+])
+
+# en entre'e
+# ns = incomning bit
+# state is encoded by bit vector
+# src is current state to check
+# dst1 is new state if incoming bit is zero and current state is src
+# dst2 is new state if incoming bit is one and current state is src
+def([steplife],[([src],[dst1],[dst2])],[
+
+	# if flag == 1, new cycle, else dont move
+
+	# incoming = incoming & flag
+	Gapp(ew := ram flag)
+	Gapp(c := 0)
+	Gapp(c := cy)
+	Gapp(ns := c)
+
+	# !incoming & src -> dst1
+	Gapp(ew := ram eval(states + src))
+	Gapp(c := 0)
+	Gapp(c := bw)
+	Gapp(ram eval(states + dst1) := c)
+	Gapp(c := 0)
+
+	# incoming & src -> dst2
+	Gapp(c:= cy)
+	Gapp(ram eval(states + dst2) := c)
+
+	# flag = !incoming & flag
+	Gapp(ew := ram flag)
+	Gapp(c := 0)
+	Gapp(c := bw)
+	Gapp(ram flag := c)
+])
+
+def([fulllife],[
+	one(flag)
+	steplife(1,1,2)
+	steplife(2,2,3)
+	steplife(3,3,4)
+	steplife(4,4,5)
+	steplife(5,5,5)
+	steplife(6,6,7)
+	steplife(7,7,8)
+	steplife(8,8,4)
+])
+
+def([dfalifeopt],[([life])],[
+	debugon
+	traceoff
+
+	# everybody in state 0
+	zero(states,8)
+	one(states)
+	
+	debug([print [c 016]])
+	Gapp(ns := ram life)
+	one(flag)
+	steplife(0,1,6)
+	xslices(states, 8)
+	
+	debug([print [n 112-667]])
+	Gapp(ns := ram life)
+	Gapp(ns := n)
+	one(flag)
+	steplife(1,1,2)
+	steplife(6,6,7)
+	xslices(states, 8)
+	
+	debug([print [s 112-223-667-778]])
+	Gapp(ns := ram life)
+	Gapp(ns := s)
+	one(flag)
+	steplife(1,1,2)
+	steplife(2,2,3)
+	steplife(6,6,7)
+	steplife(7,7,8)
+	xslices(states, 8)
+	
+	debug([print [e 112-223-334-667-778-889]])
+	Gapp(ew := ram life)
+	Gapp(ew := e)
+	Gapp(ns := ew)
+	one(flag)
+	steplife(1,1,2)
+	steplife(2,2,3)
+	steplife(3,3,4)
+	steplife(6,6,7)
+	steplife(7,7,8)
+	steplife(8,8,4)
+	xslices(states, 8)
+	
+	debug([print [w 112-223-334-445-667-778-884]])
+	Gapp(ew := ram life)
+	Gapp(ew := w)
+	Gapp(ns := ew)
+	one(flag)
+	steplife(1,1,2)
+	steplife(2,2,3)
+	steplife(3,3,4)
+	steplife(4,4,5)
+	steplife(6,6,7)
+	steplife(7,7,8)
+	steplife(8,8,4)
+	xslices(states, 8)
+	
+	debug([print [ne Full]])
+	Gapp(ew := ram life)
+	Gapp(ew := e)
+	Gapp(ns := ew)
+	Gapp(ns := n)
+	fulllife
+	xslices(states, 8)
+	
+	debug([print [nw Full]])
+	Gapp(ew := ram life)
+	Gapp(ew := w)
+	Gapp(ns := ew)
+	Gapp(ns := n)
+	fulllife
+	xslices(states, 8)
+	
+	debug([print [se Full]])
+	Gapp(ew := ram life)
+	Gapp(ew := e)
+	Gapp(ns := ew)
+	Gapp(ns := s)
+	fulllife
+	xslices(states, 8)
+	
+	debug([print [sw Full]])
+	Gapp(ew := ram life)
+	Gapp(ew := w)
+	Gapp(ns := ew)
+	Gapp(ns := s)
+	fulllife
+	xslices(states, 8)
+
+	# if state terminal newstate = 1
+	Gapp(ns := ram eval(states + 4))
+	Gapp(ew := ram eval(states + 8))
+	Gapp(c := 1)
+	Gapp(c := cy)
+	Gapp(ram life := c)
+	
+	debugon
+	debug([print [*]])
+
+	debugoff
+	traceoff
+]) 
+
+################################################################
+
+ifelse(true,false,[
+	# make a 7 dot hline
+	hline(life, 2)
+],[
+	random
+	gapp c := ns
+	gapp ram life := c
+])
+
+# start of loop
+label 0
+
+gapp ns:= ram life
+#extract 0
+dfalifeopt(life)
+#dfalife(life)
+
+goto 0

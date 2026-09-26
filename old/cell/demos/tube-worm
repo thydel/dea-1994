@@ -1,0 +1,228 @@
+usage() {
+cat <<!
+$0	[-H{elp}] [-D{ebug}] [-R{show-Rule}
+	[-S{ave-film}] [-P{lay-film}]
+	[-T{mk-Table}] [-F{mk-Frame}]
+	[-s{ize} <power-of-two>(8)] [-l{oop} <int>(huge)] [-k{sKip} <int>(0)]
+	[-r{egion} <int>(all)]
+	[-h{ist}]
+	[-e{xtract-plane} <0-7>(0)]
+	[-a{larm} <0-3>(2)] [-i{tImer} <2-5>(3)]
+!
+}
+
+help() {
+cat <<!
+
+skip default to timer + 3 (show only frame n/(timer + 4))
+
+alarm = 0 means alarm if neighbourgs >= 1
+alarm = 1 means alarm if neighbourgs >= 2
+alarm = 2 means alarm if neighbourgs >= 3
+alarm = 3 means alarm if neighbourgs >= 2 && neighbourgs != 3
+
+try alarm = 0 with timer = 5
+try alarm = 1 with timer = 2-5
+try alarm = 2 timer = 3-5
+try alarm = 3 timer = 1, 2 and size >= 256, 3-5
+!
+}
+
+again=false
+cell_extract="-e 0"
+dump_extract=""
+dump=xdump
+
+alarm=2
+timer=3
+
+nargs=$#
+
+set -- `getopt ZCHDhs:l:k:e:TFRr:a:i:SP $*`
+if [ $? != 0 ]
+then
+	usage
+	exit 2
+fi
+
+for i in $*
+do
+	case $i in
+	-C)
+		cell_extract=""
+		dump_extract="-d 8 -E"
+		shift;;
+	-Z)
+		dump=xdump-1
+		dump_extract=""
+		shift;;
+	-H)
+		help;
+		exit 0;
+		shift;;
+	-S)
+		save=true;
+		shift;;
+	-D)
+		debug=true;
+		shift;;
+	-P)
+		play=true;
+		shift;;
+	-s)
+		size="-s $2";
+		mk_frame=true;
+		shift 2;;
+	-h)
+		hist="-h tube-worm.h";
+		shift;;
+	-l)
+		loop="-l $2";
+		time=time;
+		shift 2;;
+	-k)
+		skip="-k $2";
+		shift 2;;
+	-e)
+		cell_extract="-e $2";
+		shift 2;;
+	-T)
+		mk_table=true;
+		shift;;
+	-F)
+		mk_frame=true;
+		shift;;
+	-r)
+		region="-r $2";
+		mk_frame=true;
+		shift 2;;
+	-R)
+		show_rule=true;
+		shift;;
+	-a)
+		alarm=$2;
+		mk_table=true;
+		shift 2;;
+	-i)
+		timer=$2;
+		mk_table=true;
+		shift 2;;
+	--)
+		shift;
+		break;;
+	esac
+done
+
+if [ -z "$skip" ]
+then
+	skip="-k `expr $timer + 3`"
+fi
+
+if [ "$show_rule" = true ]
+then
+	cat <<!
+tube_worm() /* moore-1+2 */
+{
+    /* set plane 0, 1 et timers only to random */
+
+    /* try looking only frame n/(4 + timer) */
+
+    /* try with timer = 5 */
+    static int alarm_tab0[] = { 0, 1, 1, 1, 1, 1, 1, 1, 1, };
+
+    /* try with timer = 2, 3, 4 or 5 */
+    static int alarm_tab1[] = { 0, 0, 1, 1, 1, 1, 1, 1, 1, };
+
+    /* try with timer = 3, 4 or 5 */
+    static int alarm_tab2[] = { 0, 0, 0, 1, 1, 1, 1, 1, 1, };
+    
+    /* try with timer = 1, 2 (size >= 256), 3, 4 or 5 */
+    static int alarm_tab3[] = { 0, 0, 1, 0, 1, 1, 1, 1, 1, };
+
+    static int* alarm_tab[] = { alarm_tab0, alarm_tab1, alarm_tab2, alarm_tab3, };
+    static int timer_tab[] = { 0, 0, 1, 2, 3, 4, 5, 6, 7, };
+
+    int iworm, int oworm, int ialarm, int oalarm, int itimer;
+     int otimer, int alarm, int timer, int ret, int view;
+    alarm = num_arg_tab[0];
+    timer = num_arg_tab[1];
+
+    if (!alarm && ! timer) {
+	alarm = 2;
+	timer = 3;
+    }
+
+    iworm = C;
+    ialarm = L & 1;
+    itimer = (L & 7 << 1) >> 1;
+    
+    oworm = !itimer;
+    oalarm = alarm_tab[alarm][_8sum()];
+    otimer = iworm & ialarm ? timer : timer_tab[itimer];
+
+    ret = oworm | oalarm << 1 | otimer << 2;
+
+    return ret;
+}
+!
+exit 0
+fi
+
+if [ "$mk_table" = true ]
+then
+	cmd="../src/mk-table -c moore-1+7 -f tube-worm -a $alarm -a $timer > tube-worm.t"
+	if [ "$debug" = true ]
+	then
+		echo $cmd
+	else
+		eval $cmd
+	fi
+fi
+
+if [ "$mk_frame" = true ]
+then
+	if [ "$timer" -ge 4 ]
+	then
+		cmd="../src/mk-frame $size -p 0 $region -f fill -p 1 $region -f fill -p 2 $region -f fill -p 3 $region -f fill -p 4 $region -f fill > tube-worm.f"
+	elif [ "$timer" -ge 1 ]
+	then
+		cmd="../src/mk-frame $size -p 0 $region -f fill -p 1 $region -f fill -p 2 $region -f fill -p 3 $region -f fill > tube-worm.f"
+	else
+		cmd="../src/mk-frame $size -p 0 $region -f fill -p 1 $region -f fill -p 2 $region -f fill > tube-worm.f"
+	fi
+	if [ "$debug" = true ]
+	then
+		echo $cmd
+	else
+		eval $cmd
+	fi
+fi
+
+if [ "$save" = true ]
+then
+	do_save="| tee tube-worm.s"
+	echo "../src/$dump $size < tube-worm.s" > tube-worm.p
+fi
+
+if [ "$play" = true ]
+then
+	eval `cat tube-worm.p`
+else
+	if [ "$nargs" = 0 -a -f tube-worm.a -a -f tube-worm.t -a -f tube-worm.f -a $again = true ]
+	then
+		cmd=`cat tube-worm.a`
+	else
+		cmd="$time ../src/cell $size $loop $skip $hist -c moore-1+7 -t tube-worm.t -f tube-worm.f $cell_extract $do_save | ../src/$dump $size $dump_extract"
+	fi
+	if [ "$debug" = true ]
+	then
+		echo $cmd
+	else
+		if [ "$nargs" != 0 ]
+		then
+			echo "$cmd" > tube-worm.a
+		fi
+		eval $cmd
+	fi
+fi
+

@@ -1,0 +1,16 @@
+top:
+	for i in $(DIRLIST); do cd $$i; echo "*** " $$i; $(MAKE); cd ..; done
+
+install:
+	for i in $(DIRLIST); do cd $$i; echo "*** " $$i; $(MAKE) install; cd ..; done
+
+depends:
+	for i in $(DIRLIST); do cd $$i; echo "*** " $$i; $(MAKE) depends; cd ..; done
+
+clean:
+	rm -f *~
+	for i in $(DIRLIST); do cd $$i; echo "*** " $$i; $(MAKE) clean; cd ..; done
+
+clobber:
+	rm -f *~
+	for i in $(DIRLIST); do cd $$i; echo "*** " $$i; $(MAKE) clobber; cd ..; done

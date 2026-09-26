@@ -1,0 +1,395 @@
+\section{Notes thy}
+%
+% NOTES
+%
+\subsection{newnotes}
+l'etude de se'ries temporelles associe' a anneal.
+mesure de la population et de la taille des frontie`res.
+la taille des frontie`res est obtenu par une difference spatiale.
+les series obtenu ne presentent pas de caracte`re fractal sur une grande echelle.
+(la question de la nature du ``bruit'' a petite echelle reste pose')
+(comparer avec les se'ries tire' de life)
+elles presentent par contre une invariance au changement d'echelle d'espace,
+ie. les serie tendent a e^tre identique a l'echelle du transient,
+a une dilataion du temps pre`s, lorsque la taille de l'espace tends vers l'infini.
+
+life filtre' (la seconde diffe'rence spatiale)
+est suppose' fournir des se'ries dote' d'une dimension fractale sur une grande echelle,
+mais pas d'invariance au changement d'echelle d'espace.
+(sauf pour la dimension fractale evidement)
+
+la quantite' de bruit necessaire pour faire tendre le transient vers l'infini
+et supose' petite et de'croissante fonction de la taille de l'univers.
+pour anneal le comportement inverse est attendu.
+
+\subsection{Le parame`tre d'enchassemenent}
+Nous de'finissons le parame`tre d'enchassemenent d'un voisin pour une re`gle
+comme l'influence de ce voisin sur la re`gle.
+Soit une re`gle $R$ d'un AC de $k = 2^n$ e'tats, $d$ dimension et de rayon de voisinnage $r$.
+$N = k^{dr+1} = 2^b$ est le nombres d'entre'es de la table.
+Pour un AC de $k = 2$ e'tats les $b = dr+1$ bits du voisinnage donnent
+un vecteur $E$ de $b$ valeurs.
+\begin{eqnarray}
+\label{eq1}
+	E_{b} = \frac{1}{N} \sum_{i = 0}^{N/2 - 1} R_{e_{ib}} - R_{e_{ib} + 2^b} \\
+	\mbox{avec : } e_{ib} = \frac{i}{2^b} 2^{b + 1} + i \bmod 2^b \nonumber
+\end{eqnarray}
+Une valeur moyenne $E = \frac{1}{b} \sum_{i = 0}^{b} E_b$ peut e^tre de'finit,
+pour servir de parame`tre de controle a` la fac,con du parame`tre $\lambda$
+cependant d'autre re'duction que la moyenne pourrais e^tre choisi,
+afin d'exploiter l'information sur le degre' de syme'trie $R$.
+\begin{eqnarray}
+	E_{life} & = &
+	{0.617\ 0.617\ 0.617\ 0.617\ 0.890\ 0.617\ 0.617\ 0.617\ 0.617} \nonumber \\
+	\hat{E}_{life} & = & 0.647569 \nonumber \\
+	\lambda_{life} & = & 0.273438 \nonumber \\
+\end{eqnarray}
+
+\subsection{01apr94}
+$$O(\lambda) = 2^N$$
+$$Space(\lambda) = \log_2(N)$$
+$$O(E) = N 2^N$$
+$$Space(E) = \log_2(\frac{N}{2}) N$$
+
+interpolation de $\lambda$ croissnt de 0 a N.
+interpolation de E de 0 a 0.
+par $\frac{N}{2}$ pour $x = \frac{2^N}{2}$ ?
+
+3 solutions d'imple'mentation:
+\begin{itemize}
+	\item filtre, langage, bactch
+	\item shell
+	\item click and point
+\end{itemize}
+
+langage = lex, yacc matlab - txl
+shell = sh, tcl
+
+tcl = langage
+tcl + tk = click and point
+
+methodologie objet, tcl + itcl = objet
+athena widget = trop fige', trop lourd.
+
+mode`le click an point = khoros.
+
+alternative: objet c ou c++, tcl et widget tk
+shell = devellopent, langage = maturation
+visualisatio  = ???
+
+re`gles additives, 10 entre'es dans la table secondaire
+4 e'tats par entre'e, ze'ro, un unchanged et flip.
+somme sur les 8 voisins = 9 entre'e
+somme sur les 8 voisins + le centre = 10 entre'es.
+
+pour 10 entre'es: $4^{10}$ ou $2^{20}$ ou ~1 millions de re`gles possible.
+
+$\lambda$ + E pour la cellule centrale + E pour les voisinnes
+
+E petit pour $\lambda$ petit
+E petit pour $\lambda$ grand
+
+au moins sur un exemple E = $\lambda_{critique}$, pour $\lambda$ = 0.5.
+
+question: variance de $\lambda$ = $\lambda_{critique}$
+
+calculer pour un espace ce re`gle, les densite'es
+d'apparition des diffe'rentes valeurs de $\lambda$,
+et le nombre de valeur diffe'rentes de $\lambda$
+et le nombre de re`gles a la tempe'ratute critique
+par rapport au nombre total de re`gles.
+
+complexe = en croissance structurelle.
+
+combien y a til de re`gles universelle dans nu espaces de re`gles.
+le proble`me de l'universalite' d'une re`gles est-il de'cidable?
+
+Life est une re`gle unique parceque de nombreuse personnes
+on travaille'e ensemble a la construction de la preuve de son universalite'.
+
+question du cout de l'architecture de de'vellopement.
+architecture mate'rielle et logicielle syste`me.
+rapport entre la puissance des algorithmes cellulaires et le cout
+de l'architecture mate'rielle.
+la moins che`re des machine haut de gamme.
+30 mips, 30 me'ga-bytes 1 giga disk, 1 million pixel, 256 couleur.
+relation entre les unite' cellulaires et les unite' d'espace
+et de vitesse des machines.
+univers de re`gles, univers cellulaires accessible pour une puissance
+machines donne'e.
+capacite' machines demain: 300 mips, 256 me'ga.
+notre architecture de de'vellopement est l'architecture de re'fe'rence.
+
+\subsection{bruitage et cryptage de life}
+Il est assez facile de reconnaitre un point fixe,
+un cycle limite, le chaos...
+on fait des mesure, on cherche de divergences...
+maintenant, je peu produire (je ne sais rien de leur densite' d'existence)
+une re`gle universelle, life par exemple,
+qui aura l'spparence d'une re`gle cahotique,
+(je ne peut pas lui donne' lapparence d'une re`gle point fixe evidement)
+mais je peur lui donner l'apparence d'une re`gle cahotique si je veux,
+fasse a un equipement qui cherche avec des mesures statistiques.
+c'est simple, je rajoute des plan bruite's,
+et la moyenne des comportement sera un comportement bruite'.
+il y a un plan qui en fait calcule life,
+?? possibilite' d'un crtypage supple'mentaire ??
+un calcul reversible. la regle life est cacule' sur deux plan,
+et les cellules inutilise' sur un plan seront brouille'.
+le mouvement de bit sur un ensemble de plan semble ale'atoire,
+mais si je regarde tel bit dans tel plan et...
+(si je fais une transformation) je retrouve life.
+* a imple'mente'*
+le cas le plus simple: 3 plan de bits, 2 qui font rien, maximalement cahotique,
+et un qui fait life.
+si je conside`re ma re`gle comme une re`gle 3 bit a 8 e'tats
+je vais dire cette re`gle la est cahotique,
+je ne peu rien lui faire calculer, je sais pas comment faire.
+si on m'apprend quil faut regader un seul bit, qui n'est pas
+ramenable a un e'tat, comme ca, on a life.
+alors la question, quel est le pourcentage des re`gles
+en apparence chaotique dans lequelles on pourrais trouver
+quelque chose qui appartient plus a la classe 3 mais a la classe 4.
+
+subsection{proble`me de plongement}
+exemple: je pars des automate a 2 dimensions,
+je prends le voisinnage de von-neuman.
+j'ais $2^{32}$ re`gle spossibles.
+je passe au voisinnage de Moore,
+j'ais $2^{512}$ re`gles possibbles.
+parmi les $2^{512}$ re`gles de Moore je trouve les $2^{32}$ du voisinnage
+de von-neuman.
+ca semble etre une petite partie.
+c'est un peu plus complique' que ca.
+parceque je doir probablement les prendre sur la diagonales.
+c'est a dire faire une rotation a 45 degre' sur la table
+et dire je les ai au mois deux fois.
+je touve aussi tous les automates 1D sur les lignes les colonnes et les diagonale.
+y sont pas nombreux non plu, mais en en me^me temps on les recombine dans l'espace.
+evidemment si je passe en trois dimension je vais retrouver toutes les familles 2D
+et 1D par faisceaux dans tous les sens.
+alors a chaque fois, a prioris le rapport entre le nombre de re`gles possible
+quand on augment la dimentionalite' ou le voisinnage, ou le rayon,
+*et* le nombre de re`gle qui se trouve enchasse' plonge' dans l'espace
+de dimmension supe'rieure... on peut peut-e^tre conside'ere qu'il est ne'gligeable,
+mais en tout cas il permet d'expliquer quelque chose,
+c'est que si j'ais une re`gle universelle en voisinnage de von-neuman,
+elle est aussi en voisinage de Moore
+elle est a des endrois dans l'espace des re`gles
+qui font quon n'aura pas un lieu
+bein determine' de la pre'sence des re`gles presentant certaines caracte'ristique
+puisque on a toute celle des espaces d'avant,
+celle qui ne tiennent pas compte de certain voisinnage.
+(rapport dimension / nombre d'etat pour compter nombre d'enchasse')
+-proble`me de formalisation-
+
+\subsection{Tactique sociale}
+Je suis poli avec mes voisins mais si l'un d'entre eux manifeste a`
+mon e'gard autre chose que cette bienveillante
+indiffe'rence,\,\footnote{s'il fait mine de se me'ler de mes affaires,
+par exemple.} je passe en mode agressif, le plus rapidement,
+clairement et brutalement possible.
+
+Les tactiques pouvant e^tre conside're' comme des
+algorithmes\,\footnote{et les strate'gies comme des heuristiques.}
+Cette histoire peut inspirer une fonction de transition.
+
+Si l'on ajoute des e`speces ont peut se demander quelles sont les
+conditions d'apparition d'alliances.
+
+\subsection{le controle line'aire des re`gle}
+contro^le line'aire de la moyenne ?
+\begin{itemize}
+\item parame'trage global de comportement
+\item formulation diffe'rentielle
+\item 1 plan me'moire par parame`tre\\
+	et 1 plan me'moire pour les $n$ variables\,\footnote{
+struture du mixage spatial?}\\
+	ou $n$ plan me'moire pour les $n$ variables\\
+	et equation boole'enne\\
+	donne la piste d'une technique de transformation
+	d'e'quation diffe'rentielle continue en
+	e'quation boole'enne combine'.
+\end{itemize}
+La dotation en espace\,\footnote{dimension plus voisinnage.} d'une
+e'quation diffe'rentielle, associe' a sa boole'enisation permet de
+garantir sa calculabilite'.
+
+\subsection{cut and paste}
+\begin{itemize}
+
+\item La re`gle anneal anneal est sans doute avec life une des plus connu.
+
+\item a` propos de l'enchassement des espaces de re`gles.
+	l'hypothe`se ``computation at the edge of chaos'' postule une
+	transition de phase abrupte.
+
+\item Cre'ation d'un catalogue de de re`gles pouvant constituer un
+	niveau d'instruction e'le'mentaire pour une machine
+	cellulaire.
+
+\item existe t-il une me'thode de transformation
+syste'matique\,\footnote{pouvant a` terme devenir un algorithme ou au
+moins une heuristique.} d'une description differentielle continu d'un
+syste`me en equation cellulaire ?  Confronte' au proble`me de la
+de'couverte d'une re`gle de transition codant un
+comportement\,\footnote{Le proble`me de la re'duction d'un
+	comportement a` une dynamique, ou plus ge'ne'ralement la
+	de'termination des observables de l'espace temps, nous ame`ne
+	a` une utilisation informelle et oportuniste de termes
+	de'signant les donne'es initiale ou resultantes d'une
+	expe'rience cellulaire.}
+donne' la de'marche usuelle repose plus sur la recherche intuitive
+d'une description phe'nome'nologique locale, que sur l'utilisation
+combinatoire d'un re'pertoire de primitives dote' d'un comportement
+pre'visible.
+Partant d'un comportement global donne', Cette de'marche
+intuitive postule l'existence d'un comportement local associe' a` un
+observable global.
+Une fonction locale est obtenu par la
+simplification symbolique d'une description analytique.
+Comme exemple de l'utilisation de cette me'thode empirique, prenons un
+proble`me simple de dynamique des populations.
+Le syste`me le plus simple possible permmettant une formulation
+cellulaire semble e^tre un syste`me proie/pre'dateur a` deux espe`ces.
+Le squelette de la fonction de transition s'obtient aise'ment par la
+description litte'rale des comportement individuel suppose' d'une
+population naturelle:
+\begin{itemize}
+	\item Les individus naissent, durent et meurent.
+	\item Les prois meurent en pre'sence des pre'dateur.
+\end{itemize}
+Un bit d'existence et $n$ bits de longe'vite'
+sont alloue' dans l'espace cellulaires
+a` chaque espe`ces.\,\footnote{
+	Nous avons utilise' des compteurs sur 3 bits.}
+La naisance d'un individu de'pend de la densite' populationnelle
+locale.
+Les parame`tres facteurs de croissances et de de'croissance de chaque
+populations ne sont donc pas fixe' de manie`re absolu, mais re'sulte
+de la conjonction du compteur de longe'vite' et des seuils locaux
+de'clenchant une naissances.
+L'observation des variations de populations re'sultante
+presente l'aspect cyclique corre'le' attendu,
+mais le repertoire des comportement accessible via les parame`tre de
+la fonction de transition ou par des modification du squelette de l'automate\footnote{
+	Par exemple en imposant la pre'sence de proies dans le voisinnage
+	d'une cellule, en plus de la presence de pre'dateurs, comme une condition
+	necessaire a` la naissance d'un pre'dateur.}
+est difficilement comparable a l'expression differentielle classique de ce proble`me.
+
+$$\frac{dN}{dt} = N(a - bP)$$
+$$\frac{dp}{dt} = P(cN - d)$$
+
+
+%	\item La population proie croit spontane'ment.
+%	\item La population pre'dateurs de'croit spontane'ment.
+%	on obtient aise'ment une fonction de transition codant deux espe`ces 
+
+\end{itemize}
+
+\subsection{vrac}
+Comparaison de $\lambda$ sur un petit espace de re`gle (infe'rieure a $2^{16}$)
+avec lambda >... l'esemble des re`gles additives, le sous espace des re`gle additives
+?la distribution de lambda non line'aire explique le parame`tre critique,
+la majorite' des re`gles est dans la re'gion critique?
+pattern/se'quences, espace/temps.
+l'espace se voi, le temps s'entends, ou s'e'coute.
+synthe`se picturale par CA.
+utiliation de la synthese sonore pour la repre'sentation des se'quences (ask vi).
+comparer distribution de lambda sur un e'chatillon ale'atoire
+et sur un subset determiner (comme les re`gles additives)
+par rapport a` la distribution sur un ensemble complet.
+Ac de surfaces, interfaces entre deux milieux.
+tridimensionel mince.
+couches de 4 a 32 cellules d'epaisseur.
+intercface eau/air, liquide/gas, vague, propagation d'ondes de surface, sable.
+les tas de sables, burst de chaos dans plage d'equilibre,
+mode`le cellulaire des tas de sable.
+les pyramides a degre' comme des tas de sable.
+
+incertitude, heisenberg, unite' multitude.
+deterministe localement, non deterministe globalement.
+inverse du monde des particules (monde quantique)
+
+les CA et la complexite' par le bruit.
+
+pour faire un univer: l'espace, le temps, la loi (de transition local)
+et une rupture de syme'trie sur l'espace pour permettre a la loi de s'exprimer.
+
+tas de sable, equilibre ponctue', applicable a quoi d'autre?
+
+comportement cellulaire global cyclique, comment?
+combien de plan de bits sont necessaire
+(a par solution triviale de compteur local).
+
+plan de coupe = trance, slice, ligne de coupe = carotte, morceau = slab.
+
+e'numeration des re`gles par types pour un espace complet.
+
+TOTRY
+the history of the density of the run time
+is the sun of the density of 1 thru 8 connected cell.
+it is expected to finde a correlation between
+CA class and distribution of various connected sum.
+
+l'histogrammes des densite' locales permet de calculer la taille
+des frontie`re dans anneal par exemple.
+
+a reference to a stochatic CA being assigned that a deterministic CA
+if the random number generator is part of the rule
+can be found in latice gas method for partial differential equation
+a CA for burger equations p 486
+they use wolfram ca random number generator, or random bit generator
+from unbiased distribution and using logical expression
+logical operation to get biased distribution.
+in that paper on can find a expression for the covariance of a CA.
+
+wolfram origin of randomness in physical system
+if in fact, no polynomial time procedure ca detect patterns in the sequence
+then the sequence can be considerer effectively random for practical purposes.
+
+pour chaque re`gle expe'rimenter, rechercher la divergence pour
+un bit de variatiopn de la condition initiale.
+
+majority with flip, anneal with flip.
+
+try to propagate constraint, that number of change
+from 0 to 1 or 1 to 0 always stay equal.
+
+definir ergodicity
+
+in prospect for a lattice gas computer
+in latice gas method for partial differential equation
+the question about 24 bit model for 3 dimensional
+latice gas is: how can this large number of rule can be reduce
+by factoring or grouping them.
+reduce the size of the rule representation in the lookup table.
+what is the fundamental dimension of the rule set
+essayer dimplementer la table du mode`le 24 bit
+calculer la valeur de $E$, essayer de dcouper en plusieurs tables
+par re'duction via un DFA.
+
+quelle est l'intersectio entre un espace de re`gles
+et la phe'nome'nologie naturelle?
+
+same book page 214
+ge'ne'raliser la quetion 7b au automates cellulaires.
+page 215
+a different type of test for latice gas algorithm was due to be important as well.
+one should perform the standard nume'rical test of increasing the grid resolution
+while maintaining fixed all the parameters describing the problem
+the goal would be to check that the higher resolution results
+is identical to thos eobtain with the lower numerical resolution.
+generaliser a tous les CA, et essayer appliquer sur anneal par exemple.
+
+utiliser anneal pour des experiences du me^me type que celle des latice gas.
+c'est a dire avec des source ou des flux.
+
+tester le changement d'echelle pre'alablement de'crit sur anneal dans ces conditions.
+cad. pe. une source fixe de 1 taille proprortionelle identique pour des nombre
+de cellulles totale different et les diffe'rence produite.
+
+introduire les proble`me de la visualisation a partir de l'article en question
+page 215
+

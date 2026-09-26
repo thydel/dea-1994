@@ -1,0 +1,95 @@
+% Remember to use the lgrind style
+
+\File{tcl\-cas.tcl},{23:13},{Sep  6 1994}
+\L{\LB{\C{}\V{\#} func}}
+\CE{}\L{\LB{\Proc{func}\K{proc}_\V{func}_\{\V{func}\}_\{\V{simple}.\V{func}_\K{set}_[\V{\$func}]\}}}
+\L{\LB{\C{}\V{\#} time}}
+\CE{}\L{\LB{\Proc{first}\K{proc}_\V{first}_\{\}_\{\V{simple}.\V{time}_\V{first}\}}}
+\L{\LB{\Proc{last}\K{proc}_\V{last}_\{\}_\{\V{simple}.\V{time}_\V{last}\}}}
+\L{\LB{\Proc{next}\K{proc}_\V{next}_\{\}_\{\V{simple}.\V{time}_\V{next}\}}}
+\L{\LB{\Proc{prev}\K{proc}_\V{prev}_\{\}_\{\V{simple}.\V{time}_\V{prev}\}}}
+\L{\LB{\Proc{point}\K{proc}_\V{point}_\{\}_\{\V{simple}.\V{time}_\V{point}\}}}
+\L{\LB{\Proc{goto}\K{proc}_\V{goto}_\{\V{point}\}_\{\V{simple}.\V{time}_\V{point}_\V{\$point}\}}}
+\L{\LB{\Proc{mark}\K{proc}_\V{mark}_\{\}_\{\V{simple}.\V{time}_\V{mark}\}}}
+\L{\LB{\Proc{swap}\K{proc}_\V{swap}_\{\}_\{\V{simple}.\V{time}_\V{swap}\}}}
+\L{\LB{\Proc{step}\K{proc}_\V{step}_\{\}_\{\V{simple}.\V{time}_\V{step}\}}}
+\L{\LB{\Proc{stamp}\K{proc}_\V{stamp}_\{\}_\{\V{simple}.\V{time}_\V{stamp}\}}}
+\L{\LB{\C{}\V{\#} space}}
+\CE{}\L{\LB{\Proc{zero}\K{proc}_\V{zero}_\{\}_\{\V{simple}.\V{time}.\V{now}_\V{zero}\}}}
+\L{\LB{\Proc{one}\K{proc}_\V{one}_\{\{\V{plane}_0\}\}_\2}}
+\L{\LB{__\{\V{simple}.\V{time}.\V{now}_\V{fill}_\V{\$plane}_1_1\}}}
+\L{\LB{\Proc{solid}\K{proc}_\V{solid}_\{\{\V{size}_16\}_\{\V{plane}_0\}\}_\2}}
+\L{\LB{__\{\V{simple}.\V{time}.\V{now}_\V{fill}_\V{\$plane}_\V{\$size}_1\}}}
+\L{\LB{\Proc{rand}\K{proc}_\V{rand}_\{\{\V{rand}_2\}_\{\V{plane}_0\}\}_\2}}
+\L{\LB{__\{\V{simple}.\V{time}.\V{now}_\V{fill}_\V{\$plane}_0_\V{\$rand}\}}}
+\L{\LB{\Proc{brand}\K{proc}_\V{brand}_\{\{\V{bloc}_0\}_\{\V{rand}_2\}_\{\V{plane}_0\}\}_\{}}
+\L{\LB{__\V{simple}.\V{time}.\V{now}_\V{fill}_\V{\$plane}_\V{\$bloc}_\V{\$rand}\}}}
+\L{\LB{\Proc{extract}\K{proc}_\V{extract}_\{\{\V{plane}_0\}_\{\V{flip}_1\}\}_\2}}
+\L{\LB{__\{\V{simple}.\V{time}.\V{now}_\V{extract}_\V{\$plane}_\V{\$flip}\}}}
+\L{\LB{\Proc{save}\K{proc}_\V{save}_\2}}
+\L{\LB{__\{\{\V{file}_\V{plane}.\V{pbm}\}_\{\V{plane}_0\}_\{\V{flip}_0\}\}_\{}}
+\L{\LB{__\V{simple}.\V{time}.\V{now}_\V{write}_\V{\$plane}_\V{\$flip}_\V{\$file}}}
+\L{\LB{__\V{extract}_\V{\$plane}\}}}
+\L{\LB{}}
+\L{\LB{\C{}\V{\#} simple}}
+\CE{}\L{\LB{\Proc{apply}\K{proc}_\V{apply}_\{\}_\{\V{simple}_\V{apply}\}}}
+\L{\LB{\C{}\V{\#} dump}}
+\CE{}\L{\LB{\Proc{view}\K{proc}_\V{view}_\{\}_\{\V{dump}_\V{dump}\}}}
+\L{\LB{\C{}\V{\#} gen}}
+\CE{}\L{\LB{\Proc{repeat}\K{proc}_\V{repeat}_\{\{\V{cnt}_1\}_\V{body}\}_\2}}
+\L{\LB{__\{\V{loop}_\V{i}_0_\V{\$cnt}_\{\V{uplevel}_\V{\$body}\}\}}}
+\L{\LB{}}
+\L{\LB{\C{}\V{\#} proc}}
+\CE{}\L{\LB{\Proc{store}\K{proc}_\V{store}_\{\}_\{\V{apply};_\V{next};_\V{swap};_\V{step};_\V{stamp}\}}}
+\L{\LB{\Proc{sync}\K{proc}_\V{sync}_\{\}_\{\V{extract};_\V{view}\}}}
+\L{\LB{}}
+\L{\LB{\Proc{tofirst}\K{proc}_\V{tofirst}_\{\V{body}\}_\2}}
+\L{\LB{__\{\V{while}_\{![\V{simple}.\V{time}_\V{firstp}]\}_\2}}
+\L{\LB{__\{\V{uplevel}_\V{\$body}\}\}}}
+\L{\LB{\Proc{tolast}\K{proc}_\V{tolast}_\{\V{body}\}_\2}}
+\L{\LB{__\{\V{while}_\{![\V{simple}.\V{time}_\V{lastp}]\}_\2}}
+\L{\LB{__\{\V{uplevel}_\V{\$body}\}\}}}
+\L{\LB{\Proc{run}\K{proc}_\V{run}_\{\{\V{cnt}_1\}\}_\2}}
+\L{\LB{__\{\V{loop}_\V{i}_0_\V{\$cnt}_\{\V{apply};_\V{swap}\};_\V{sync}\}}}
+\L{\LB{\Proc{record}\K{proc}_\V{record}_\2}}
+\L{\LB{__\{\{\V{view}_1\}_\{\V{run}_1\}\}_\2}}
+\L{\LB{__\{\V{tolast}_\{\V{store};_\V{repeat}_\V{\$view}_\{\V{run}_\V{\$run}\}\}\}}}
+\L{\LB{\Proc{forw}\K{proc}_\V{forw}_\{\{\V{skip}_1\}\}_\{}}
+\L{\LB{__\K{for}_\{\K{set}_\V{i}_[\V{simple}.\V{time}_\V{point}];_\2}}
+\L{\LB{__\K{set}_\V{cnt}_[\V{last};_\V{simple}.\V{time}_\V{point}]\}_\2}}
+\L{\LB{__\{\V{\$i}_\<=_\V{\$cnt}\}_\{\K{incr}_\V{i}_\V{\$skip}\}_\{}}
+\L{\LB{____\V{simple}.\V{time}_\V{point}_\V{\$i}}}
+\L{\LB{____\V{view}}}
+\L{\LB{__\}}}
+\L{\LB{__\K{if}_\{\V{\$i}_\>_\V{\$cnt}\}_\{_\V{last};_\V{view}_\}}}
+\L{\LB{\}}}
+\L{\LB{\Proc{back}\K{proc}_\V{back}_\{\{\V{skip}_1\}\}_\{}}
+\L{\LB{__\K{for}_\{\K{set}_\V{i}_[\V{simple}.\V{time}_\V{point}]\}_\2}}
+\L{\LB{__\{\V{\$i}_\>=_0\}_\{\K{incr}_\V{i}_\-\V{\$skip}\}_\2}}
+\L{\LB{__\{\V{simple}.\V{time}_\V{point}_\V{\$i};_\V{view}\}}}
+\L{\LB{__\K{if}_\{\V{\$i}_\<_0\}_\{_\V{first};_\V{view}_\}}}
+\L{\LB{\}}}
+\L{\LB{}}
+\L{\LB{\Proc{cycle}\K{proc}_\V{cycle}_\{\{\V{skip}_1\}\}_\{\V{forw}_\V{\$skip};_\V{back}_\V{\$skip}\}}}
+\L{\LB{\Proc{cont}\K{proc}_\V{cont}_\{\}_\{\V{last};_\V{swap};_\V{first};_\V{swap};_\V{sync}\}}}
+\L{\LB{}}
+\L{\LB{\Proc{seq}\K{proc}_\V{seq}_\{\{\V{view\_timer}_1\}_\{\V{store\_timer}_1\}\}_\{}}
+\L{\LB{__\K{set}_\V{store}_1}}
+\L{\LB{__\K{set}_\V{view}_\V{\$view\_timer}}}
+\L{\LB{__\V{while}_\{![\V{simple}.\V{time}_\V{lastp}]\}_\{}}
+\L{\LB{____\V{apply}}}
+\L{\LB{____\K{if}_\{\V{\$store}_\&\&_![\K{incr}_\V{store}_\-1]\}_\{}}
+\L{\LB{______\K{set}_\V{store}_\V{\$store\_timer}}}
+\L{\LB{______\V{next}}}
+\L{\LB{____\}}}
+\L{\LB{____\V{swap};_\V{step};_\V{stamp}}}
+\L{\LB{____\K{if}_\{\V{\$view}_\&\&_![\K{incr}_\V{view}_\-1]\}_\{}}
+\L{\LB{______\K{set}_\V{view}_\V{\$view\_timer}}}
+\L{\LB{______\V{extract}}}
+\L{\LB{______\V{view}}}
+\L{\LB{____\}}}
+\L{\LB{__\}}}
+\L{\LB{__\V{extract};_\V{view}}}
+\L{\LB{\}}}
+\L{\LB{}}
+\L{\LB{\V{view}}}

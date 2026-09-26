@@ -1,0 +1,52 @@
+include $(CASDIR)/make/std-vars
+
+INCLUDES = \
+	-I$(CASDIR)/src/include \
+	-I$(CASDIR)/src/lib
+
+CFLAGS = $(INCLUDES)
+CC = gcc $(CC_DEBUG_FLAGS) $(CC_OPTIM_FLAGS)
+
+LIBNAME = rule
+
+SRCS_A = \
+	life.c \
+	sum_tab.c \
+	sum_stir_tab.c \
+	lib.c
+
+SRCS_B = \
+	named-func.c
+
+SRCS = $(SRCS_A) $(SRCS_B)
+
+HEADERS = \
+	lib.h \
+	conex.h
+
+OBJS_A = $(SRCS_A:.c=.o)
+OBJS_B = $(SRCS_B:.c=.o)
+OBJS = $(OBJS_A) $(OBJS_B)
+EXECS = $(LIBNAME).a
+
+top: $(LIBNAME).a
+
+named-func.o: named-func.txt
+
+named-func.txt: $(OBJS_A)
+# sysv42
+	nm -p $(OBJS_A) | grep ' T ' | cut -d' ' -f3 | sed -e 's/\(.*\)/gen(\1)/' > named-func.txt
+# linux
+	nm $(OBJS_A) | grep ' T ' | cut -d' ' -f3 | sed -e 's/_\(.*\)/gen(\1)/' > named-func.txt
+
+include $(CASDIR)/make/lib-targets
+
+include $(CASDIR)/make/std-targets
+
+# DO NOT DELETE THIS LINE -- make depend depends on it.
+
+life.o: conex.h lib.h
+sum_tab.o: conex.h lib.h
+sum_stir_tab.o: conex.h lib.h
+lib.o: conex.h
+named-func.o: /home/uruk/thy/usr/cas/src/lib/util/named.h named-func.txt

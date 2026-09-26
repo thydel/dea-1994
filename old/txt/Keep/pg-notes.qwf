@@ -1,0 +1,45 @@
+\section{pg notes}
+\begin{enumerate}
+	\item Inte'gration d'outils
+	\begin{itemize}
+		\item interface humaine (X) parame'treurs et de'clencheurs
+		\item outils de visualisation
+		\item outils d'analyse: transformatons d'espace
+		\item outils de ???
+	\end{itemize}
+	\item anneal
+	\begin{itemize}
+		\item temps
+		\item densite'e
+		\item volume
+	\end{itemize}
+	\item me'thodes nume'riques\\
+		suggestion PG: voir {em transforme'es}
+		Fourrier, Walsh, Wavelet, Hartley.
+		Automates de Fourrier.\\
+		suggestion PG:
+		\begin{enumerate}
+			\item faire de la recherche assiste' par CA.
+			\item ide'e d'``automates de phase'' a pixels de phases.
+		\end{enumerate}
+	\item misc
+	\begin{itemize}
+		\item collecte de voisinnage.
+		\item combinatoire de re`gles.
+		\item compilateur de voisinnage et de table (LUT)
+	\end{itemize}
+	\item Proble`me de la relation entre la re`gle et son bruitage
+		et l'espace initial.\\
+		Et critique des notions de frontie`re du chaos.\\
+		PG: frontie`re d'universalite'.\\
+		PG: universalite': ``gestion de table glorifie'''
+	\item suggestion PG:
+	\begin{enumerate}
+		\item place' la dedans des crabes.
+		\item les crabes sont de automates avec des voisinnage
+			de tables et des macro-me'ta re`gles
+			(e'quivalent a` des syste`mes experts dote's
+			de connaissances sur les cas).
+		\item diagonaliser lees crabes.
+	\end{enumerate}
+\end{enumerate}

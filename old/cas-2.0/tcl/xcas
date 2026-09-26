@@ -1,0 +1,268 @@
+#!casbin -f
+
+#tk colormodel . monochrome
+
+source cas.tcl
+
+source util.tcl
+source object.tcl
+source browse.tcl
+source showVars.tcl
+
+source func_list.tcl
+
+proc out {args} {
+	foreach arg $args {
+		eval $arg
+	}
+}
+
+set casdir $env(CASDIR)
+
+# create the top level window
+proc top {w} {
+    wm minsize . 64 64
+	mk_$w .$w
+    pack append . .$w {top expand fill}
+}
+
+set new {
+	{name new}
+	{cmd {
+		{time {pack append $w $w.time_[set $w.info.time] [list $opts]}}
+		{func {pack append $w $w.func_[set $w.info.func] [list $opts]}}
+		{cas {top_cas cas}}
+		{close {cmd_close $w}}
+	}}
+	{info {
+		{time $w.info.time}
+		{func $w.info.func}
+	}}
+}
+
+set time_list {}
+
+gen_top new
+proc mk_new {w} {
+	set opts {top pady 10 padx 10 expand}
+	global new
+	mk_obj $w [expand {w opts} $new]
+
+	global $w.info.time
+	set $w.info.time time
+	global time_list
+	set time_list [linsert $time_list [llength $time_list] [set $w.info.time]]
+	mk_time $w.time_[set $w.info.time]
+
+	global $w.info.func
+	set $w.info.func func
+	mk_func $w.func_[set $w.info.func]
+}
+
+set time {
+	{name time}
+	{cmd {
+		{new {
+			set ww [winfo parent $w]
+			set new [obj_param $w name]
+			set time_list [linsert $time_list [llength $time_list] $new]
+			mk_time $ww.time_$new
+			pack unpack $w
+			set $ww.info.time $new
+			pack append $ww $ww.time_$new [list $opts]
+		}}
+		{set {
+			set ww [winfo parent $w]
+			set new [obj_param $w name]
+			pack unpack $w
+			set $ww.info.time $new
+			pack append $ww $ww.time_$new [list $opts]
+		}}
+		{top-name {
+			global time_list
+			top_browse_list name $time_list {obj_param $w name [set .name.name.info.selected]}
+		}}
+		{name {
+			global time_list
+			mk_browse_list $w.name $time_list {obj_param $w name [set $w.name.info.selected]}
+			pack append $w $w.name [list $opts]
+		}}
+		{unpack {cmd_unpack $w}}
+		{close {cmd_close $w}}
+	}}
+	{param {
+		{name time1}
+	}}
+}
+proc mk_time {w} {
+	set opts {top pady 10 padx 10 expand}
+	global time
+	mk_obj $w [expand {w opts} $time]
+}
+
+set func {
+	{name func}
+	{cmd {
+		{unpack {cmd_unpack $w}}
+		{close {cmd_close $w}}
+	}}
+}
+proc mk_func {w} {
+	global func
+	mk_obj $w [expand w $func]
+}
+
+set cas {
+	{name cas}
+	{cmd {
+		{top {mk_top $w.top; pack append $w $w.top [list $opts]}}
+		{ctl {mk_ctl $w.ctl; pack append $w $w.ctl [list $opts]}}
+		{space {mk_space $w.space; pack append $w $w.space [list $opts]}}
+		{pos {mk_pos $w.pos; pack append $w $w.pos [list $opts]}}
+		{ppos {pack append $w $w.pos [list $opts]}}
+		{pfunc {pack append $w $w.func [list $opts]}}
+		{func {global func_list
+			mk_browse_list $w.func $func_list {out "func " [set $w.func.info.selected]}
+			pack append $w $w.func [list $opts]}}
+		{frame {browse_dir frame Data/frame {out "frame [browse_getsel .frame.dir]"}}}
+		{close {cmd_close $w}}
+	}}
+	{info {{func $w.func.info.selected}}}
+}
+
+gen_top cas
+proc mk_cas {w} {
+	global cas func_list
+	set opts {top pady 10 padx 10 expand}
+	mk_obj $w [expand {w opts} $cas]
+
+	mk_top $w.top
+	mk_ctl $w.ctl
+	mk_space $w.space
+	mk_pos $w.pos
+	mk_browse_list $w.func $func_list [expand w {out "func " [set $w.func.info.selected]}]
+
+	pack append $w \
+		$w.top $opts \
+		$w.ctl $opts \
+		$w.space $opts \
+		$w.pos $opts
+}
+
+set top {
+	{name top}
+	{cmd {
+		{ctl {top_ctl ctl}}
+		{space {top_space space}}
+		{pos {top_pos pos}}
+		{close {cmd_close $w}}
+	}}
+}
+
+gen_top top
+proc mk_top {w} {global top; mk_obj $w [expand w $top]}
+
+set ctl {
+	{name ctl}
+	{cmd {
+		{run {out "run " [obj_param $w cnt]}}
+		{step {out {run 1}}}
+		{cont {out {cont}}}
+		{cycle {out "cycle " [obj_param $w skip]}}
+		{forw {out "forw " [obj_param $w skip]}}
+		{back {out "back " [obj_param $w skip]}}
+		{rec {out "seq " [obj_param $w view] " " [obj_param $w store]}}
+		{close {cmd_close $w}}
+	}}
+	{param {{skip 1} {cnt 1} {view 1} {store 1}}}
+}
+
+gen_top ctl
+proc mk_ctl {w} {global ctl; mk_obj $w [expand w $ctl]}
+
+set space {
+	{name space}
+	{cmd {
+		{new {
+			set parent [winfo parent $w]
+			set name [obj_param $w name]
+			mk_space $parent.$name
+			pack append $parent $parent.$name [list $opts]
+		}}
+		{zero {out "zero; sync"}}
+		{one {out "one; sync"}}
+		{solid {out "solid [obj_param $w solid]; sync"}}
+		{rand {out "rand [obj_param $w rand]; sync"}}
+		{bloc {out "brand [obj_param $w solid] [obj_param $w rand]; sync"}}
+		{photo {out "save [obj_param $w photo]"}}
+		{load {out {time2d.now set [space1]; sync}}}
+		{close {cmd_close $w}}
+	}}
+	{param {{rand 2} {solid 16} {name space} {photo plane.pbm}}}
+}
+
+gen_top space
+proc mk_space {w} {
+	global space
+	set opts {top pady 10 padx 10 expand}
+	mk_obj $w [expand {w opts} $space]
+}
+
+set pos {
+	{name pos}
+	{cmd {
+		{first {out "first; view"}}
+		{last {out "last; view"}}
+		{next {out "next; view"}}
+		{prev {out "prev; view"}}
+		{close {cmd_close $w}}
+		{unpack {cmd_unpack $w}}
+	}}
+}
+
+gen_top pos
+proc mk_pos {w} {global pos; mk_obj $w [expand w $pos]}
+
+top new
+
+# UNUSED
+
+set simple {
+	time {
+		cmd new {{string name} {browse_list space $space_list} {int cnt}} {
+			
+		}
+		cmd {
+			{pos {map $w.$time.pos}}
+			{space {map $w $time $space}}
+		}
+		pos {
+			cmd {
+				{first {} {out first}}
+				{last {} {out last}}
+			}
+		}
+		ctl {
+			cmd {{forw {int skip} {out forw $skip}}}
+			cmd {{back {int skip} {out back $skip}}}
+		}
+		space {
+			cmd {{new {{string name} {int cnt}} {
+					
+				}}}
+			cmd {new {{string name} {file file}} {
+				}
+			}
+		}
+	}
+	func {
+		conex {
+		}
+		rule {
+		}
+	}
+}
+
+# Local Variables:
+# tab-width: 4
+# End:

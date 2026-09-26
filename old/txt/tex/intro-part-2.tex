@@ -1,0 +1,560 @@
+\section{Pourquoi notre nouvel environnement?}
+
+Tout d'abord, m\^eme si l'histoire de l'\'etude des AC est presque aussi
+ancienne que l'histoire des ordinateurs~\cite[]{Metropolis93b}, les
+architectures cellulaires construites, bien que non encore
+industrialis\'ees apparaissent comme les plus prometteuses\footnote{%
+  Il est difficile de savoir si ce fait est \`a mettre au cr\'edit des
+  architectures cellulaires, nous nous bornerons \`a proposer l'id\'ee que
+  la perception du potentiel d'usage d'une architecture est
+  inversement proportionnelle \`a sa r\'ealisation industrielle.}, %
+et le probl\`eme des m\'ethodes de constructions d'architectures et
+d'algorithmes cellulaires restent largement ouvert. %
+De m\^eme, \`a propos du probl\`eme de
+l'auto-reproduction~\cite[]{vonNeumann66}, la dualit\'e opposant
+analytique \`a synth\'etique accompagne la naissance des AC\footnote{%
+  Voir \cite{Reggia93} pour une approche permettant d'accorder plus
+  d'autonomie aux ph\'enom\`enes d'auto-reproduction. %
+  Nous consid\'erons, dans ce contexte, l'autonomie comme la mesure
+  d'une position sur l'axe qui va du construit \`a l'\'emergeant.}. %
+Cette dualit\'e, ou plut\^ot la capacit\'e offerte par les AC de basculer
+d'un univers \'epist\'emologique \`a un autre tout en restant au sein d'un
+mod\`ele unique, doit \^etre incarn\'ee dans l'environnement. %
+Nous souhaitons donc un environnement permettant une approche mixte. %
+
+Par ailleurs, aucun des outils que nous avons cit\'es ne r\'epond
+totalement \`a un ensemble de contraintes plus pratiques que nous avons
+fix\'ees comme cadre de d\'eveloppement. %
+\begin{itemize}
+\item la nature publique\footnote{%
+    Par \aconcept{publique} nous entendons accessible sous forme
+    source et utilisable sans licence commerciale.} %
+  des outils
+\item la rapidit\'e d'ex\'ecution
+\item la richesse de visualisation
+\item la souplesse de sp\'ecification
+\item un environnement d'exploitation Unix et X11
+\item la modularit\'e des constituants en vue de la construction et du
+  s\'equencement d'exp\'eriences cellulaires. %
+\end{itemize}
+
+\asoft{CA~LAB} n'est pas un outil public et n'est pas disponible dans
+l'environnement Unix. %
+\asoft{Cellsim} de par sa d\'ependance \`a~\asoft{SunView} n'est
+utilisable que dans un environnement Sun\footnote{%
+  Felicity George a r\'ealis\'e en 1992 un portage de~\asoft{cellsim} pour
+  l'environnement~\asoft{XView}.}, %
+\asoft{scamper} pr\'esente une application int\'egrant un formalisme de
+sp\'ecification des r\`egles bas\'ees par pattern, des compteurs de
+populations et une interface visuelle bas\'ee sur X11, mais il ne permet ni
+ex\'ecution rapide, ni s\'equencement. %
+\asoft{Cellang} propose un langage de description d'AC, mais son
+compilateur ne produit pas un code permettant de tirer le meilleur
+parti des ressources disponibles. %
+
+\section{Des AC pour l'optimisation d'usage de ressources}
+
+Concernant le parall\'elisme massif, les tendances de la pr\'ec\'edente
+d\'ecennie en architecture des machines ne confirment pas les
+pr\'edictions avanc\'ees \`a son propos\footnote{%
+  Machines SIMD massives reposant sur des techniques de fabrication de
+  type wafer scale int\'egration, associ\'ees \`a des algorithmes de
+  reconfigurations de r\'eseaux d'interconnexion permettant la
+  r\'esistance aux d\'efauts; pyramides de telles architectures pour la
+  vision et plus g\'en\'eralement l'IA, ou architectures diverses pour la
+  physique, la biologie mol\'eculaire, le pattern matching haut d\'ebit,
+  la r\'ealisation de film holographique temps r\'eel.}. %
+N\'eanmoins, hors consid\'erations architecturales, les ressources
+accessibles continuent \`a cro\^itre \`a un rythme soutenu\footnote{%
+  Au point qu'on pourrait mettre en doute l'application du
+  principe des gaz parfaits \`a la consommation de ressources. %
+  Contre cette tendance, nous proposons de consid\'erer qu'il n'est plus
+  temps d'apprendre comment se contenter de ressources restreintes,
+  mais comment tirer profit de ressources disponibles.}. %
+Hormis le calcul intensif classique, les gains de ressources semblent
+s'orienter vers le parall\'elisme MIMD massif pour la gestion et le
+support multim\'edia pour le poste de travail. %
+Nous affirmons que les AC constituent un mod\`ele efficace et universel
+pour l'utilisation de ces ressources, y compris par la prise en compte
+du parall\'elisme multi-calculateur\footnote{%
+  C'est \`a dire l'utilisation d'un ensemble de machines
+  autonomes~(stations de travail ou autres, localement parall\`eles ou
+  non) reli\'ees par un r\'eseau d'interconnexion~(de type bus ou point
+  \`a point) dot\'ees d'une couche logicielle syst\`eme ad hoc, comme une
+  ressource parall\`ele en soi.} %
+associ\'e \`a l'interconnexion par \astrangeterm{WAN}{%
+  Wide Area Network, il s'agit ici de remarquer que les d\'ebits
+  disponibles ou annonc\'es pour les r\'eseaux de t\'el\'ecommunication publics
+  permettent d'envisager la construction virtuelle de
+  machines cellulaires reparties sur une large zone g\'eographique.} %
+de ceux-ci. %
+La r\'egularit\'e structurelle des donn\'ees et des traitements des AC
+associ\'es \`a l'absence de probl\`eme algorithmique de synchronisation
+des \'el\'ements du calcul r\'eparti, permet un calcul et une affectation de
+ressource simple. %
+Une approche bottom-up de la sp\'ecification du comportement des
+\'el\'ements cellulaires permet, de plus, de s'affranchir des probl\`emes
+d'architecture CPU, une fonction consid\'er\'ee sous l'angle de sa table
+de transition est ind\'ependante des architectures de
+traitement\footnote{%
+  A une permutation de l'ordre des bits sur le mot pr\`es, et toujours en
+  consid\'erant que l'unit\'e de traitement r\'eellement disponible reste
+  fondamentalement une architecture de von Neumann dot\'ee d'une m\'emoire
+  adressable importante.}. %
+
+\mysetref{repartition-du-calcul}
+A propos de la r\'epartition d'un calcul cellulaire sur r\'eseau de
+stations de travail\footnote{%
+  Algorithme distribu\'e avec recouvrement: calcul des bords, envoi des
+  bords, calcul du centre, r\'eception des bords.}, %
+et concernant le probl\`eme de l'overhead associ\'e au passage de messages
+impl\'ementant la synchronisation des bords lorsque le calcul courant
+r\'eclame un acc\`es \`a une cellule voisine, ind\'ependamment d'une mesure
+particuli\`ere des d\'ebits respectifs du couple
+\bialt{cpu}{m\'emoire}~($D_{m}$) et du canal de communication($D_{c}$),
+le rapport des tailles \bialt{locales}{distantes} $N^{d}/N^{d-1} = N$
+garantit l'existence d'une valeur $k$ de $N$ telle que l'usage de
+plusieurs n{\oe}uds de calculs sera plus efficace que l'usage d'un
+seul d'entre eux:~$\frac{D_{m}}{D_{c}} k > 1$. %
+%% \[\frac{D_{m}k^{d}}{D_{c}k^{d-1}} > 1\]
+
+A d\'efaut de machines cellulaires industrielles, nous
+esp\'erons pouvoir utiliser les DSP et les acc\'el\'erateurs
+\aquote{bitblt}~\cite[]{Pike84} aujourd'hui largement disponibles
+comme acc\'el\'erateurs de nos moteurs cellulaires. %
+
+\section[AC et morphog\'en\`ese]{Des AC comme outils de r\'eflexion morphog\'en\'etique}
+
+L'essence de la forme pose un probl\`eme, ne serait ce que
+par l'existence de la g\'en\'ericit\'e du moule. %
+Tout \'etat du monde n'est pas une forme, toutefois une forme est par
+d\'efinition une configuration d'espace cellulaire prise parmi un
+ensemble fini de configurations. %
+Cette d\'efinition r\'eclame un crit\`ere de
+\bialt{discrimination}{r\'eduction} de l'ensemble des \'etats. %
+Une premi\`ere possibilit\'e r\'eside dans l'utilisation d'une fonction
+arbitraire sur un \'etat d\'eterminant la valeur d'un attribut formel:
+esth\'etique, g\'eom\'etrique, sta\-tistique, arithm\'etique. %
+Les formes sont figuratives, abstraites, s\'eduisantes, rondes, carr\'ees,
+sym\'etriques, rares, uniques\footnote{%
+  Chaque configuration d'espace est \'evidemment unique, on pourrait
+  n\'eanmoins mesurer, intuitivement ou formellement, l'unicit\'e \`a partir
+  du produit de l'ensemble des \'etats par l'ensemble des
+  fonctions de qualification formelle disponibles. %
+  Les fonctions de qualification sont des fonctions de r\'eduction de
+  l'information~(le nombre de bits rendu est inf\'erieur au nombre de
+  bits fourni), le cardinal de l'image d'un ensemble de formes est
+  donc inf\'erieur \`a celui de l'ensemble de formes, la distribution des
+  redondances de valeurs induites par la diff\'erence de cardinalit\'e
+  d\'eterminant les classes d'\'equivalence de cet attribut. %
+  
+  Une relation d'ordre pour l'unicit\'e est alors d\'efinie par une
+  fonction minimisant le cardinal de l'union des classes d'\'equivalence
+  des images des formes.}, %
+r\'eguli\`eres, fractales, denses, color\'ees, leur num\'ero d'ordre enfin,
+peut \^etre argument d'une fonction choisie au hasard. %
+Cette m\'ethode pose le probl\`eme de l'\'enum\'eration des fonctions de
+r\'eduction\footnote{%
+  Ainsi que celui du choix \`a priori des \'etats consid\'er\'es. %
+  Les fonctions de qualification sont implicitement destin\'ees \`a
+  introduire une r\'eduction du nombre des formes par l'introduction de
+  classes d'\'equivalence sur l'ensemble des \'etats.}. %
+Une deuxi\`eme m\'ethode consiste \`a opposer la g\'en\'eticit\'e \`a la
+g\'en\'ericit\'e, c'est \`a dire l'histoire de la forme au moule de la forme. %
+Dans ce contexte la r\'eduction du nombre d'espaces appel\'es \`a la forme
+est d\'etermin\'ee par l'existence d'une trajectoire dans l'espace des
+\'etats. %
+Cette trajectoire \'etant elle m\^eme d\'etermin\'ee par l'application it\'er\'ee
+d'une fonction de l'ensemble des \'etats vers l'ensemble des \'etats. %
+Les trajectoires ne sont pas moins nombreuses que les \'etats, mais si
+l'on ajoute une contrainte de localit\'e aux fonctions g\'en\'eratrices de
+trajectoires, une tentative d'\'enum\'eration devient accessible. %
+Cette contrainte de localit\'e constitue le fondement d'une approche
+cellulaire de la forme. %
+Cette contrainte introduit un lien entre la vitesse et la forme. %
+Plus g\'en\'eralement, la notion de contrainte s'applique ais\'ement au
+monde des formes dans une perspective esth\'etique, le libre choix des
+contraintes de production de l'objet d\'eterminant la qualit\'e artistique
+de l'{\oe}uvre, dont la forme peut \^etre con\c{c}ue comme une trace
+d'ex\'ecution\footnote{%
+  La perception de l'{\oe}uvre n'est jamais exempte de la perception
+  de l'histoire de sa fabrication~\cite[]{Gombrich71}.}. %
+De m\^eme la \aquote{forme} d'un espace cellulaire
+devient la trace d'un programme\footnote{%
+  De l'application d'une loi non ergodique sur un espace initial
+  n\'ecessairement al\'eatoire.}. %
+
+\section[AC, espace, temps et calcul]%
+{Des AC comme outils de r\'eflexion sur l'espace, le temps et le calcul}
+
+Nous avons d\'ej\`a mentionn\'e l'existence d'une dualit\'e
+analytique-synth\'etique. %
+D'autres projections de cette dualit\'e sont possibles, sur les axes
+dynamique statique, heuristique algorithmique, parall\`ele s\'equentiel ou
+temporel spatial. %
+La trajectoire d'un AC sur un espace de configuration est un objet
+dynamique, la structure d'un espace de r\`egles de transition d'AC pour
+un voisinage donn\'e est un objet statique. %
+A la fronti\`ere se trouvent des objets donn\'es par l'application
+it\'erative d'une fonction simple sur un espace cellulaire initial
+globalement param\'etr\'e~(l'automate auto-reproducteur de von Neuman, ou
+une machine de Turing impl\'ement\'ee par un espace de configuration
+d'un AC tel \arule{Life} de Conway). %
+
+La quantit\'e de parall\'elisme d'une ex\'ecution peut se mesurer au nombre
+d'instructions diff\'erentes rencontr\'ees lors de cette ex\'ecution. %
+Il existe une \'equivalence entre un AC d\'efini par un r\'eseau
+d'interconnexion et une fonction de transition, et un algorithme
+cellulaire d\'efinit par une s\'equence d'instructions
+cellulaires. %
+Si un AC est consid\'er\'e comme une instruction cellulaire \'el\'ementaire,
+celle-ci poss\`ede un co\^ut, qui s'exprime comme la taille de la table
+de v\'erit\'e de cette instruction cellulaire. %
+Si un AC est consid\'er\'e comme une s\'equence d'instructions cellulaires,
+celle-ci poss\`ede un co\^ut, qui s'exprime comme la somme des temps de
+r\'ealisation de chaque instruction, et in fine la somme de la taille
+des tables de v\'erit\'e de chaque instruction \'el\'ementaire. %
+L'impl\'ementation optimale d'un algorithme cellulaire serait obtenu
+lorsque, pour une occupation maximale de la m\'emoire disponible pour les
+tables de v\'erit\'es~(les fonctions de transition) des instructions
+cellulaires, le nombre de primitives diff\'erentes composant l'algorithme
+est minimum. %
+Le ratio du nombre de primitives employ\'ees sur le nombre de primitives
+existantes d\'etermine l'importance des effets relevant de la
+dynamique~(l'heuristique) de ceux relevant de l'algorithme proprement
+dit dans la fonction associ\'ee au programme cellulaire.
+
+Nous disons que la fonction de transition d'un AC est localement
+univer\-selle\footnote{%
+  Nous dirons parfois qu'un AC est globalement universel, pour
+  d\'esigner la propri\'et\'e usuelle d'universalit\'e par opposition \`a la
+  propri\'et\'e d'universalit\'e locale des PE de machines SIMD\@. %
+  L'universalit\'e locale implique \'evidement l'universalit\'e globale. %
+  \arule{Life} constitue dans le contexte de ce travail l'arch\'etype
+  d'un AC dot\'e de l'universalit\'e globale, et le processeur GAPP
+  l'arch\'etype d'un AC dot\'e de l'universalit\'e locale.} %
+si une seule cellule consid\'er\'ee comme PE se comporte comme une machine
+universelle sous r\'eserve d'une extension virtuelle du nombre d'\'etats
+cellulaires. %
+C'est a priori le cas de toutes les architectures SIMD,
+m\^eme si le faible nombre d'\'etats accessibles\footnote{%
+  Ce faible nombre d'\'etats doit n\'eanmoins \^etre exprim\'e en logarithme,
+  c'est \`a dire en nombre de bits adresse.} %
+destine \'evidemment ces machines \`a un usage cellulaire. %
+
+D'un cot\'e le \aquote{calcul s\'equentiel} pur d\'eroule une s\'equence
+d'instructions d\'efinie en extension sur un espace initial \'egalement
+d\'efini en extension, de l'autre le \aquote{calcul cellulaire pur}
+it\`ere une loi unique d\'efinie en extension sur un espace initial dont
+seules des propri\'et\'es statistiques\footnote{%
+  La taille d'un espace cellulaire incarn\'e, n\'ecessairement fini, doit
+  n\'eanmoins \^etre consid\'er\'ee comme tendant vers l'infini; la
+  sp\'ecification d'une configuration cellulaire particuli\`ere en
+  extension devient alors une barri\`ere \`a la pleine utilisation des
+  ressources disponibles.} %
+sont d\'efinies. %
+La distinction entre une s\'equence d'instructions et une \emph{loi}
+apparaissant comme une instruction unique, ne tient ni \`a la taille de
+la loi ni \`a une propri\'et\'e telle l'universalit\'e de l'architecture
+sous-tendant la s\'equence d'instructions, ou l'universalit\'e
+locale ou globale de la loi\footnote{%
+  En effet toute s\'equence d'instruction, tout algorithme peuvent
+  \'evidemment \^etre transform\'es en une instruction
+  unique par le calcul d'une lookup-table.} %
+mais \`a l'opposition entre l'unicit\'e de l'application d'une s\'equence
+d'instructions, d'un algorithme et la n\'ecessaire it\'eration sans
+fin\footnote{%
+  Comme pour l'espace, ressource n\'ecessairement limit\'ee devant
+  n\'eanmoins \^etre consid\'er\'ee comme tendant vers l'infini, le temps
+  cellulaire, le nombre de cycles d'it\'erations de l'application de la
+  loi sur l'espace doit \^etre consid\'er\'e comme tendant vers l'infini.} %
+de la loi sur l'espace cellulaire. %
+A la fronti\`ere\footnote{%
+  La structure de l'espace englobant le s\'equentiel et le cellulaire
+  appara\^it ici tr\`es clairement.} %
+le calcul cellulaire it\'erant une loi unique sur un espace dont la
+configuration ini\-tiale est une transformation~(un mapping) d'une s\'erie
+d'instructions d'un calcul s\'equentiel, c'est \`a dire le calcul
+cellulaire exploitant l'universalit\'e globale d'une loi; ou encore le
+calcul cellulaire SIMD d\'eroulant une s\'equence d'instructions d\'efinie
+en extension, c'est \`a dire le calcul cellulaire utilisant
+l'universalit\'e locale d'une loi, et sans doute, mais sans qu'il soit
+possible d'en \'etablir simplement la part, l'universalit\'e globale de
+cette loi. %
+
+Si l'on consid\`ere que l'encodage d'un algorithme sur une machine
+s\'equentielle pose un probl\`eme aigu, et encore davantage
+l'encodage du probl\`eme \`a traiter, il en va bien s\^ur de m\^eme pour les
+machines SIMD. %
+On continue toutefois dans le contexte SIMD \`a r\'esoudre des probl\`emes
+algorithmiques, \`a utiliser l'universalit\'e pour la construction de
+machines algorithmes. %
+Lorsque l'on passe \`a une machine cellulaire pure, la nature
+intrins\`equement statistique du processus de calcul\footnote{%
+  Nous avons jusque l\`a \'evoqu\'e la seule incertitude statistique
+  associ\'ee \`a la sp\'ecification de la configuration initiale, la loi
+  \'etant consid\'er\'ee comme purement d\'eterministe, on voit bien cependant
+  comment un ind\'eterminisme sur l'espace est de fait indiff\'erentiable
+  d'un ind\'eterminisme sur la loi, laquelle n'est jamais que de
+  l'espace local g\'en\'erateur du temps.} %
+change radicalement le point de vue. %
+Le probl\`eme \`a traiter ne pouvant d\`es lors gu\`ere s'exprimer que par
+analogie \`a une morphog\'en\`ese
+cellulaire\footnote{%
+  Expression \`a prendre dans un sens non restrictif \`a la biologie bien
+  s\^ur, \`a l'existence pr\`es d'un paysage \'epig\'en\'etique.}. %
+Il sera toujours possible de plonger une approche SIMD, voire
+purement s\'equentielle et distribu\'ee dans un contexte cellulaire pur,
+mais outre que cela pose des probl\`emes qui nous apparaissent assez
+ardus de faisabilit\'e pratique\footnote{%
+  Cela pose aussi des probl\`emes plus fondamentaux, dont le moindre
+  n'est pas d'\'eclaircir la nature ontologique de l'incertitude
+  statistique qui semble bien devoir \^etre li\'ee \`a une d\'efinition d'un
+  calcul cellulaire r\'eellement massif, m\^eme si la dimension
+  technologique de cette incertitude existe \'egalement.}, %
+cela ne tend pas \`a r\'epondre \`a la
+question de la sp\'ecificit\'e du calcul cellulaire pur. %
+En effet, si celui-ci ne semble pas, dans son approche la plus stricte,
+isomorphe \`a une machine universelle arbitraire, ce pourrait \^etre d\^u \`a
+la nature particuli\`ere des morphog\'en\`eses cellulaires, lesquelles ne
+sont peut-\^etre pas r\'eductibles \`a des algorithmes. %
+Le calcul s\'equentiel peut \^etre consid\'er\'e comme une version
+adimensionnelle~(de dimension z\'ero) d'un calcul cellulaire. %
+Le calcul cellulaire algorithmique\footnote{%
+  C'est \`a dire la r\'ealisation d'un algorithme par une une
+  configuration cellulaire initiale associ\'ee \`a une loi globalement
+  universelle.} %
+correspondant au choix d'un point unique dans l'espace des \'etats
+cellulaires, permettant par le plongement d'une machine de Turing dans
+l'espace cellulaire, de r\'ealiser une r\'eduction
+dimensionnelle de l'espace cellulaire. %
+Le calcul cellulaire SIMD\footnote{%
+  C'est \`a dire la r\'ealisation d'un algorithme sur une configuration
+  cellulaire par une m\'ethode s\'equentielle locale.} %
+correspondant au choix d'un mapping probl\`eme vers configuration cellulaire,
+associ\'e ou non \`a l'utilisation des propri\'et\'es dynamiques d'une loi ou
+plusieurs lois pour contr\^oler une trajectoire dans l'espace des
+configurations cellulaires. %
+Le calcul cellulaire pur, par la prise en compte de l'incertitude
+statistique, cherche \`a dresser un paysage g\'en\'eral du calcul,
+lequel devient une propri\'et\'e intrins\`eque, voire \'emergeante d'un mod\`ele
+d'univers compos\'e d'atomes d'espace dot\'e d'une loi universelle. %
+Une des propri\'et\'es particuli\`erement int\'eressante, de notre point de
+vue, du calcul cellulaire, r\'eside dans les \'equivalences espace-temps
+rendues possibles par son architecture. %
+En effet la mesure des quantit\'es \'el\'ementaires de cette architecture,
+ainsi que les transformations mutuelles possibles entre ces quantit\'es
+sont d'impl\'ementation ais\'ee. %
+Ainsi, en calcul cellulaire pur, le nombre d'\'etats d'une cellule et le
+nombre de voisins de cette cellule d\'etermine une borne sup\'erieure \`a la
+complexit\'e\footnote{%
+  Nous n'avons pas de d\'efinition pr\'ecise de cette complexit\'e,
+  il s'agit a priori d'une mesure statistique de la richesse de
+  comportement, rapport\'ee \`a une dur\'ee. %
+  La capacit\'e et la rapidit\'e morphog\'en\'etique associ\'ees \`a une r\`egle.} %
+du calcul effectu\'e\footnote{%
+  L'analyse de la table de transition permet de pr\'eciser une valeur
+  de complexit\'e, en particulier la distance \`a la borne sup\'erieure. %
+  Une table constante, les tables identit\'e ou inverse sur un seul
+  bit du mot de voisinage~(translation, et translation alternance de
+  la configuration initiale) sont faciles \`a identifier. %
+  Une g\'en\'eralisation possible de ces notions conduit \`a la d\'efinition
+  de param\`etres de contr\^ole de l'espace des r\`egles tels que le
+  param\`etre $\lambda$ de Langton ou le param\`etre d'ench\^assement.}. %
+La taille de \arule{Life} est de~512~bits,
+celle de l'automate auto-reproducteur de von Neumann de
+$2^{5\lceil\log_{2}(29)\rceil}\lceil\log_{2}(29)\rceil =
+20 \text{m\'egaoctets}$. %
+Il serait int\'eressant de conna\^itre la taille minimale d'une
+configuration initiale de \arule{Life} r\'ealisant une machine
+universelle, il n'existe pas \`a notre connaissance de r\'ealisation
+effective d'une telle configuration. %
+La taille de la configuration r\'ealisant l'automate auto-reproducteur
+de von Neumann a \'et\'e \'evalu\'ee \`a plusieurs centaines de milliers de
+cellules. %
+%% John kemeny 1955
+Jaqueline Signorini a \'etudi\'e les conditions de r\'ealisation de cet
+automate sur le GAPP~\cite[]{Signorini92}, mais une configuration
+auto-reproductrice compl\`ete n'a encore jamais \'et\'e men\'ee \`a bien. %
+
+L'impl\'ementation de \arule{Life} sur une machine s\'equentielle
+$M_{\text{SISD}}$ utilise $a$ cycles de base pour chacune des $N$
+cellules, et $b = 2$ bits\footnote{% 
+  Un plan \avar{past} et un plan \avar{futur}, impl\'ementant le
+  synchronisme de mise \`a jour, on peut envisager des optimisations
+  r\'eduisant le nombre de bits n\'ecessaire au plan secondaire,
+  lesquelles se ram\`enent \`a une compression de la configuration
+  cellulaire, associ\'ee \`a des m\'ethodes d'acc\`es sp\'ecialis\'ees au codage de
+  la compression, renfor\c{c}ant ainsi la tendance des machines
+  s\'equentielles \`a l'\'echange de temps contre de l'espace.} %
+par cellule pour le calcul d'une g\'en\'eration de \arule{Life}, plus
+$c \times  i$ bits pour le codage des instructions, $i$ \'etant la taille
+moyenne d'une instruction. %
+$c$ et $a$ sont typiquement tous les deux de l'ordre de quelques
+centaines d'\bialt{instructions}{cycle} \'el\'ementaire d'une machine
+monoprocesseur id\'eale pour une version na\"ive~(non optimis\'ee) de
+l'\'emulateur de la machine cellulaire. %
+Une impl\'ementation par lookup-table avec collecte pipelin\'ee du
+voisinage augmente $c$ et diminue $a$ d'un ordre de grandeur. %
+
+\begin{equation}
+  \frac{\text{Space}}{\text{Time}} = \frac{bN+ci+M_{\text{SISD}}}{aN}
+  \label{eq-life-sisd}
+\end{equation}
+
+Avec:\[b = 2,~i = 32,~c \approx a \approx 10^2,~M_{\text{SISD}}
+\approx 10^6\]
+
+La valeur de $a$ et $c$ d\'ependent du nombre $k$ d'\'etats par cellule et
+du rayon $r$ du voisinage cellulaire. %
+La taille du mot de voisinage~(9~dans le cas de \arule{Life})
+d\'etermine ces valeurs. %
+
+L'impl\'ementation de~\arule{Life} sur une machine
+SIMD~$M_{\text{SIMD}}$ utilise $a^{\prime}$~cycles de base pour le
+calcul d'une g\'en\'eration, ind\'ependamment du nombre de cellules,
+et~$b^{\prime}$~bits par cellule, les~$c^{\prime} \times  i^{\prime}$~bits
+d'instructions \'etant traditionnellement consid\'er\'es comme n'appartenant
+pas stricto sensu \`a la machine SIMD, mais \`a une indispensable machine
+s\'equentielle, h\^ote de toute machine SIMD\@. %
+Les $a^{\prime}$~cycles de calcul d\'ependent de la machine SIMD choisie,
+une machine SIMD typique est plus difficile \`a proposer qu'une
+machine SISD id\'eale, sur le GAPP, de l'ordre de la centaine pour une
+impl\'ementation a priori de la fonction de transition\footnote{%
+  L'algorithme arithm\'etique de \arule{Life}, comptage plus seuil.}, %
+de l'ordre du millier pour une impl\'ementation a posteriori de celle-ci\footnote{%
+  Une d\'erivation algorithmique du DFA de \arule{Life} calcul\'ee \`a partir
+  de la table de transition, laquelle peut \^etre obtenue par observation
+  d'une trajectoire sur l'espace des configurations, associ\'ee \`a une
+  algorithmique SIMD g\'en\'erique interpr\'etant le DFA sur le mot de voisinage.}. %
+De l'ordre d'une dizaine de bits pour les $b^{\prime}$ bits d'espace. %
+
+\begin{equation}
+  \frac{\text{Space}}{\text{Time}} = \frac{(b^{\prime}+M_{\text{SIMD}})N}{a^{\prime}}
+  \label{eq-life-simd}
+\end{equation}
+
+Avec:\[b \approx 10,a^{\prime} \approx 10^2,~\text{SIMD} \approx 10^2\]
+
+L'impl\'ementation de \arule{Life} sur une machine cellulaire pure $M_{\text{CA}}$
+utilise $a^{\prime\prime} = 1$ cycle et  $b^{\prime\prime} = 1$ bit par
+cellule. %
+Par contre le co\^ut li\'e \`a l'architecture s'exprime simplement comme la
+taille de la table de transition. %
+
+\begin{equation}
+  \frac{\text{Space}}{\text{Time}} =
+  \frac{(b^{\prime\prime}+M_{\text{CA}})N}{a^{\prime\prime}}
+  \label{eq-life-cell}
+\end{equation}
+
+Avec:\[a^{\prime\prime} = 1,~b^{\prime\prime} = 1,~\text{CA} = 512\]
+
+Les valeurs d'espace propos\'ees pour le terme $M_{\text{SISD}}$ et le
+facteur $M_{\text{SIMD}}$ dans les \'equations~\ref{eq-life-sisd}
+et~\ref{eq-life-simd} repr\'esentent un nombre de transistors CMOS id\'eal
+pour ces architectures. %
+Le facteur $M_{\text{CA}}$ de l'\'equation~\ref{eq-life-cell} n'est pas
+un nombre de transistors approxim\'e, mais un nombre exact de bits. %
+Cette diff\'erence de type entre les objets compt\'es se trouve
+consid\'erablement pond\'er\'ee par les croissances respectives des tailles
+d'espaces n\'ecessaires \`a la r\'ealisation d'une fonction de transition
+lorsque la fonction de transition devient un param\`etre des \'equations
+pr\'ec\'edentes. %
+Sur une machine SISD l'augmentation de la taille du mot de voisinage
+induit une croissance lin\'eaire de la taille de l'espace et du temps
+utilis\'e pour calculer une trajectoire cellulaire. %
+L'augmentation de la taille d'espace ne d\'epend que de la taille du mot
+de voisinage, pas de la complexit\'e de la fonction de
+transition\footnote{%
+  A condition, bien s\^ur, de ne pas transformer la fonction de
+  transition en lookup-table.}, %
+mais l'augmentation du temps de calcul d\'epend de la taille de la
+configuration initiale. %
+Sur une machine SIMD l'augmentation de la taille du mot de voisinage
+induit \'egalement une croissance lin\'eaire de la taille de l'espace et
+du temps utilis\'e pour calculer une trajectoire cellulaire. %
+Par contre l'augmentation de la taille d'espace d\'epend de la taille
+du mot de voisinage et de la complexit\'e de la fonction de transition,
+ce facteur de croissance de la taille d'espace est donc sup\'erieur \`a
+celui d'une machine SISD\@. %
+De plus la taille de l'architecture est fonction de la taille de la
+configuration initiale, ce facteur pr\'esentant \'evidemment la source
+principale des besoins de ressource spatiale. %
+Par contre, pour prix de cette augmentation lin\'eaire des besoins
+d'espace par rapport \`a la version SISD, le temps de calcul n'est plus
+fonction de la taille de l'espace initial. %
+Sur une machine cellulaire pure l'augmentation de la taille du mot de
+voisinage induit une croissance exponentielle de la taille d'espace
+via une croissance exponentielle de la taille de la table elle-m\^eme
+facteur de la taille de la configuration initiale, le temps se
+r\'eduisant \`a l'unit\'e. %
+
+\section{Plan de lecture}
+
+Dans le chapitre~\mygetref{space-time-law} nous pr\'esentons la
+structure des objets de notre \'etude:~l'espace, le temps et les lois, %
+ainsi que les m\'ethodes applicables sur ces objets:~\'edition, r\'eduction,
+transformation, visualisation pour l'espace et le temps, plus
+construction, alt\'eration, composition, m\'elange et s\'eparation pour les
+lois. %
+Nous pr\'esentons \'egalement dans ce chapitre l'architecture de nos
+moteurs cellulaires. %
+
+Dans le chapitre~\mygetref{rule-space} nous pr\'esentons les outils
+conceptuels utilis\'es pour la quantification de l'espace des r\`egles, et
+nous proposons un nouveau param\`etre de contr\^ole pour l'exploration et
+la structuration de cet espace:~le param\`etre d'ench\^assement. %
+
+Le chapitre~\mygetref{about-anneal} est consacr\'e \`a une \'etude
+exp\'erimentale de la r\`egle~\arule{Anneal} bas\'ee sur l'exploitation de
+nos outils. %
+Les exp\'eriences r\'ealis\'ees nous am\`enent \`a proposer l'existence d'une
+relative invariance spatio-temporelle des trajec\-toires associ\'ees \`a
+une transition de phase dans l'espace des configurations initiales. %
+
+La conclusion introduit les limites de notre approche qui \`a associ\'e
+un constructivisme bottom-up \`a une \aquote{gestion de tables
+  g\'en\'eralis\'ee}. %
+Nous \'evoquons pour finir une approche alternative de r\'ealisation
+cellulaire purement algorithmique. %
+
+\mydumpfull{anneal-sum-1k-8k}%
+{Une superposition de r\'eduction int\'egrale}%
+{Une superposition de r\'eduction int\'egrale de \arule{Anneal}}%
+{Cette image est obtenue par la superposition de la r\'eduction int\'egrale
+  $\sum_{i=0}^{i=n}t_{i}xy$ des~$2^{10}$ et~$2^{13}$ premi\`eres
+  g\'en\'erations d'un espace initial de taille~\asquare{1024} et de
+  densit\'e\,\Sundemi.}
+
+\mydumpfull{anneal-sum-1k-8k-xv}%
+{}%
+{Une autre colormap pour la figure
+  \protect\mygetdump{anneal-sum-1k-8k}}%
+{Une colormap en bandes. %
+  Pour cette image, comme pour toutes les images en niveaux de gris
+  que nous avons pr\'esent\'ees, un p\'eriph\'erique de sortie capable de
+  restitution nuanc\'ee nous fait d\'efaut.}
+
+%%
+%% Local Variables:
+%% mode: auto-fill
+%% iso-accents-minor-mode: nil
+%% TeX-command-default: "mytex"
+%% TeX-master: "top"
+%% Local IspellParsing: "latex-mode ~latin1"
+%% Local IspellPersDict: "~/.ispell_lisp"
+%% LocalWords: "l'auto-reproduction s\'equencement CA LAB cellsim SunView XView"
+%% LocalWords: "Felicity scamper pattern cellang d'AC SIMD wafer scale l'IA MIMD"
+%% LocalWords: "matching holographique multim\'edia multi-calculateur ad hoc WAN"
+%% LocalWords: "Wide Area Network t\'el\'ecommunication bottom-up von Neumann cpu PE"
+%% LocalWords: "adressable repartition-du-calcul l'overhead uds NEW DSP bitblt"
+%% LocalWords: "morphog\'en\'etique g\'en\'ericit\'e cardinalit\'e fractales g\'en\'eticit\'e uvre"
+%% LocalWords: "it\'er\'ee ergodique analytique-synth\'etique param\'etr\'e Neuman Turing"
+%% LocalWords: "auto-reproducteur impl\'ement\'ee Conway univer GAPP it\`ere it\'erant"
+%% LocalWords: "lookup-table mapping ind\'eterminisme indiff\'erentiable Langton DFA"
+%% LocalWords: "\'epig\'en\'etique morphog\'en\`eses espace-temps Jaqueline Signorini past"
+%% LocalWords: "auto-reproductrice monoprocesseur l'\'emulateur impl\'ementation"
+%% LocalWords: "stricto sensu SISD CMOS approxim\'e space-time-law rule-space in"
+%% LocalWords: "about-anneal Anneal constructivisme"
+%% End:

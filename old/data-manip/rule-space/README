@@ -1,0 +1,4 @@
+col 1 = lambda
+col 2 = E(periph)
+col 3 = E(center)
+col 4 = mean(E) = (E(p)*8 + E(C))/9

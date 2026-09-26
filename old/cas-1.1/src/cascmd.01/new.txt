@@ -1,0 +1,183 @@
+set space [Space_new rand.pbm]
+
+set conex [Conex_new moore.tcl]
+set conex [eval [read [open moore.tcl]]]
+
+set func [Func_new $conex $func $parse]
+set func [Func_new $conex life.pbm]
+set func [Func_new life.tcl]
+
+// life.tcl
+
+set conex [eval [read [open moore.tcl]]]
+set func [Func_new $conex sum8_tab sum8_tab_parse]
+Func_bind $func 00U100000
+echo $func
+
+//
+
+proc Func_life {
+	set conex [eval [read [open moore.tcl]]]
+	set func [Func_new $conex life.pbm]
+	return $func
+}
+
+Func_life
+
+//
+
+set space [Space2D rand.pbm]
+set time [Time2D $space 100]
+set simple [Simple2D $time [Func_life]]
+set dumper [DumpNow $time 1]
+set dump [Action $dumper 1]
+Simple_action $simple $dump 1
+
+Simple_step $simple
+Action_timer $dump 4
+
+Simple_step $simple
+DumpNow_mask $dumper 2
+
+Simple_fill $simple
+Simple_play $simple
+
+
+Simple_action $simple [Action [Dump now 0]] [Action [TransPastFutur]]
+
+proc Trans {} {
+	Func f1
+	Apply
+	Swap
+	
+	Func f2
+	Apply
+	Swap
+	
+	Func f3
+	Apply
+	
+	Func f4
+	Apply
+}
+
+set echo [Func [ConexSpec [list [ConexVar $local 1] [ConexVar $local 1]]
+			  [list [ConexVar $local 1 2]]] copy]
+Func_bind $echo
+
+proc Echo {} {
+	Func $echo
+	Apply
+	Swap
+}
+
+proc Xor {} {
+	Func xor
+}
+
+proc Other {} {
+	Extract 0
+	Stat sum
+}
+
+proc View {} {
+	Plot sum
+	Dump 0
+}
+
+proc Init {} {
+#	SF_fill [FrameGet] 0 1 2
+	Rand .5
+#	SF_load [FrameGet] image.pbm 0
+}
+
+for {Time clear} {Time endp} {Time new} {
+	Init
+	Info
+	View
+	Trans
+}
+
+proc Dump {plane 0} {
+	XdumperMomo_dump [DumperGet] [PlaneGet $plane]
+}
+
+proc View {} {Dump}
+
+for {Time first} {Time lastp} {Time next} {View}
+for {Time last} {Time firstp} {Time prev} {View}
+
+for {} {Time lastp} {Time next} {View}
+for {} {Time firstp} {Time prev} {View}
+
+
+Simple new $time
+simple = Simple new [Time new [Space new 256]]
+Simple creat simple $simple
+Cmd simple $simple
+
+simple.time rewind
+simple.time.space zero
+simple.time.space.state bloc 64 1
+simple func [Func new $moore life]
+
+Cmd dump [XdumperMono]
+dump mask 1
+simple.time.space extract 0
+
+Frame [Space [Time [Simple $simple time] space] frame 0] extract $plane
+
+simple.time.space.frame extract simple.time.space.plane 0
+simple.time.space.frame dump 0
+
+Time cmd time [Space cmd space rand.pbm] 100
+Simple cmd simple time
+
+Simple cmd simple [Time cmd time [Space cmd space rand.pbm] 100]
+
+Simple cmd simple
+Time cmd simple.time
+Space cmd simple.time.space rand.pbm
+
+set simple [Simple new [Time new [Space new rand.pbm] 100]]
+
+
+dump [Space [simple.time space] frame]
+dump [simple.time.space.plane] 0
+simple.time.space.plane dump 0
+simple.time.space.plane.action $action
+
+Cmd dump_stat [Xdumper]
+dump_stat [simple.time.space.time_sum]
+simple.time.space.time_sum dump
+
+simple func $func
+for {} {simple.time roomp} {simple.time store} {
+	simple apply
+}
+
+Simple cmd simple [Time new [Space new rand.pbm] 100]
+set simple [Simple new [Time new [Space new rand.pbm] 100]]
+Simple $simple func $func
+for {} {Time [Simple $simple time] roomp} {Time [Simple $simple time] store} {
+	Simple $simple apply
+}
+
+Simple $simple mkcmd simple
+simple func 
+Func cmd simple.func $conex func
+if {simple.func boundp} {simple.func.tab plot view.func.tab.plot}
+
+
+Simple $simple1 set $simple2
+simple set $simple2
+foo.simple set $simple2
+
+Func $func set $func1
+func set $func
+simple.func
+simple.func set $func
+
+simple.func set [func.life]
+
+Func cmd simple.func $conex func

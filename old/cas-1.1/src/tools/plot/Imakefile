@@ -1,0 +1,12 @@
+CDEBUGFLAGS = -g
+
+INCLUDES =
+SYS_LIBRARIES = -lAt XawClientLibs -lm
+
+SRCS = plot.c
+OBJS = plot.o
+PRGS = plot
+
+AllTarget($(PRGS))
+
+NormalProgramTarget(plot,plot.o,,,NullParameter)

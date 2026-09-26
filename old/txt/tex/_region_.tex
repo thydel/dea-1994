@@ -1,0 +1,55 @@
+\message{ !name(Slide.tex)}\documentclass[a4paper,dvips]{slides}
+\usepackage[francais,english]{babel}
+\usepackage{ifthen}
+\usepackage{epsfig}
+\usepackage{xspace}
+
+\usepackage{Sty/fig-cap}
+\usepackage{Sty/simple}
+
+%%\onlyslides{1-999}
+
+\renewcommand{\arule}[1]{\emph{\mbox{#1}}} % CA rule
+\renewcommand{\asquare}[1]{\ensuremath{#1^{2}}}
+\newcommand{\agen}[1]{gen.\,#1}
+\newcommand{\agencnt}[1]{#1\,gen.}
+\newcommand{\aplane}[1]{bit #1}
+
+\newcommand{\mytitle}[1]{\begin{center}\begin{large}#1\end{large}\end{center}}
+\newcommand{\mystitle}[1]{\begin{center}#1\end{center}}
+
+\sloppy
+\selectlanguage{francais}
+
+\begin{document}
+
+\message{ !name(Slide.tex) !offset(181) }
+  Un usage g\'en\'eralis\'e de table de transitions.
+  \begin{itemize}
+  \item[] Des moteurs rapides pour le calcul cellulaire sur machine
+    s\'equentielle.
+  \item[] Des transformations cellulaire-SIMD.
+  \end{itemize}
+  Des m\'ethodes de visualisations d'espace-temps.
+
+  Une mesure de l'ench\^assement des tables de transitions.
+
+\message{ !name(Slide.tex) !offset(208) }
+\end{document}
+
+%% Local Variables: 
+%% mode: auto-fill
+%% iso-accents-minor-mode: nil
+%% TeX-master: t
+%% Local IspellParsing: "latex-mode ~latin1"
+%% Local IspellPersDict: "~/.ispell_lisp"
+%% LocalWords: "paper dvips slides francais english babel ifthen epsfig xspace"
+%% LocalWords: "Sty fig-cap gen mynote pt Thierry Delamare DEA twothirds dump XX"
+%% LocalWords: "qmean SIMD XXXXXX Anneal mask secondary computation Construct it"
+%% LocalWords: "Mean SUM Destruct return hor anneal apply func santes lifex-sum"
+%% LocalWords: "life-time-xor lifex-sum Espace-temps d-New relativiste rel tsum"
+%% LocalWords: "relmov d'espace-temps anneal-sum iso-surface tsum-ray-one tsum"
+%% LocalWords: "trans-byte trans-bits diag E-lambda tube-worm-mix Tube-Worm PE"
+%% LocalWords: "gap-pe GAPP gap gapp life-tree life-dfa DFA cellulaire-SIMD l'AC"
+%% LocalWords: "xu-photo xu xu-Cfilm \'equi"
+%% End: 

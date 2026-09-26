@@ -1,0 +1,301 @@
+\section{bruitage et cryptage de life}
+
+Il est assez facile de reconnaitre un point fixe, un cycle limite, le
+chaos\ldots On fait des mesure, on cherche des divergences\ldots
+Maintenant, je peu produire~(je ne sais rien de leur densit\'e
+d'existence) une r\`egle universelle, \arule{Life} par exemple, qui aura
+l'apparence d'une r\`egle cahotique\footnote{%
+  Je ne peut pas lui donner l'apparence d'une r\`egle point fixe
+  evidemment, mais je peu lui donner l'apparence d'une r\`egle cahotique
+  si je veux} %
+face \`a un equipement qui cherche avec des mesures statistiques.
+%%
+C'est simple, je rajoute des plan bruit\'es,
+et la moyenne des comportement sera un comportement bruit\'e.
+%%
+Il y a un plan qui en fait calcule life\footnote{%
+  Possibilit\'e d'un crytpage suppl\'ementaire de premier niveau?
+  Peut \`etre par un calcul reversible.}. %
+La regle life est cacul\'e sur deux plan, et les cellules inutilis\'e sur
+un plan seront brouill\'e. %
+Le mouvement de bit sur un ensemble de plan semble al\'eatoire, mais si
+je regarde tel bit dans tel plan et\ldots~(si je fais une
+transformation) je retrouve life. %
+A~impl\'ementer:~Le cas le plus simple: 3 plan de bits, 2 qui font
+rien, maximalement cahotique, et un qui fait life. %
+Si je consid\`ere ma r\`egle comme une r\`egle 3 bit \`a 8 \'etats je vais dire
+cette r\`egle la est cahotique, je ne peu rien lui faire calculer, je
+sais pas comment faire. %
+Si on m'apprend quil faut regader un seul bit, qui n'est pas ramenable
+\`a un \'etat, comme ca, on a life. %
+Alors la question, quel est le pourcentage des r\`egles en apparence
+chaotique dans lequelles on pourrais trouver quelque chose qui
+appartient plus \`a la classe 3 mais \`a la classe 4.
+
+\section{probl\`eme de plongement}
+
+Exemple: je pars des automate \`a 2 dimensions,
+je prends le voisinnage de von-neuman. %
+J'ais $2^{32}$ r\`egle spossibles. %
+Je passe au voisinnage de Moore,
+j'ais $2^{512}$ r\`egles possibbles. %
+Parmi les $2^{512}$ r\`egles de Moore je trouve les $2^{32}$ du voisinnage
+de von-neuman. %
+Ca semble etre une petite partie. %
+C'est un peu plus compliqu\'e que ca. %
+Parceque je dois probablement les prendre sur la diagonales. %
+C'est \`a dire faire une rotation \`a 45 degr\'e sur la table
+et dire je les ai au mois deux fois. %
+Je touve aussi tous les automates 1D sur les lignes les colonnes et les diagonale. %
+Y sont pas nombreux non plu, mais en m\^eme temps on les recombine dans l'espace. %
+Evidemment si je passe en trois dimension je vais retrouver toutes les
+familles 2D et 1D par faisceaux dans tous les sens. %
+Alors \`a chaque fois, a prioris le rapport entre le nombre de r\`egles
+possible quand on augment la dimentionalit\'e ou le voisinnage, ou le
+rayon, \emph{et} le nombre de r\`egle qui se trouve enchass\'e plong\'e dans
+l'espace de dimmension sup\'erieure\ldots On peut peut-\^etre consid\'eere
+qu'il est n\'egligeable, mais en tout cas il permet d'expliquer quelque
+chose, c'est que si j'ais une r\`egle universelle en voisinnage de
+von~Neumann, elle est aussi en voisinage de Moore elle est \`a des
+endrois dans l'espace des r\`egles qui font quon n'aura pas un lieu bien
+determin\'e de la pr\'esence des r\`egles presentant certaines
+caract\'eristique puisque on a toute celle des espaces d'avant,
+celle qui ne tiennent pas compte de certain voisinnage. %
+(rapport \bialt{dimension}{nombre d'etat} pour compter nombre d'enchass\'e).
+Essayer de formaliser.
+
+\section{Tactique sociale}
+
+Je suis poli avec mes voisins mais si l'un d'entre eux manifeste \`a mon
+\'egard autre chose que cette bienveillante indiff\'erence\footnote{%
+  S'il fait mine de se m\'eler de mes affaires, par exemple.}, %
+je passe en mode agressif~(verbal), le plus rapidement, clairement et
+brutalement possible.
+
+Les tactiques pouvant \^etre consid\'er\'e comme des algorithmes\footnote{%
+  Et les strat\'egies comme des heuristiques.}, %
+Cette histoire peut inspirer une fonction de transition.
+
+Si l'on ajoute des \`especes ont peut se demander quelles sont les
+conditions d'apparition d'alliances.
+
+\section{short notes}
+
+\begin{itemize}
+
+\item Incertitude, Heisenberg, unit\'e multitude. %
+  Deterministe localement, non deterministe globalement. %
+  Inverse du monde des particules~(monde quantique)
+
+\item%
+  Comparaison de $\lambda$ sur un petit espace de r\`egles~(inf\'erieure \`a
+  $2^{16}$) avec lambda sur l'ensemble des r\`egles additives, le sous
+  espace des r\`egle additives? %
+  La distribution de lambda non lin\'eaire explique le param\`etre critique,
+  la majorit\'e des r\`egles est dans la r\'egion critique?
+  Pattern/s\'equences, espace/temps. %
+  L'espace se voi, le temps s'entends, ou s'\'ecoute. %
+  Synth\`ese picturale par AC. %
+  Utilisation de la synthese sonore pour la repr\'esentation des s\'equences~(ask vi). %
+  comparer distribution de lambda sur un \'echatillon al\'eatoire et sur un
+  subset determin\'e~(comme les r\`egles additives)
+  par rapport \`a la distribution sur un ensemble complet. %
+  Ac de surfaces, interfaces entre deux milieux. %
+  Tridimensionel mince. %
+  Couches de 4 \`a 32 cellules d'epaisseur. %
+  Interface eau/air, liquide/gas, vague, propagation d'ondes de surface, sable. %
+  Les tas de sables, burst de chaos dans plage d'equilibre,
+  mod\`ele cellulaire des tas de sable. %
+  Les pyramides \`a degr\'e comme des tas de sable. %
+  
+\item \`a propos de l'enchassement des espaces de r\`egles. %
+  L'hypoth\`ese ``computation at the edge of chaos'' postule une
+  transition de phase abrupte.
+
+\item Cr\'eation d'un catalogue de de r\`egles pouvant constituer un
+  niveau d'instruction \'el\'ementaire pour une machine cellulaire.
+
+\item%
+  $$O(\lambda) = 2^N$$
+  $$Space(\lambda) = \log_2(N)$$
+  $$O(E) = N 2^N$$
+  $$Space(E) = \log_2(\frac{N}{2}) N$$
+  
+  interpolation de $\lambda$ croissnt de 0 \`a N.
+  interpolation de E de 0 \`a 0.
+  par $\frac{N}{2}$ pour $x = \frac{2^N}{2}$?
+
+\item%
+  3 solutions d'impl\'ementation:
+
+  \begin{itemize}
+  \item filtre, langage, batch
+  \item shell
+  \item click and point
+  \end{itemize}
+
+  langage = lex, yacc matlab - txl; shell = sh, tcl; %
+  tcl = langage; tcl + tk = click and point; %
+  methodologie objet, tcl + itcl = objet; athena widget = trop fig\'e,
+  trop lourd. %
+  Mod\`ele click an point = khoros. %
+  Alternative: objet c ou c++, tcl et widget tk; %
+  shell = devellopement; %
+  langage = maturation; visualisation = something.
+  
+\item%
+  R\`egles additives, 10 entr\'ees dans la table secondaire,
+  4 \'etats par entr\'ee, z\'ero, un unchanged et flip. %
+  Somme sur les 8 voisins = 9 entr\'ee; %
+  somme sur les 8 voisins + le  centre = 10 entr\'ees.
+  
+  Pour 10 entr\'ees: $4^{10}$ ou $2^{20}$ ou $\approx$ 1 millions de
+  r\`egles possible.
+  
+\item%
+  $\lambda$ + E pour la cellule centrale + E pour les voisinnes
+  
+  E petit pour $\lambda$ petit
+  E petit pour $\lambda$ grand
+  
+  au moins sur un exemple E = $\lambda_{critique}$, pour $\lambda$ = 0.5.
+  
+  question: variance de $\lambda$ = $\lambda_{critique}$?
+  
+  Calculer pour un espace ce r\`egle, les densit\'ees d'apparition des
+  diff\'erentes valeurs de $\lambda$, et le nombre de valeur diff\'erentes
+  de $\lambda$ et le nombre de r\`egles \`a la temp\'eratute critique par
+  rapport au nombre total de r\`egles.
+
+\item Complexe = en croissance structurelle?
+
+\item Combien y a til de r\`egles universelle dans nu espaces de r\`egles. %
+  Le probl\`eme de l'universalit\'e d'une r\`egle est-il d\'ecidable?
+
+\item Life est une r\`egle unique parceque de nombreuse personnes on
+  travaill\'ee ensemble \`a la construction de la preuve de son
+  universalit\'e.
+
+\item%
+  Question du cout de l'architecture de d\'evellopement. %
+  Architecture mat\'erielle et logicielle syst\`eme. %
+  Rapport entre la puissance des algorithmes cellulaires et le cout
+  de l'architecture mat\'erielle. %
+  La moins ch\`ere des machine haut de gamme. %
+  30 mips, 30 m\'ega-bytes 1 giga disk, 1 million pixel, 256 couleur. %
+  Relation entre les unit\'e cellulaires et les unit\'e d'espace
+  et de vitesse des machines. %
+  Univers de r\`egles, univers cellulaires accessible pour une puissance
+  machines donn\'ee. %
+  Capacit\'e machines demain: 300 mips, 256 m\'ega. %
+  Notre architecture de d\'evellopement est l'architecture de r\'ef\'erence. %
+
+\item les AC et la complexit\'e par le bruit? %
+
+\item Pour faire un univer: l'espace, le temps, la loi~(de transition
+  local) et une rupture de sym\'etrie sur l'espace pour permettre \`a la
+  loi de s'exprimer. %
+
+\item Tas de sable, equilibre ponctu\'e, applicable \`a quoi d'autre?
+
+\item Comportement cellulaire global cyclique, comment?  combien de
+  plan de bits sont necessaire~(a par solution triviale de compteur local). %
+
+\item = plan de coupe = trance, slice, ligne de coupe = carotte,
+  morceau = slab. %
+
+\item \'Enumeration des r\`egles par types pour un espace complet. %
+
+\item totry:~The history of the density of the run time is the sum of the
+  density of 1 thru 8 connected cell. %
+  It is expected to find a correlation between AC class and distribution
+  of various connected sum. %
+
+\item L'histogrammes des densit\'e locales permet de calculer la taille des
+  fronti\`ere dans anneal par exemple. %
+
+\item A reference to a stochatic CA being assigned that a
+  deterministic CA if the random number generator is part of the rule
+  can be found in latice gas method for partial differential equation
+  a CA for burger equations p 486. %
+  They use wolfram ca random number generator, or random bit generator
+  from unbiased distribution and using logical expression logical
+  operation to get biased distribution. %
+  In that paper on can find a expression for the covariance of a CA.
+
+\item Wolfram origin of randomness in physical system: ``if in fact, no
+  polynomial time procedure ca detect patterns in the sequence then the
+  sequence can be considerer effectively random for practical purposes.''
+
+\item Pour chaque r\`egle exp\'eriment\'e, rechercher la divergence pour un bit de
+  variation de la condition initiale.
+
+\item Majority with flip, anneal with flip.
+
+\item Try to propagate constraint, that number of change from 0 to 1
+  or 1 to 0 always stay equal.
+
+\item \todo{Definir ergodicity}. %
+  Trouv\'e une note dans \cite{Queau89}:~Un syst\`eme est dit ``ergodique''
+  si la moyenne temporelle de ses sorties \'equivaut \`a la moyenne des
+  sorties d'un grand nombres de syst\`emes fonctionnant simultan\'ement.
+
+\item In prospect for a lattice gas computer, in latice gas method for
+  partial differential equation:\\
+  %%
+  ``the question about 24 bit model for 3 dimensional latice gas is: how
+  can this large number of rule can be reduce by factoring or grouping
+  them. %
+  Reduce the size of the rule representation in the lookup table. %
+  What is the fundamental dimension
+  of the rule set?''
+  %%
+  Essayer dimplementer la table du mod\`ele 24 bit calculer la valeur
+  de~$E$, essayer de d\'ecouper en plusieurs tables par r\'eduction via
+  un~DFA.
+
+\item Quelle est l'intersection entre un espace de r\`egles et la
+  ph\'enom\'enologie naturelle?
+
+\item Same book page 214:\\
+  %%
+  g\'en\'eraliser la question 7b au automates cellulaires.
+  %%
+  page 215:\\
+  %%
+  ``A different type of test for latice gas algorithm was due to be
+  important as well. %
+  One should perform the standard num\'erical test of increasing the grid
+  resolution while maintaining fixed all the parameters describing the
+  problem the goal would be to check that the higher resolution results
+  is identical to those obtain with the lower
+  numerical resolution.''
+  %%
+  Generaliser \`a tous les AC, et essayer appliquer sur anneal par
+  exemple.
+
+\item Utiliser anneal pour des experiences du m\^eme type que celle des
+  latice~gas. %
+  C'est \`a dire avec des source ou des flux.
+  
+\item Tester le changement d'echelle pr\'ealablement d\'ecrit sur anneal dans
+  ces conditions. %
+  Cad.\ pe.\ une source fixe de 1 de taille proprortionelle identique
+  pour des nombre de cellulles totale different et les diff\'erence
+  produite.
+
+\item Introduire les probl\`eme de la visualisation \`a partir de l'article en
+  question page 215.
+
+\end{itemize}
+
+%%
+%% Local Variables:
+%% mode: auto-fill
+%% iso-accents-minor-mode: nil
+%% TeX-master: "top"
+%% TeX-command-default: "mytex"
+%% Local IspellParsing: "latex-mode ~latin1"
+%% Local IspellPersDict: "~/.ispell_lisp"
+%% LocalWords: "lookup"
+%% End:

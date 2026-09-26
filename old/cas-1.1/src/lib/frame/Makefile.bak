@@ -1,0 +1,40 @@
+include $(CASDIR)/make/std-vars
+
+INCLUDES = \
+	-I$(CASDIR)/src/include \
+	-I$(CASDIR)/src/lib \
+	$(XINCLUDES) \
+	-I$(TCLINCDIR)
+
+CFLAGS = $(INCLUDES)
+CC = gcc $(CC_DEBUG_FLAGS) $(CC_OPTIM_FLAGS)
+
+LIBNAME = frame
+
+SRCS = \
+	frame.c
+
+HEADERS = \
+	frame.h
+
+OBJS = $(SRCS:.c=.o)
+EXECS = $(LIBNAME).a
+
+top: $(LIBNAME).a
+
+include $(CASDIR)/make/lib-targets
+
+include $(CASDIR)/make/std-targets
+
+# DO NOT DELETE THIS LINE -- make depend depends on it.
+
+frame.o: /usr/include/stdio.h /usr/include/features.h
+frame.o: /usr/include/sys/cdefs.h /usr/include/_G_config.h
+frame.o: /usr/include/errno.h /usr/include/linux/errno.h
+frame.o: /usr/include/string.h
+frame.o: /usr/lib/gcc-lib/i486-linux/2.4.5/include/stddef.h
+frame.o: /usr/include/malloc.h /usr/include/assert.h
+frame.o: /home/uruk/thy/usr/cas/src/include/local.h
+frame.o: /home/uruk/thy/usr/cas/src/include/magic.h tclif.h
+frame.o: /home/uruk/thy/usr/cas/src/lib/util/io.h frame.h
+frame.o: /home/uruk/thy/usr/cas/src/lib/extract/extract_tab.h

@@ -1,0 +1,50 @@
+int cmd_Space2D_new(ClientData notUsed, Tcl_Interp* interp, int ac, char** av) {
+    static char* usage = "file.pgm zsize | xsize ysize zsize";
+
+    Space2D* zis;
+    int xsize;
+    int ysize;
+    int zsize;
+    gray** tmp;
+    
+    void* ptr;
+    char handle[64];
+
+    if (ac != 2 && ac != 4) {
+	Tcl_AppendResult(interp, "bad # arg: ", av[0], " ", usage, 0);
+	return TCL_ERROR;
+    }
+    
+    if (ac == 2) {
+	FILE* fp;
+	gray maxval;
+
+	fp = fopen(av[1], "r");
+	if (!fp) {
+	    Tcl_AppendResult(interp, "fopen(", av[1], "): ", strerror(errno), 0);
+	    return TCL_ERROR;
+	}
+	tmp = pgm_readpgm(fp, &xsize, &ysize, &maxval);
+	fclose(fp);
+	zsize = pm_maxvaltobits(maxval);
+    } else {
+	xsize = atoi(av[1]);
+	ysize = atoi(av[2]);
+	zsize = atoi(av[3]);
+    }
+
+    zis = Space2D_new(0, xsize, ysize, zsize);
+    if (ac == 2) {
+	memcpy(zis->state->ptr, *tmp, zis->state->size);
+    }
+
+    Tcl_HandleAlloc(Space_tbl, handle);
+    ptr = Tcl_HandleXlate(interp, Space_tbl, handle);
+    assert(ptr);
+
+    *(Space2D**)ptr = zis;
+
+    strcpy(interp->result, handle);
+    return TCL_OK;
+}
+

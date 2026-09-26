@@ -1,0 +1,57 @@
+.S 16 18
+.P
+pre'senter les proble`mes et les outils les plus re'pandu
+de l'exploration de la structure de l'espace des AC.
+.P
+proposer un nouveau parame'trage de l'espaces des re`gles
+base' sur une notion de variation diffe'rentielle
+et le degre' d'enchassement des tables de transition.
+.P
+TIME 0 - 1
+.br
+pre'sentation rapide des AC avec la figure 2 droite
+systeme dynamique discret
+espace discret + voisinnage homoge`ne
+fonction de transition
+temps discret et synchrone
+.P
+TIME 1 - 1
+.br
+pre'sentation de la dynamique avec la page 2 et la figure 1
+.P
+TIME 2 - 1
+.br
+pre'sentation des proble`mes de l'analyse
+de la structure de l'espace de AC
+avec la page 1
+.P
+TIME 3 - 2
+.br
+la classification de Wolfram page 3
+.P
+TIME 5 - 1
+.br
+le parame`tre lambda page 5
+.P
+TIME 6 - 2
+.br
+le parame'trage par lambda et ses proble`mes page 6
+recherche d'une transition de phase
+I -> II -> IV -> III
+difficult'e de l'obtenir
+.P
+TIME 8 - 1
+.br
+propositions du parame`tre flip page 8 et figure 2
+.P
+TIME 9 - 1
+.br
+explication de l'enchassement page 8 et figure 3
+.P
+optionel proposition du mapping interme'diaire page 9
+.P
+TIME 10
+.br
+conclusion sur la question ge'ne'rale des formes
+pour les espaces de grandes tailles
+et sur les methode de leurs constructions.

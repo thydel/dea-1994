@@ -1,0 +1,64 @@
+usage="$0 [-s{ize} <power-of-two>(8)] [-l{oop} <int>] [-k{sKip} <int>] [-t{mk-Table}] [-f{mk-Frame} [-r{show-Rule}]"
+
+cell_extract="-e 0"
+dump_extract=""
+
+set -- `getopt Cs:l:k:tfr $*`
+if [ $? != 0 ]
+then
+	echo $usage
+	exit 2
+fi
+for i in $*
+do
+	case $i in
+	-C)
+		cell_extract=""
+		dump_extract="-d 8 -E"
+		shift;;
+	-s)
+		size="-s $2";
+		shift 2;;
+	-l)
+		loop="-l $2";
+		time=time;
+		shift 2;;
+	-k)
+		skip="-k $2";
+		shift 2;;
+	-t)
+		mk_table=true;
+		shift;;
+	-f)
+		mk_frame=true;
+		shift;;
+	-r)
+		show_rule=true;
+		shift;;
+	--)
+		shift;
+		break;;
+	esac
+done
+
+if [ "$show_rule" = true ]
+then
+	cat <<!
+anneal() {
+    static int tab[] = { 0, 0, 0, 0, 1, 0, 1, 1, 1, 1, };
+    return tab[_9_sum()];
+}
+!
+fi
+
+if [ "$mk_table" = true ]
+then
+	../src/mk-table -c moore-1 -f anneal > anneal.t
+fi
+
+if [ "$mk_frame" = true ]
+then
+	../src/mk-frame $size -p 0 -f fill > anneal.f
+fi
+
+$time ../src/cell $size $loop $skip -c moore-1 -t anneal.t -f anneal.f $cell_extract | ../src/xdump $size $dump_extract

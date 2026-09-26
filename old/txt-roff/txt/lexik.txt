@@ -1,0 +1,114 @@
+space
+espace
+	chaine (esemble ordonne') de bit
+	ensemble de variables discre`tes ordone'es
+	ensemble de variables discre`tes ordone'es
+
+espace des etats
+	
+	
+
+time
+temps
+	ensemble ordone' d'espaces
+
+system
+syste`me
+	un espace dote' d'une fonction ge'ne'ratrice du temps
+
+fonction de transition
+	fonction 
+
+syste`me d'adressage d'un espace
+
+
+atom
+atome
+	element insecable
+
+instant
+cycle
+time step
+	un atome de temps
+
+cellule
+point
+	un atome d'espace
+
+individu
+	ele'ment autonome
+
+syste`me
+
+unite'
+
+autonomie
+
+dynamique
+dynamic
+
+statique
+static
+
+emergent
+
+self
+
+cloture
+
+membrane
+
+ensemble
+
+caractere
+
+propriete
+
+element
+
+region
+	ensemble de cellule spatiale contigues
+
+frontiere
+	caractere discrinant permettant de se'parer l'espace en region
+
+population
+	ensemble d'individu
+
+hypothese
+
+processus
+
+continu
+
+discret
+
+structure
+
+model
+
+simulation
+
+generation
+	une population discrimine' par une unite' de temps
+
+morphologie
+
+morph
+forme
+morphogenese
+
+automate
+
+bio
+
+complexite
+
+genetique
+
+fractal
+
+pattern
+
+objet
+

@@ -1,0 +1,81 @@
+.\"
+.\" stolen to mgm and changed to fit my needs
+.\"
+.\"
+.\" Top of Page
+.\"
+.nr thy@do-head 0
+.de TP
+.	sp 1
+.if \\n[thy@head-flag] \{\
+.	ie \\n[thy@do-head] \{\
+.		lt \\n[@ll]u
+.		ie o .tl \\*[pg*odd-header]
+.		el .tl \\*[pg*even-header]
+.		tl \\*[pg*header]
+.	\}
+.	el \{\
+.		sp 2
+.		nr thy@do-foot 1
+.		nr thy@do-head 1
+.	\}
+.\}
+.	sp 1
+..
+.nr pg*header-size 4\" 1v+header+even/odd header+1v
+.\"
+.\" Bot of Page
+.\"
+.nr thy@foot-flag 0
+.nr thy@do-foot 0
+.de pg@print-footer
+.\" jump to the position just below the foot-notes.
+'sp |\\n[pg*last-pos]u+1v
+.\" check if there are any bottom block
+.if d pg*block-div .pg@block
+.\"
+.\" print the footer and eject new page
+.ev pg*tl-ev
+.pg@set-env
+.if \\n[thy@foot-flag] \{\
+.	lt \\n[@ll]u
+.	tl \\*[pg*footer]
+.	ie \\n[thy@do-foot] \{\
+.		ie o .tl \\*[pg*odd-footer]
+.		el .tl \\*[pg*even-footer]
+.		nr thy@do-foot 0
+.	\}
+.	el \{\
+.		sp 1
+.	\}
+.\}
+.ev
+.ie (\\n[ds*fnr]>=\\n[ds*o-fnr]):\\n[ft*exist] \{\
+.	ev ne
+'	bp
+.	ev
+.\}
+.el \{\
+'	bp
+.\}
+..
+
+.de RP
+.if !d ref*div .@error "RP: No references!"
+.nr ref*i 0\\$2
+.if \\n[ref*i]<2 .SK
+.SP 2
+.toc@save 1 "" "\\*[Rp]" \\n[%]
+.ev ref*ev
+.ce
+\\s+6\\fB\\*[Rp]\\fP\\s-6
+.sp
+.in 0
+.nf
+.ref*div
+.in
+.if 0\\$1<1 .nr ref*nr 0 1
+.rm ref*div
+.ev
+.if (\\n[ref*i]=0:\\n[ref*i]=2) .SK
+..

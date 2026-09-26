@@ -1,0 +1,56 @@
+%%
+%% simple macros
+%%
+\newcommand{\undemi}{\small\ensuremath{\frac{1}{2}}\normalsize\xspace}
+\newcommand{\Sundemi}{\footnotesize\ensuremath{\frac{1}{2}}\small\xspace}
+\newcommand{\Fundemi}{\scriptsize\ensuremath{\frac{1}{2}}\footnotesize\xspace}
+\newcommand{\asquare}[1]{\ensuremath{#1 \times  #1}}
+%% \newcommand{\acube}[1]{\ensuremath{#1 \times  #1 \times  #1}}
+\newcommand{\acube}[1]{\ensuremath{#1^{3}}}
+\newcommand{\xor}{\ensuremath{\oplus}}
+\newcommand{\alambda}{\ensuremath{\lambda}\xspace}
+\newcommand{\Flip}{Flip\xspace}
+\newcommand{\En}{\textsc{En}\xspace}
+\newcommand{\mEn}{\ensuremath{\text{\textsc{En}}}}
+
+\newcommand{\byte}{\operatorname{byte}}
+\newenvironment{mywarning}{\marginpar{$\rhd$ WARNING}}%
+{\bigskip\marginpar{$\lhd$ WARNING}}
+\newcommand{\Bwarn}[1][WARNING]{\marginpar{$\rhd$ \scriptsize #1}}
+\newcommand{\Ewarn}[1][]{\marginpar{$\lhd$ \scriptsize #1}}
+
+\newcommand{\bialt}[2]{#1\,/\,#2}
+\newcommand{\trialt}[3]{#1\,/\,#2\,/\,#3}
+
+\newcommand{\Center}{\operatorname{Center}}
+\newcommand{\north}{\operatorname{north}}
+\newcommand{\east}{\operatorname{east}}
+\newcommand{\west}{\operatorname{west}}
+\newcommand{\south}{\operatorname{south}}
+\newcommand{\Neast}{\operatorname{Neast}}
+\newcommand{\Nwest}{\operatorname{Nwest}}
+\newcommand{\Seast}{\operatorname{Seast}}
+\newcommand{\Swest}{\operatorname{Swest}}
+
+\newcommand{\ie}{i.e.\xspace}
+\newcommand{\vs}{vs.\xspace}
+
+%%
+%% visual macros
+%%
+
+%% just rename \emph by maybe usefule type of usage
+\newcommand{\aquote}[1]{\emph{#1}}
+\newcommand{\aconcept}[1]{\emph{#1}}
+\newcommand{\anewterm}[1]{\emph{#1}}
+
+%% dont break these words
+\newcommand{\arule}[1]{\textsf{\mbox{#1}}} % CA rule
+\newcommand{\asoft}[1]{\texttt{\mbox{#1}}} % software commands, tools...
+\newcommand{\avar}[1]{\texttt{\emph{#1}}} % variable name
+
+%% english word with a translation footnote
+\newcommand{\astrangeterm}[2]{\emph{#1}\footnote{#2}}
+
+%% catch all
+\newcommand{\todo}[1]{#1}

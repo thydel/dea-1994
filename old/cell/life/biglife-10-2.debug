@@ -1,0 +1,2 @@
+../src/cell: option requires an argument -- e
+../src/cell, usage: [-s{size} <power-of-two>] [-S{ide} <int>] [-l{oop} <int>] [-{s}k{ip} <int>] [-{s}K{ip incr} <int>] [-e{xtract} <int>] -[c{onex> <name>] -f{rame} <file> -t{ransition} <file> [-o{utput file} <file>] [-h{ist}] [-D{ebug}] [-{o}v{erlay} <0|1>] [-{s}u{m} <file>] [-{l}a{st} <file>] [-x{dump}] [-G{pgm}]

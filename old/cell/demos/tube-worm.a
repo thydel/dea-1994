@@ -1,0 +1,1 @@
+ ../src/cell -s 10  -k 6  -c moore-1+7 -t tube-worm.t -f tube-worm.f   | ../src/xdump -s 10 -d 8 -E

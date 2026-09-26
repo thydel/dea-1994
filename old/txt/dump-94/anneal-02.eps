@@ -1,0 +1,1054 @@
+%!
+%%BoundingBox: 35 615 316 757
+%%Title: anneal-02
+%%CreationDate: Wed May 18 20:15:00 1994
+%%Creator: Tgif-2.15-p2 by William Chia-Wei Cheng (william@cs.UCLA.edu)
+%
+%	Due to bugs in Transcript, the 'PS-Adobe-' stuff is omitted from line 1
+%
+
+/tgifdict 132 dict def
+tgifdict begin
+
+%
+%	Using a zero value radius for an ellipse or an arc would result
+%		in a non-invertible CTM matrix which causes problem when this
+%		when this PostScript is wrapped inside other routines, such as
+%		the multi.ps package from
+%		ftp.ucc.su.oz.au:/pub/ps_printing/multi.  You can overcome such
+%		error by uncommenting the sole line of the procedure below:
+%
+/tgif_min_radius
+ {
+%    dup 0.01 lt { pop 0.01 } if
+ } bind def
+
+/tgifellipsedict 6 dict def
+tgifellipsedict /mtrx matrix put
+
+/tgifellipse
+ { tgifellipsedict begin
+      /yrad exch def
+      /xrad exch def
+      /y exch def
+      /x exch def
+      /savematrix mtrx currentmatrix def
+      x y translate
+      xrad yrad scale
+      0 0 1 0 360 arc
+      savematrix setmatrix
+   end
+ } def
+
+/tgifarrowtipdict 8 dict def
+tgifarrowtipdict /mtrx matrix put
+
+/tgifarrowtip
+ { tgifarrowtipdict begin
+      /dy exch def
+      /dx exch def
+      /h exch def
+      /w exch def
+      /y exch def
+      /x exch def
+      /savematrix mtrx currentmatrix def
+      x y translate
+      dy dx atan rotate
+      0 0 moveto
+      w neg h lineto
+      w neg h neg lineto
+      savematrix setmatrix
+   end
+ } def
+
+/tgifarcdict 8 dict def
+tgifarcdict /mtrx matrix put
+
+/tgifarcn
+ { tgifarcdict begin
+      /endangle exch def
+      /startangle exch def
+      /yrad exch def
+      /xrad exch def
+      /y exch def
+      /x exch def
+      /savematrix mtrx currentmatrix def
+      x y translate
+      xrad yrad scale
+      0 0 1 startangle endangle arc
+      savematrix setmatrix
+   end
+ } def
+
+/tgifarc
+ { tgifarcdict begin
+      /endangle exch def
+      /startangle exch def
+      /yrad exch def
+      /xrad exch def
+      /y exch def
+      /x exch def
+      /savematrix mtrx currentmatrix def
+      x y translate
+      xrad yrad scale
+      0 0 1 startangle endangle arcn
+      savematrix setmatrix
+   end
+ } def
+
+/tgifsetuserscreendict 22 dict def
+tgifsetuserscreendict begin
+   /tempctm matrix def
+   /temprot matrix def
+   /tempscale matrix def
+
+   /concatprocs
+    { /proc2 exch cvlit def
+      /proc1 exch cvlit def
+      /newproc proc1 length proc2 length add array def
+      newproc 0 proc1 putinterval
+      newproc proc1 length proc2 putinterval
+      newproc cvx
+    } def
+   /resmatrix matrix def
+   /findresolution
+    { 72 0 resmatrix defaultmatrix dtransform
+      /yres exch def /xres exch def
+      xres dup mul yres dup mul add sqrt
+    } def
+end
+
+/tgifsetuserscreen
+ { tgifsetuserscreendict begin
+      /spotfunction exch def
+      /screenangle exch def
+      /cellsize exch def
+
+      /m tempctm currentmatrix def
+      /rm screenangle temprot rotate def
+      /sm cellsize dup tempscale scale def
+
+      sm rm m m concatmatrix m concatmatrix pop
+
+      1 0 m dtransform /y1 exch def /x1 exch def
+
+      /veclength x1 dup mul y1 dup mul add sqrt def
+      /frequency findresolution veclength div def
+
+      /newscreenangle y1 x1 atan def
+
+      m 2 get m 1 get mul m 0 get m 3 get mul sub 0 gt
+
+      {{neg} /spotfunction load concatprocs
+         /spotfunction exch def
+      } if
+
+      frequency newscreenangle /spotfunction load setscreen
+   end
+ } def
+
+/tgifsetpatterndict 18 dict def
+tgifsetpatterndict begin
+   /bitison
+    { /ybit exch def /xbit exch def
+      /bytevalue bstring ybit bwidth mul xbit 8 idiv add get def
+
+      /mask 1 7 xbit 8 mod sub bitshift def
+      bytevalue mask and 0 ne
+    } def
+end
+
+/tgifbitpatternspotfunction
+ { tgifsetpatterndict begin
+      /y exch def /x exch def
+
+      /xindex x 1 add 2 div bpside mul cvi def
+      /yindex y 1 add 2 div bpside mul cvi def
+
+      xindex yindex bitison
+       { /onbits onbits 1 add def 1 }
+       { /offbits offbits 1 add def 0 }
+       ifelse
+   end
+ } def
+
+/tgifsetpattern
+ { tgifsetpatterndict begin
+      /cellsz exch def
+      /angle exch def
+      /bwidth exch def
+      /bpside exch def
+      /bstring exch def
+
+      /onbits 0 def /offbits 0 def
+      cellsz angle /tgifbitpatternspotfunction load tgifsetuserscreen
+      {} settransfer
+      offbits offbits onbits add div setgray
+   end
+ } def
+
+/tgifxpmdict 4 dict def
+/tgifbwpicstr 1 string def
+/tgifcolorpicstr 3 string def
+
+/tgifsetpixels { tgifxpmdict begin /pixels exch def end } def
+
+/tgifsetpix { tgifxpmdict begin pixels 3 1 roll putinterval end } def
+
+/tgifbwspot
+ { tgifxpmdict begin
+      /index exch def
+      tgifbwpicstr 0
+      pixels index 3 mul 3 getinterval aload pop
+      255 mul .114 mul exch 255 mul .587 mul add exch 255 mul .299 mul add
+      cvi put
+      tgifbwpicstr
+   end
+ } def
+
+/tgifcolorspot
+ { tgifxpmdict begin
+      /index exch def
+      pixels index 3 mul 3 getinterval aload pop
+      255 mul cvi tgifcolorpicstr 2 3 -1 roll put
+      255 mul cvi tgifcolorpicstr 1 3 -1 roll put
+      255 mul cvi tgifcolorpicstr 0 3 -1 roll put
+      tgifcolorpicstr
+   end
+ } def
+
+/tgifnewcolorspot
+ { tgifxpmdict begin
+      /index exch def
+      pixels index 3 mul 3 getinterval aload pop setrgbcolor
+   end
+ } def
+
+/tgifcolordict 4 dict def
+
+/colorimage where
+ { pop }
+ { /colorimage
+   { tgifcolordict begin
+        pop pop pop pop pop
+        /ih exch def
+        /iw exch def
+        /x 0 def
+        /y 0 def
+        1 1 ih
+         { pop 1 1 iw
+            { pop currentfile
+              tgifbwpicstr readhexstring pop 0 get tgifnewcolorspot
+              x y moveto 1 0 rlineto 0 1 rlineto -1 0 rlineto
+              closepath fill
+              /x x 1 add def
+            } for
+           /y y 1 add def
+           /x 0 def
+         } for
+     end
+   } def
+ } ifelse
+
+/tgifpatdict 10 dict def
+
+/tgifpatbyte
+ { currentdict /retstr get exch
+   pat i cellsz mod get put
+ } def
+
+/tgifpatproc
+ { 0 1 widthlim {tgifpatbyte} for retstr
+   /i i 1 add def
+ } def
+
+/tgifpatfill
+ { tgifpatdict begin
+      /h exch def
+      /w exch def
+      /lty exch def
+      /ltx exch def
+      /cellsz exch def
+      /pat exch def
+
+      /widthlim w cellsz div cvi 1 sub def
+      /retstr widthlim 1 add string def
+      /i 0 def
+
+      ltx lty translate
+      w h true [1 0 0 1 0 0] {tgifpatproc} imagemask
+      ltx neg lty neg translate
+   end
+ } def
+
+/pat1 <ffffffffffffffff> def
+/pat2 <0000000000000000> def
+/pat3 <8000000008000000> def
+/pat4 <8800000022000000> def
+/pat5 <8800220088002200> def
+/pat6 <8822882288228822> def
+/pat7 <aa55aa55aa55aa55> def
+/pat8 <77dd77dd77dd77dd> def
+/pat9 <77ffddff77ffddff> def
+/pat10 <77ffffff77ffffff> def
+/pat11 <7fffffff7fffffff> def
+/pat12 <8040200002040800> def
+/pat13 <40a00000040a0000> def
+/pat14 <ff888888ff888888> def
+/pat15 <ff808080ff080808> def
+/pat16 <f87422478f172271> def
+/pat17 <038448300c020101> def
+/pat18 <081c22c180010204> def
+/pat19 <8080413e080814e3> def
+/pat20 <8040201008040201> def
+/pat21 <8844221188442211> def
+/pat22 <77bbddee77bbddee> def
+/pat23 <c1e070381c0e0783> def
+/pat24 <7fbfdfeff7fbfdfe> def
+/pat25 <3e1f8fc7e3f1f87c> def
+/pat26 <0102040810204080> def
+/pat27 <1122448811224488> def
+/pat28 <eeddbb77eeddbb77> def
+/pat29 <83070e1c3870e0c1> def
+/pat30 <fefdfbf7efdfbf7f> def
+/pat31 <7cf8f1e3c78f1f3e> def
+
+/tgifcentertext { dup stringwidth pop 2 div neg 0 rmoveto } def
+
+/tgifrighttext { dup stringwidth pop neg 0 rmoveto } def
+
+/tgifreencsmalldict 12 dict def
+/tgifReEncodeSmall
+ { tgifreencsmalldict begin
+      /newcodesandnames exch def
+      /newfontname exch def
+      /basefontname exch def
+
+      /basefontdict basefontname findfont def
+      /newfont basefontdict maxlength dict def
+
+      basefontdict
+      { exch dup /FID ne
+         { dup /Encoding eq
+            { exch dup length array copy newfont 3 1 roll put }
+            { exch newfont 3 1 roll put }
+            ifelse
+         }
+         { pop pop }
+         ifelse
+      }
+      forall
+
+      newfont /FontName newfontname put
+      newcodesandnames aload pop
+
+      newcodesandnames length 2 idiv
+      { newfont /Encoding get 3 1 roll put}
+      repeat
+
+      newfontname newfont definefont pop
+   end
+ } def
+
+/tgifgray { 8 1 0 72 300 32 div div tgifsetpattern } bind def
+
+/tgifboxdict 6 dict def
+/tgifboxstroke
+ { tgifboxdict begin
+      /pat def /w def /y2 exch def /x2 exch def /y1 exch def /x1 exch def
+      1.415 setmiterlimit
+      w 1 eq { w setlinewidth } if
+      pat pat1 ne pat pat2 ne and { gsave pat tgifgray } if
+      newpath x1 y1 moveto x2 y1 lineto x2 y2 lineto x1 y2 lineto closepath
+      pat pat2 eq { 1 setgray stroke 0 setgray } { stroke } ifelse
+      pat pat1 ne pat pat2 ne and { grestore } if
+      w 1 eq { 1 setlinewidth } if
+      1 setmiterlimit
+   end
+ } def
+/tgifboxfill
+ { tgifboxdict begin
+      /pat def /y2 exch def /x2 exch def /y1 exch def /x1 exch def
+      pat pat1 ne pat pat2 ne and { gsave pat tgifgray } if
+      newpath x1 y1 moveto x2 y1 lineto x2 y2 lineto x1 y2 lineto closepath
+      pat pat2 eq { 1 setgray fill 0 setgray } { fill } ifelse
+      pat pat1 ne pat pat2 ne and { grestore } if
+   end
+ } def
+
+end
+
+%%PageBoundingBox: 35 615 316 757
+tgifdict begin
+/tgifsavedpage save def
+
+1 setmiterlimit
+1 setlinewidth
+
+72 0 mul 72 11 mul translate
+72 128 div 100 mul 100 div dup neg scale
+
+gsave
+
+% EPS
+end
+/tgiflevel1 save def
+/tgifdictcount1 countdictstack def
+/tgifopcount1 count 1 sub def
+userdict begin
+/showpage {} def
+/letter {} def
+/legal {} def
+1 72 128 div 100 mul 100 div div dup neg scale
+72 0 mul neg 72 11 mul neg translate
+
+-66.789 470.787 translate 0.565 0.565 scale 0 rotate
+
+%%BeginDocument: anneal-02-1.eps
+%!PS-Adobe-2.0 EPSF-1.2
+/InitDictCount countdictstack def
+gsave
+save
+mark
+newpath
+/showpage {} def
+/readstring {
+  currentfile exch readhexstring pop
+} bind def
+/picstr 33 string def
+gsave
+182.16 257.16 translate
+247.68 247.68 scale
+258 258 1
+[ 258 0 0 -258 0 258 ]
+{ picstr readstring }
+image
+000000000000000000000000000000000000000000000000000000000000
+0000007ffffff807fffffffffffffffffffff8000000003fffffffffffff
+ffc0000fff807fffffe007fffffffffffffffffffff8000000003fffffff
+ffffffff80000fff807fffffc007fffffffffffffffffffff8000000003f
+ffffffffffffffc0000fff807fffff8007fffffffffffffffffffff80000
+00003fffffffffffffffc00007ff807fffff8007ffffffffffffffffffff
+fc000000003fffffffffffffffc00007ff807fffff0007ffffffffffffff
+fffffffc000000003fffffffffffffffc00007ff807fffff000fffffffff
+fffffffffffffe000000007fffffffffffffffe00007ff807ffffe000fff
+fffffffffffffffffffe000000003fffffffffffffffe0000fff807ffffc
+000ffffffffffffffffffffffe000000003ffffffffffffffff0000fff80
+7ffffc001fffffffffffffffffffffff000000003ffffffffffffffff000
+0fff807ffff8001fffffffffffffffffffffff000000003fffffffffffff
+fff8000fff807ffff8003fffffffffffffffffffffff000000003fffffff
+fffffffff8000fff807ffff0003fffffffffffffffffffffff000000003f
+fffffffffffffffc000fff807fffe0003fffffffffffffffffffffff0000
+00003ffffffffffffffffe0007ff807fffc0007fffffffffffffffffffff
+ff000000003fffffffffffffffff0007ff807fff80007fffffffffffffff
+fffffffe0007c0003fffffffffffffffff8007ff807fff00007fffffffff
+fffffffffffffe000ff0003fffffffffffffffff8003ff807ffe0000ffff
+fffffffffffff7fffffe001ffc001fffffffff87ffffffc001ff807ffe00
+00ffffffffffffffffc1fffffc003fff000ffffffffe03ffffffe001ff80
+7ffc0001ffffffffffffffff81fffffc003fff800ffffffffc01fffffff0
+00ff807ff80003ffffffffffffffff00fffffc007fff8007fffffff001ff
+fffff8007f807fe00003ffffff7fffffffff007ffffc007fffc007ffffff
+e001fffffffc003f807fc00007fffffe1fffffffff007ffffc003fffe003
+ffffffc003fffffffc0007807e00000ffffffc0fffffffff007ffffc003f
+fff001ffffff8003fffffffe0001806000001ffffff80fffffffff007fff
+f8003ffff800fffffe0007fffffffe0000000000001ffffff80fffffffff
+003ffff8003ffff8007ffff80007ffffffff0000000000003ffffff807ff
+ffffff003ffff8003ffffc007ffff00007ffffffff0000000000007fffff
+f007fffffffe003ffff8003ffffc001fffc0000fffffffff800000000001
+fffffff003fffffffe003ffff8001ffffc000fff00001fffffffff800000
+000003fffffff001fffffffe001ffff8000ffffe0003fe00003fffffffff
+c00000000007fffffff001fffffffe003ffffc000ffffe00000000003fff
+ffffffc0000000000ffffffff000fffffffe001ffffc0007ffff00000000
+00ffffffffffc0000000001ffffffff0007ffffffe001ffffc0007ffff00
+00000000ffffffffffc0000000003ffffffff0003ffffffe000ffffc0003
+ffff8000000001ffffffffffc0000000007ffffffff0000ffffffe000fff
+fc0001ffff8000000003ff1fffffffc000000000fffffffff00003fffffc
+000ffffc0001ffffc000000007fc0fffffffc000000001fffffffff80001
+fffff80007fffc0000ffffe000000007f807ffffffc000000001ffffffff
+f800007ffff80007fffc00007ffff000000007f80fffffffc000000003ff
+fffffff800003fffe00007fffc00003ffff80000000ff80fffffffc00000
+0007fffffffffc00000fffc00007fffc00001ffff80000000ffc0fffffff
+c00000000ffffffffffc000000ff000003fffc00000ffffc0000001ffe1f
+ffffffc00000000ffffffffffe00000018000003fffe000007fffc000000
+1fffffffffffc00000000ffffffffffe00000000000003fffe000003fffe
+0000003fffffffffffc00000000fffffffffff00000000000007fffe0000
+01fffe0000003fffffffffff800000001fffffffffff80000000000007ff
+fe000000fffe0000007fffffffffff800000001fffffffffffc000000000
+000fffff000000ffff000000ffffffffffff800000001fffffffffffe000
+000000000fffff8000007fff800001ffffffffffff800000003fffffffff
+fff000000000001fffff8000007fff800001ffffffffffff800000003fff
+fffffffffc00000000003fffffc000007fff800003ffffffffffff800000
+003ffffffffffffe00000000007fffffc000003fff800007ffffffffffff
+800000003fffffffffffff0000000001ffffffe000003fff800007ffffff
+ffffff800000007fffffffffffff8000000001ffffffe000003fffc0000f
+ffffffffffff800000007fffffffffffffe00000001ffffffff000001fff
+80001fffffffffffff800000007fffffffffffffe00000007ffffffff800
+001fff80003fffffffffffff800000007ffffffffffffff8000003ffffff
+fff800001fff80003fffffffffffff800000007ffffffffffffff800000f
+fffffffffc00003fff00007fffffffffffff000000007ffffffffffffffc
+00003ffffffffffe00003fff0000ffffffffffffff000000007fffffffff
+fffffc00007fffffffffff00007ffe0001ffffffffffffff000000007fff
+fffffffffffe0000ffffffffffffc000fffe0001ffffffffffffff000000
+007ffffffffffffffe0001ffffffffffffe001fffc0001ffffffffffffff
+000000007ffffffffffffffe0007fffffffffffff807fff80003ffffffff
+ffffff000000007ffffffffffffffe0007fffffffffffffffffff80007ff
+ffffffffffff000000003ffffffffffffffe000ffffffffffffffffffff0
+000fffffffffffffff000000003ffffffffffffffe001fffffffffffffff
+ffffe0000fffffffffffffff000000001ffffffffffffffe001fffffffff
+ffffffffffc0001fffffffffffffff000000001fffffffffffffff003fff
+ffffffffffffffff80001fffffffffffffff000000000fffffffffffffff
+c07fffffffffffffffffff00001fffffffffffffff8000000007ffffffff
+ffffffe0fffffffffffffffffffe00001fffffffffffffff8000000003ff
+fffffffffffffffffffffffffffffffffc00003fffffffffffffff800000
+0001fffffffffffffffffffffffffffffffffff800003fffffffffffffff
+8000000000fffffffffffffffffffffffffffffffffff000003fffffffff
+ffffff80000000007fffffffffffffffffffffffffffffffffe000007fff
+ffffffffffff80000000003fffffffffffffffffffffffffffffffffc000
+007fffffffffffffff80000000001fffffffffffffffffffffffffffffff
+ff8000007fffffffffffffff80000000000fffffffffffffffffffffffff
+ffffffff000000fffffff03fffffff80000000000fffffffffffffffffff
+fffffffffffffe000000ffffffc01fffffff80000000000fffffffffffff
+fffffffffffffffffffe000000ffffff800fffffff800000000007ffffff
+fffffffffffffffffffffffff8000000fffffe000fffffff800000000003
+fffffffffffffffffffffffffffffff0000001fffffc000fffffff800000
+000003ffffffffffffffffffffffffffffffe0000001fffff8000fffffff
+800000000003ffffffffffffffffffffffffffffffc0000001fffff0000f
+ffffff800000000001fffffffffffffffffffffffffffffe00000001ffff
+e0001fffffff800000000001fffffffffffffffffffffffffffe00000000
+01ffff80001fffffff800000000001ffffffffffffffffffffffffffe000
+00000000ffff00001fffffff800000000001ffffffffffffffffffffffff
+ffc00000000000fffe00003fffffff800000000001ffffffffffffffffff
+ffffffff8000000000007ff800003fffffffc00000000001ffffffffffff
+ffffffffffffff8000000000003fe000007fffffffc00000000003ffffff
+fffffffffffffffffffe0000000000000f0000007fffffffc00000000003
+fffffffffffffffffffffffffe000000000000000000007fffffffc00000
+000007fffffffffffffffffffffffffc000000000000000000007fffffff
+e00000000007fffffffffffffffffffffffffc000000000000000000007f
+ffffffe0000000000ffffffffffffffffffffffffffc0000000000000000
+00007ffffffff0000000001ffffffffffffffffffffffffffc0000000000
+00000000007ffffffff8000000003ffffffffffffffffffffffffffc0000
+00000000000000003ffffffffc000000007fffffffffffffffffffffffff
+fc000000000000000000001ffffffffe00000001ffffffffffffffffc7ff
+fffffffc000000000000000000000fffffffff00000003ffffffffffffff
+fc01fffffffffc0000000000000000000007ffffffff80000003ffffffff
+ffffffe000fffffffffc0000000000000000000001ffffffffc000000fff
+fffffffffffc00007ffffffffe0000000000000000000000ffffffffe000
+001fffffe0003fff8000003fffffffff00000000000000000000001fffff
+fff800007fffff800000000000003fffffffff0000000000000000000000
+07fffffffe0051ffffff800000000000003fffffffff8000000000000000
+00000003ffffffff807ffffffe000000000000003fffffffffc000000000
+00000000000001ffffffff807ffffffc000000000000001fffffffffe000
+00000000000000000000ffffffff807ffffff8000000000000001fffffff
+ffe000000000000000000000007fffffff807ffffff0000000000000003f
+fffffffff000000000000000000000003fffffff807fffffe00000000000
+00003ffffffffff800000000000000000000001fffffff807fffffc00000
+00000000003ffffffffffe00000000000000000000001fffffff807fffff
+80000000000000003fffffffffff00000000000000000000000fffffff80
+7fffff00000000000000003fffffffffff80000000000000000000000fff
+ffff807ffffe00000000000000003fffffffffffc0000000000000000000
+000fffffff807ffffc00000000000000003fffffffffffe0000000000000
+000000000fffffff807ffff800000000000000003ffffffffffff0000000
+0000000000000007ffffff807ffff000000000000000003ffffffffffff8
+0000000000000000000007ffffff807fffe000000000000000003fffffff
+fffffe0000000000000000000007ffffff807fffc000000000000000003f
+ffffffffffff0000000000000000000007ffffff807fffc0000000000000
+00003fffffffffffff8000000000000000000007ffffff807fff80000000
+00000000003fffffffffffff800000000000000000000fffffff807fff80
+00000000000000003fffffffffffffc00000000000000000000fffffff80
+7fff0000000000000000003fffffffffffffe00000000000000000001fff
+ffff807fff0000000000000000003fffffffffffffe00000000000000000
+001fffffff807ffe0000000000000000003ffffffffffffff00000000000
+000000003fffffff807ffc0000000000000000003ffffffffffffff80000
+000000000000003fffffff807ff80000000000000000003fffffffffffff
+f80000000000000000003fffffff807ff00000000000000000003fffffff
+fffffff80000000000000000007fffffff807ff00000000000000000007f
+fffffffffffffc0000000000000000007fffffff807ff000000000000000
+00007ffffffffffffffe0000000000000000007fffffff807fe000000000
+00000000007ffffffffffffffe0000000000000000007fffffff807fc000
+00000000000000007fffffffffffffff000000000000000000ffffffff80
+7fc000000000000000e000ffffffffffffffff800000000000000001ffff
+ffff807fc000000000000001fc01ffffffffffffffff8000000000000000
+03ffffffff807f8000000000000007ff03ffffffffffffffffc000f80000
+00000007ffffffff807f800000000000000fffffffffffffffffffffe001
+fe000000000007ffffffff807f800000000000000fffffffffffffffffff
+fff807ff00000000000fffffffff807f800000000000001fffffffffffff
+fffffffffeffff00000000001fffffffff807f800000000000003fffffff
+ffffffffffffffffffff00000000003fffffffff807f800000000000003f
+ffffffffffffffffffffffffff00000000003fffffffff807f8000000000
+00003fffffffffffffffffffffffffff00000000007fffffffff807f8000
+00000000003ffffffffffffffffffffffffffe0000000000ffffffffff80
+7f80000007e000003ffffffffffffffffffffffffffe0000000001ffffff
+ffff807f800001fffc00003ffffffffffffffffffffffffffe0000000001
+ffffffffff807f800007fffe00003ffffffffffffffffffffffffffe0000
+000003ffffffffff807f80001fffff00003fffffffffffffffffffffffff
+fc0000000007ffffffffff807f80003fffff80003fffffffffffffffffff
+fffffffc000000000fffffffffff807f80007fffffc0003fffffffffffff
+fffffffffffff8000000000fffffffffff807fc0007fffffc0001fffffff
+fffffffffffffffffff0000000001fffffffffff807fc000ffffffe0001f
+fffffffffffffffffffffffff0000000003fffffffffff807fc000ffffff
+e0001fffffffffffffffffffffffffe0000000007fffffffffff807fc001
+ffffffc0000fffffffffffffffffffffffffe000000000ffffe0ffffff80
+7fc000ffffffc00007ffffffffffffffffffffffffc000000001ffff8007
+ffff807fe0007fffffc00003ffffffffffffffffffffffffc000000001ff
+fe0001ffff807fe0007fffff800001ffffffffffffffffffffffffc00000
+0003fffc00007fff807fe0007fffff000000ffffffffffffffffffffffff
+c000000003fff800001fff807ff8007ffffe0000007fffffffffffffffff
+ffffffc000000003fff800000fff807ff8001ffff80000003fffffffffff
+ffffffffffffc000000007fff0000007ff807ff80000e0000000001fffff
+ffffffffffffffffffc000000007fff0000003ff807ffc00000000000000
+0fffffffffffffffffffffffc00000000ffff0000000ff807ffe00000000
+00000007ffffffffffffffffffffffe00000000ffff00000007f807ffe00
+00000000000001ffffffffffffffffffffffe00000001ffff00000001f80
+7ffe0000000000000000fffffffffffffffffffffff00000003ffff00000
+000f807fff00000000000000007ffffffffffffffffffffff80000003fff
+f800000001807fff80000000000000003ffffffffffffffffffffff80000
+003ffffc00000000807fffc0000000000000000fffffffffffffffffffff
+fe0000007ffffc00000000003fffc0000000000000000fffffffffffffff
+ffffffff0000007ffffe00000000001fffc00000000000000000ffffffff
+ffffffffffffff8000007fffff00000000000fffe000000000000000007f
+fffffffffffffffffffff000003fffff000000000007ffe0000000000000
+00003ffffffffffffffffffffff800003fffff800000000003fff0000000
+00000000001ffffffffffffffffffffffc00003fffffc00000000003fff8
+000000000000000007fffffffffffffffffffffe00003fffffe000000000
+01fff8000000000000000001ffffffffffffffffffffff00003ffffff800
+00000001fffc000000000000000000ffffffffffffffffffffff80001fff
+fffe0000000001fffe0000000000000000007fffffffffffffffffffffc0
+001fffffff0000000000ffff0000000000000000003fffffffffffffffff
+ffffe0001fffffffc000000000ffff0000000000000000001fffffffffff
+fffffffffff0000fffffffe000000000ffff8000000000000000000fffff
+fffffffffffffffff80007fffffff000000000ffff800000000000000000
+07fffffffffffffffffffffc0003fffffff000000000ffff800000000000
+00000003fffffffffffffffffffffc0001fffffff800000000ffff800000
+00000000000001fffffffffffffffffffffe0000fffffff800000000ffff
+80000000000000000001fffffffffffffffffffffe00003ffffff0000000
+00ffff80000000000000000000ffffffffffffffffffffff000000ffffe0
+00000000ffff80000000000000000000ffffffffffffffffffffff800000
+001fc000000000ffff80000000000000000000ffffffffffffffffffffff
+80000000000000000000ffff00000000000000000000ffffffffff03ffff
+ffffffc0000000000000000000ffff00000000000000000000fffffffffc
+00ffffffffffe0000000000000000000ffff000000000000000000007fff
+fffff0007ffffffffff0000000000000000000fffe000000000000000000
+007ffffffff0003ffffffffff8000000000000000000fffc000000000000
+000000003fffffffe0001ffffffffffc000000000000000000fffc000000
+000000000000003fffffffc0000ffffffffffe000000000000000000fffc
+000000000000000000001fffffffc00007ffffffffff0000000000000000
+00fffc000000000000000000001fffffff800003ffffffffffc000000000
+00000000fff8000000000000000000001fffffffc00003ffffffffffe000
+00000000000000fff0000000000000000000001fffffffc00001ffffffff
+fff80000000000000000fff0000000000000000000001fffffffc00000ff
+fffffffffe0000000000000000ffe0000000000000000000001fffffffe0
+00007fffffffffff0000000000000000ffc0000000000000000000001fff
+fffff000003fffffffffffc000000000000000ff80000000000000000000
+001ffffffff800001ffffffffffff000000000000000ff80000000000000
+000000001ffffffffc00000ffffffffffffe00000000000001ff80000000
+000000000000001ffffffffe000007ffffffffffff80000000000001ff80
+000000000000000000001fffffffff000003ffffffffffffe00000000000
+03ff80000000000000000000003fffffffff800000ffffffffffffff0000
+00000003ff80000000000000000000003fffffffffc000007fffffffffff
+ffc00000000007ff80000000000000000000007ffffffffff0000007ffff
+ffffffffffc00000000fff8000000000000000000000fffffffffff80000
+001fffffffffffffff8000001fffc000000000000000000001ffffffffff
+fc00000000ffffffffffffffe000007fffe000000000000000000001ffff
+fffffffe000000001ffffffffffffff000007fffe0000000000000000000
+07ffffffffffff8000000001fffffffffffff800807fffe0000000000000
+0000000fffffffffffffc000000000000000ffffffffe7807ffff0000000
+0000000000001fffffffffffffe00000000000000007ffffffff807ffff8
+0000000000000000003ffffffffffffff00000000000000000ffffffff80
+7ffff8000000000000000000fffffffffffffff800000000000000003fff
+ffff807ffffc000000000000000003fffffffffffffffc00000000000000
+000fffffff807ffffe00000000000000000ffffffffffffffffe00000000
+0000000003ffffff807fffff00000000000000003ffffffffffffffffe00
+0000000000000001ffffff807fffff8000000000000001ffffffffffffff
+ffff000000000000000000ffffff807fffffc0000000000001ffffffffff
+ffffffffff8000000000000000007fffff807fffffc000000000000fffff
+ffffffffffffffffc000000000000000007fffff807fffffe0000000000f
+ffffffffffffffffffffffc000000000000000003fffff807fffffe00000
+00001fffffffffffffffffffffffe000000000000000001fffff807fffff
+f0000000003fffffffffffffff87ffffffe000000000000000001fffff80
+7ffffff0000000003ffffffffffffff000fffffff000000000000000001f
+ffff807ffffff8000000003fffffffffffffc0001ffffff0000000000000
+00001fffff807ffffffc000000003fffffffffffff800007fffff0000000
+00000000001fffff807ffffffe000000001fffffffffffff000001fffff8
+00000000000000001fffff807ffffffe000000000ffffffffffffe000000
+7ffff800000000000000001fffff807fffffff0000000007fffffffffffc
+0000003ffffc00000000000000003fffff8000ffffff0000000003ffffff
+fffffc0000001ffffc00000000000000003fffff80007fffff8000000001
+fffffffffffc0000000ffffe00000000000000007fffff80003fffffc000
+000000fffffffffff800000007ffff0000000000000000ffffff00001fff
+ffe0000000007ffffffffff800000003ffff000000003fe00001fffffe00
+000ffffff0000000003ffffffffff000000003ffff800000007ff00003ff
+fffe00000ffffff8000000001ffffffffff000000001ffffc0000000fffc
+0007fffffc00000ffffffc000000001ffffffffff000000000ffffe00000
+03ffff000ffffffc00001fffffff000000000ffffffffff0000000007fff
+f000000fffff801ffffffe00003fffffff800000000ffffffffff0000000
+003ffffc00007ffffff9fffffffe00003fffffffe000000007fffffffff0
+000000001ffffe0000fffffffffffffffe00003fffffffffc0000007ffff
+fffff0000000001fffff8001ffffffffffffffff00007ffffffffffe0000
+07fffffffff0000000001fffffe007ffffffffffffffff8060ffffffffff
+ff000007fffffffff8000000000fffffffffffffffffffffffff807fffff
+ffffffffc0000ffffffffff80000000007ffffffffffffffffffffffff80
+7ffffffffffffff8001ffffffffff80000000007ffffffffffffffffffff
+ffff807ffffffffffffffc003ffffffffff80000000007ffffffffffffff
+ffffffffff807fffffffffffffff007ffffffffffc0000000003ffffffff
+ffffffffffffffff807ffffffffffffffffffffffffffffc0000000003ff
+ffffffffffffffffffffff807ffffffffffffffffffffffffffffc000000
+0001ffffffffffffffffffffffff807ffffffffffffffffffffffffffffe
+0000000001ffffffffffffffffffffffff807fffffffffffffffffffffff
+fffffe0000000000ffffffffffffffffffffffff807fffffffffffffffff
+fffffffffffe0000000000ffffffffffffffffffffffff807fffffffffff
+ffffffffffffffffff0000000000ffffffffffffffffffffffff807fffff
+ffffffffffffffffffffffff00000000007ffffffffffffffffe07ffff80
+7fffffffffffffffffffffffffffff80000000007ffffffffffffffffc01
+ffff807fffffffffffffffffffffffffffff80000000007fffffffffffff
+fff800ffff807fffffffffffffffffffffffffffffc0000000007fffffff
+fffffffff0007fff807fffffffffffffffffffffffffffffc0000000007f
+fffffffffffffff0003fff807fffffffffffffffffffffffffffffe00000
+00003fffffffffffffffe0001fff807fffffff9fffffffffffffffffffff
+e0000000003fffffffffffffffc0000fff807ffffffc0fffffffffffffff
+fffffff0000000003fffffffffffffffc0000fff80000000000000000000
+000000000000000000000000000000000000000000000000
+grestore
+showpage
+countdictstack InitDictCount sub { end } repeat
+cleartomark
+restore
+grestore
+%%EndDocument
+count tgifopcount1 sub {pop} repeat
+countdictstack tgifdictcount1 sub {end} repeat
+tgiflevel1 restore
+tgifdict begin
+
+% EPS
+end
+/tgiflevel1 save def
+/tgifdictcount1 countdictstack def
+/tgifopcount1 count 1 sub def
+userdict begin
+/showpage {} def
+/letter {} def
+/legal {} def
+1 72 128 div 100 mul 100 div div dup neg scale
+72 0 mul neg 72 11 mul neg translate
+
+72.711 470.787 translate 0.565 0.565 scale 0 rotate
+
+%%BeginDocument: anneal-02-2.eps
+%!PS-Adobe-2.0 EPSF-1.2
+/InitDictCount countdictstack def
+gsave
+save
+mark
+newpath
+/showpage {} def
+/readstring {
+  currentfile exch readhexstring pop
+} bind def
+/picstr 33 string def
+gsave
+182.16 257.16 translate
+247.68 247.68 scale
+258 258 1
+[ 258 0 0 -258 0 258 ]
+{ picstr readstring }
+image
+000000000000000000000000000000000000000000000000000000000000
+00000000000000000003ffffff000003fffe0000000001fffc0000000000
+00000000000000000000000003ffffff000003ffff0000000000fffc0000
+00300000000000000000000000000003fffffe000003ffff80000000003f
+f8000000ffe000000000000000000000000003fffff8000003ffffe00000
+00001fe0000001fff000000000000000000000000007fffff0000007ffff
+f0000000000cc0000003fff800000000000000000000000007ffffe00000
+0ffffff8000000000000000007fffe0000000000000000000000000fffff
+c000001ffffffc00000000000000000fffff000000000000000000000000
+0fffff0000003ffffffe00000000000000000fffff80000000000003e000
+0000001ffffe0000003fffffff00000000000000001fffffc00000000000
+1ff0000000003ffffc0000003fffffff80000000000000001fffffe00000
+0000007ff8000000003ffff80000007fffffffc0000000000000003fffff
+f800000000007ffc000000007ffff00000007fffffffe000000000000000
+3ffffffc0000000f807ffe00000000ffffc00000007fffffffe000000000
+0000003ffffffe0000001f807fff00000001ffff800000007ffffffff000
+0000000000003fffffff0000007f807fff00000003ffff80000000ffffff
+fff0000000000000001fffffff800003ff807fff00000007ffff80000001
+fffffffff0000000000000001fffffffc0000fff807fff80000007ffff00
+000003fffffffff0000000000000001fffffffe0003fff807fff8000000f
+ffff00000007fffffffff0000000000000000fffffffffffffff807fff80
+00001fffff0000000ffffffffff00000000000000007ffffffffffffff80
+7fff8000001fffff0000003ffffffffff00000000000000003ffffffffff
+ffff807fff8000001fffff000003ffffffffffe00000000000000003ffff
+ffffffffff807fffc000001fffff800007ffffffffffc000000000000000
+01ffffffffffffff807fffc000001fffff800cfffffffffffe0000000000
+00000001ffffffffffffff807fffc000001fffffc07ffffffffffff80000
+00000000000000ffffffffffffff807fff8000003fffffffffffffffffff
+f0000000000000000000ffffffffffffff807fff0000003fffffffffffff
+ffffffc00000000000000000007fffffffffffff807fff0000003fffffff
+ffffffffffff000000000000000000001fffffffffffff807ffe0000003f
+fffffffffffffffffe000000000000000000000fffffffffffff807ffc00
+00003ffffffffffffffffff00000000000000000000003ffffffffffff80
+7ff80000003fffffffffffffffffe00000000000000000000000fffffff0
+00bf807f000000003fffffffffffffffffc000000000000000000000003f
+ffff0000038000000000001fffffffffffffffff800000000000000000f0
+00001ffffe0000000000000000000fffffffffffffffff00000000000000
+0003fe000007fff000000000000000000007ffffffffffffffff00000000
+0000000007ff800000ffc000000000000000000007ffffffffffffffff00
+000000000000000fffe000001f0000000000000000000003ffffffffffff
+ffff00000000000000001ffff00000000000000000000000000003ffffff
+fffffffffe00000000000000003ffff80000000000000000000000000001
+fffffffffffffffc00000000000000003ffffc0000000000000000000000
+000000fffffffffffffffc00000000000000003ffffe0000000000000000
+000000000000fffffffffffffff800000000000000007fffff0000000000
+0000000000000000007ffffffffffffff00000000000000000ffffff8000
+0000000000000000000000007ffffffffffffff00000000000000001ffff
+ffc0000000000000000000000000003fffffffffffffe000000000000000
+01ffffffe0000000000000000000000000001fffffffffffff8000000000
+00000003fffffff0000000000000000000000000000fffffffffffff0000
+00000000000007ffffffff8000000000700000000000000007ffffffffff
+fe000000000000000007ffffffffc000000007f80000000000000003ffff
+fffffffe000000000000000007ffffffffe0000000ffff80600000000000
+01fffffffffffc00000000000000000ffffffffffc000003ffff80700000
+00000000fffffffffffc00000000000000000fffffffffff00003fffff80
+780000000000007ffffffffff800038000000000001fffffffffffc000ff
+ffff807c0000000000003ffffffffff80007f000000000001fffffffffff
+f001ffffff807e0000000000001ffffffffffc000ff800000000003fffff
+fffffffc03ffffff807f0000000000000ffffffffffc000ffc0000000000
+7fffffffffffffe7ffffff807f80000000003007fffffffff8001ffe0000
+0000007fffffffffffffffffffff807fc0000000003807fffffffff8003f
+ff0000000000ffffffffffffffffffffff807fc0000000003003ffffffff
+fc003fff0000000000ffffffffffffffffffffff807fc0000000000003ff
+fffffffc003fff0000000000ffffffffffffffffffffff807fe000000000
+0003fffffffffc003fff0000000000ffffffffffffffffffffff807fe000
+0000000003fffffffff8003fff0000000001ffffffffffffffffffffff80
+7ff0000000000003fffffffff8001fff0000000001ffffffffffffffffff
+ffff807ff8000000000001fffffffffc000fff0000000001ffffffffffff
+ffffffffff807ffc000000000000fffffffffc0007fe0000000001ffffff
+ffffffffffffffff807ffe0000000000007ffffffffc0007fc0000000003
+ffffffffffffffffffffff807fff0000000000007ffffffffe0003f00000
+000003ffffffffffffffffffffff807fff8000000000003fffffffff8001
+800000000003ffffffffffffffffffffff807fffe000000000003fffffff
+ffc000000000000007ffffffffffffffffffffff807fffff00000000003f
+ffffffffc00000000000000fffffffffffffffffffffff807fffffc00000
+00001fffffffffe00000000000001fffffffffffffffffffffff807fffff
+f0000000001ffffffffff00000000000003fffffffffffffffffffffff80
+7fffffff000000000ffffe00fff80000000000003fffffffffffffffffff
+ffff807fffffff800000000ffffc007ff80000000000007fffffffffffff
+ffffffffff807fffffffc000000007fffc001ff8000000000000ffffffff
+ffffffffffffffff807fffffffe000000003fff8000ff8000000000000ff
+ffffffffffffffffffffff807ffffffff000000003fff80007fc00000000
+0000ffffffffffffffffffffffff807ffffffffc00000003fff80003fe00
+0000000001ffffffffffffffffffffffff807ffffffffe00000003fff800
+01ff000000000001fffffffffffffffffffe7fff807fffffffff00000003
+fff80000ff800000000003fffffffffffffffffff80fff807fffffffff00
+000003fff80000ffc00000000003ffffffffffffffffffe000ff807fffff
+ffff80000003fff80000ffe00000000003ffffffffffffffffffc0007f80
+7fffffffffe0000003fff800007ff00000000003ffffffffffffffffff80
+001f807ffffffffff0000003fff800007ff80000000003ffffffffffffff
+ffff00000f807ffffffffff8000003fff000003ffc0000000003ffffffff
+fffffffffe000007807ffffffffff8000003fff000001ffe0000000003ff
+fffffffffffffffc000003807ffffffffff8000003fff000001fff000000
+0001fffffffffffffffff8000001807ffffffffff8000003fff000000fff
+8000000000fffffffffffffffff0000001807ffffffffff8000003ffe000
+000fffc000000000ffffffffffffffffe0000001807ffffffffff8000001
+ffc0000007fff800000000ffffffffffffffffc0000000007ffffffffff8
+000001ffc0000003fffc00000000ffffffffffffffff80000000007fffff
+fffff8000000ff80000001ffff80000000ffffffffffffffff0000000000
+7ffffffffff80000007f00000000ffffc00000007ffffffffffffffe0000
+0000007ffffffffff80000000e000000007ffff00000007fffffffffffff
+f800000000003ffffffffff800000000000000003ffff80000007fffffff
+ffe3ff0000000000007ffffffffff800000000000000001ffffc0000007f
+fffffffc00000000000000007ffffffffff800000000000000000ffffe00
+00007fffffffe000000000000000007ffffffffff8000000000000000007
+ffff0000003fffffffc000000000000000007ffffffffff8000000000000
+000003ffff8000003fffffffc000000000000001807ffffffffff0000000
+000000000003ffff8000003fffffff8000000000000003807ffffffffff0
+000000000000000001ffffc000003fffffff0000000000000003807fffff
+fffff0000000000000000000ffffe000003fffffff000000000000000780
+7ffffffffff0000000000000000000fffff000003fffffff000000000000
+000f807ffffffffff00000000000000000007ffff800003fffffff000000
+000000001f807ffffffffff00000000000000040003ffff800003ffffffe
+000000000000003f807ffffffffff000000000000007f8001ffffc00003f
+fffffe000000000000007f807ffffffffff00000000000000ffc000ffffe
+00001ffffffe0000000000001fff807ffffffffff00000000000003ffe00
+07fffe00001fffffff0000000000003fff807ffffffffff0000000000000
+7ffe0007ffff00003fffffff8000000000007fff807ffffffffff0000000
+0000007ffe0003ffff00003fffffffc0000000001fffff807ffffffffff0
+0000000000007ffe0003ffff00001fffffffc000000001ffffff807fffff
+fffff00000000000007ffc0001ffff80001fffffffc000000003ffffff80
+7ffffffffff00000000000007ffc0000ffff80001fffffffe00000003fff
+ffff807ffffffffff00000000000003ffc0000ffff80003ffffffff00000
+007fffffff807ffffffffff00000000000001ff80000ffff80003fffffff
+f800000fffffffff807ffffffffff00000180000000ff00000ffffc0001f
+fffffffe00001fffffffff807fffffffffe000003c0000000fe000007fff
+c0001ffffffffff000ffffffffff807fffffffffe000003c00000007c000
+007fffc0000fffffffffffffffffffffff807ffffffffff0001818000000
+000000007fffe0000fffffffffffffffffffffff807ffffffffff001fe00
+000000000000007fffe0000fffffffffffffffffffffff807ffffffffff0
+07ff00000000000000007fffe00007ffffffffffffffffffffff807fffff
+fffff00fffc0000000000000007fffe00007ffffffffffffffffffffff80
+7ffffffffff01fffe0000000000000003fffe00003ffffffffffffffffff
+ffff807fffc3fffff81ffff0000000000000003ffff00001ffffffffffff
+ffffffffff807ff801fffffc3ffff8000000000000003ffff00001ffffff
+ffffffffffffffff807ff000fffffffffff8000000000000003ffff80000
+ffffffffffffffffffffff807fe0007ffffffffffc000000000000001fff
+f800007fffffffffffffffffffff807000003ffffffffffc000000000000
+001ffff800003fffffffffffffffffffff806000003ffffffffffe000000
+000000001ffff800001fffffffffffffffffffff800000001fffffffffff
+000000000000001ffff800000ffffffffffffffffffff3800000001fffff
+ffffff000000000000001ffff8000003ffffffffffffffffffe000000000
+3fffffffffff000000000000001ffffc000000ffffffffffffffffff8000
+0000003fffffffffff000000000000000ffffc0000007fffffffffffffff
+ff00000000001fffffffffff800000000000000ffffc0000001fffffffff
+fffffffe00000000001fffffffffffc00000000000000ffffe0000000fff
+fffffffffffffc00000000000fffffffffffc00000000000000ffffe0000
+0007fffffffffffffffc00000000000fffffffffffe000000000000007ff
+fe00000003fffffffffffffff800000000000fffffffffffe00000000000
+0007fffe00000000fffffffffffffff000000000000ffffffffffff00000
+0000000003fffe000000007fffffffffffffe000000000000fffffffffff
+f800000000000001fffe000000007fffffffffffffc0000000000007ffff
+fffffffc00000000000000fffe000000007fffffffffffffc00000000000
+07ffffffffffff000000000000007ffe00000000ffffffffffffffc00000
+00000003ffffffffffffc00000000000003ffe00000001ffffffffffffff
+80000000000001ffffffffffffe00000000000000ffc00000003ffffffff
+ffffff00000000000000fffffffffffff000000000000007f8000000ffff
+ffffffffffff000000000000003fffffffffffffff000000000001e00000
+07ffffffffffffffff000000000000000fffffffffffffffc00000000000
+0000000ffffffffffffffffe0000000000000003ffffffffffffffff1fc0
+0000000000001ffffffffffffffffe0000000000000000ffffffffffffff
+ffffe00000000000003ffffffffffffffffe00000000000000003fffffff
+fffffffffff80000000000003ffffffffffffffffe00000000000000000f
+fffffffffffffffffc0000000000003ffffffffffffffffe000000000000
+000003fffffffffffffffffe0000000000001ffffffffffffffffe000000
+000000000001ffffffffffffffffff0000000000001ffffffffffffffffe
+0000000000000000007fffffffffffffffff8000000000001fffffffffff
+fffffe0000000000000000001fffffffffffffffffc000000000000fffff
+fffffffffffe00000000000000000003ffffffffffffffffe00000000000
+07fffffffffffffffe000000000000000000003ffffffffffffffff00000
+00000003fffffffffffffffe000000000000000000000fffffffffffffff
+f8000000000001fffffffffffffffc0000000fc0000000000003ffffffff
+fffffffc000000000000fffffffffffffff80000007ff0fc00000000003f
+fffffffffffffe0000000000007ffffffffffffff80000007fffffe00000
+00000fffffffffffffff0000000000003ffffffffffffff80001807fffff
+ff0000000003ffffffffffffff0000000000001ffffffffffffff0000380
+7fffffff80000000001fffffffffffff0000000000000ffffffffffffff0
+0003807ffffffff00000000000ffffffffffff00000000000007ffffffff
+ffffe00001807ffffffff800000000003fffffffffff00000000000003ff
+ffffffffffe00001807ffffffffe000000000003ffffffffff0000000000
+0000ffffffffffffe00003807fffffffffe00000000001ffffffffff8000
+00000000007fffffffffffc00003807fffffffffff00000000007fffffff
+ffc00000000000003fffffffffffc00001807fffffffffffffc00000000f
+ffffffffe00000000000001fffffffffff800000007fffffffffffffe000
+000007ffffffffe00000000000000fffffffffff800000007fffffffffff
+fffffc000007ffffffffe000000000000007ffffffffff800000007fffff
+ffffffffffff000007fffffffff000000000000003ffffffffff80000000
+3fffffffffffffffffc00007fffffffff800000000000001ffffffffff00
+0000001fffffffffffffffffe0000ffffffffffc00000000000000ffffff
+ffff000000001ffffffffffffffffff0000ffffffffffe00000000000000
+7fffffffff000000000ffffffffffffffffff8001fffffffffff80000000
+0000007fffffffff0000000007fffffffffffffffffcf03fffffffffffe0
+0000000000007fffffffff0000000003ffffffffffffffffffffffffffff
+fffffff800000000007fffffffff0000000001ffffffffffffffffffffff
+fffffffffffffe00000000003ffffffffe00000000007fffffffffffffff
+ffffffffffffffffffff00000000001ffffffffe00000000003fffffffff
+fffffffffffffffffffffffffff0000000001ffffffffc00000000003fff
+fffffffe1ffffffffffffffffffffffff8000000001ffffffff800000000
+001ffffffffffc01fffffffffffffffffffffff8000000000ffffffff800
+000000000ffffffffff00007fffffffffffffffffffffc0000000007ffff
+fff8000000000007ffffffff800003fffffffffffffffffffffc00000000
+07fffffff0000000000003ffffffff000001fffffffffffffffffffffe00
+00000007fffffff0000000000003fffffffc0000007fffffffffffffffff
+fffe0000000007ffffffe0000000000001ffffffe00000001fffffffffff
+fffffffffe0000000007ffffffe0000000000000ffffffc00000000fffff
+fffffffffffffffe0000000007ffffffe00000000000007fffff80000000
+07fffffffffffffffffffe000000000fffffffc00000000000007fffff80
+00000003fffffffffffffffffffe000000001fffffff800000000000007f
+ffff0000000003fffffffffffffffffffc000000003fffffff8000000000
+00003fffff0000000001fffffffffffffffffffc0000f8007fffffff0000
+00000000003fffff0000000001fffffffffffffffffff80003ffffffffff
+fe000000000000001fffff8000000003fffffffffffffffffff80007ffff
+fffffffe000000000000001fffffc00000001ffffffffffffffffffff000
+07ffffffffffff000000000000001ffffff00000007fffffffffffffffff
+fff0000fffffffffffff000000000000000ffffff800000fffffffffffff
+ffc0000fe0001fffffffffffff000000000000000fffffffc001ffffffff
+ffffffff00000780001fffffffffffff000000000000000fffffffe3ffff
+fffffffffffffe00000000001fffffffffffff000000000000000fffffff
+fffffffffffff0639fc000000000003fffffffffffff000000000000000f
+ffffffffffffffffffe0000f0000000000007fffffffffffff0000000000
+000007ffffffffffffffffffc00000000000000000ffffffffffffff0000
+000000000007ffffffffffffffffff000000000000000000ffffffffffff
+ff0000000000000003fffffffffffffffffe000000000000000000ffffff
+ffffffff0000000000000003fffffffffffffffff0000000000000000000
+ffffffffffffff0000000000000003ffffffffffffffffe0000000000000
+000001ffffffffffffff0000000000000001ffffffffffffffffc0000000
+000000000001ffffffffffffff0000000000000001ffffffffffffffff00
+000000000000000001ffffffffffffff0000000000000000ffffffffffff
+fffe00000000000000000001ffffffffffffff80000000000000007fffff
+fffffffffc00000000000000000001ffffffffffffff8000000000000000
+3ffffffffffffff800000000000000000001ffffffffffffff8000000000
+0000001ffffffffffffff000000000000000000001ffffffffffffff8000
+0000001c00000fffffffffffffc000000000000000000001ffffffffffff
+ff80000003807f80000fffffffffffff8000000000000000000001ffffff
+ffffffff80000007807fc00007ffffffffffff0000000000000000000001
+ffffffffffffff8000003f807ff00000fffffffffffe0000000000000000
+000001ffffffffffffff8000007f807ffe000001fffffffffc0000000000
+000000000000ffffffffffffff800000ff807fff0000007ffffffffc0000
+000000000000000000ffffffffffffff800001ff807fff8000001fffffff
+fc0000000000000000000000ffffffffffffff000003ff807fffc0000007
+fffffffe0000000000000000000000ffffffffffffff000003ff807fffe0
+0000007ffffffe00000000000000000000007fffffffffffff000007ff80
+7ffff00000003ffffffe00000000000000000000003ffffffffffffe0000
+07ff807ffff800000007ffffff00000000000000380000003fffffffffff
+fe00000fff807ffffc00000003ffffff80000000000000fc0000001fffff
+fffffffe00000fff807ffffe00000001ffffff80000000000001ff800000
+0ffffffffffffc00000fff807fffff00000000ffffffc0000000000003ff
+e0000007fffffffffff800000fff807fffff80000000ffffffc000000000
+0007fff0000003fffffffffff000000fff807fffffe00000007fffffe000
+0000000007fff8000001fffffffffff000000fff807ffffff00000007fff
+fff0000000000007fffe000000ffffffffffe000000fff807ffffff80000
+007ffffff0000000000007ffff0000007fffffffffc000000fff807fffff
+fe0000007ffffff8000000000007ffff0000003fffffffff8000000fff80
+7fffffff800000fffffffc000000000007ffff8000001fffffffff800000
+0fff807ffffffff00001fffffffe000000000003ffffc0000001ffffffff
+0000000fff807fffffffffffffffffffff000000000003ffffe0000000ff
+fffffe0000000fff807fffffffffffffffffffff000000000003fffff000
+0000fffffffc0000000fff807fffffffffffffffffffff800000000001ff
+fff80000007ffffff80000000fff807fffffffffffffffffffff80000000
+0001fffffc0000003fffffe00000000fff807fffffffffffffffffffff80
+0000000001fffffe0000000fffffc00000000fff807fffffffffffffffff
+ffff800000000000ffffff00000007ffffc000000007ff807fffffffffff
+ffffffffff8000000000007fffff80000003ffff8000000003ff807fffff
+ffffffffffffffff8000000000003fffffc00000007ffc0000000001ff80
+7fe0ffffffffffffffffff8000000000001fffffe0000000000000000000
+01ff807f003fffffffffffffffff8000000000000ffffff0000000000000
+00000000ff807e001fffffffffffffffff80000000000007fffff8000000
+00000000000000ff807c0007ffffffffffffffff80000000000003fffffc
+00000000000000000000ff80780003ffffffffffffffff80000000000001
+fffffe000000000000000000007f80600001ffffffffffffffff80000000
+000000ffffff000000000000000000003f80000000ffffffffffffffff00
+0000000000007fffff800000000000000000001f800000007fffffffffff
+fffe000000000000003fffffc000000000000000000000000000003fffff
+fffffffffe000000000000001fffffe00000000000000000000000000000
+1ffffffffffffffe000000000000000ffffff00000000000000000000000
+0000000ffffffffffffffe0000000000000007fffff80000000000000000
+00000000000007fffffffffffffe0000000000000001fffffc0000000000
+00000000000000000001fffffffffffffc0000000000000000fffffc0000
+00000000000000000000000000fffffffffffff800001f00000000007fff
+fc0000000000000000000000000000003ffffffffffff800003fc0000000
+003ffffe0000000000000000000000000000001f003ffffffff000007fe0
+000000000ffffe00000000000000000000000000000000001fffffffe000
+007fe00000000007fffc0000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000
+grestore
+showpage
+countdictstack InitDictCount sub { end } repeat
+cleartomark
+restore
+grestore
+%%EndDocument
+count tgifopcount1 sub {pop} repeat
+countdictstack tgifdictcount1 sub {end} repeat
+tgiflevel1 restore
+tgifdict begin
+
+grestore
+tgifsavedpage restore
+end
+%MatchingCreationDate: Wed May 18 20:15:00 1994

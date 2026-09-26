@@ -1,0 +1,207 @@
+.\"
+.\" stolen to mgm and changed to fit my needs
+.\"
+.\"
+.\" Top of Page
+.\"
+.nr thy@do-head 0
+.de TP
+.	sp 1
+.if \\n[thy@head-flag] \{\
+.	ie \\n[thy@do-head] \{\
+.		lt \\n[@ll]u
+.		ie o .tl \\*[pg*odd-header]
+.		el .tl \\*[pg*even-header]
+.		tl \\*[pg*header]
+.	\}
+.	el \{\
+.		sp 2
+.		nr thy@do-foot 1
+.		nr thy@do-head 1
+.	\}
+.\}
+.	sp 1
+..
+.nr pg*header-size 4\" 1v+header+even/odd header+1v
+.\"
+.\" Bot of Page
+.\"
+.nr thy@foot-flag 0
+.nr thy@do-foot 0
+.de pg@print-footer
+.\" jump to the position just below the foot-notes.
+'sp |\\n[pg*last-pos]u+1v
+.\" check if there are any bottom block
+.if d pg*block-div .pg@block
+.\"
+.\" print the footer and eject new page
+.ev pg*tl-ev
+.pg@set-env
+.if \\n[thy@foot-flag] \{\
+.	lt \\n[@ll]u
+.	tl \\*[pg*footer]
+.	ie \\n[thy@do-foot] \{\
+.		ie o .tl \\*[pg*odd-footer]
+.		el .tl \\*[pg*even-footer]
+.		nr thy@do-foot 0
+.	\}
+.	el \{\
+.		sp 1
+.	\}
+.\}
+.ev
+.ie (\\n[ds*fnr]>=\\n[ds*o-fnr]):\\n[ft*exist] \{\
+.	ev ne
+'	bp
+.	ev
+.\}
+.el \{\
+'	bp
+.\}
+..
+
+.\".de RP
+.\".if !d ref*div .@error "RP: No references!"
+.\".nr ref*i 0\\$2
+.\".if \\n[ref*i]<2 .SK
+.\".SP 2
+.\".toc@save 1 "" "\\*[Rp]" \\n[%]
+.\".ev ref*ev
+.\".ce
+.\"\\s+6\\fB\\*[Rp]\\fP\\s-6
+.\".sp
+.\".in 0
+.\".nf
+.\".ref*div
+.\".in
+.\".if 0\\$1<1 .nr ref*nr 0 1
+.\".rm ref*div
+.\".ev
+.\".if (\\n[ref*i]=0:\\n[ref*i]=2) .SK
+.\"..
+
+.\"-------------
+.de H
+.nr hd*cur-bline \\n[nl]
+.br
+.ds@print-float 2\"	$$$ could be wrong...
+.\" terminate all lists
+.LC 0
+.init@reset
+.nr hd*level 0\\$1
+.nr hd*arg1 0\\$1
+.if !\\n[hd*level] .nr hd*level \\n[Hu]
+.\"	Check if it's time for new page. Only if text has
+.\"	appeared before.
+.if \\n[Ej]&(\\n[Ej]>=\\n[hd*level])&(\\n[hd*cur-bline]>=0) .pg@next-page
+.\"	clear lower counters
+.nr hd*i 1 1
+.while \\n+[hd*i]<8 .if \\n[hd*level]<\\n[hd*i] .nr H\\n[hd*i] 0 1
+.\"
+.\" increment current counter
+.nr H\\n[hd*level] +1
+.ie \\n[hd*level]<=\\n[Hps] .SP \\n[Hps2]u\" 		pre-space
+.el .SP \\n[Hps1]u
+.\"
+.\" hd*mark is the text written to the left of the header.
+.ie \\$1=1 \{\
+.\}
+.	ds hd*mark Chapitre \\n[H1].
+.el \{\
+.	ds hd*mark \\n[H1].
+.\}
+.if \\n[hd*level]>1 .as hd*mark \\n[H2]
+.nr hd*i 2 1
+.while \\n+[hd*i]<8 .if \\n[hd*level]>(\\n[hd*i]-1) .as hd*mark .\\n[H\\n[hd*i]]
+.if \\n[Ht] .ds hd*mark \\n[H\\n[hd*level]].
+.\"
+.\" toc-mark is sent to the table of contents
+.ds hd*toc-mark \\*[hd*mark]
+.as hd*mark \ \ \"			add spaces between mark and heading
+.if !\\n[hd*arg1] \{\
+.	ds hd*mark\"		no mark for unnumbered
+.	ds hd*toc-mark
+.\}
+.\"
+.if \\n[D]>1 .tm At header \\*[hd*toc-mark] "\\$2"
+.nr hd*htype 0				\" hd*htype = check break and space
+.					\" 0 = run-in, 1 = break only, 2 = space
+.if \\n[hd*level]<=\\n[Hb] .nr hd*htype 1
+.if \\n[hd*level]<=\\n[Hs] .nr hd*htype 2
+.					\" two spaces if hd*htype == 0
+.ie (\\n[hd*htype]=0)&(\w@\\$2@) .ds hd*suf-space "  \"
+.el .ds hd*suf-space
+.nr hd*need 2v				\" hd*need = header need space
+.\"---------- user macro HX ------------
+.\" user exit macro to override numbering
+.if d HX .HX \\n[hd*level] \\n[hd*arg1] "\\$2\\$3"
+.par@reset-num \\n[hd*level]\"			reset numbered paragraph
+.di hd*div
+\\*[hd*mark]\\$2\\$3\\*[hd*suf-space]
+.br
+.di
+.rm hd*div
+.if \\n[hd*htype]<2 .nr hd*need +.5v \"	add some extra space
+.ne \\n[hd*need]u+\\n[dn]u+.5p  \"	this is the needed space for a header
+.\"---------- user macro HY ------------- 
+.\"	user macro to reset indents
+.if d HY .HY \\n[hd*level] \\n[hd*arg1] "\\$2\\$3"
+.if \\n[hd*htype] .na \"		no adjust if run-in
+.hd@split hd*font \\n[hd*level] HF \\*[HF]\"	get font for this level
+.ft \\*[hd*font]\"			set new font
+.nr hd*ps-save \\n[.ps]u
+.hd@split hd*new-ps \\n[hd*level] HP \\*[HP]\"	get point size
+.ie (\\*[hd*new-ps]=0):(\w@\\*[hd*new-ps]@=0) \{\
+.	if \\n[hd*htype] \{\
+.		if '\\*[hd*font]'3' .ps -1z
+.		if '\\*[hd*font]'B' .ps -1z
+.	\}
+.\}
+.el .ps \\*[hd*new-ps]z
+.nr hd*mark-size \w'\\*[hd*mark]'
+.if (\\n[hd*level]<=\\n[Hc])&\\n[hd*htype] .ce\" center if level<=Hc
+.\"
+.\"	finally, output the header
+\\*[hd*mark]\&\c
+.\"	and the rest of the header
+.ie \\n[hd*htype] \{\
+\\$2\\$3
+.	br
+.\}
+.el \\$2\\$3\\*[hd*suf-space]\&\c
+.ft 1
+.ps \\n[hd*ps-save]u
+.\"
+.\" table of contents
+.if (\\n[hd*level]<=\\n[Cl])&\w@\\$2@ \{\
+.	toc@save \\n[hd*level] "\\*[hd*toc-mark]" "\\$2" \\n[%]
+.\}
+.\"	set adjust to previous value
+.SA
+.\"	do break or space
+.if \\n[hd*htype] .br
+.if \\n[hd*htype]>1 .SP .5
+.if \\n[hd*htype] \{\
+.	\"	indent if Hi=1 and Pt=1
+.	if (\\n[Hi]=1)&(\\n[Pt]=1) .ti +\\n[Pi]n
+.	\"	indent size of mark if Hi=2
+.	if \\n[hd*htype]&(\\n[Hi]>1) .ti +\\n[hd*mark-size]u
+.\}
+.nr par@ind-flag 0			\" no indent on .P if Pt=2
+.\"
+.\"	check if it is time to reset footnotes
+.if (\\n[hd*level]=1)&\\n[ft*clear-at-header] .nr ft*nr 0 1
+.\"
+.\"	check if it is time to reset indexes
+.if (\\n[hd*level]=1)&(\\n[N]=5) \{\
+.	nr lix*fg-nr 0 1
+.	nr lix*tb-nr 0 1
+.	nr lix*ec-nr 0 1
+.	nr lix*ex-nr 0 1
+.\}
+.\"---------- user macro HZ ----------
+.if d HZ .HZ \\n[hd*level] \\n[hd*arg1] "\\$2\\$3"
+.nr hd*last-pos \\n[nl]
+.nr hd*last-hpos \\n[.k]
+.nr par@ind-flag 0
+..

@@ -1,0 +1,9 @@
+CC_OPTIM_FLAGS = -O2
+CC_DEBUG_FLAGS = -g
+
+XINCLUDES = -I/usr/include/X11
+XLIBS = -lm -lX11
+RANLIB = ranlib
+CB = cb
+TCLDIR = $(CASDIR)/../tcl
+TCLLIB = $(HOME)/local/lib

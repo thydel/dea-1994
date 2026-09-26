@@ -1,0 +1,21 @@
+tsum-128x3-diag.pgm
+	mk-select-seq 32 95 4 tsum
+	mk-pnm-index 128 4
+
+anneal-256x3-diag.pbm
+	mk-select-seq 10 250 10
+	mk-pnm-index 128 6
+
+tsum-128x3-transbits.pgm
+
+tsum-128x3-trans-byte.pgm
+
+tsum-128x3-relmov.pgm
+
+tsum-128x3-rel.pgm
+
+tsum-128x3-faces.pgm
+
+qmean-9-???
+	bit plane 3 (quatrieme)
+

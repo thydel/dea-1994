@@ -1,0 +1,107 @@
+single
+gapp ew := ns
+gapp ew := e; c := 1
+gapp c := cy
+gapp ew := c; ns := c
+gapp ew := e; c := 1
+gapp c := cy
+gapp ew := c; ns := c
+gapp ew := e; c := 1
+gapp c := cy
+gapp ew := c; ns := c
+gapp ew := e; c := 1
+gapp c := cy
+gapp ew := c; ns := c
+gapp ew := e; c := 1
+gapp c := cy
+gapp ew := c; ns := c
+gapp ew := e; c := 1
+gapp c := cy
+gapp ew := c; ns := c
+gapp ew := e; c := 1
+gapp c := cy
+gapp ew := c; ns := c
+gapp ew := e; c := 1
+gapp c := cy
+gapp ew := c; ns := c
+gapp ew := e; c := 1
+gapp c := cy
+gapp ew := c; ns := c
+gapp ew := e; c := 1
+gapp c := cy
+gapp ew := c; ns := c
+gapp ew := e; c := 1
+gapp c := cy
+gapp ew := c; ns := c
+gapp ew := e; c := 1
+gapp c := cy
+gapp ew := c; ns := c
+gapp ew := e; c := 1
+gapp c := cy
+gapp ew := c; ns := c
+gapp ew := e; c := 1
+gapp c := cy
+gapp ew := c; ns := c
+gapp ew := e; c := 1
+gapp c := cy
+gapp ew := c; ns := c
+gapp ew := e; c := 1
+gapp c := cy
+gapp ew := c; ns := c
+gapp ram 0 := c
+single
+gapp ew := ns
+gapp ew := w; c := 1
+gapp c := cy
+gapp ew := c; ns := c
+gapp ew := w; c := 1
+gapp c := cy
+gapp ew := c; ns := c
+gapp ew := w; c := 1
+gapp c := cy
+gapp ew := c; ns := c
+gapp ew := w; c := 1
+gapp c := cy
+gapp ew := c; ns := c
+gapp ew := w; c := 1
+gapp c := cy
+gapp ew := c; ns := c
+gapp ew := w; c := 1
+gapp c := cy
+gapp ew := c; ns := c
+gapp ew := w; c := 1
+gapp c := cy
+gapp ew := c; ns := c
+gapp ew := w; c := 1
+gapp c := cy
+gapp ew := c; ns := c
+gapp ew := w; c := 1
+gapp c := cy
+gapp ew := c; ns := c
+gapp ew := w; c := 1
+gapp c := cy
+gapp ew := c; ns := c
+gapp ew := w; c := 1
+gapp c := cy
+gapp ew := c; ns := c
+gapp ew := w; c := 1
+gapp c := cy
+gapp ew := c; ns := c
+gapp ew := w; c := 1
+gapp c := cy
+gapp ew := c; ns := c
+gapp ew := w; c := 1
+gapp c := cy
+gapp ew := c; ns := c
+gapp ew := w; c := 1
+gapp c := cy
+gapp ew := c; ns := c
+gapp ew := w; c := 1
+gapp c := cy
+gapp ew := c; ns := c
+gapp ram 0 := c
+gapp ns := ram 0
+label 0
+extract 0
+gapp ns := n
+goto 0

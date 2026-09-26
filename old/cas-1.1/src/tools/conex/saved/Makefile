@@ -1,0 +1,42 @@
+include $(CASDIR)/make/std-vars
+
+INCLUDES = -I$(CASDIR)/include
+CFLAGS = $(INCLUDES)
+CC = gcc $(CC_DEBUG_FLAGS) $(CC_OPTIM_FLAGS)
+
+CMDNAME = conex
+
+SRCS = \
+	$(CMDNAME).c \
+	cell.c \
+	cgen.c \
+	str.c
+
+HEADERS =
+
+CELL_LIBS = $(CASDIR)/lib
+
+LIBS = $(CELL_LIBS)/util.a
+
+OBJS = $(SRCS:.c=.o)
+EXECS = $(CMDNAME)
+
+top: $(CMDNAME)
+
+tst: conex
+	conex | cb > xxx
+
+include $(CASDIR)/make/bin-targets
+
+include $(CASDIR)/make/std-targets
+
+# DO NOT DELETE THIS LINE -- make depend depends on it.
+
+conex.o: /usr/include/stdio.h /usr/include/stdlib.h
+conex.o: /home/faust/thy/cell/include/util/named.h cell.h
+cell.o: /usr/include/stdio.h /usr/include/varargs.h /usr/include/malloc.h
+cell.o: /usr/include/assert.h str.h cgen.h cell.h
+cgen.o: /usr/include/stdio.h /usr/include/varargs.h /usr/include/malloc.h
+cgen.o: /usr/include/assert.h str.h cgen.h
+str.o: /usr/include/varargs.h /usr/include/malloc.h /usr/include/assert.h
+str.o: str.h

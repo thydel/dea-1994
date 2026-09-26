@@ -1,0 +1,48 @@
+gapp c := 1
+gapp ram 0 := c; c := 0
+gapp ns := c; ew := c
+print nop
+gapp nop
+state2ascii 0
+print ew := ram 0
+gapp ew := ram 0
+state2ascii 0
+print nop
+gapp nop
+state2ascii 0
+print ns := ram 0; ew := 0
+gapp ns := ram 0; ew := 0
+state2ascii 0
+print nop
+gapp nop
+state2ascii 0
+print ew := ram 0
+gapp ew := ram 0
+state2ascii 0
+print nop
+gapp nop
+state2ascii 0
+print ns := 0; ew := 0; c := 1
+gapp ns := 0; ew := 0; c := 1
+state2ascii 0
+print nop
+gapp nop
+state2ascii 0
+print ew := ram 0
+gapp ew := ram 0
+state2ascii 0
+print nop
+gapp nop
+state2ascii 0
+print ns := ram 0; ew := 0
+gapp ns := ram 0; ew := 0
+state2ascii 0
+print nop
+gapp nop
+state2ascii 0
+print ew := ram 0
+gapp ew := ram 0
+state2ascii 0
+print nop
+gapp nop
+state2ascii 0

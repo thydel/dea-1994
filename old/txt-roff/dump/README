@@ -1,0 +1,94 @@
+anneal-64.pbm
+	function anneal
+	size 256x256
+	initial frame random (1/2)
+	64 generation
+
+anneal-256.pbm
+	anneal-64.pbm
+	256 generation
+
+anneal-g32-s10.pbm
+	function anneal
+	size 1024x1024
+	initial frame random (1/2)
+	32 generation
+	
+anneal-g64-s10.pbm
+	function anneal
+	size 1024x1024
+	initial frame random (1/2)
+	64 generation
+	
+anneal-sum-64.pgm
+	function anneal
+	size 64x64
+	initial random (1/2)
+	400 generation
+	vertical sum
+	xv used to scale to 256x256
+
+anneal-sum-64-xv.pgm
+	function anneal
+	size 64x64
+	initial random (1/2)
+	400 generation
+	vertical sum
+	xv used to scale to 256x256, and histeq
+
+anneal-sum-256.pgm
+	function anneal
+	size 256x256
+	initial random (1/2)
+	400 generation
+	vertical sum
+
+anneal-time-xor.pbm
+	function anneal
+	size 64x64 3x6 frame
+		frame1 = t(i)
+		frame2 = t(i-1) xor t(i)
+		frame3 - t(i-2) xor t(i)
+	initial frame random (1/2)
+	6 generation starting at 2 step 2
+
+life-time-xor.pbm
+	function life
+	size 64x64 3x6 frame
+		frame1 = t(i)
+		frame2 = t(i-1) xor t(i)
+		frame3 - t(i-2) xor t(i)
+	initial frame random (1/2)
+	6 generation starting at 100 step 1
+
+lifex-sum-1.pgm
+	function lifex
+	size 256x256
+	initial random (1/2)
+	250 generation
+	vertical sum over life plane
+
+lifex-sum-2.pgm
+	function lifex
+	size 256x256
+	initial random (1/2)
+	250 generation
+	vertical sum over life life[i-2] xor life[i] plane
+
+loop-1024.pbm
+	fonction loop
+	size 256x256
+	initial the loop pattern
+	1024 generation
+	frame 1
+
+tsum-<generation>.pbm
+	fonction tsum-3.3.0.-1
+	size 128x128
+	8 frames
+
+tsum-<generation>-<colormap>.pgm
+	fonction tsum-3.3.0.-1
+	size 256x256
+	colormap = xv (hist eq), xvr (random grey)
+

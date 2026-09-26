@@ -1,0 +1,919 @@
+\ifx\undefined\allcaps\def\allcaps#1{#1}\fi\newcommand{\mymarginpar}[1]{}
+\begin{thebibliography}{}
+\input{babelbst.tex}
+
+\bibitem[Alm\'asi et~al.(1987)]{Almasi87}
+Alm\'asi, J., Kov\'acs, I., Medvey, M., Simon, E., \bbland{} Sz\'ekely, Z.
+  (1987).
+\newblock ``On The Implementation of The Cellas 2.1 System''.
+\newblock \bblIn{} \cite{Legendi87}, \bblpages{} 83--89.
+
+\bibitem[Anderson\mymarginpar{Anderson88}(1987)]{Anderson88}
+Anderson\mymarginpar{Anderson88}, P.~W. (1987).
+\newblock ``Spin Glass Hamiltonians: {A} Bridge Between Biology, Statistical
+  Mechanics and Computer Science''.
+\newblock \bblIn{} \cite{Pines88}, \bblpages{} 17--20.
+
+\bibitem[Atlan\mymarginpar{Atlan79a}(1979)]{Atlan79a}
+Atlan\mymarginpar{Atlan79a}, H. (1979).
+\newblock \emph{Entre le cristal et la fum\'ee: Essai sur l'organisation du
+  vivant}.
+\newblock \'Editions du Seuil, Paris.
+
+\bibitem[Bak\mymarginpar{Bak93}(1993)]{Bak93}
+Bak\mymarginpar{Bak93}, P. (1993).
+\newblock ``Self-Organized Criticality and Gaia''.
+\newblock \bblIn{} \cite{Stein93}, \bblpages{} 255--268.
+
+\bibitem[Berg\'e et~al.(1984)]{Berge94}
+Berg\'e, P., Pommeau, Y., \bbland{} Dubois-Gange\mymarginpar{Berge94}, M.
+  (1984).
+\newblock \emph{Des rythmes au chaos}.
+\newblock \'Edition Odile Jacob, Paris.
+
+\bibitem[Bergson\mymarginpar{Bergson89}(1989)]{Bergson89}
+Bergson\mymarginpar{Bergson89}, H. (1989).
+\newblock \emph{{L}'\'evolution cr\'eatrice}.
+\newblock Quadrige/Presse Universitaire de France, Paris, quatri\`eme
+  \bbledition{}.
+\newblock \footnotesize Premi\`ere \'edition: 1941\normalsize.
+
+\bibitem[Berlekamp et~al.(1982)]{Berlekamp82}
+Berlekamp, E.~R., Conway, J.~H., \bbland{} Guy\mymarginpar{Berlekamp82}, R.~K.
+  (1982).
+\newblock \emph{Winning Ways for your Mathematical Plays}, \bblvolume{}~2.
+\newblock Academic Press, New York.
+
+\bibitem[Bolotski et~al.(1994)]{Bolotski94}
+Bolotski, M., DeHon, A., \bbland{} {Knight Jr.\mymarginpar{Bolotski94}}, T.~F.
+  (1994).
+\newblock ``Unifying {FPGA}s and {SIMD} Arrays''.
+\newblock Transit Note~95, MIT Artificial Intelligence Laboratory.
+\newblock \footnotesize Original Issue: September 1993. \\
+  \texttt{ftp://transit.ai.mit.edu/transit-notes/tn95.ps.Z} \normalsize.
+
+\bibitem[Braunl\mymarginpar{Braunl89}(1989)]{Braunl89}
+Braunl\mymarginpar{Braunl89}, T. (1989).
+\newblock \emph{Structured {SIMD} Programming in Parallaxis}.
+\newblock Springer--Verlag.
+
+\bibitem[Cabral \bbland{} Leedom(1993)]{Cabral93}
+Cabral, B. \bbland{} Leedom, L.~C. (1993).
+\newblock ``Imaging Vector Fields Using Line Integral Convolution''.
+\newblock \bblIn{} \emph{SIGGRAPH~'93}.
+
+\bibitem[Casti\mymarginpar{Casti89a}(1989)]{Casti89a}
+Casti\mymarginpar{Casti89a}, J.~L. (1989).
+\newblock ``Pattern and the Emergence of Living Forms: Cellular Automata and
+  Discrete Dynamics''.
+\newblock \bblIn{} \emph{Alternate Realities: Mathematical Models of Nature and
+  Man}, \bblchapter{}~2, \bblpages{} 45--111. John Wiley \& Sons, New York.
+
+\bibitem[Chat{\'e} \bbland{} Manneville\mymarginpar{Chate90}(1990)]{Chate90}
+Chat{\'e}, H. \bbland{} Manneville\mymarginpar{Chate90}, P. (1990).
+\newblock ``Criticality in Cellular Automata''.
+\newblock \emph{Physica D}, 45, 122--135.
+
+\bibitem[Cheng\mymarginpar{Chen93}(1993)]{Cheng93}
+Cheng\mymarginpar{Chen93}, D.~Y. (1993).
+\newblock ``A Survey of Parallel Programming Languages and Tools''.
+\newblock Report RND-93-005, National Aeronautics and Space Administration,
+  Ames Research Center, Moffett Field, CA.
+
+\bibitem[Cherif\mymarginpar{Cherif93}(1993)]{Cherif93}
+Cherif\mymarginpar{Cherif93}, A.~A. (1993).
+\newblock ``Collective Behaviour for a Micro-colony of Robots''.
+\newblock \bblIn{} \cite{Deneubourg93}, \bblpages{} 1--8.
+
+\bibitem[Choquet\mymarginpar{Choquet92}(1992)]{Choquet92}
+Choquet\mymarginpar{Choquet92}, G. (1992).
+\newblock ``Le continu, le discret, et \ldots tout le reste''.
+\newblock \bblIn{} \cite{Salanskis92}, \bblpages{} 267--278.
+
+\bibitem[Clouqueur \bbland{}
+  d'Humi\`ere\mymarginpar{Clouqueur87}(1987)]{Clouqueur87}
+Clouqueur, A. \bbland{} d'Humi\`ere\mymarginpar{Clouqueur87}, D. (1987).
+\newblock ``{RAP1}, {A} Cellular Automata Machine for Fluid Dynamics''.
+\newblock \emph{Complex Systems}, 1, 585--597.
+
+\bibitem[Cordy et~al.(1991)]{Cordy91}
+Cordy, J.~R., Halpern-Hamu, C.~D., \bbland{} Promislow, E.~M. (1991).
+\newblock ``{TXL}: {A} Rapid Prototyping System for Programming Language
+  Dialects''.
+\newblock \emph{Computer Languages}, 16(1), 97--107.
+
+\bibitem[Cypher \bbland{} Sanz\mymarginpar{Cypher94}(1994)]{Cypher94}
+Cypher, R. \bbland{} Sanz\mymarginpar{Cypher94}, J. L.~C. (1994).
+\newblock \emph{The {SIMD} Model of Parallel Computation}.
+\newblock Springer--Verlag, New York.
+
+\bibitem[Davies\mymarginpar{Davis89}(1989)]{Davis89}
+Davies\mymarginpar{Davis89}, P. (1989).
+\newblock \emph{The Cosmic Blueprint}.
+\newblock Unwin, London.
+\newblock \footnotesize First published by William Heineman 1987\normalsize.
+
+\bibitem[de~Boer et~al.(1993)]{Boer93}
+de~Boer, R.~J., van~der Laan, J.~D., \bbland{} Hogeweg\mymarginpar{Boer}, P.
+  (1993).
+\newblock ``Randomness and Pattern Scale in the Immune Network: {A} Cellular
+  Automata Approach''.
+\newblock \bblIn{} \cite{Stein93}, \bblpages{} 231--252.
+
+\bibitem[de~Gennes\mymarginpar{deGennes89}(1989)]{deGennes89}
+de~Gennes\mymarginpar{deGennes89}, P.-G. (1989).
+\newblock ``La mati\`ere ultradivis\'ee''.
+\newblock \bblIn{} \cite{PourLaScience89b}, \bblchapter{}~12, \bblpages{}
+  193--203.
+
+\bibitem[de~Latil\mymarginpar{DeLatil91}(1991)]{DeLatil91}
+de~Latil\mymarginpar{DeLatil91}, P. (1991).
+\newblock ``Syst\`emes physiques et syst\`emes biologiques''.
+\newblock \bblIn{} F.~Tinland\mymarginpar{Tinland91}, \bbleditor{},
+  \emph{Syst\`emes Naturels Syst\`emes Artificiels}, collection milieux,
+  \bblpages{} 33--45. Champ Vallon, Seyssel.
+
+\bibitem[Demongeot et~al.(1985)]{Demongeot85}
+Demongeot, J., Gol\`es, E., \bbland{} Tchuente\mymarginpar{Demongeot85}, M.,
+  \bbleditors{} (1985).
+\newblock \emph{Dynamical Systems and Cellular Automata}.
+\newblock Academic Press, London.
+\newblock \footnotesize This volume constitutes the proceedings of the
+  ``Journ\'ees de la Soci\'et\'e Math\'ematique de France'' on ``Dynamical
+  Behaviour of Cellular Automata: Theory and Applications,'' held September
+  13--17, 1983, at Lumigny, France, in the Centre International de Rencontres
+  Math\'ematiques (CIRM)\normalsize.
+
+\bibitem[Deneubourg et~al.(1993)]{Deneubourg93}
+Deneubourg, J.~L., Goss, S., Nicolis, G., Bersini, H., \bbland{}
+  Dagonnier\mymarginpar{Deneubourg93}, R., \bbleditors{} (1993).
+\newblock \emph{{ECAL} 93}. Universit{\'e} Libre de Bruxelles.
+
+\bibitem[Despain et~al.(1990)]{Despain90}
+Despain, A., Max, C.~E., \bbland{} Hasslacher\mymarginpar{Despain90}, B.
+  (1990).
+\newblock ``Prospect for a Lattice-Gas Computer''.
+\newblock \bblIn{} \cite{Doolen90}, \bblpages{} 211--218.
+
+\bibitem[Dewdney\mymarginpar{Dewdney88}(1988)]{Dewdney88}
+Dewdney\mymarginpar{Dewdney88}, A.~K. (1988).
+\newblock ``The Hodgepodge Machine Makes Wawes''.
+\newblock \emph{Scientific American}, 225(8), 104--107.
+
+\bibitem[Doolen et~al.(1990)]{Doolen90}
+Doolen, G.~D., Frish, U., Hasslacher, B., Orszag, S., \bbland{}
+  Wolfram\mymarginpar{Doolen90}, S., \bbleditors{} (1990).
+\newblock \emph{Lattice Gas Methods for Partial Differential Equations},
+  \bblvolume{}~IV \bblof{} \emph{Santa Fe Institute Studies in the Sciences of
+  Complexity, Proc. Vol.}
+\newblock Addison--Wesley Publishing Company, Redwood City, CA.
+\newblock \footnotesize A volume of lattice gas reprints and articles,
+  including selected papers from the workshop on large nonlinear systems, held
+  august, 1987 in Los Alamos, New Mexico\normalsize.
+
+\bibitem[Durand(1994)]{Durand94}
+Durand, B. (1994).
+\newblock \emph{Automates cellulaires:~{R}\'eversibilit\'e et complexit\'e}.
+\newblock \bblphdthesis{}, \'Ecole nornale sup\'erieure de Lyon, Universit\'e
+  Claude Bernard-Lyon 1.
+
+\bibitem[Eckart\mymarginpar{Eckart92a}(1992)]{Eckart92a}
+Eckart\mymarginpar{Eckart92a}, J.~D. (1992).
+\newblock \emph{A Cellular Automata Simulation System: Version 2.0}.
+\newblock Radford University.
+
+\bibitem[Eckart\mymarginpar{Eckart92b}(1992)]{Eckart92b}
+Eckart\mymarginpar{Eckart92b}, J.~D. (1992).
+\newblock \emph{Cellang 2.0: Language Reference Manual}.
+\newblock Radford University.
+
+\bibitem[Fogelman-Souli\'e et~al.(1991)]{FogelmanSoulie91}
+Fogelman-Souli\'e, F., Havelange, V., \bbland{}
+  Milgram\mymarginpar{FogelmanSoulie91}, M., \bbleditors{} (1991).
+\newblock \emph{Les th\'eories de la complexit\'e: autour de l'\mbox{\oe}uvre
+  d'Henri Atlan}.
+\newblock La Couleur des id\'ees. \'Editions du Seuil, Paris.
+\newblock \footnotesize Colloque de Cerisy juin 1984\normalsize.
+
+\bibitem[Fox\mymarginpar{Fox94}(1994)]{Fox94}
+Fox\mymarginpar{Fox94}, G.~C. (1994).
+\newblock ``Parallel Computers and Complex Systems''.
+\newblock \emph{Complexity International}, 1.
+\newblock \footnotesize ISSN 1320-0682. \\
+  \texttt{http://life.anu.edu.au/ci/vol1/Geoffrey.Fox/paper.html} \normalsize.
+
+\bibitem[Fredkin\mymarginpar{Fredkin90}(1990)]{Fredkin90}
+Fredkin\mymarginpar{Fredkin90}, E. (1990).
+\newblock ``Digital Mechanics: An Informational Process Based on Reversible
+  Universal Cellular Automata''.
+\newblock \emph{Physica D}, 45, 254--270.
+
+\bibitem[Giloi\mymarginpar{Giloi87}(1987)]{Giloi87}
+Giloi\mymarginpar{Giloi87}, W.~K. (1987).
+\newblock ``Interconnection Networks for Massively Parralel Computer Systems''.
+\newblock \bblIn{} \cite{Treleaven87}, \bblchapter{}~10, \bblpages{} 312--384.
+
+\bibitem[Gombrich(1971)]{Gombrich71}
+Gombrich (1971).
+\newblock \emph{{L}'art et l'illusion}.
+\newblock NRF.
+
+\bibitem[Gosper\mymarginpar{Gosper84}(1984)]{Gosper84}
+Gosper\mymarginpar{Gosper84}, W. (1984).
+\newblock ``Exploiting Regularities in Large Cellular Spaces''.
+\newblock \emph{Physica D}, 10, 75--80.
+
+\bibitem[Gouyet\mymarginpar{Gouyet92}(1992)]{Gouyet92}
+Gouyet\mymarginpar{Gouyet92}, J.~F. (1992).
+\newblock \emph{Physique et strutures fractales}.
+\newblock Masson, Paris.
+
+\bibitem[Green\mymarginpar{Green94}(1994)]{Green94}
+Green\mymarginpar{Green94}, D.~G. (1994).
+\newblock ``Emergent Behaviour in Biological Systems''.
+\newblock \emph{Complexity International}, 1.
+\newblock \footnotesize ISSN 1320-0682. \\
+  \texttt{http://life.anu.edu.au/ci/vol1/David.Green/paper.html} \normalsize.
+
+\bibitem[Greussay\mymarginpar{Greussay85}(1985)]{Greussay85}
+Greussay\mymarginpar{Greussay85}, P. (1985).
+\newblock ``Programmation des {M}\'ega-Processeurs: Du {GAPP} \`a la Connection
+  Machine''.
+\newblock Notes de cours de {D.E.A} d'intelligence artificielle, Universit\'e
+  Paris-8, D\'epartement d'Informatique.
+
+\bibitem[Greussay\mymarginpar{Greussay88}(1988)]{Greussay88}
+Greussay\mymarginpar{Greussay88}, P. (1988).
+\newblock ``{L}'Ordinateur Cellulaire''.
+\newblock \emph{La Recherche}, 204, 1320--1330.
+
+\bibitem[Gutowitz\mymarginpar{Gutowitz90a}(1990)]{Gutowitz90a}
+Gutowitz\mymarginpar{Gutowitz90a}, H.~A. (1990).
+\newblock ``Introduction (To Cellular Automata)''.
+\newblock \emph{Physica D}, 45, vii--xiv.
+
+\bibitem[Gutowitz\mymarginpar{Gutowitz90b}(1990)]{Gutowitz90b}
+Gutowitz\mymarginpar{Gutowitz90b}, H.~A. (1990).
+\newblock ``A Hierarchical Classification of Cellular Automata''.
+\newblock \emph{Physica D}, 45, 136--156.
+
+\bibitem[Hameroff et~al.(1989)]{Hameroff89}
+Hameroff, S., Rasmus\-sen, S., \bbland{} Mans\-son\mymarginpar{Hameroff}, B.
+  (1989).
+\newblock ``Molecular Automata in Microtubules: Basic Computational Logic of
+  the Living State?''.
+\newblock \bblIn{} \cite{Langton89}, \bblpages{} 521--555.
+
+\bibitem[Hantcherlian \bbland{}
+  Hervio\mymarginpar{Hantcherlian72}(1972)]{Hantcherlian72}
+Hantcherlian, G. \bbland{} Hervio\mymarginpar{Hantcherlian72}, D. (1972).
+\newblock ``Automates Cellulaires''.
+\newblock \bbltechreport{}, Universit\'e de Grenoble.
+
+\bibitem[Harthong\mymarginpar{Harthong92}(1992)]{Harthong92}
+Harthong\mymarginpar{Harthong92}, J. (1992).
+\newblock ``Le continu ou le discret, un probl\`eme ind\'ecidable''.
+\newblock \bblIn{} \cite{Salanskis92}, \bblpages{} 350--365.
+
+\bibitem[Hasselbring(1992)]{Hasselbring92}
+Hasselbring, W. (1992).
+\newblock ``Programming Cellular Automata for Image Processing''.
+\newblock Presented at the BCS-PPSG Meeting on Cellular Automata, Imperial
+  College, London, UK.
+
+\bibitem[Hasslacher\mymarginpar{Hasslacher93}(1993)]{Hasslacher93}
+Hasslacher\mymarginpar{Hasslacher93}, B. (1993).
+\newblock ``Parallel Billiards and Monster Systems''.
+\newblock \bblIn{} \cite{Metropolis93a}, \bblpages{} 53--65.
+\newblock \footnotesize Originally appeared in the Winter 1992 issue of
+  D\mbox{\ae}dalus, volume 121, number 1, from the proceedings of the American
+  Academy of Arts and Sciences\normalsize.
+
+\bibitem[Heckbert(1990)]{Heckbert90}
+Heckbert, P. (1990).
+\newblock ``Digital Line Drawing''.
+\newblock \bblIn{} A.~S. Glassner, \bbleditor{}, \emph{Graphics Gems},
+  \bblpage{}~99. Academic Press, Inc., San Diego, CA.
+
+\bibitem[Hibbard et~al.(1994)]{Hibbard94}
+Hibbard, W.~L., Paul, B.~E., Santek, D.~A., Dyer, C.~R., Battaiola, A.~L.,
+  \bbland{} Voidrot-Martinez, M.-F. (1994).
+\newblock ``Interactive Visualisation of Earth and Space Science
+  Computations''.
+\newblock \emph{\allcaps{IEEE} Trans. Computers}, 27(7), 65--72.
+
+\bibitem[Hiebeler\mymarginpar{Hiebeler90a}(1990)]{Hiebeler90a}
+Hiebeler\mymarginpar{Hiebeler90a}, D. (1990).
+\newblock ``A brief review of {CA} packages''.
+\newblock \emph{Physica D}, 45, 463.
+
+\bibitem[Hiebeler\mymarginpar{Hiebeler90b}(1990)]{Hiebeler90b}
+Hiebeler\mymarginpar{Hiebeler90b}, D. (1990).
+\newblock ``Cellular Automata and Discrete Physics''.
+\newblock \bblIn{} L.~Lam, \bbleditor{}, \emph{Introduction to Nonlinear
+  Physics}, \bblchapter{}~14. Springer--Verlag, Berlin.
+\newblock \footnotesize To appear.
+  \texttt{http://www.santafe.edu/~hiebeler}\normalsize.
+
+\bibitem[Hiebeler\mymarginpar{Hiebeler93}(1993)]{Hiebeler93}
+Hiebeler\mymarginpar{Hiebeler93}, D.~E. (1993).
+\newblock ``Implication of Creation''.
+\newblock \emph{Idealistic Studies}, 23(1).
+\newblock \footnotesize Special issue on philosophy and computers\normalsize.
+
+\bibitem[Hillis\mymarginpar{Hillis86}(1986)]{Hillis86}
+Hillis\mymarginpar{Hillis86}, W.~D. (1986).
+\newblock \emph{The Connection Machine}.
+\newblock Distinguished Dissertations. The M.I.T. Press, Cambridge,
+  Massachusetts.
+
+\bibitem[Hockney \bbland{} Jesshope\mymarginpar{Hockney86}(1986)]{Hockney86}
+Hockney, R.~W. \bbland{} Jesshope\mymarginpar{Hockney86}, C.~R. (1986).
+\newblock \emph{Parallel Computers: Architecture Programing and Algorithms}.
+\newblock Adam Hilger Ltd.
+
+\bibitem[Holland\mymarginpar{Holland93}(1993)]{Holland93}
+Holland\mymarginpar{Holland93}, J.~H. (1993).
+\newblock ``Complex Adaptative Systems''.
+\newblock \bblIn{} \cite{Metropolis93a}, \bblpages{} 17--30.
+\newblock \footnotesize Originally appeared in the Winter 1992 issue of
+  D\mbox{\ae}dalus, volume 121, number 1, from the proceedings of the American
+  Academy of Arts and Sciences\normalsize.
+
+\bibitem[Hord\mymarginpar{Hord90}(1990)]{Hord90}
+Hord\mymarginpar{Hord90}, R.~M. (1990).
+\newblock \emph{Parallel Supercomputing in {SIMD} Architectutes}.
+\newblock CRC Press, Boca Raton.
+
+\bibitem[Huberman\mymarginpar{Huberman88}(1987)]{Huberman88}
+Huberman\mymarginpar{Huberman88}, B.~A. (1987).
+\newblock ``Computing With Attractors: From Self-Repairing Computers, to
+  Ultradiffusion, and the Application of Dynamical Systems to Human Behavior''.
+\newblock \bblIn{} \cite{Pines88}, \bblpages{} 167--174.
+
+\bibitem[Jackson\mymarginpar{Jackson91a}(1991)]{Jackson91c}
+Jackson\mymarginpar{Jackson91a}, E.~A. (1991).
+\newblock ``Coupled Maps and Cellular Automata''.
+\newblock \bblIn{} \emph{Perspectives of Nonlinear Dynamics}, \bblvolume{}~2,
+  \bblpages{} 427--504. Cambridge University Press, Cambridge.
+\newblock First published 1990.
+
+\bibitem[Jen\mymarginpar{Jen90}(1990)]{Jen90}
+Jen\mymarginpar{Jen90}, E. (1990).
+\newblock ``Aperiodicity in One-Dimensional Cellular Automata''.
+\newblock \emph{Physica D}, 45, 3--18.
+
+\bibitem[Kandinsky\mymarginpar{Kandinsky91}(1991)]{Kandinsky91}
+Kandinsky\mymarginpar{Kandinsky91} (1991).
+\newblock \emph{Point et ligne sur plan: Contribution \`a une analyse de la
+  peinture}.
+\newblock Folio/essais. Gallimard, Paris.
+\newblock \footnotesize Titre original \emph{PUNKT UND LINIE ZU FL\"ACHE:
+  Beitrag zur Analyse der malerischen Elemente}, 1926. Nouvelle \'edition
+  \'etablie, p\'esent\'ee et annot\'ee par Philippe Sers. Traduit de l'allemand
+  par Suzanne et Jean Leppien\normalsize.
+
+\bibitem[Kayama et~al.(1993)]{Kayama93}
+Kayama, Y., Anada, H., \bbland{} Imamura\mymarginpar{Kayama93}, Y. (1993).
+\newblock ``Characteristic Representation of Elementary Cellular Automata''.
+\newblock \bbltechreport{} BAIKA-93-01, BAIKA Women's College, Japan.
+\newblock \footnotesize \texttt{gopher://xyz.lanl.gov:151/77/?kayama}
+  \normalsize.
+
+\bibitem[Keller \bbland{} Keller\mymarginpar{Keller93}(1993)]{Keller93}
+Keller, P.~R. \bbland{} Keller\mymarginpar{Keller93}, M.~M. (1993).
+\newblock \emph{Visual Cues}.
+\newblock IEEE Computer Society Press and IEEE Press, Los Alamitos, CA.
+
+\bibitem[Kung\mymarginpar{Kung88}(1988)]{Kung88}
+Kung\mymarginpar{Kung88}, S.~Y. (1988).
+\newblock \emph{{VLSI} Array Processors}.
+\newblock Prentice Hall Information and System Sciences Series. Prentice Hall,
+  Englewood Cliffs, NJ.
+
+\bibitem[Langton\mymarginpar{Langton89}(1989)]{Langton89}
+Langton\mymarginpar{Langton89}, C.~G., \bbleditor{} (1989).
+\newblock \emph{Artificial Life}, \bblvolume{}~VI \bblof{} \emph{Santa Fe
+  Institute Studies in the Sciences of Complexity, Proc. Vol.}
+\newblock Addison--Wesley Publishing Company, Redwood City, CA.
+\newblock \footnotesize The Proceedings of An Interdisciplinary Workshop on the
+  Synthesis and Simulation of Living Systems Held September, 1987, in Los
+  Alamos, New Mexico\normalsize.
+
+\bibitem[Langton\mymarginpar{Langton90}(1990)]{Langton90}
+Langton\mymarginpar{Langton90}, C.~G. (1990).
+\newblock ``Computation at the edge of chaos: phase transition and emergent
+  computation''.
+\newblock \emph{Physica D}, 42, 12--37.
+
+\bibitem[Langton\mymarginpar{Langton92b}(1992)]{Langton92b}
+Langton\mymarginpar{Langton92b}, C.~G. (1992).
+\newblock ``Life at the Edge of Chaos''.
+\newblock \bblIn{} C.~G. Langton, C.~Taylor, J.~D. Farmer, \bbland{}
+  S.~Rasmussen\mymarginpar{Langton92a}, \bbleditors{}, \emph{Artificial Life
+  {II}}, \bblvolume{}~X \bblof{} \emph{Santa Fe Institute Studies in the
+  Sciences of Complexity, Proc. Vol.}, \bblpages{} 41--91. Addison--Wesley
+  Publishing Company, Redwood City, CA.
+
+\bibitem[Le~Bellac(1992)]{LeBellac92}
+Le~Bellac, M. (1992).
+\newblock ``Invariance d'\'echelle, universalit\'e et limite statistique
+  continue en physique''.
+\newblock \bblIn{} \cite{Salanskis92}, \bblpages{} 296--307.
+
+\bibitem[Legendi(1987)]{Legendi87a}
+Legendi, T. (1987).
+\newblock ``Cellware Implementation''.
+\newblock \bblIn{} \cite{Legendi87}, \bblpages{} 61--65.
+
+\bibitem[Legendi et~al.(1987)]{Legendi87}
+Legendi, T., Parkinson, D., Vollmar, R., \bbland{} Wolf\mymarginpar{Legendi87},
+  G., \bbleditors{} (1987).
+\newblock \emph{Parallel Processing by Cellular Automata and Arrays}.
+  North-Holland.
+\newblock \footnotesize Proceeding of the Third International Workshop on
+  Parallel Processing by Cellular Automata and Arrays Berlin, {GDR}, 9-11
+  September, 1986\normalsize.
+
+\bibitem[L\'evy\mymarginpar{Levy87}(1987)]{Levy87}
+L\'evy\mymarginpar{Levy87}, P. (1987).
+\newblock \emph{La machine univers: Cr\'eation, cognition et culture
+  informatique}.
+\newblock Edition de la d\'ecouverte.
+
+\bibitem[Lewin\mymarginpar{Lewin92}(1992)]{Lewin92}
+Lewin\mymarginpar{Lewin92}, R. (1992).
+\newblock \emph{Complexity: Life at the Edge of Chaos}.
+\newblock MacMillan Publishing Company, New York.
+
+\bibitem[Li et~al.(1990)]{Li90b}
+Li, W., Packard, N.~H., \bbland{} Langton\mymarginpar{Li90b}, C.~G. (1990).
+\newblock ``Transition Phenomena in Cellular Automata Rule Space''.
+\newblock \emph{Physica D}, 45, 77--94.
+
+\bibitem[Li \bbland{} Packard\mymarginpar{Li90a}(1990)]{Li90a}
+Li, W. \bbland{} Packard\mymarginpar{Li90a}, N. (1990).
+\newblock ``Structure of the elementary cellular automata rule space''.
+\newblock \emph{Complex System}, 4(3), 281--297.
+
+\bibitem[Li\mymarginpar{Li88}(1988)]{Li88}
+Li\mymarginpar{Li88}, W. (1988).
+\newblock ``Pretty Picture Generated by Two-state Five-neighbor Cellular
+  Automata''.
+\newblock \bbltechreport{} CCSR-88-15, Center for Complex Systems Research,
+  University of Illinois at Urbana-Champaign.
+
+\bibitem[Li\mymarginpar{Li89}(1989)]{Li89}
+Li\mymarginpar{Li89}, W. (1989).
+\newblock ``Problems in Complex Systems''.
+\newblock \bbltechreport{} CCSR-89-9, Center for Complex Systems Research,
+  University of Illinois at Urbana-Champaign.
+
+\bibitem[Lindgren \bbland{} Nordahl\mymarginpar{Lindgren90}(1990)]{Lindgren90}
+Lindgren, K. \bbland{} Nordahl\mymarginpar{Lindgren90}, M.~G. (1990).
+\newblock ``Universal Computation in Simple One-Dimensional Cellular
+  Automata''.
+\newblock \emph{Complex System}, 4(3), 299--318.
+
+\bibitem[Lindgren \bbland{} Nordahl\mymarginpar{Lindgren93}(1993)]{Lindgren93}
+Lindgren, K. \bbland{} Nordahl\mymarginpar{Lindgren93}, M.~G. (1993).
+\newblock ``Evolutionary Dynamics of Spatial Games''.
+\newblock \bblIn{} \cite{Deneubourg93}, \bblpages{} 604--615.
+
+\bibitem[Mandelbrot\mymarginpar{Mandelbrot84}(1984)]{Mandelbrot84}
+Mandelbrot\mymarginpar{Mandelbrot84}, B. (1984).
+\newblock \emph{Les objets fractals: Forme, hasard et dimension}.
+\newblock Nouvelle Biblioth\`eque Scientifique. Flammarion, deuxi\`eme
+  \bbledition{}.
+\newblock \footnotesize Premi\`ete \'edition 1975\normalsize.
+
+\bibitem[Margolus \bbland{} Toffoli\mymarginpar{Margolus90}(1990)]{Margolus90}
+Margolus, N. \bbland{} Toffoli\mymarginpar{Margolus90}, T. (1990).
+\newblock ``Cellular Automata Machine''.
+\newblock \bblIn{} \cite{Doolen90}, \bblpages{} 219--249.
+
+\bibitem[Margolus\mymarginpar{Margolus84}(1984)]{Margolus84}
+Margolus\mymarginpar{Margolus84}, N. (1984).
+\newblock ``Physic-Like Models of Computation''.
+\newblock \emph{Physica D}, 10, 81--95.
+
+\bibitem[McIntosh\mymarginpar{McIntosh90}(1990)]{McIntosh90}
+McIntosh\mymarginpar{McIntosh90}, H.~V. (1990).
+\newblock ``Wolfram's class {IV} Automata and a Good Life''.
+\newblock \emph{Physica D}, 45, 105--121.
+
+\bibitem[M\'ehat\mymarginpar{Mehat89}(1989)]{Mehat89}
+M\'ehat\mymarginpar{Mehat89}, J. (1989).
+\newblock \emph{Contr\^ole et programmation parall\`eles des architectures
+  pyramidales}.
+\newblock \bblphdthesis{}, Universit\'e Paris-8, D\'epartement d'Informatique.
+
+\bibitem[M\'erigot(1992)]{Merigot92}
+M\'erigot, A. (1992).
+\newblock ``Associative Nets:~{A} New Parallel Computing Model''.
+\newblock \bbltechreport{} IEF 92-02, Institut d'Electronique Fondamantale,
+  CNRS URA 022, Universit\'e Paris Sud.
+
+\bibitem[Metropolis \bbland{}
+  Rota\mymarginpar{Metropolis93a}(1993)]{Metropolis93a}
+Metropolis, N. \bbland{} Rota\mymarginpar{Metropolis93a}, G.-C., \bbleditors{}
+  (1993).
+\newblock \emph{A New Area in Computation}.
+\newblock The M.I.T. Press, Cambridge, Massachusetts.
+
+\bibitem[Metropolis\mymarginpar{Metropolis93b}(1993)]{Metropolis93b}
+Metropolis\mymarginpar{Metropolis93b}, N. (1993).
+\newblock ``The Age of Computing: {A} Personal Memoir''.
+\newblock \bblIn{} \cite{Metropolis93a}, \bblpages{} 119--130.
+\newblock \footnotesize Originally appeared in the Winter 1992 issue of
+  D\mbox{\ae}dalus, volume 121, number 1, from the proceedings of the American
+  Academy of Arts and Sciences\normalsize.
+
+\bibitem[Milgram\mymarginpar{Milgram91}(1991)]{Milgram91}
+Milgram\mymarginpar{Milgram91}, M. (1991).
+\newblock ``Complexit\'e et hasard''.
+\newblock \bblIn{} \cite{FogelmanSoulie91}, chapitre~5, \bblpages{} 93--99.
+
+\bibitem[Mitchell et~al.(1993)]{Mitchell93a}
+Mitchell, M., Hraber, P.~T., \bbland{} Crutchfield\mymarginpar{Mitchell93a},
+  J.~P. (1993).
+\newblock ``Revisiting the Edge of Chaos: Evolving Cellular Automata to Perform
+  Computations''.
+\newblock \bbltechreport{} SFI-93-03-014, Santa Fe Institute, Santa Fe, NM.
+\newblock \footnotesize\\ To appear in \textit{Complex Systems}. \\
+  \texttt{ftp://ftp.santafe.edu/pub/Users/mm/rev-edge-part[1-4].ps.Z}
+  \normalsize.
+
+\bibitem[Murray\mymarginpar{Murray90}(1990)]{Murray90}
+Murray\mymarginpar{Murray90}, J.~D. (1990).
+\newblock \emph{Mathematical Biology}, \bblvolume{}~19 \bblof{}
+  \emph{Biomathematics Texts}.
+\newblock Spinger--Verlag, Berlin.
+
+\bibitem[NCR(1985)]{NCR85a}
+NCR (1985).
+\newblock ``Processeur {GAPP}: Geometric Arithmetic Parallel Processor''.
+\newblock NCR Corporation, Dayton, Ohio.
+
+\bibitem[Ousterhout\mymarginpar{Ousterhout90}(1990)]{Ousterhout90}
+Ousterhout\mymarginpar{Ousterhout90}, J.~K. (1990).
+\newblock ``Tcl:~An Embeddable Command Language''.
+\newblock \bblIn{} \emph{1990 Winter USENIX conference procceding}.
+\newblock \footnotesize In Tcl/Tk distribution\normalsize.
+
+\bibitem[Ousterhout\mymarginpar{Ousterhout91}(1991)]{Ousterhout91}
+Ousterhout\mymarginpar{Ousterhout91}, J.~K. (1991).
+\newblock ``An {X11} Toolkit Based on the Tcl Language''.
+\newblock \bblIn{} \emph{1991 Winter USENIX conference procceding}.
+\newblock \footnotesize In Tcl/Tk distribution\normalsize.
+
+\bibitem[Packard\mymarginpar{Packard88}(1988)]{Packard88}
+Packard\mymarginpar{Packard88}, N.~H. (1988).
+\newblock ``Adaptation toward the edge of chaos''.
+\newblock \bblIn{} J.~A.~S. Kelso, A.~J. Mandell, \bbland{} M.~F. Shlesinger,
+  \bbleditors{}, \emph{Dynamic Patterns in Complex Systems}, \bblpages{}
+  293--301. World Scientific, Singapore.
+
+\bibitem[Penrose\mymarginpar{Penrose89}(1989)]{Penrose89}
+Penrose\mymarginpar{Penrose89}, R. (1989).
+\newblock \emph{The Emperor's New Mind: Concerning Computers, Minds, and The
+  Laws of Physics}.
+\newblock Oxford University Press, New York.
+
+\bibitem[Pickover\mymarginpar{Pickover92b}(1992)]{Pickover92b}
+Pickover\mymarginpar{Pickover92b}, C.~A. (1992).
+\newblock ``Lava Lamps in the 21st Century''.
+\newblock \bblIn{} \emph{Mazes for the Mind: Computers and the Unexpected},
+  \bblchapter{}~19, \bblpages{} 109--115. St. Martin's Press, New York.
+
+\bibitem[Pike et~al.(1984)]{Pike84}
+Pike, R., Guibas, L., \bbland{} Ingalls\mymarginpar{Pike84}, D. (1984).
+\newblock ``Bitmap Graphics''.
+\newblock SIGGRAPH~'84 Course Notes.
+
+\bibitem[Pines\mymarginpar{Pines88}(1988)]{Pines88}
+Pines\mymarginpar{Pines88}, D., \bbleditor{} (1988).
+\newblock \emph{Emerging Syntheses in Sciences: Proceeding of the Founding
+  Workshops of the Santa Fe Institute}, \bblvolume{}~I \bblof{} \emph{Santa Fe
+  Institute Studies in the Sciences of Complexity, Proc. Vol.}
+\newblock Addison--Wesley Publishing Company, Redwood City, CA.
+\newblock \footnotesize The two workshops took place on October 5-6 and
+  Novermber 10-11, 1984\normalsize.
+
+\bibitem[Poundstone\mymarginpar{Poundstone87}(1987)]{Poundstone87}
+Poundstone\mymarginpar{Poundstone87}, W. (1987).
+\newblock \emph{The Recursive Universe: Cosmic Complexity and the Limits of
+  Scientific Knowledge}.
+\newblock Oxford University Press, Oxford.
+\newblock \footnotesize First published 1985 by William Morrow and Company,
+  Inc., New York. Computer Consultation by Robert T. Wainwright\normalsize.
+
+\bibitem[{Pour La
+  Science}\mymarginpar{PourLaScience89b}(1989)]{PourLaScience89b}
+{Pour La Science}\mymarginpar{PourLaScience89b}, \bbleditor{} (1989).
+\newblock \emph{L'ordre du chaos}.
+\newblock Biblioth\`eque pour la science. Pour La Science/Diffusion Belin,
+  Paris.
+
+\bibitem[Preston \bbland{} Duff\mymarginpar{Preston84}(1984)]{Preston84}
+Preston, J.~K. \bbland{} Duff\mymarginpar{Preston84}, M. J.~B. (1984).
+\newblock \emph{Modern Cellular Automata: Theory and Applications}.
+\newblock Plenum Press, New York.
+
+\bibitem[Qu\'eau\mymarginpar{Queau86}(1986)]{Queau86}
+Qu\'eau\mymarginpar{Queau86}, P. (1986).
+\newblock \emph{Eloge de la simulation: De la vie des langages \`a la
+  synth\`ese des images}.
+\newblock collection milieux. Champ Vallon/INA, Seyssel.
+
+\bibitem[Qu\'eau\mymarginpar{Queau89}(1989)]{Queau89}
+Qu\'eau\mymarginpar{Queau89}, P. (1989).
+\newblock \emph{Metaxu: Th\'eorie de l'art interm\'ediaire}.
+\newblock collection milieux. Champ Vallon/INA, Seyssel.
+
+\bibitem[Quinton\mymarginpar{Quinton87}(1987)]{Quinton87}
+Quinton\mymarginpar{Quinton87}, P. (1987).
+\newblock ``An Introduction To Systolic Architecture''.
+\newblock \bblIn{} \cite{Treleaven87}, \bblchapter{}~13, \bblpages{} 387--399.
+
+\bibitem[Reggia et~al.(1993)]{Reggia93}
+Reggia, A., Armentrout, S.~L., Chou, H.-H., \bbland{}
+  Peng\mymarginpar{Reggia93}, Y. (1993).
+\newblock ``Simple Systems That Exhibit Self-Directed Replication''.
+\newblock \emph{Science}, 259, 1282--1287.
+
+\bibitem[Richards et~al.(1990)]{Richards90}
+Richards, F.~C., Meyer, T.~P., \bbland{} Packard\mymarginpar{Richards90}, N.~H.
+  (1990).
+\newblock ``Extracting Cellular Automata Rules Directly From Experimental
+  Data''.
+\newblock \emph{Physica D}, 45, 189--202.
+
+\bibitem[Rossi(1993)]{Rossi93}
+Rossi, F. (1993).
+\newblock \emph{Automates cellulaires et croissance des cristaux de neige}.
+\newblock \bblmthesis{}, Universit\'e Paris-8, D\'epartement d'Informatique.
+
+\bibitem[Rozin\mymarginpar{Rozin87}(1987)]{Rozin87}
+Rozin\mymarginpar{Rozin87}, M.-N. (1987).
+\newblock \emph{Etude pratique des ressources de la programmation plane}.
+\newblock \bblmthesis{}, Universit\'e Paris-8, D\'epartement d'Informatique.
+
+\bibitem[Rozin\mymarginpar{Rozin88}(1988)]{Rozin88}
+Rozin\mymarginpar{Rozin88}, M.-N. (1988).
+\newblock \emph{De l'Etude des Caractéristiques du Milieu Parallèle Synchrone à
+  la Programmation Plane}.
+\newblock M\'emoire de {D.E.A}, Universit\'e Paris-8, D\'epartement
+  d'Informatique.
+
+\bibitem[Rozin\mymarginpar{Rozin93}(1993)]{Rozin93}
+Rozin\mymarginpar{Rozin93}, M.-N. (1993).
+\newblock \emph{\'Etude g\'eom\'etrique et cin\'ematique de la programmations
+  des tr\`es grandes grilles de processeurs synchrones}.
+\newblock \bblphdthesis{}, Universit\'e Paris-8, D\'epartement d'Informatique.
+
+\bibitem[Rucker\mymarginpar{Rucker87}(1987)]{Rucker87}
+Rucker\mymarginpar{Rucker87}, R. (1987).
+\newblock \emph{Mind Tools: The Mathematics of Information}.
+\newblock Mathematics Science. Penguin Books, London.
+\newblock \footnotesize First published in the USA by Houghton Mifflin
+  1987\normalsize.
+
+\bibitem[Rucker\mymarginpar{Rucker89}(1989)]{Rucker89}
+Rucker\mymarginpar{Rucker89}, R. (1989).
+\newblock \emph{{CA} Lab: Exploring Cellular Automata}.
+\newblock Autodesk, Inc.
+\newblock \footnotesize Documentation of the CA Lab package\normalsize.
+
+\bibitem[Ruelle\mymarginpar{Ruelle89}(1989)]{Ruelle89}
+Ruelle\mymarginpar{Ruelle89}, D. (1989).
+\newblock ``Determinisme et pr\'edictibilit\'e''.
+\newblock \bblIn{} \cite{PourLaScience89b}, \bblchapter{}~4, \bblpages{}
+  52--63.
+
+\bibitem[Ruelle\mymarginpar{Ruelle91}(1991)]{Ruelle91}
+Ruelle\mymarginpar{Ruelle91}, D. (1991).
+\newblock \emph{Hasard et chaos}.
+\newblock Points. \'Edition Odile Jacob, Paris.
+
+\bibitem[Salanskis \bbland{}
+  Sinaceur\mymarginpar{Salanskis92}(1992)]{Salanskis92}
+Salanskis, J.-M. \bbland{} Sinaceur\mymarginpar{Salanskis92}, H., \bbleditors{}
+  (1992).
+\newblock \emph{Le labyrinthe du continu: Colloque de Cerisy}.
+\newblock Springer--Verlag France, Paris.
+
+\bibitem[Schroeder\mymarginpar{Schroeder90}(1990)]{Schroeder90a}
+Schroeder\mymarginpar{Schroeder90}, M. (1990).
+\newblock ``Cellular Automata''.
+\newblock \bblIn{} \emph{Fractals, Chaos, Power Laws: Minutes from an Infinite
+  Paradise}, \bblchapter{}~17, \bblpages{} 371--390. W. H. Freeman an Company,
+  New York.
+
+\bibitem[Sigmund\mymarginpar{Sigmund93}(1993)]{Sigmund93}
+Sigmund\mymarginpar{Sigmund93}, K. (1993).
+\newblock \emph{Games of Life: Explorations in Ecology, Evolution, and
+  Behaviour}.
+\newblock Oxford University Press, Oxford.
+
+\bibitem[Signorini(1994)]{signorini94}
+Signorini, J. (1994).
+\newblock ``Computing with {Q2R}''.
+\newblock \bblIn{} \emph{Proceedings of the 6th Joint EPS-APS International
+  Conference On Physics Computing}, Geneva, Switerland. European Physical
+  Society.
+
+\bibitem[Signorini\mymarginpar{Signorini86}(1986)]{Signorini86}
+Signorini\mymarginpar{Signorini86}, J. (1986).
+\newblock \emph{Un routeur pour le chip {GAPP}: \'etude simulation et
+  programmation}.
+\newblock M\'emoire de {D.E.A}, Universit\'e Paris-8, D\'epartement
+  d'Informatique.
+
+\bibitem[Signorini\mymarginpar{Signorini92}(1992)]{Signorini92}
+Signorini\mymarginpar{Signorini92}, J. (1992).
+\newblock \emph{Programmation par configurations des ordinateurs cellulaires
+  \`a tr\`es grande \'echelle}.
+\newblock \bblphdthesis{}, Universit\'e Paris-8, D\'epartement d'Informatique.
+
+\bibitem[Smith\mymarginpar{Smith90}(1990)]{Smith90}
+Smith\mymarginpar{Smith90}, M.~A. (1990).
+\newblock ``Representation of Geometrical and Topological Quantities in
+  Cellular Automata''.
+\newblock \emph{Physica D}, 45, 271--277.
+
+\bibitem[Sonka et~al.(1993)]{Sonka93}
+Sonka, M., Hlavac, V., \bbland{} Boyle\mymarginpar{Sonka93}, R. (1993).
+\newblock \emph{Image Processing, Analysis and Machine Vision}.
+\newblock Chapman \& Hall Computing Series. Chapman \& Hall, London.
+
+\bibitem[Stanley \bbland{} Ostrowsky\mymarginpar{Stanley86}(1986)]{Stanley86}
+Stanley, H.~E. \bbland{} Ostrowsky\mymarginpar{Stanley86}, N., \bbleditors{}
+  (1986).
+\newblock \emph{On Growth and Form: Fractal and Non-Fractal Patterns in
+  Physics}.
+\newblock Martinus Nijhoff Publisher.
+
+\bibitem[Stein \bbland{} Varela\mymarginpar{Stein93}(1993)]{Stein93}
+Stein, W. \bbland{} Varela\mymarginpar{Stein93}, F.~J., \bbleditors{} (1993).
+\newblock \emph{Thinking About Biology: An Invitation to Current Theorical
+  Biology}, \bblvolume{} III \bblof{} \emph{Santa Fe Institute Studies in the
+  Sciences of Complexity, Lecture Notes Vol.}
+\newblock Addison--Wesley Publishing Company, Reading, MA.
+
+\bibitem[Tagonski\mymarginpar{Tagonski85}(1985)]{Tagonski85}
+Tagonski\mymarginpar{Tagonski85}, G. (1985).
+\newblock ``Embedding of Discrete Dynamical Systems''.
+\newblock \bblIn{} \cite{Demongeot85}, \bblpages{} 65--72.
+
+\bibitem[Tamayo \bbland{} Hartman\mymarginpar{Tamayo89}(1989)]{Tamayo89}
+Tamayo, P. \bbland{} Hartman\mymarginpar{Tamayo89}, H. (1989).
+\newblock ``Cellular Automata, Reaction-Diffusion Systems and the Origin of
+  Life''.
+\newblock \bblIn{} \cite{Langton89}, \bblpages{} 105--124.
+
+\bibitem[Thom\mymarginpar{Thom77}(1977)]{Thom77}
+Thom\mymarginpar{Thom77}, R. (1977).
+\newblock \emph{Stabilit\'e structurelle et morphog\'en\`ese: Essai d'une
+  th\'eorie g\'en\'erale des mod\`eles}.
+\newblock InterEditions, Paris, deuxi\`eme \bbledition{}.
+
+\bibitem[Thom\mymarginpar{Thom92}(1992)]{Thom92}
+Thom\mymarginpar{Thom92}, R. (1992).
+\newblock ``{L}'ant\'eriorit\'e ontologique du continu sur le discret''.
+\newblock \bblIn{} \cite{Salanskis92}, \bblpages{} 137--143.
+
+\bibitem[Toffoli \bbland{} Margolus\mymarginpar{Toffoli87}(1987)]{Toffoli87}
+Toffoli, T. \bbland{} Margolus\mymarginpar{Toffoli87}, N. (1987).
+\newblock \emph{Cellular Automata Machines: {A} New Environment for Modeling}.
+\newblock MIT Press series in Scientific Computation. The M.I.T. Press,
+  Cambridge, Massachusetts.
+
+\bibitem[Toffoli\mymarginpar{Toffoli84}(1984)]{Toffoli84}
+Toffoli\mymarginpar{Toffoli84}, T. (1984).
+\newblock ``Cellular Automata as an Alternative to (Rather than an
+  Approximation of) Differential Equations in Modeling Physics''.
+\newblock \emph{Physica D}, 10, 117--127.
+
+\bibitem[Toulouse\mymarginpar{Toulouse91}(1991)]{Toulouse91}
+Toulouse\mymarginpar{Toulouse91}, G. (1991).
+\newblock ``Verres de spin et applications de la physique aux probl\`emes
+  complexes''.
+\newblock \bblIn{} \cite{FogelmanSoulie91}, chapitre~10, \bblpages{} 151--170.
+
+\bibitem[Treleaven\mymarginpar{Treleaven87}(1987)]{Treleaven87}
+Treleaven\mymarginpar{Treleaven87}, M. V.~P., \bbleditor{} (1987).
+\newblock \emph{Future Parallel Computers}, \bblvolume{} 272 \bblof{}
+  \emph{Lecture Notes in Computer Science}.
+\newblock Springer--Verlag, Berlin.
+\newblock \footnotesize A Advanced Course Pisa, Italy, June 1986
+  Proceedings\normalsize.
+
+\bibitem[Uhr\mymarginpar{Uhr84}(1984)]{Uhr84}
+Uhr\mymarginpar{Uhr84}, L. (1984).
+\newblock \emph{Algorithm-Structured Computer Arrays and Networks:
+  Architectures and Processes for Images, Percept, Models, Information}.
+\newblock Computer Science and Applied Mathematics. Academic Press, Inc.,
+  Orlando, Florida 32887.
+
+\bibitem[Uhr\mymarginpar{Uhr87}(1987)]{Uhr87}
+Uhr\mymarginpar{Uhr87}, L. (1987).
+\newblock \emph{Multi-Computer Architectures for Artificial Intelligence:
+  Toward Fast, Robust, Parallel Systems}.
+\newblock John Wiley \& Sons, New York.
+
+\bibitem[Varela\mymarginpar{Varela89}(1989)]{Varela89}
+Varela\mymarginpar{Varela89}, F.~J. (1989).
+\newblock \emph{Autonomie et connaissance: Essai sur le vivant}.
+\newblock La Couleur des id\'ees. \'Editions du Seuil, Paris.
+\newblock \footnotesize Titre original: Principle of Biological Autonomy,
+  Elsevier North Holland, New York, 1980. Nouveau chapitres: 1982, 1984, 1985,
+  1987\normalsize.
+
+\bibitem[Vichniac\mymarginpar{Vichniac86}(1986)]{Vichniac86}
+Vichniac\mymarginpar{Vichniac86}, G.~Y. (1986).
+\newblock ``Cellular Automata Models of Disorder and Organization''.
+\newblock \bblIn{} E.~Bienenstock, F.~Fogelman-Souli\'e, \bbland{}
+  G.~Wiesbuch\mymarginpar{Bienenstock86}, \bbleditors{}, \emph{Cellular
+  Automata Models of Disorder and Organization}, \bblvolume{}~20 \bblof{}
+  \emph{NATO Advanced Science Institutes Series F: Computer and Systems
+  Sciences}, \bblpages{} 3--20, Berlin. Springer--Verlag.
+
+\bibitem[Vichniac\mymarginpar{Vichniac90}(1990)]{Vichniac90}
+Vichniac\mymarginpar{Vichniac90}, G.~Y. (1990).
+\newblock ``Boolean Derivatives on Cellular Automata''.
+\newblock \emph{Physica D}, 45, 63--74.
+
+\bibitem[von Neumann\mymarginpar{vonNeumann66}(1966)]{vonNeumann66}
+von Neumann\mymarginpar{vonNeumann66}, J. (1966).
+\newblock \emph{Theory of Self-Reproducing Automata}.
+\newblock University of Illinois Press, Urbana.
+\newblock \footnotesize Manuscrit \'edit\'e et compl\'et\'e par A. W.
+  Burks\normalsize.
+
+\bibitem[Wainwright71(1 73)]{Wainwright71}
+Wainwright71 (1971-73).
+\newblock ``{LIFELINE}: {A} Quarterly Newsletter for enthusiast of John
+  Conway's Game of Life''.
+\newblock R. T. Wainwright.
+\newblock \footnotesize Issues may be obtained from Lifeline, 12 Longvue Ave.,
+  New Rochelle, N.Y. 10804\normalsize.
+
+\bibitem[Waldrop\mymarginpar{Waldrop93}(1993)]{Waldrop93}
+Waldrop\mymarginpar{Waldrop93}, M.~M. (1993).
+\newblock \emph{Complexity: The Emerging Science at The Edge of Order and
+  Chaos}.
+\newblock Viking/Penguin Group, New York.
+\newblock \footnotesize First published in the USA by Simon \& Schuster
+  1992\normalsize.
+
+\bibitem[Weisbuch\mymarginpar{Weisbuch89}(1989)]{Weisbuch89}
+Weisbuch\mymarginpar{Weisbuch89}, G. (1989).
+\newblock \emph{Dynamique des syst\`emes complexes: Une introduction aux
+  r\'eseaux d'automates}.
+\newblock InterEditions/Editions du CNRS.
+
+\bibitem[Wilson\mymarginpar{Wilson89}(1989)]{Wilson89}
+Wilson\mymarginpar{Wilson89}, K. (1989).
+\newblock ``Les ph\'enom\`enes de physique et les \'echelles de longueur''.
+\newblock \bblIn{} \cite{PourLaScience89b}, \bblchapter{}~6, \bblpages{}
+  88--115.
+
+\bibitem[Wolfram\mymarginpar{Wolfram83}(1983)]{Wolfram83}
+Wolfram\mymarginpar{Wolfram83}, S. (1983).
+\newblock ``Statistical mechanics of cellular automata''.
+\newblock \emph{Rev. Mod. Phys}, 55(3), 601--644.
+
+\bibitem[Wolfram\mymarginpar{Wolfram86a}(1986)]{Wolfram86a}
+Wolfram\mymarginpar{Wolfram86a}, S. (1986).
+\newblock \emph{Theory and Applications of Cellular Automata: (including
+  selected papers 1983 - 1986)}, \bblvolume{}~1 \bblof{} \emph{Advanced series
+  on complex systems}.
+\newblock World Scientific, Singapore.
+
+\bibitem[Wootters \bbland{} Langton\mymarginpar{Wootters90}(1990)]{Wootters90}
+Wootters, W.~K. \bbland{} Langton\mymarginpar{Wootters90}, C.~G. (1990).
+\newblock ``Is There a Sharp Phase Transition for Deterministic Cellular
+  Automata?''.
+\newblock \emph{Physica D}, 45, 95--104.
+
+\bibitem[Wuensche \bbland{} Lesser\mymarginpar{Wuensche92}(1992)]{Wuensche92}
+Wuensche, A. \bbland{} Lesser\mymarginpar{Wuensche92}, M. (1992).
+\newblock \emph{The Global Dynamics of Cellular Automata}, \bblvolume{}~I
+  \bblof{} \emph{Santa Fe Institute Studies in the Sciences of Complexity, Ref.
+  Vol.}
+\newblock Addison--Wesley Publishing Company, Reading, MA.
+
+\bibitem[Yoccoz\mymarginpar{Yoccoz92}(1992)]{Yoccoz92}
+Yoccoz\mymarginpar{Yoccoz92}, J.-C. (1992).
+\newblock ``Id\'ees g\'eom\'etrique en syst\`emes dynamiques''.
+\newblock \bblIn{} A.~D. Dalmenico, J.-L. Chabert, \bbland{}
+  K.~Chemla\mymarginpar{Dalmedico92a}, \bbleditors{}, \emph{Chaos et
+  d\'eterminisme}, Points Sciences, chapitre~2. \'Editions du Seuil, Paris.
+
+\bibitem[Zs\'ot\'er(1987)]{Zsoter87}
+Zs\'ot\'er, A.~J. (1987).
+\newblock ``A Cellprocessor Based on 16-State Cells''.
+\newblock \bblIn{} \cite{Legendi87}, \bblpages{} 66--69.
+
+\end{thebibliography}

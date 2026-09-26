@@ -1,0 +1,28 @@
+define fact(n) {
+	auto i
+
+	if (n < 1) {
+		return (1)
+	}
+	if (!fact[n]) {
+		fact[n] = n * fact(n - 1)
+	}
+	return (fact[n])
+}
+
+define main(n) {
+	auto i
+
+	for (i = 1; i <= n; ++i) {
+		print "fact[", i, "] = ", fact(i), "\n"
+	}
+	print "lastfact = ", n, "\n"
+}
+
+if (factarg < lastfact) {
+	factarg = lastfact + 1
+}
+
+discard = main(factarg)
+
+quit

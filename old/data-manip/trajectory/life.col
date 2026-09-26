@@ -1,0 +1,3 @@
+$population(t_{n-2})$
+$population(t_{n-1}) \oplus population(t_{n-2})$
+$population(t_{n}) \oplus population(t_{n-1})$

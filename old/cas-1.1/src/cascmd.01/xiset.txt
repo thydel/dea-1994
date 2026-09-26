@@ -1,0 +1,109 @@
+    #
+    # Bell settings
+    #
+
+    frame .bell -relief raised -borderwidth 2
+    label .bell.label	-text "Bell Settings"
+    scale .bell.vol \
+	    -from 0 -to 100 -length 200 -tickinterval 20 \
+	    -label "Volume (%)" -orient horizontal \
+	    -bg Bisque1 -activeforeground Gray
+
+    frame .bell.val
+    labelentry .bell.val.pit "Pitch (Hz)"    6
+    labelentry .bell.val.dur "Duration (ms)" 6
+    pack append .bell.val \
+	    .bell.val.pit	{left padx 10} \
+	    .bell.val.dur	{right padx 10}
+
+    pack append .bell \
+	    .bell.label		{top expand} \
+	    .bell.vol		{top expand} \
+	    .bell.val		{top expand}
+
+    #
+    # Keyboard settings
+    #
+
+    frame .kbd -relief raised -borderwidth 2
+
+    label .kbd.label -text "Keyboard Repeat Settings"
+
+    frame .kbd.val
+    checkbutton .kbd.val.onoff \
+	    -text "On" \
+	    -onvalue "on" -offvalue "off" -variable kbdrep \
+	    -relief flat \
+	    -activebackground Bisque1
+    scale .kbd.val.cli \
+	    -from 0 -to 100 -length 200 -tickinterval 20 \
+	    -label "Click Volume (%)" -orient horizontal \
+	    -bg Bisque1 -activeforeground Gray
+    pack append .kbd.val \
+	    .kbd.val.onoff	{left expand fill} \
+	    .kbd.val.cli	{left expand}
+
+    pack append .kbd \
+	    .kbd.label		{top expand} \
+	    .kbd.val		{top expand pady 4 fillx}
+
+    #
+    # Mouse settings
+    #
+
+    frame .mouse -relief raised -borderwidth 2
+
+    label .mouse.label -text "Mouse Settings"
+    frame .mouse.hor
+    labelentry .mouse.hor.acc "Acceleration" 3
+    labelentry .mouse.hor.thr "Threshold (pixels)" 3
+
+    pack append .mouse.hor \
+	    .mouse.hor.acc	{left} \
+	    .mouse.hor.thr	{right}
+
+    pack append .mouse \
+	    .mouse.label	{top} \
+	    .mouse.hor		{top expand}
+
+    #
+    # Screen Saver settings
+    #
+
+    frame .screen -relief raised -borderwidth 2
+
+    label .screen.label -text "Screen-saver Settings"
+    frame .screen.val
+
+    frame .screen.val.rb
+    radiobutton .screen.val.rb.blank \
+	    -variable screenblank -text "Blank" -relief flat \
+	    -value "blank" -variable screenbla \
+	    -activebackground Bisque1
+    radiobutton .screen.val.rb.pat \
+	    -variable screenblank -text "Pattern" -relief flat \
+	    -value "noblank" -variable screenbla \
+	    -activebackground Bisque1
+    pack append .screen.val.rb \
+	    .screen.val.rb.blank	{top pady 4 frame w} \
+	    .screen.val.rb.pat	{top pady 4 frame w}
+    frame .screen.val.le
+    labelentry .screen.val.le.tim "Timeout (s)" 5
+    labelentry .screen.val.le.cyc "Cycle (s)" 5
+    pack append .screen.val.le \
+	    .screen.val.le.tim	{top pady 4 frame e} \
+	    .screen.val.le.cyc	{top pady 4 frame e}
+
+    pack append .screen.val \
+	    .screen.val.rb	{left} \
+	    .screen.val.le	{left}
+
+    pack append .screen \
+	    .screen.label	{top} \
+	    .screen.val		{top expand}
+
+
+	    .bell	{top fill pady 10 expand} \
+	    .kbd	{top fill pady 10 expand} \
+	    .mouse	{top fill pady 10 expand} \
+	    .screen	{top fill pady 10 expand}

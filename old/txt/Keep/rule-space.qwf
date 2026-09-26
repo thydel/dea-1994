@@ -1,0 +1,295 @@
+\section{Structure de l'espace des automates cellulaires}
+
+%
+% INTRODUCTION
+%
+	\subsection{Introduction}
+
+Intuitivement, la classification des AC est une classification
+qualitative de leurs comportements dynamiques.
+Cette classification repose sur des mesures statistiques des
+comportements.\,\footnote{par exemple l'entropie
+	$S = - \sum_{i} p_{i} \log(p_{i})$
+	ou l'information mutuelle (la corre'lation de deux distributions)
+	$M = \sum_{i} \sum_{j} p_{ij} \log \frac{p_{ij}}{p_{i} p_{j}}$}
+
+La premie`re question est celle de l'existence d'un certain
+comportement, une re'ponse ge'ne'rale est donne' par l'existence d'AC
+universel.
+Un cadre ge'ne'ral est donne' par l'utilisation des me'thodes de la
+me'canique statistique pour qualifier les comportements.
+
+La deuxie`me question est celle du nombre d'AC d'un type donne' et de
+leurs localisations dans l'espace des re`gles.
+Cette question introduit le proble`me de l'existence de parame`tres
+permettant de parcourir l'espaces des re`gles.
+
+Le proble`me de la classification des AC se situe a` l'intersection du
+proble`me {\em forward} (de'terminer les proprie'te's a` partir de la
+re`gle) et inverse (de'terminer la re`gle a` partir des proprie'te's).
+Il implique l'existence d'un ensemble de mesures re'alisables sur les
+re`gles et sur leurs dynamiques.
+
+L'existence de parame`tres de contro^le de la dynamique des AC permet
+de de'terminer une structure pour l'espace des AC.
+
+%
+% MINIMAL VERSION
+%
+	\subsection{Une version minimale du proble`me}
+
+Les AC e'le'mentaires, tel que de'fini par Wolfram,\cite{Wol86}
+sont les AC de dimension $d = 1$, de rayon\footnote{
+le nombre de cellules voisines est $d r + 1$.}
+$r = 1$ et de nombre d'e'tat $k = 2$.
+Une simplification ultime conside`re l'espace des AC
+de parame`tres $d = 0$, $r = 0$, $k = 2$,
+Ce qui donne $k^{^{d r + 1}} = 4$ re`gles
+(Ze'ro, Flip, Same, One),
+lesquelles donnent 8 dynamiques:\\
+Z(0) = 0*, Z(1) = 10*, O(0) = 01*, O(1) = 1*\\
+S(0) = 0*, S(1) = 1*, F(0) = (01)*, F(1) = (10)*\\
+soit 4 points fixes sans transitoire\footnote{{em transient}} (en 2 varie'te's),
+2 points fixes avec transitoire de taille 1,
+2 cycles de tailles 2 sans transitoire.
+
+Les AC e'le'mentaires, dont le nombre est 256 peuvent e^tre e'nume're's,\,\footnote{
+	des donne'es statistiques peuvent e^tre obtenues pour
+	chaque re`gles applique'e sur un espace de configuration}
+mais l'e'tude des dynamiques associe's a` une re`gle de'pend du nombre $N$ de cellules
+de l'espace de configuration (qui tend vers l'infini)
+et fait ne'cessairement appel a` des me'thodes statistiques.
+Pour $d = 1$, $k = 2$, $r = 2$,
+le nombre de re`gle est $2^32$ et ne permet de'ja` plus une e'nume'ration.
+
+%
+% WOLFRAM CLASS
+%
+	\subsection{La classification de Wolfram}
+
+La classification de Wolfram est une classification de re'fe'rence
+pour de nombreux auteurs\cite{Vic91,LiPacLan91,WooLan91,McI91,ChaMan91,Gut91}.
+
+les quatre classes de Wolfram (selon Wolfram).
+les classes I, II et III sont vue comme des attracteurs de syste`mes dynamiques
+\begin{description}
+	\item[classe I]
+	\begin{itemize}
+		\item point limite
+		\item ou tendance a` un e'tat spatialement homoge`ne
+		\item ou les formes disparaissent avec le temps
+		\item ou de petits changement sur la configuration initiale
+			sont sans effet sur l'e'tat final
+	\end{itemize}
+	\item[classe II]
+	\begin{itemize}
+		\item cycle limite
+		\item ou montrant une se'quence de structure simple stable ou pe'riodique
+		\item ou les formes e'voluent vers une taille fixe finie
+		\item ou de petits changements sur la configuration initiale
+			induisent des changements sur des re'gions de tailles finies
+		\end{itemize}
+	\item[classe III]
+	\begin{itemize}
+		\item attracteur chaotique
+		\item ou montrant un comportement chaotique ape'riodique
+		\item ou les formes croissent inde'finiment a` une vitesse fixe
+		\item ou de petits changements sur la configuration initiale
+			induisent des changements sur des re'gions
+			 de taille toujours croissante
+		\end{itemize}
+	\item[classe IV]
+	\begin{itemize}
+		\item comportement plus complexe que les pre'ce'dents,
+			conjecture de calcul universel.
+		\item ou montrant des structures localise'es complexes,
+			e'ventuellement propageantes
+		\item ou les formes croissent et se contractent avec le temps
+		\item ou de petits changements sur la configuration initiale
+			induisent des changements irre'guliers
+	\end{itemize}
+\end{description}
+
+La description des classes varie selon les auteurs.
+On peut introduire la notion de de'calage spatial homoge`ne,\cite{LiPacLan91}
+souligner la difficulte' que pre'sente certains comportements interme'diaires,\cite{McI91}
+ou proposer des interpre'tations structurelles faisant, par exemple,
+des AC de la classe IV un {em me'lange} d'AC de la classe II et III.\cite{KayAnaIma93}
+Les 4 classes (fixe, pe'riodique, chaotique, complexe)
+apparaissent actuellement comme un point de de'part ine'vitable de toute
+tentative de classification.
+La question de la structure de l'espace, et donc des parame`tres de contro^les
+devient alors la question premie`re.
+
+%
+% LAMBDA
+%
+	\subsection{Le parame`tre $\lambda$ de Langton}
+
+Le parame`tre $\lambda$ est de'fini comme le pourcentage d'entre'es de la table
+de transition dont la valeur est diffe'rente de l'e'tat ze'ro.
+$\lambda = \frac{k^{dr+1}-\#0}{k^{dr+1}}$
+
+A une petite variation de $\lambda$ entre deux re`gles correspond une petite distance
+de Hamming entre deux re`gles.
+La variation du parame`tre $\lambda$ permet d'e'chantillonner
+un espace de re`gles pour $d$, $k$ et $r$ fixe's.
+Chaque re`gle est applique'e sur un ensemble de configurations initiales,
+et des mesures statistiques sont faite a` la vole'e.
+Les se'ries temporelles de mesures sont utilise'es pour de'terminer
+l'appartenance de la re`gle a` une classe ou une autre.
+On peut alors essayer d'e'tablir une corre'lation entre $\lambda$
+et la classe d'appartenance de l'AC.
+
+Cette proce'dure est a` priori applicable pour d'autres parame`tres,
+et vise a` travers l'e'chantillonnage a` re've'ler la structure ge'ne'rale
+que la variation du parame`tre de contro^le imprime a` l'espace des re`gles.
+
+Une question associe'e a` la structure de l'espace de'fini par un parame`tre
+est la pre'sence et le type d'une e'ventuelle transition de phase,
+qui associe a` une valeur critique du parame`tre de contro^le une transition
+plus ou moins brusque de la classe de comportement des re`gles.
+
+Une autre question est la pre'sence d'une tendance au continu associe'e a`
+l'augmentation de la taille de l'espace des re`gles.
+
+%
+% EXPERIMENTS
+%
+	\subsection{Expe'rimentations sur le parame'trage des classes de comportements}
+
+Li, Packard et Langton\cite{LiPacLan91}
+proposent l'existence de transitions de phase contro^le'es par le parame`tre $\lambda$.
+il s'agit d'une transition du premier ordre (transition brutale)
+entre les re`gles de type II et III,
+ou d'une transition de deuxie`me ordre (transition graduelle) associant
+les re`gles de type IV a` une zone d'intersection des types II et III.
+Les mesures statistiques utilise'es sont l'entropie, l'information mutuelle
+et la vitesse de propagation des diffe'rences sur l'espace cellulaire.\,\footnote{
+	conside're'e comme une mesure de l'impre'dictabilite' de l'e'volution
+	des {em formes} de l'espace cellulaire, elle devient une mesure
+	de la qualite' chaotique du comportement de l'AC.}
+Les espaces de re`gles sont typiquement borne's par $d <= 2$, $k < 10$, $r < 12$
+Ce type d'expe'riences a d'abord e'te' mene' sur les AC e'le'mentaires,\cite{LiPac90}
+Wootters et Langton\cite{WooLan91}
+e'tendent la recherche a` des espaces de re`gles plus vaste,
+dans le but de re'duire la dispersion de la valeur critique.
+L'augmentation de $r$ supprime la transition (la valeur critique tend vers ze'ro),
+l'augmentation de $k$ tend a` re'duire la dispersion de la valeur critique.
+
+Toutefois la critique d'une expe'rience de Packard\cite{Pac88}
+formule'e par Mitchell\cite{MitHraCru93}
+fait apparai^tre les limites de l'hypothe`se de Langton
+sur l'e'mergence du {em calcul}\footnote{
+	Il s'agit en fait de la transition vers des re`gles dont les mesures statistiques
+	indiquent une appartenance a la classe IV,
+	lesquelles sont suppose's universelles.}
+au frontie`re du chaos.\cite{Lan90}\cite{Lan91}
+Packard utilise un algorithme ge'ne'tique pour faire e'voluer des re`gles
+effectuant un calcul particulier, et interpre`te les re'sultats comme
+une indication de l'existence d'une pression se'lective
+sur l'e'volution des re`gles vers les valeurs critiques de $\lambda$
+associe'es a` une transition de phase et a` la re'alisation d'un calcul complexe.
+
+Mitchell trouve des re'sultats diffe'rents,
+et souligne la ne'cessite' d'une meilleure compre'hension (de'finition)
+des concepts utilise's.
+Mitchell montre par exemple que l'e'volution par algorithme ge'ne'tique
+d'une re`gle calculant l'e'tat majoritaire
+de la configuration initiale en tendant vers un points fixe homoge`ne
+de l'e'tat majoritaire, se trouve ne'cessairement loin du point critique
+(0.27 d'apre`s Wooter et Langton) avec $\lambda$ = 0.5.
+
+Li a par ailleurs sugge're',\cite{Li89}
+en apparente contradiction avec l'ide'e d'une association entre calcul, complexite'
+et phe'nome`nes critiques\cite{LiPacLan91}
+une structure fractale pour la distribution des re`gles complexes
+dans l'espace des re`gles.
+
+%
+% PROPOSITIONS
+%
+	\subsection{Proposition pour une recherche d'un parame'trage de l'encha^ssement}
+
+Face aux proble`mes souleve's par l'utilisation du parame`tre $\lambda$,
+nous proposons quelques remarques pouvant servir de point de de'part
+a` de nouvelles expe'riences sur la structure de l'espace de AC.
+
+La premie`re remarque concerne l'existence d'autres parame`tres
+de contro^le que $\lambda$.
+Li, Packard et Langton\cite{LiPacLan91}
+souligne l'importance de la recherche d'autres parame`tres de contro^les
+et sugge`re que la dispersion de la valeur critique
+pourrais e^tre re'duite par un parame`tre supple'mentaire
+(le {em parame`tre myste'rieux} permettant de localiser
+des frontie`res plus pre'cises entre les diffe'rents comportement).
+Il semble ne'anmoins peu probable qu'un seul parame`tre supple'mentaire suffise.
+
+La deuxie`me remarque concerne la structure encha^sse' des espaces de re`gles.
+Nous sugge'rons que l'e'tude du degre' d'encha^ssement d'une re`gle dans un espace
+permet la de'finition d'un nouveau parame`tre de contro^le.
+
+La troisie`me remarque concerne les techniques de re'ductions du nombre de re`gles
+le'gales a` conside'rer pour un espace donne',
+c'est a` dire l'ablation des re`gles anisotropiques ou encha^sse'es,
+et la possibilite' d'utiliser un mapping interme'diaire.
+
+Nous proposons l'utilisation du parame`tre {em flip} de'fini
+comme le nombre de changements d'e'tats rencontre' en balayant successivement
+chaque entre'e de la table de transition.
+$${\rm flip} = \frac{1}{N}\sum_{i=0}^{i=N-1}{\rm diff}(f_{i}-f_{(i+1){\rm mod}N})$$
+avec $N=k^{dr+1}$,
+et $${\rm diff}(x) = \left\lbrace
+	\begin{array}{l}
+		1\ {\rm if}\ x \ne 0\\
+		0\ {\rm if}\ x = 0
+	\end{array}
+	\right.$$
+
+Si l'on plonge une re`gle $R_{N}$ parame'tre'e par $r = N$ dans une re`gle
+$R_{N + 1}$ l'insensibilite' de la re`gle aux deux voisins supple'mentaires,
+se traduit par une duplication des entre'es de la re`gle $R_{N}$.
+Par exemple pour $k = 2$,
+si pour la colonne $i$ l'e'galite' de chacune des $N/2$ paires $x_{j} = x_{j + 2^{i}}$
+est ve'rifie'e, la colonne $i$ est inutilise'e,
+et soit la re`gle est anisotropique, soit la re`gle est isomorphe a` une re`gle
+d'espace de taille infe'rieure et peut e^tre isotropique.
+
+La somme des degre's d'e'galite' de chaque colonne est un candidat possible
+au ro^le de parame`tre de contro^le.
+
+Parce que l'on peut construire une re`gle pour un espace de taille donne'e
+en plongeant une re`gle d'un espace de taille infe'rieure
+(par duplication des entre'es),
+a` $\lambda$ et flip constant,
+puis de'placer peu a` peu la re`gle vers l'espace de taille supe'rieure
+en flippant des entre'es (e'ventuellement en conservant $\lambda$ constant),
+la mesure de flip pourrais e^tre associe'e au degre' d'encha^ssement d'une re`gle.
+
+L'utilisation d'un mapping interme'diaire permet de re'duire la taille de l'espace des re`gles,
+tout en maintenant une cohe'rence forte sur le sous ensemble choisie.
+Par exemple le re'duction du voisinage a` une somme excluant la cellule centrale,
+conserve un sous ensemble isotropique de re`gle.
+Pour $d = 2$, $k = 2$, $r = 1$ les $2^{512}$ re`gles
+deviennent $4^{9}$, en utilisant les 4 ope'rations des re`gles minimales
+(Ze'ro, Same, Flip, One) comme valeur de la table interme'diaire.
+
+%
+% CONCLUSION
+%
+	\subsection{Conclusion}
+
+Le proble`me de la structure de l'espace des AC, semble e^tre un proble`me
+encore largement ouvert.
+La question des formes possibles de la dynamique
+des AC pour des espaces de re`gles de grande taille,
+et la question d'une combinatoire de re`gles permettant de contro^ler
+l'e'mergence de ces formes ne posse`dent pas actuellement de re'ponses.
+
+%
+% Local Variables:
+% Local IspellParsing: latex-mode ~qwf
+% LocalWords:  forward Wolfram Flip Same One transient CLASS II III IV LAMBDA
+% LocalWords:  Langton Hamming l'AC EXPERIMENTS Li Packard Wootters Mitchell AC,
+% LocalWords:  Wooter mapping flip flippant
+% End:

@@ -1,0 +1,935 @@
+%!PS-Adobe-2.0
+%%Creator: Dataplot
+%%Title: Dataplot Postscript File
+%%CreationDate: NULL
+%%Pages: (atend)
+%%DocumentFonts: Times-Roman Times-Bold Times-Italic Times-BoldItalic
+%%+ Helvetica Helvetica-Bold Helvetica-Oblique Helvetica-BoldOblique Courier
+%%+ Courier-Bold Courier-Oblique  Courier-BoldOblique
+%%+ AvantGarde-Book AvantGarde-BookOblique AvantGarde-Demi AvantGarde-DemiOblique
+%%+ Bookman-Demi Bookman-DemiItalic       Bookman-Light Bookman-LightItalic      
+%%+ Helvetica-Narrow Helvetica-Narrow-Bold Helvetica-Narrow-BoldOblique          
+%%+ Helvetica-Narrow-Oblique              NewCentury-Schlbk-Bold                 
+%%+ NewCentury-Schlbk-Italic              NewCenturySchlbk-BoldItalic            
+%%+ Palatino-Roman Palatino-Bold          Palatino-Italic Palatino-BoldItalic    
+%%+ ZapfChancery-MediumItalic  Symbol                                            
+%%BoundingBox: 0 0   792   792
+%%EndComments
+% DATAPLOT POSTSCRIPT DRIVER, JANUARY, 1990
+% PROLOG SECTION: DATAPLOT DEFINITIONS     
+%DEFINE PROCEDURE "rightshow" TO PRINT RIGHT JUSTIFIED STRING.  CALL BY:
+%  /IX <XCOOR> def /IY <YCOOR> def 
+% (STRING) rightshow
+/rightshow
+  {dup stringwidth pop
+   IX exch sub
+   IY moveto
+   show} def
+%DEFINE PROCEDURE "centshow" TO PRINT CENTER JUSTIFIED STRING.  CALL BY:
+%  /IX <XCOOR> def /IY <YCOOR> def 
+% (STRING) centshow
+/centshow
+  {dup stringwidth pop
+   2 div
+   IX exch sub
+   IY moveto
+   show} def
+%DEFINE PROCEDURE "leftshow" TO PRINT LEFT   JUSTIFIED STRING.  CALL BY:
+%  /IX <XCOOR> def /IY <YCOOR> def 
+% (STRING) leftshow
+/leftshow
+  {IX IY moveto show} def
+%DEFINE PROCEDURE "vrightshow" TO PRINT RIGHT JUSTIFIED VERTICAL STRING.  CALL BY:
+%  /IX <XCOOR> def /IY <YCOOR> def 
+% newpath IX IY moveto gsave
+% (STRING) vrightshow grestore
+/vrightshow
+  {dup stringwidth pop
+   IY exch sub
+   IX exch moveto
+    90 rotate
+   show} def
+%DEFINE PROCEDURE "vcentshow" TO PRINT CENTER JUSTIFIED VERTICAL STRING.  CALL BY:
+%  /IX <XCOOR> def /IY <YCOOR> def 
+% newpath IX IY moveto gsave
+% (STRING) vcentshow grestore
+/vcentshow
+  {dup stringwidth pop
+   2 div
+   IY exch sub
+   IX exch moveto
+     90 rotate
+   show} def
+%DEFINE PROCEDURE "vleftshow" TO PRINT LEFT   JUSTIFIED VERTICAL STRING.  CALL BY:
+%  /IX <XCOOR> def /IY <YCOOR> def 
+% newpath IX IY moveto gsave
+% (STRING) vleftshow grestore
+/vleftshow
+  {IX IY moveto 90 rotate show} def 
+% DEFINE PROCEDURE "l" AS ABBREVIATION OF lineto    
+/l {lineto} def
+% DEFINE PROCEDURE "m" AS ABBREVIATION OF moveto    
+/m {moveto} def
+/Helvetica-Bold                           findfont  47 scalefont setfont
+gsave    % SAVE INITIAL GRAPHICS STATE   
+%%EndProlog
+%%Page: 1 1
+0 0 moveto    0.24000    0.24000 scale  2465    85 translate 90 rotate 
+showpage
+grestore
+%%Page:     2     2
+gsave
+0 0 moveto    0.24000    0.24000 scale  2465    85 translate 90 rotate 
+0. setgray
+    2 setlinewidth
+/Helvetica-Bold                           findfont    33 scalefont setfont
+/IX   798 def /IY  1459 def (1) centshow 
+/IX   875 def /IY  1476 def (1) centshow 
+/IX   952 def /IY  1492 def (1) centshow 
+/IX  1028 def /IY  1526 def (1) centshow 
+/IX  1105 def /IY  1551 def (1) centshow 
+/IX  1182 def /IY  1584 def (1) centshow 
+/IX  1258 def /IY  1617 def (1) centshow 
+/IX  1335 def /IY  1651 def (1) centshow 
+/IX  1412 def /IY  1684 def (1) centshow 
+/IX  1565 def /IY  1742 def (1) centshow 
+/IX  1718 def /IY  1776 def (1) centshow 
+/IX  1872 def /IY  1767 def (1) centshow 
+/IX  2025 def /IY  1701 def (1) centshow 
+/IX  2178 def /IY  1684 def (1) centshow 
+[ ] 0 setdash
+    2 setlinewidth
+0. setgray
+newpath   798  1476 m   875  1492 l   952  1509 l  1028  1542 l  1105  1567 l  1182  1601 l  1258  1634 l  1335  1667 l 
+ 1412  1701 l  1565  1759 l  1718  1792 l  1872  1784 l  2025  1717 l  2178  1701 l stroke
+0. setgray
+    2 setlinewidth
+/IX   798 def /IY  1459 def (2) centshow 
+/IX   875 def /IY  1501 def (2) centshow 
+/IX   952 def /IY  1551 def (2) centshow 
+/IX  1028 def /IY  1601 def (2) centshow 
+/IX  1105 def /IY  1642 def (2) centshow 
+/IX  1182 def /IY  1684 def (2) centshow 
+/IX  1258 def /IY  1717 def (2) centshow 
+/IX  1335 def /IY  1726 def (2) centshow 
+/IX  1412 def /IY  1734 def (2) centshow 
+/IX  1565 def /IY  1734 def (2) centshow 
+/IX  1718 def /IY  1717 def (2) centshow 
+/IX  1872 def /IY  1709 def (2) centshow 
+/IX  2025 def /IY  1692 def (2) centshow 
+/IX  2178 def /IY  1684 def (2) centshow 
+[ ] 0 setdash
+    2 setlinewidth
+0. setgray
+newpath   798  1476 m   875  1517 l   952  1567 l  1028  1617 l  1105  1659 l  1182  1701 l  1258  1734 l  1335  1742 l 
+ 1412  1750 l  1565  1750 l  1718  1734 l  1872  1726 l  2025  1709 l  2178  1701 l stroke
+0. setgray
+    2 setlinewidth
+/IX   798 def /IY  1459 def (3) centshow 
+/IX   875 def /IY  1517 def (3) centshow 
+/IX   952 def /IY  1567 def (3) centshow 
+/IX  1028 def /IY  1626 def (3) centshow 
+/IX  1105 def /IY  1684 def (3) centshow 
+/IX  1182 def /IY  1709 def (3) centshow 
+/IX  1258 def /IY  1726 def (3) centshow 
+/IX  1335 def /IY  1734 def (3) centshow 
+/IX  1412 def /IY  1734 def (3) centshow 
+/IX  1565 def /IY  1726 def (3) centshow 
+/IX  1718 def /IY  1726 def (3) centshow 
+/IX  1872 def /IY  1726 def (3) centshow 
+/IX  2025 def /IY  1726 def (3) centshow 
+/IX  2178 def /IY  1726 def (3) centshow 
+[ ] 0 setdash
+    2 setlinewidth
+0. setgray
+newpath   798  1476 m   875  1534 l   952  1584 l  1028  1642 l  1105  1701 l  1182  1726 l  1258  1742 l  1335  1750 l 
+ 1412  1750 l  1565  1742 l  1718  1742 l  1872  1742 l  2025  1742 l  2178  1742 l stroke
+0. setgray
+    2 setlinewidth
+/IX   798 def /IY  1517 def (4) centshow 
+/IX   875 def /IY  1551 def (4) centshow 
+/IX   952 def /IY  1584 def (4) centshow 
+/IX  1028 def /IY  1609 def (4) centshow 
+/IX  1105 def /IY  1642 def (4) centshow 
+/IX  1182 def /IY  1684 def (4) centshow 
+/IX  1258 def /IY  1726 def (4) centshow 
+/IX  1335 def /IY  1767 def (4) centshow 
+/IX  1412 def /IY  1809 def (4) centshow 
+/IX  1565 def /IY  1867 def (4) centshow 
+/IX  1718 def /IY  1934 def (4) centshow 
+/IX  1872 def /IY  1942 def (4) centshow 
+/IX  2025 def /IY  1851 def (4) centshow 
+/IX  2178 def /IY  1751 def (4) centshow 
+[ ] 0 setdash
+    2 setlinewidth
+0. setgray
+newpath   798  1534 m   875  1567 l   952  1601 l  1028  1626 l  1105  1659 l  1182  1701 l  1258  1742 l  1335  1784 l 
+ 1412  1825 l  1565  1884 l  1718  1950 l  1872  1959 l  2025  1867 l  2178  1767 l stroke
+0. setgray
+    2 setlinewidth
+/IX   798 def /IY  1509 def (5) centshow 
+/IX   875 def /IY  1526 def (5) centshow 
+/IX   952 def /IY  1559 def (5) centshow 
+/IX  1028 def /IY  1592 def (5) centshow 
+/IX  1105 def /IY  1617 def (5) centshow 
+/IX  1182 def /IY  1659 def (5) centshow 
+/IX  1258 def /IY  1692 def (5) centshow 
+/IX  1335 def /IY  1734 def (5) centshow 
+/IX  1412 def /IY  1784 def (5) centshow 
+/IX  1565 def /IY  1851 def (5) centshow 
+/IX  1718 def /IY  1909 def (5) centshow 
+/IX  1872 def /IY  1917 def (5) centshow 
+/IX  2025 def /IY  1792 def (5) centshow 
+/IX  2178 def /IY  1734 def (5) centshow 
+[ ] 0 setdash
+    2 setlinewidth
+0. setgray
+newpath   798  1526 m   875  1542 l   952  1576 l  1028  1609 l  1105  1634 l  1182  1676 l  1258  1709 l  1335  1750 l 
+ 1412  1800 l  1565  1867 l  1718  1925 l  1872  1934 l  2025  1809 l  2178  1750 l stroke
+0. setgray
+    2 setlinewidth
+/IX   798 def /IY  1501 def (6) centshow 
+/IX   875 def /IY  1526 def (6) centshow 
+/IX   952 def /IY  1551 def (6) centshow 
+/IX  1028 def /IY  1584 def (6) centshow 
+/IX  1105 def /IY  1617 def (6) centshow 
+/IX  1182 def /IY  1642 def (6) centshow 
+/IX  1258 def /IY  1684 def (6) centshow 
+/IX  1335 def /IY  1726 def (6) centshow 
+/IX  1412 def /IY  1759 def (6) centshow 
+/IX  1565 def /IY  1826 def (6) centshow 
+/IX  1718 def /IY  1867 def (6) centshow 
+/IX  1872 def /IY  1876 def (6) centshow 
+/IX  2025 def /IY  1776 def (6) centshow 
+/IX  2178 def /IY  1709 def (6) centshow 
+[ ] 0 setdash
+    2 setlinewidth
+0. setgray
+newpath   798  1517 m   875  1542 l   952  1567 l  1028  1601 l  1105  1634 l  1182  1659 l  1258  1701 l  1335  1742 l 
+ 1412  1775 l  1565  1842 l  1718  1884 l  1872  1892 l  2025  1792 l  2178  1726 l stroke
+0. setgray
+    2 setlinewidth
+/IX   798 def /IY  1526 def (7) centshow 
+/IX   875 def /IY  1601 def (7) centshow 
+/IX   952 def /IY  1667 def (7) centshow 
+/IX  1028 def /IY  1717 def (7) centshow 
+/IX  1105 def /IY  1776 def (7) centshow 
+/IX  1182 def /IY  1892 def (7) centshow 
+/IX  1258 def /IY  1967 def (7) centshow 
+/IX  1335 def /IY  1984 def (7) centshow 
+/IX  1412 def /IY  1959 def (7) centshow 
+/IX  1565 def /IY  1876 def (7) centshow 
+/IX  1718 def /IY  1842 def (7) centshow 
+/IX  1872 def /IY  1834 def (7) centshow 
+/IX  2025 def /IY  1817 def (7) centshow 
+/IX  2178 def /IY  1801 def (7) centshow 
+[ ] 0 setdash
+    2 setlinewidth
+0. setgray
+newpath   798  1542 m   875  1617 l   952  1684 l  1028  1734 l  1105  1792 l  1182  1909 l  1258  1984 l  1335  2000 l 
+ 1412  1975 l  1565  1892 l  1718  1859 l  1872  1850 l  2025  1834 l  2178  1817 l stroke
+0. setgray
+    2 setlinewidth
+/IX   798 def /IY  1526 def (8) centshow 
+/IX   875 def /IY  1601 def (8) centshow 
+/IX   952 def /IY  1651 def (8) centshow 
+/IX  1028 def /IY  1701 def (8) centshow 
+/IX  1105 def /IY  1784 def (8) centshow 
+/IX  1182 def /IY  1867 def (8) centshow 
+/IX  1258 def /IY  1917 def (8) centshow 
+/IX  1335 def /IY  1926 def (8) centshow 
+/IX  1412 def /IY  1892 def (8) centshow 
+/IX  1565 def /IY  1851 def (8) centshow 
+/IX  1718 def /IY  1826 def (8) centshow 
+/IX  1872 def /IY  1809 def (8) centshow 
+/IX  2025 def /IY  1801 def (8) centshow 
+/IX  2178 def /IY  1784 def (8) centshow 
+[ ] 0 setdash
+    2 setlinewidth
+0. setgray
+newpath   798  1542 m   875  1617 l   952  1667 l  1028  1717 l  1105  1800 l  1182  1884 l  1258  1934 l  1335  1942 l 
+ 1412  1909 l  1565  1867 l  1718  1842 l  1872  1825 l  2025  1817 l  2178  1800 l stroke
+0. setgray
+    2 setlinewidth
+/IX   798 def /IY  1526 def (9) centshow 
+/IX   875 def /IY  1584 def (9) centshow 
+/IX   952 def /IY  1642 def (9) centshow 
+/IX  1028 def /IY  1684 def (9) centshow 
+/IX  1105 def /IY  1784 def (9) centshow 
+/IX  1182 def /IY  1842 def (9) centshow 
+/IX  1258 def /IY  1876 def (9) centshow 
+/IX  1335 def /IY  1884 def (9) centshow 
+/IX  1412 def /IY  1859 def (9) centshow 
+/IX  1565 def /IY  1826 def (9) centshow 
+/IX  1718 def /IY  1801 def (9) centshow 
+/IX  1872 def /IY  1792 def (9) centshow 
+/IX  2025 def /IY  1792 def (9) centshow 
+/IX  2178 def /IY  1776 def (9) centshow 
+[ ] 0 setdash
+    2 setlinewidth
+0. setgray
+newpath   798  1542 m   875  1601 l   952  1659 l  1028  1701 l  1105  1800 l  1182  1859 l  1258  1892 l  1335  1900 l 
+ 1412  1875 l  1565  1842 l  1718  1817 l  1872  1809 l  2025  1809 l  2178  1792 l stroke
+0. setgray
+    2 setlinewidth
+/IX   798 def /IY  1517 def (0) centshow 
+/IX   875 def /IY  1609 def (0) centshow 
+/IX   952 def /IY  1676 def (0) centshow 
+/IX  1028 def /IY  1734 def (0) centshow 
+/IX  1105 def /IY  1759 def (0) centshow 
+/IX  1182 def /IY  1759 def (0) centshow 
+/IX  1258 def /IY  1776 def (0) centshow 
+/IX  1335 def /IY  1784 def (0) centshow 
+/IX  1412 def /IY  1801 def (0) centshow 
+/IX  1565 def /IY  1826 def (0) centshow 
+/IX  1718 def /IY  1801 def (0) centshow 
+/IX  1872 def /IY  1784 def (0) centshow 
+/IX  2025 def /IY  1784 def (0) centshow 
+/IX  2178 def /IY  1776 def (0) centshow 
+[ ] 0 setdash
+    2 setlinewidth
+0. setgray
+newpath   798  1534 m   875  1626 l   952  1692 l  1028  1750 l  1105  1775 l  1182  1775 l  1258  1792 l  1335  1800 l 
+ 1412  1817 l  1565  1842 l  1718  1817 l  1872  1800 l  2025  1800 l  2178  1792 l stroke
+0. setgray
+    2 setlinewidth
+/IX   798 def /IY  1517 def (A) centshow 
+/IX   875 def /IY  1592 def (A) centshow 
+/IX   952 def /IY  1667 def (A) centshow 
+/IX  1028 def /IY  1726 def (A) centshow 
+/IX  1105 def /IY  1767 def (A) centshow 
+/IX  1182 def /IY  1767 def (A) centshow 
+/IX  1258 def /IY  1776 def (A) centshow 
+/IX  1335 def /IY  1801 def (A) centshow 
+/IX  1412 def /IY  1809 def (A) centshow 
+/IX  1565 def /IY  1801 def (A) centshow 
+/IX  1718 def /IY  1784 def (A) centshow 
+/IX  1872 def /IY  1776 def (A) centshow 
+/IX  2025 def /IY  1776 def (A) centshow 
+/IX  2178 def /IY  1767 def (A) centshow 
+[ ] 0 setdash
+    2 setlinewidth
+0. setgray
+newpath   798  1534 m   875  1609 l   952  1684 l  1028  1742 l  1105  1784 l  1182  1784 l  1258  1792 l  1335  1817 l 
+ 1412  1825 l  1565  1817 l  1718  1800 l  1872  1792 l  2025  1792 l  2178  1784 l stroke
+0. setgray
+    2 setlinewidth
+/IX   798 def /IY  1509 def (B) centshow 
+/IX   875 def /IY  1567 def (B) centshow 
+/IX   952 def /IY  1642 def (B) centshow 
+/IX  1028 def /IY  1726 def (B) centshow 
+/IX  1105 def /IY  1784 def (B) centshow 
+/IX  1182 def /IY  1826 def (B) centshow 
+/IX  1258 def /IY  1842 def (B) centshow 
+/IX  1335 def /IY  1834 def (B) centshow 
+/IX  1412 def /IY  1826 def (B) centshow 
+/IX  1565 def /IY  1801 def (B) centshow 
+/IX  1718 def /IY  1784 def (B) centshow 
+/IX  1872 def /IY  1776 def (B) centshow 
+/IX  2025 def /IY  1776 def (B) centshow 
+/IX  2178 def /IY  1759 def (B) centshow 
+[ ] 0 setdash
+    2 setlinewidth
+0. setgray
+newpath   798  1526 m   875  1584 l   952  1659 l  1028  1742 l  1105  1800 l  1182  1842 l  1258  1859 l  1335  1850 l 
+ 1412  1842 l  1565  1817 l  1718  1800 l  1872  1792 l  2025  1792 l  2178  1775 l stroke
+0. setgray
+    2 setlinewidth
+/IX   798 def /IY  1526 def (C) centshow 
+/IX   875 def /IY  1584 def (C) centshow 
+/IX   952 def /IY  1642 def (C) centshow 
+/IX  1028 def /IY  1684 def (C) centshow 
+/IX  1105 def /IY  1701 def (C) centshow 
+/IX  1182 def /IY  1709 def (C) centshow 
+/IX  1258 def /IY  1726 def (C) centshow 
+/IX  1335 def /IY  1742 def (C) centshow 
+/IX  1412 def /IY  1751 def (C) centshow 
+/IX  1565 def /IY  1759 def (C) centshow 
+/IX  1718 def /IY  1767 def (C) centshow 
+/IX  2178 def /IY  1709 def (C) centshow 
+[ ] 0 setdash
+    2 setlinewidth
+0. setgray
+newpath   798  1542 m   875  1601 l   952  1659 l  1028  1701 l  1105  1717 l  1182  1726 l  1258  1742 l  1335  1759 l 
+ 1412  1767 l  1565  1775 l  1718  1784 l  2178  1726 l stroke
+0. setgray
+    2 setlinewidth
+/IX   798 def /IY  1492 def (D) centshow 
+/IX   875 def /IY  1526 def (D) centshow 
+/IX   952 def /IY  1559 def (D) centshow 
+/IX  1028 def /IY  1592 def (D) centshow 
+/IX  1105 def /IY  1617 def (D) centshow 
+/IX  1182 def /IY  1659 def (D) centshow 
+/IX  1258 def /IY  1701 def (D) centshow 
+/IX  1335 def /IY  1759 def (D) centshow 
+/IX  1412 def /IY  1792 def (D) centshow 
+/IX  1565 def /IY  1867 def (D) centshow 
+/IX  1718 def /IY  1926 def (D) centshow 
+/IX  1872 def /IY  1892 def (D) centshow 
+/IX  2025 def /IY  1776 def (D) centshow 
+/IX  2178 def /IY  1709 def (D) centshow 
+[ ] 0 setdash
+    2 setlinewidth
+0. setgray
+newpath   798  1509 m   875  1542 l   952  1576 l  1028  1609 l  1105  1634 l  1182  1676 l  1258  1717 l  1335  1775 l 
+ 1412  1809 l  1565  1884 l  1718  1942 l  1872  1909 l  2025  1792 l  2178  1726 l stroke
+0. setgray
+    2 setlinewidth
+/IX   798 def /IY  1492 def (E) centshow 
+/IX   875 def /IY  1509 def (E) centshow 
+/IX   952 def /IY  1542 def (E) centshow 
+/IX  1028 def /IY  1576 def (E) centshow 
+/IX  1105 def /IY  1617 def (E) centshow 
+/IX  1182 def /IY  1642 def (E) centshow 
+/IX  1258 def /IY  1692 def (E) centshow 
+/IX  1335 def /IY  1734 def (E) centshow 
+/IX  1412 def /IY  1767 def (E) centshow 
+/IX  1565 def /IY  1851 def (E) centshow 
+/IX  1718 def /IY  1892 def (E) centshow 
+/IX  1872 def /IY  1859 def (E) centshow 
+/IX  2025 def /IY  1742 def (E) centshow 
+/IX  2178 def /IY  1701 def (E) centshow 
+[ ] 0 setdash
+    2 setlinewidth
+0. setgray
+newpath   798  1509 m   875  1526 l   952  1559 l  1028  1592 l  1105  1634 l  1182  1659 l  1258  1709 l  1335  1750 l 
+ 1412  1784 l  1565  1867 l  1718  1909 l  1872  1875 l  2025  1759 l  2178  1717 l stroke
+0. setgray
+    2 setlinewidth
+/IX   798 def /IY  1492 def (F) centshow 
+/IX   875 def /IY  1509 def (F) centshow 
+/IX   952 def /IY  1534 def (F) centshow 
+/IX  1028 def /IY  1567 def (F) centshow 
+/IX  1105 def /IY  1601 def (F) centshow 
+/IX  1182 def /IY  1634 def (F) centshow 
+/IX  1258 def /IY  1676 def (F) centshow 
+/IX  1335 def /IY  1717 def (F) centshow 
+/IX  1412 def /IY  1751 def (F) centshow 
+/IX  1565 def /IY  1826 def (F) centshow 
+/IX  1718 def /IY  1867 def (F) centshow 
+/IX  1872 def /IY  1834 def (F) centshow 
+/IX  2025 def /IY  1726 def (F) centshow 
+/IX  2178 def /IY  1701 def (F) centshow 
+[ ] 0 setdash
+    2 setlinewidth
+0. setgray
+newpath   798  1509 m   875  1526 l   952  1551 l  1028  1584 l  1105  1617 l  1182  1651 l  1258  1692 l  1335  1734 l 
+ 1412  1767 l  1565  1842 l  1718  1884 l  1872  1850 l  2025  1742 l  2178  1717 l stroke
+[ ] 0 setdash
+    2 setlinewidth
+0. setgray
+newpath   798  1476 m  2332  1476 l stroke
+[ ] 0 setdash
+    2 setlinewidth
+0. setgray
+newpath  2332  1476 m  2332  2059 l stroke
+[ ] 0 setdash
+    2 setlinewidth
+0. setgray
+newpath  2332  2059 m   798  2059 l stroke
+[ ] 0 setdash
+    2 setlinewidth
+0. setgray
+newpath   798  2059 m   798  1476 l stroke
+[ ] 0 setdash
+    2 setlinewidth
+0. setgray
+newpath   798  1459 m   798  1476 l stroke
+newpath  1105  1459 m  1105  1476 l stroke
+newpath  1412  1459 m  1412  1476 l stroke
+newpath  1718  1459 m  1718  1476 l stroke
+newpath  2025  1459 m  2025  1476 l stroke
+newpath  2332  1459 m  2332  1476 l stroke
+newpath   952  1467 m   952  1476 l stroke
+newpath  1258  1467 m  1258  1476 l stroke
+newpath  1565  1467 m  1565  1476 l stroke
+newpath  1872  1467 m  1872  1476 l stroke
+newpath  2178  1467 m  2178  1476 l stroke
+0. setgray
+newpath   765  1476 m   798  1476 l stroke
+newpath   765  1559 m   798  1559 l stroke
+newpath   765  1642 m   798  1642 l stroke
+newpath   765  1726 m   798  1726 l stroke
+newpath   765  1809 m   798  1809 l stroke
+newpath   765  1892 m   798  1892 l stroke
+newpath   765  1975 m   798  1975 l stroke
+newpath   765  2059 m   798  2059 l stroke
+newpath   781  1517 m   798  1517 l stroke
+newpath   781  1601 m   798  1601 l stroke
+newpath   781  1684 m   798  1684 l stroke
+newpath   781  1767 m   798  1767 l stroke
+newpath   781  1850 m   798  1850 l stroke
+newpath   781  1934 m   798  1934 l stroke
+newpath   781  2017 m   798  2017 l stroke
+[ ] 0 setdash
+    2 setlinewidth
+0. setgray
+/Helvetica-Bold                           findfont    17 scalefont setfont
+/IX   798 def /IY  1434 def
+(0)
+centshow 
+/IX  1105 def /IY  1434 def
+(10)
+centshow 
+/IX  1412 def /IY  1434 def
+(20)
+centshow 
+/IX  1718 def /IY  1434 def
+(30)
+centshow 
+/IX  2025 def /IY  1434 def
+(40)
+centshow 
+/IX  2332 def /IY  1434 def
+(50)
+centshow 
+0. setgray
+/IX   743 def /IY  1467 def
+(0)
+rightshow
+/IX   743 def /IY  1550 def
+(10)
+rightshow
+/IX   743 def /IY  1634 def
+(20)
+rightshow
+/IX   743 def /IY  1717 def
+(30)
+rightshow
+/IX   743 def /IY  1800 def
+(40)
+rightshow
+/IX   743 def /IY  1884 def
+(50)
+rightshow
+/IX   743 def /IY  1967 def
+(60)
+rightshow
+/IX   743 def /IY  2050 def
+(70)
+rightshow
+[ ] 0 setdash
+0. setgray
+    2 setlinewidth
+/IX  1565 def /IY  1342 def
+(PLOT PRES ANGLE WING)
+centshow 
+newpath   579  2100 moveto stroke
+newpath   579  2075 moveto stroke
+0. setgray
+    2 setlinewidth
+/Helvetica-Bold                           findfont    33 scalefont setfont
+/IX   875 def /IY   626 def (1) centshow 
+/IX   952 def /IY   626 def (1) centshow 
+/IX  1028 def /IY   626 def (1) centshow 
+/IX  1105 def /IY   684 def (1) centshow 
+/IX  1182 def /IY   676 def (1) centshow 
+/IX  1258 def /IY   668 def (1) centshow 
+/IX  1335 def /IY   693 def (1) centshow 
+/IX  1412 def /IY   693 def (1) centshow 
+/IX  1488 def /IY   693 def (1) centshow 
+/IX  1565 def /IY   684 def (1) centshow 
+/IX  1642 def /IY   684 def (1) centshow 
+/IX  1718 def /IY   676 def (1) centshow 
+/IX  1795 def /IY   693 def (1) centshow 
+/IX  1948 def /IY   659 def (1) centshow 
+/IX  2025 def /IY   659 def (1) centshow 
+/IX  2102 def /IY   659 def (1) centshow 
+[ ] 0 setdash
+    2 setlinewidth
+0. setgray
+newpath   875   643 m   952   643 l  1028   643 l  1105   701 l  1182   693 l  1258   684 l  1335   709 l  1412   709 l 
+ 1488   709 l  1565   701 l  1642   701 l  1718   693 l  1795   709 l  1948   676 l  2025   676 l  2102   676 l stroke
+0. setgray
+    2 setlinewidth
+/IX   875 def /IY   643 def (2) centshow 
+/IX   952 def /IY   668 def (2) centshow 
+/IX  1028 def /IY   684 def (2) centshow 
+/IX  1105 def /IY   718 def (2) centshow 
+/IX  1182 def /IY   693 def (2) centshow 
+/IX  1258 def /IY   693 def (2) centshow 
+/IX  1335 def /IY   768 def (2) centshow 
+/IX  1412 def /IY   768 def (2) centshow 
+/IX  1488 def /IY   751 def (2) centshow 
+/IX  1565 def /IY   776 def (2) centshow 
+/IX  1642 def /IY   759 def (2) centshow 
+/IX  1718 def /IY   734 def (2) centshow 
+/IX  1795 def /IY   751 def (2) centshow 
+/IX  1948 def /IY   693 def (2) centshow 
+/IX  2025 def /IY   676 def (2) centshow 
+/IX  2102 def /IY   676 def (2) centshow 
+[ ] 0 setdash
+    2 setlinewidth
+0. setgray
+newpath   875   659 m   952   684 l  1028   701 l  1105   734 l  1182   709 l  1258   709 l  1335   784 l  1412   784 l 
+ 1488   768 l  1565   793 l  1642   776 l  1718   751 l  1795   768 l  1948   709 l  2025   693 l  2102   693 l stroke
+0. setgray
+    2 setlinewidth
+/IX   875 def /IY   659 def (3) centshow 
+/IX   952 def /IY   718 def (3) centshow 
+/IX  1028 def /IY   734 def (3) centshow 
+/IX  1105 def /IY   751 def (3) centshow 
+/IX  1182 def /IY   726 def (3) centshow 
+/IX  1258 def /IY   718 def (3) centshow 
+/IX  1335 def /IY   834 def (3) centshow 
+/IX  1412 def /IY   818 def (3) centshow 
+/IX  1488 def /IY   809 def (3) centshow 
+/IX  1565 def /IY   843 def (3) centshow 
+/IX  1642 def /IY   834 def (3) centshow 
+/IX  1718 def /IY   809 def (3) centshow 
+/IX  1795 def /IY   809 def (3) centshow 
+/IX  1948 def /IY   726 def (3) centshow 
+/IX  2025 def /IY   709 def (3) centshow 
+/IX  2102 def /IY   701 def (3) centshow 
+[ ] 0 setdash
+    2 setlinewidth
+0. setgray
+newpath   875   676 m   952   734 l  1028   751 l  1105   768 l  1182   743 l  1258   734 l  1335   851 l  1412   834 l 
+ 1488   826 l  1565   859 l  1642   851 l  1718   826 l  1795   826 l  1948   743 l  2025   726 l  2102   718 l stroke
+0. setgray
+    2 setlinewidth
+/IX   875 def /IY   693 def (4) centshow 
+/IX   952 def /IY   768 def (4) centshow 
+/IX  1028 def /IY   793 def (4) centshow 
+/IX  1105 def /IY   776 def (4) centshow 
+/IX  1182 def /IY   759 def (4) centshow 
+/IX  1258 def /IY   751 def (4) centshow 
+/IX  1335 def /IY   884 def (4) centshow 
+/IX  1412 def /IY   868 def (4) centshow 
+/IX  1488 def /IY   851 def (4) centshow 
+/IX  1565 def /IY   901 def (4) centshow 
+/IX  1642 def /IY   893 def (4) centshow 
+/IX  1718 def /IY   893 def (4) centshow 
+/IX  1795 def /IY   851 def (4) centshow 
+/IX  1948 def /IY   759 def (4) centshow 
+/IX  2025 def /IY   743 def (4) centshow 
+/IX  2102 def /IY   734 def (4) centshow 
+[ ] 0 setdash
+    2 setlinewidth
+0. setgray
+newpath   875   709 m   952   784 l  1028   809 l  1105   793 l  1182   776 l  1258   768 l  1335   901 l  1412   884 l 
+ 1488   868 l  1565   917 l  1642   909 l  1718   909 l  1795   868 l  1948   776 l  2025   759 l  2102   751 l stroke
+0. setgray
+    2 setlinewidth
+/IX   875 def /IY   718 def (5) centshow 
+/IX   952 def /IY   809 def (5) centshow 
+/IX  1028 def /IY   851 def (5) centshow 
+/IX  1105 def /IY   809 def (5) centshow 
+/IX  1182 def /IY   784 def (5) centshow 
+/IX  1258 def /IY   784 def (5) centshow 
+/IX  1335 def /IY   943 def (5) centshow 
+/IX  1412 def /IY   951 def (5) centshow 
+/IX  1488 def /IY   951 def (5) centshow 
+/IX  1565 def /IY   926 def (5) centshow 
+/IX  1642 def /IY   934 def (5) centshow 
+/IX  1718 def /IY   951 def (5) centshow 
+/IX  1795 def /IY   868 def (5) centshow 
+/IX  1948 def /IY   784 def (5) centshow 
+/IX  2025 def /IY   784 def (5) centshow 
+/IX  2102 def /IY   768 def (5) centshow 
+[ ] 0 setdash
+    2 setlinewidth
+0. setgray
+newpath   875   734 m   952   826 l  1028   868 l  1105   826 l  1182   801 l  1258   801 l  1335   959 l  1412   967 l 
+ 1488   967 l  1565   942 l  1642   951 l  1718   967 l  1795   884 l  1948   801 l  2025   801 l  2102   784 l stroke
+0. setgray
+    2 setlinewidth
+/IX   875 def /IY   751 def (6) centshow 
+/IX   952 def /IY   851 def (6) centshow 
+/IX  1028 def /IY   876 def (6) centshow 
+/IX  1105 def /IY   851 def (6) centshow 
+/IX  1182 def /IY   826 def (6) centshow 
+/IX  1258 def /IY   809 def (6) centshow 
+/IX  1335 def /IY  1059 def (6) centshow 
+/IX  1412 def /IY  1034 def (6) centshow 
+/IX  1488 def /IY  1009 def (6) centshow 
+/IX  1565 def /IY   926 def (6) centshow 
+/IX  1642 def /IY   934 def (6) centshow 
+/IX  1718 def /IY   993 def (6) centshow 
+/IX  1795 def /IY   876 def (6) centshow 
+/IX  1948 def /IY   826 def (6) centshow 
+/IX  2025 def /IY   809 def (6) centshow 
+/IX  2102 def /IY   801 def (6) centshow 
+[ ] 0 setdash
+    2 setlinewidth
+0. setgray
+newpath   875   768 m   952   868 l  1028   893 l  1105   868 l  1182   843 l  1258   826 l  1335  1076 l  1412  1051 l 
+ 1488  1026 l  1565   942 l  1642   951 l  1718  1009 l  1795   893 l  1948   843 l  2025   826 l  2102   818 l stroke
+0. setgray
+    2 setlinewidth
+/IX   875 def /IY   784 def (7) centshow 
+/IX   952 def /IY   884 def (7) centshow 
+/IX  1028 def /IY   893 def (7) centshow 
+/IX  1105 def /IY   893 def (7) centshow 
+/IX  1182 def /IY   859 def (7) centshow 
+/IX  1258 def /IY   851 def (7) centshow 
+/IX  1335 def /IY  1134 def (7) centshow 
+/IX  1412 def /IY  1084 def (7) centshow 
+/IX  1488 def /IY  1043 def (7) centshow 
+/IX  1565 def /IY   943 def (7) centshow 
+/IX  1642 def /IY   943 def (7) centshow 
+/IX  1718 def /IY  1009 def (7) centshow 
+/IX  1795 def /IY   893 def (7) centshow 
+/IX  1948 def /IY   868 def (7) centshow 
+/IX  2025 def /IY   859 def (7) centshow 
+/IX  2102 def /IY   843 def (7) centshow 
+[ ] 0 setdash
+    2 setlinewidth
+0. setgray
+newpath   875   801 m   952   901 l  1028   909 l  1105   909 l  1182   876 l  1258   868 l  1335  1151 l  1412  1101 l 
+ 1488  1059 l  1565   959 l  1642   959 l  1718  1026 l  1795   909 l  1948   884 l  2025   876 l  2102   859 l stroke
+0. setgray
+    2 setlinewidth
+/IX   875 def /IY   818 def (8) centshow 
+/IX   952 def /IY   893 def (8) centshow 
+/IX  1028 def /IY   901 def (8) centshow 
+/IX  1105 def /IY   934 def (8) centshow 
+/IX  1182 def /IY   901 def (8) centshow 
+/IX  1258 def /IY   893 def (8) centshow 
+/IX  1335 def /IY  1151 def (8) centshow 
+/IX  1412 def /IY  1093 def (8) centshow 
+/IX  1488 def /IY  1051 def (8) centshow 
+/IX  1565 def /IY   951 def (8) centshow 
+/IX  1642 def /IY   968 def (8) centshow 
+/IX  1718 def /IY  1001 def (8) centshow 
+/IX  1795 def /IY   909 def (8) centshow 
+/IX  1948 def /IY   926 def (8) centshow 
+/IX  2025 def /IY   901 def (8) centshow 
+/IX  2102 def /IY   884 def (8) centshow 
+[ ] 0 setdash
+    2 setlinewidth
+0. setgray
+newpath   875   834 m   952   909 l  1028   917 l  1105   951 l  1182   917 l  1258   909 l  1335  1167 l  1412  1109 l 
+ 1488  1067 l  1565   967 l  1642   984 l  1718  1017 l  1795   926 l  1948   942 l  2025   917 l  2102   901 l stroke
+0. setgray
+    2 setlinewidth
+/IX   875 def /IY   851 def (9) centshow 
+/IX   952 def /IY   901 def (9) centshow 
+/IX  1028 def /IY   901 def (9) centshow 
+/IX  1105 def /IY   976 def (9) centshow 
+/IX  1182 def /IY   951 def (9) centshow 
+/IX  1258 def /IY   926 def (9) centshow 
+/IX  1335 def /IY  1126 def (9) centshow 
+/IX  1412 def /IY  1059 def (9) centshow 
+/IX  1488 def /IY  1026 def (9) centshow 
+/IX  1565 def /IY   968 def (9) centshow 
+/IX  1642 def /IY   976 def (9) centshow 
+/IX  1718 def /IY   993 def (9) centshow 
+/IX  1795 def /IY   918 def (9) centshow 
+/IX  1948 def /IY   959 def (9) centshow 
+/IX  2025 def /IY   934 def (9) centshow 
+/IX  2102 def /IY   918 def (9) centshow 
+[ ] 0 setdash
+    2 setlinewidth
+0. setgray
+newpath   875   868 m   952   917 l  1028   917 l  1105   992 l  1182   967 l  1258   942 l  1335  1142 l  1412  1076 l 
+ 1488  1042 l  1565   984 l  1642   992 l  1718  1009 l  1795   934 l  1948   976 l  2025   951 l  2102   934 l stroke
+0. setgray
+    2 setlinewidth
+/IX   875 def /IY   909 def (0) centshow 
+/IX   952 def /IY   901 def (0) centshow 
+/IX  1028 def /IY   893 def (0) centshow 
+/IX  1105 def /IY  1034 def (0) centshow 
+/IX  1182 def /IY  1018 def (0) centshow 
+/IX  1258 def /IY   993 def (0) centshow 
+/IX  1335 def /IY  1043 def (0) centshow 
+/IX  1412 def /IY  1018 def (0) centshow 
+/IX  1488 def /IY   993 def (0) centshow 
+/IX  1565 def /IY   993 def (0) centshow 
+/IX  1642 def /IY   968 def (0) centshow 
+/IX  1718 def /IY   968 def (0) centshow 
+/IX  1795 def /IY   926 def (0) centshow 
+/IX  1948 def /IY  1034 def (0) centshow 
+/IX  2025 def /IY  1018 def (0) centshow 
+/IX  2102 def /IY   993 def (0) centshow 
+[ ] 0 setdash
+    2 setlinewidth
+0. setgray
+newpath   875   926 m   952   917 l  1028   909 l  1105  1051 l  1182  1034 l  1258  1009 l  1335  1059 l  1412  1034 l 
+ 1488  1009 l  1565  1009 l  1642   984 l  1718   984 l  1795   942 l  1948  1051 l  2025  1034 l  2102  1009 l stroke
+0. setgray
+    2 setlinewidth
+/IX   875 def /IY   943 def (A) centshow 
+/IX   952 def /IY   884 def (A) centshow 
+/IX  1028 def /IY   893 def (A) centshow 
+/IX  1105 def /IY  1101 def (A) centshow 
+/IX  1182 def /IY  1076 def (A) centshow 
+/IX  1258 def /IY  1034 def (A) centshow 
+/IX  1335 def /IY  1009 def (A) centshow 
+/IX  1412 def /IY   993 def (A) centshow 
+/IX  1488 def /IY   968 def (A) centshow 
+/IX  1565 def /IY   968 def (A) centshow 
+/IX  1642 def /IY   951 def (A) centshow 
+/IX  1718 def /IY   951 def (A) centshow 
+/IX  1795 def /IY   934 def (A) centshow 
+/IX  1948 def /IY  1093 def (A) centshow 
+/IX  2025 def /IY  1059 def (A) centshow 
+/IX  2102 def /IY  1034 def (A) centshow 
+[ ] 0 setdash
+    2 setlinewidth
+0. setgray
+newpath   875   959 m   952   901 l  1028   909 l  1105  1117 l  1182  1092 l  1258  1051 l  1335  1026 l  1412  1009 l 
+ 1488   984 l  1565   984 l  1642   967 l  1718   967 l  1795   951 l  1948  1109 l  2025  1076 l  2102  1051 l stroke
+0. setgray
+    2 setlinewidth
+/IX   875 def /IY   934 def (B) centshow 
+/IX   952 def /IY   876 def (B) centshow 
+/IX  1028 def /IY   893 def (B) centshow 
+/IX  1105 def /IY  1109 def (B) centshow 
+/IX  1182 def /IY  1084 def (B) centshow 
+/IX  1258 def /IY  1043 def (B) centshow 
+/IX  1335 def /IY  1001 def (B) centshow 
+/IX  1412 def /IY   976 def (B) centshow 
+/IX  1488 def /IY   959 def (B) centshow 
+/IX  1565 def /IY   951 def (B) centshow 
+/IX  1642 def /IY   943 def (B) centshow 
+/IX  1718 def /IY   943 def (B) centshow 
+/IX  1948 def /IY  1059 def (B) centshow 
+/IX  2025 def /IY  1026 def (B) centshow 
+/IX  2102 def /IY  1001 def (B) centshow 
+[ ] 0 setdash
+    2 setlinewidth
+0. setgray
+newpath   875   951 m   952   893 l  1028   909 l  1105  1126 l  1182  1101 l  1258  1059 l  1335  1017 l  1412   992 l 
+ 1488   976 l  1565   967 l  1642   959 l  1718   959 l  1948  1076 l  2025  1042 l  2102  1017 l stroke
+0. setgray
+    2 setlinewidth
+/IX   875 def /IY   868 def (C) centshow 
+/IX   952 def /IY   859 def (C) centshow 
+/IX  1028 def /IY   893 def (C) centshow 
+/IX  1105 def /IY  1018 def (C) centshow 
+/IX  1182 def /IY   959 def (C) centshow 
+/IX  1258 def /IY   943 def (C) centshow 
+/IX  1335 def /IY   984 def (C) centshow 
+/IX  1412 def /IY   968 def (C) centshow 
+/IX  1488 def /IY   959 def (C) centshow 
+/IX  1565 def /IY   951 def (C) centshow 
+/IX  1642 def /IY   943 def (C) centshow 
+/IX  1718 def /IY   943 def (C) centshow 
+/IX  1948 def /IY   943 def (C) centshow 
+/IX  2025 def /IY   909 def (C) centshow 
+/IX  2102 def /IY   893 def (C) centshow 
+[ ] 0 setdash
+    2 setlinewidth
+0. setgray
+newpath   875   884 m   952   876 l  1028   909 l  1105  1034 l  1182   976 l  1258   959 l  1335  1001 l  1412   984 l 
+ 1488   976 l  1565   967 l  1642   959 l  1718   959 l  1948   959 l  2025   926 l  2102   909 l stroke
+0. setgray
+    2 setlinewidth
+/IX   875 def /IY   851 def (D) centshow 
+/IX   952 def /IY   851 def (D) centshow 
+/IX  1028 def /IY   893 def (D) centshow 
+/IX  1105 def /IY   918 def (D) centshow 
+/IX  1182 def /IY   901 def (D) centshow 
+/IX  1258 def /IY   876 def (D) centshow 
+/IX  1335 def /IY   968 def (D) centshow 
+/IX  1412 def /IY   951 def (D) centshow 
+/IX  1488 def /IY   943 def (D) centshow 
+/IX  1565 def /IY   943 def (D) centshow 
+/IX  1642 def /IY   934 def (D) centshow 
+/IX  1718 def /IY   926 def (D) centshow 
+/IX  1795 def /IY   876 def (D) centshow 
+/IX  1948 def /IY   876 def (D) centshow 
+/IX  2025 def /IY   868 def (D) centshow 
+/IX  2102 def /IY   868 def (D) centshow 
+[ ] 0 setdash
+    2 setlinewidth
+0. setgray
+newpath   875   868 m   952   868 l  1028   909 l  1105   934 l  1182   917 l  1258   893 l  1335   984 l  1412   967 l 
+ 1488   959 l  1565   959 l  1642   951 l  1718   942 l  1795   893 l  1948   893 l  2025   884 l  2102   884 l stroke
+[ ] 0 setdash
+    2 setlinewidth
+0. setgray
+newpath   798   643 m  2332   643 l stroke
+[ ] 0 setdash
+    2 setlinewidth
+0. setgray
+newpath  2332   643 m  2332  1226 l stroke
+[ ] 0 setdash
+    2 setlinewidth
+0. setgray
+newpath  2332  1226 m   798  1226 l stroke
+[ ] 0 setdash
+    2 setlinewidth
+0. setgray
+newpath   798  1226 m   798   643 l stroke
+[ ] 0 setdash
+    2 setlinewidth
+0. setgray
+newpath   798   626 m   798   643 l stroke
+newpath  1182   626 m  1182   643 l stroke
+newpath  1565   626 m  1565   643 l stroke
+newpath  1948   626 m  1948   643 l stroke
+newpath  2332   626 m  2332   643 l stroke
+newpath   990   634 m   990   643 l stroke
+newpath  1373   634 m  1373   643 l stroke
+newpath  1757   634 m  1757   643 l stroke
+newpath  2140   634 m  2140   643 l stroke
+0. setgray
+newpath   765   643 m   798   643 l stroke
+newpath   765   726 m   798   726 l stroke
+newpath   765   809 m   798   809 l stroke
+newpath   765   893 m   798   893 l stroke
+newpath   765   976 m   798   976 l stroke
+newpath   765  1059 m   798  1059 l stroke
+newpath   765  1142 m   798  1142 l stroke
+newpath   765  1226 m   798  1226 l stroke
+newpath   781   684 m   798   684 l stroke
+newpath   781   768 m   798   768 l stroke
+newpath   781   851 m   798   851 l stroke
+newpath   781   934 m   798   934 l stroke
+newpath   781  1017 m   798  1017 l stroke
+newpath   781  1101 m   798  1101 l stroke
+newpath   781  1184 m   798  1184 l stroke
+[ ] 0 setdash
+    2 setlinewidth
+0. setgray
+/Helvetica-Bold                           findfont    17 scalefont setfont
+/IX   798 def /IY   601 def
+(0)
+centshow 
+/IX  1182 def /IY   601 def
+(5)
+centshow 
+/IX  1565 def /IY   601 def
+(10)
+centshow 
+/IX  1948 def /IY   601 def
+(15)
+centshow 
+/IX  2332 def /IY   601 def
+(20)
+centshow 
+0. setgray
+/IX   743 def /IY   634 def
+(0)
+rightshow
+/IX   743 def /IY   717 def
+(10)
+rightshow
+/IX   743 def /IY   801 def
+(20)
+rightshow
+/IX   743 def /IY   884 def
+(30)
+rightshow
+/IX   743 def /IY   967 def
+(40)
+rightshow
+/IX   743 def /IY  1051 def
+(50)
+rightshow
+/IX   743 def /IY  1134 def
+(60)
+rightshow
+/IX   743 def /IY  1217 def
+(70)
+rightshow
+[ ] 0 setdash
+0. setgray
+    2 setlinewidth
+/IX  1565 def /IY   509 def
+(PLOT PRES WING ANGLE)
+centshow 
+newpath   579  1267 moveto stroke
+newpath   579  1217 moveto stroke

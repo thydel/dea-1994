@@ -1,0 +1,74 @@
+\chapter{Les fonctions de transitions utilis\'ees}
+\mysetref{the-rules}
+
+\label{rule-xor9}%
+La r\`egle~\arule{Xor9}:\\
+$\Center= \Center \xor \north \xor \south \xor \east \xor \west \xor\\
+ \Neast \xor \Nwest \xor \Swest \xor \Seast$
+
+\mycodefull{c-qmean}%
+{}%
+{Le c{\oe}ur de la r\`egle~\arule{Qmean}}%
+{\label{rule-qmean}%
+  Nous avons exp\'eriment\'e plusieurs param\`etres statiques\footnote{%
+    \mygetref[phrase]{static-param}} %
+  pour cette r\`egle qui nous a servi initialement \`a tester le moteur \`a
+  voisinage sp\'ecial d\'ecrit en~\mygetfig{func-7}. %
+  Les param\`etres utilis\'es dans les illustrations de
+  la~\mygetref{obj-visualisation} sont:~%
+  mask = 3; match = 0; delta = -1. %
+  Ces param\`etres sont parmi les premiers que nous ayons essay\'es, et
+  donne un des comportements les plus riches\footnote{%
+    Intuitivement, en remarquant cependant que
+    ce para\-m\'e\-trage est ins\-pir\'e par la recherche d'une opposition
+    \bialt{cons\-truc\-tion}{des\-truc\-tion},
+    \bialt{\'egal\-isa\-tion}{dif\-f\-\'er\-en\-cia\-tion}, etc.\  typique d'un r\`egle
+    telle~\arule{Life}, et \'evocatrice de ph\'enom\`enes de fronti\`eres.} %
+  que nous ayons trouv\'es pour cette famille\footnote{%
+    La famille est ici comprise comme l'espace de r\`egles engendr\'e par
+    un syst\`eme de param\`etres statique pour un algorithme de g\'en\'eration de
+    table de transition.} %
+  de r\`egles.}
+
+\mycodefull{c-anneal}%
+{}%
+{La r\`egle~\arule{Anneal} est impl\'ement\'ee via la r\`egle~\arule{Sum9}}%
+{\label{rule-anneal}%
+  Le source de la fonction \asoft{C} impl\'ementant la fonction de
+  transition de la r\`egle~\arule{Sum9}, qui re\c{c}oit en argument statique
+  une table secondaire d\'ecrivant une r\`egle additive. %
+  \mygetref[phrase]{additive-rules}}%
+
+\mycodefull{tcl-anneal}%
+{}%
+{L'interface de binding \asoft{Tcl} pour~\arule{Anneal}}%
+{\arule{Anneal} est d\'ecrite sous les noms:~%
+    \arule{M46789} dans~\cite{Vichniac86}, \\%
+    \arule{Lava Lamp}~(une version~3D) dans~\cite{Pickover92b}, %
+    \arule{Anneal} dans~\cite{Toffoli87}. %
+    Il s'agit d'une modification de la r\`egle
+    dite~\arule{Vote~Majoritaire}~\cite{Toffoli87}, qui
+    \aquote{recuit} la dynamique du vote majoritaire par \'echange des
+    bits~5 et~6.}
+
+\mycodefull{c-tube-worm}%
+{}%
+{La r\`egle~\arule{Tube-Worm}}%
+{\label{rule-tube-worm}%
+  Le source de la fonction \asoft{C} impl\'ementant la fonction de
+  transition de la r\`egle~\arule{Tube-Worm},
+  d'apr\`es~\cite{Toffoli87}.}
+
+%%
+%% Local Variables:
+%% mode: latex
+%% mode: auto-fill
+%% iso-accents-minor-mode: nil
+%% TeX-master: "top"
+%% TeX-command-default: "mytex"
+%% Local IspellParsing: "latex-mode ~latin1"
+%% Local IspellPersDict: "~/.ispell_lisp"
+%% LocalWords: "the-rules Xor c-qmean ur Qmean static-param func mask m\'e Sum"
+%% LocalWords: "obj-visualisation trage c-anneal Anneal additive-rules binding"
+%% LocalWords: "tcl-anneal Tcl Lamp c-tube-worm Tube-Worm"
+%% End:

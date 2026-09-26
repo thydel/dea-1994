@@ -1,0 +1,8 @@
+while true
+do
+	if [ -s xxx ]
+	then
+		cat pltcmd
+		sleep $1
+	fi
+done

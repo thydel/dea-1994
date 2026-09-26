@@ -1,0 +1,94 @@
+\begin{small}
+\begin{center}\begin{Huge}R\'esum\'e\end{Huge}\end{center}
+\bigskip\bigskip
+
+Nous proposons des m\'ethodes et des outils d'exploration et de
+visualisation d'espaces de r\`egles de grande dimension pour des
+automates cellulaires. %
+Ces objec\-tifs nous ont amen\'e \`a r\'ealiser des exp\'eriences de calcul
+parall\`ele cellulaire et \`a concevoir des architectures logicielles bien
+adapt\'ees qui nous ont permis de mener \`a bien nos exp\'eriences sur des
+machines enti\`erement s\'equentielles.
+
+Nous avons r\'ealis\'e des moteurs cellulaires rapides bas\'es sur une
+repr\'esentation des lois par la lookup-table r\'esultante d'un morphisme
+et sur une collecte pipeline du voisinage cellulaire. %
+Afin de d\'emontrer la validit\'e de cette approche nous avons \'egalement
+r\'ealis\'e une impl\'ementation d'un processeur cellulaire SIMD particulier
+sous forme du morphisme associ\'e \`a un pr\'ed\'ecodage des instructions pour
+une exploitation optimale de la lookup-table; nous proposons en outre
+une m\'ethode de transformation d'une lookup-table quelconque en
+s\'equence de contr\^ole pour cette machine. %
+Nous avons exp\'eriment\'e des modes d'analyse et de visualisation
+sp\'ecifiques, en particulier des \aconcept{r\'eductions diff\'erentielles}
+et des \aconcept{projections relativistes}. %
+Nous avons tourn\'e ces outils vers la production de trajectoires pour
+des r\`egles des \aconcept{familles} \arule{Anneal}, \arule{Life},
+\arule{Qmean}, \arule{Tube-Worm}, \arule{Fox-Rabbit}, et test\'e les
+limites de calcul accessible en r\'ealisant des mesures plus compl\`etes
+sur la r\`egle \arule{M46789}. %
+En vue de la g\'en\'eralisation de ces exp\'eriences de calcul cellulaire \`a
+la visualisation de la structure de l'espace des r\`egles, nous
+proposons un nouveau param\`etre de contr\^ole pour l'\'echantillonnage des
+espaces de r\`egles, le \aquote{param\`etre d'ench\^assement}, d\'efini pour
+chaque \'el\'ement de voisinage du r\'eseau d'interconnexion associ\'e \`a une
+r\`egle, comme l'influence de ce voisin sur la r\`egle.
+
+Nous proposons de consid\'erer la programmation cellulaire par tables
+comme une m\'ethode d'exploitation des ressources disponibles sur les
+machines SISD modernes~(50~Mips, 32~M\'egas), sans pr\'ejudice de l'usage
+du calcul cellulaire sur des architectures cellulaires mat\'erielles. %
+Nous tentons de d\'efinir les objets \'el\'ementaires permettant de
+sp\'ecifier des objets cellulaires arbitrairement complexes constituant
+des exp\'eriences de calcul cellulaire. %
+Nous consid\'erons d'une part l'existence de dualit\'es \'epist\'emologiques
+ou empiriques organisant les objets cellulaires selon des axes
+synth\'etique-analytique, temps-espace, algorithme-heuristique,
+s\'equentiel-parall\`ele. %
+Nous consid\'erons d'autre part la plasticit\'e de l'approche par table,
+qui nous permet de projeter les objets du calcul cellulaire
+sur ces diff\'erents axes.
+
+Dans le chapitre~\mygetref{space-time-law} nous pr\'esentons la
+structure des objets de notre \'etude:~l'espace, le temps et les lois, %
+ainsi que les m\'ethodes applicables sur ces objets:~\'edition, r\'eduction,
+transformation, visualisation pour l'espace et le temps, ainsi que
+construction, alt\'eration, composition, m\'elange et s\'eparation pour les
+lois. %
+Nous pr\'esentons \'egalement dans ce chapitre l'architecture de nos
+moteurs cellulaires. %
+
+Dans le chapitre~\mygetref{rule-space} nous pr\'esentons les outils
+conceptuels utilis\'es pour la quantification de l'espace des r\`egles, et
+nous proposons un nouveau param\`etre de contr\^ole pour l'exploration et
+la structuration de cet espace:~le param\`etre d'ench\^assement. %
+
+Le chapitre~\mygetref{about-anneal} est consacr\'e \`a une \'etude
+exp\'erimentale de la r\`egle~\arule{Anneal} bas\'ee sur l'exploitation de nos outils. %
+Les exp\'eriences r\'ealis\'ees nous am\`enent \`a proposer l'existence d'une
+relative invariance spatio-temporelle des trajectoires associ\'ees \`a
+une transition de phase dans l'espace des configurations initiales. %
+
+La conclusion introduit les limites de notre approche qui \`a associ\'e
+un constructivisme bottom-up \`a une \aquote{gestion de tables
+  g\'en\'eralis\'ee}. %
+Nous \'evoquons pour finir une approche alternative de r\'ealisation
+cellulaire purement algorithmique. %
+
+\end{small}
+
+%%
+%% Local Variables:
+%% mode: auto-fill
+%% iso-accents-minor-mode: nil
+%% TeX-master: "top"
+%% TeX-command-default: "mytex"
+%% Local IspellParsing: "latex-mode ~latin1"
+%% Local IspellPersDict: "~/.ispell_lisp"
+%% LocalWords: "CAW Cellular Automata Workbench SIMD SISD Mips M\'egas bottom-up"
+%% LocalWords: "morphog\'en\`eses lookup manipulables artefactuelle look-up empty"
+%% LocalWords: "impl\'ementation pr\'ed\'ecodage relativistes lookup-table morphisme"
+%% LocalWords: "Anneal Qmean Tube-Worm Fox-Rabbit synth\'etique-analytique NEW"
+%% LocalWords: "temps-espace algorithme-heuristique s\'equentiel-parall\`ele"
+%% LocalWords: "space-time-law rule-space about-anneal constructivisme"
+%% End:

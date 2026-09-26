@@ -1,0 +1,61 @@
+include $(CASDIR)/make/std-vars
+
+INCLUDES = \
+	-I$(CASDIR)/src/include \
+	-I$(CASDIR)/src/lib \
+	$(XINCLUDES) \
+	-I$(TCLINCDIR)
+
+CFLAGS = $(INCLUDES)
+CC = gcc $(CC_DEBUG_FLAGS) $(CC_OPTIM_FLAGS)
+
+LIBNAME = conexlib
+
+SRCS_A = \
+	apply.c
+
+SRCS_B = \
+	named-func.c
+
+M4_FILES = \
+	apply.m4 \
+	cas.m4 \
+	m4_rename.m4 \
+	moore-t.m4 \
+	moore.m4 \
+	vn.m4
+
+SRCS = $(SRCS_A) $(SRCS_B)
+
+HEADERS =
+
+OBJS_A = $(SRCS_A:.c=.o)
+OBJS_B = $(SRCS_B:.c=.o)
+OBJS = $(OBJS_A) $(OBJS_B)
+EXECS = $(LIBNAME).a
+
+top: $(LIBNAME).a
+
+apply.c: apply.txt
+	cat apply.head apply.txt > apply.c
+
+apply.txt: $(M4_FILES)
+	m4 cas.m4 | $(CB) | sed -e '/^$$/d' > apply.txt
+
+named-func.o: named-func.txt
+
+named-func.txt: $(OBJS_A)
+	nm -p $(OBJS_A) | grep ' T ' | cut -d' ' -f3 | sed -e 's/\(.*\)/gen(\1)/' > named-func.txt
+
+include $(CASDIR)/make/lib-targets
+
+include $(CASDIR)/make/std-targets
+
+# DO NOT DELETE THIS LINE -- make depend depends on it.
+
+apply.o: /usr/include/tcl/tcl.h /usr/include/stdio.h /usr/include/features.h
+apply.o: /usr/include/sys/cdefs.h /usr/include/_G_config.h
+apply.o: /home/uruk/thy/usr/cas/src/include/local.h
+apply.o: /home/uruk/thy/usr/cas/src/include/magic.h
+apply.o: /home/uruk/thy/usr/cas/src/lib/frame/frame.h
+named-func.o: /home/uruk/thy/usr/cas/src/lib/util/named.h named-func.txt

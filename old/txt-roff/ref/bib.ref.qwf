@@ -1,0 +1,592 @@
+# Cellular Automata
+
+%T Characteristic Representation of Elementary Cellular Automata
+%A Y. Kayama
+%A H. Anada
+%A Y. Imamura
+%D 1993
+
+%T Revisiting the Edge of Chaos: Evolving Cellular Automata to Perform Computations
+%A M. Mitchell
+%A P. T. Hraber
+%A J. P. Crutchfield
+%B Integrative Themes
+%V Santa Fe Institute Studies in the Sciences of Complexity, Proc. Vol. 19
+%E G. Cowan
+%E D. Pines
+%E D. Melzner
+%C Reading, MA
+%I Addison-Wesley
+%D 1993
+%O To appear
+
+%T Boolean Derivatives on Cellular Automata
+%A G. Y. Vichniac
+%B Cellular Automata Theory and Experiment
+%E H. Gutowitz
+%I MIT Press
+%D 1991
+
+%T Structure of the elementary cellular automata rule space
+%A W. Li
+%A N. Packard
+%J Complex System
+%N 4
+%D 1990
+%X
+not yet read
+
+%T Computation at the edge of chaos: phase transition and emergent computation
+%A C. G. Langton
+%J Physica D 42
+%P 12-37
+%D 1990
+%X
+not yet read, but check what was in alife proceeding
+
+%T Adaptation toward the edge of chaos
+%A N. H. Packard
+%B Dynamic Patterns in Complex Systems
+%P 293-301
+%E J. A. S Kelso
+%E A. J. Mandell
+%E M. F. Shlesinger
+%I World Scientific
+%C Singapore
+%D 1988
+%X
+not yet read
+
+%T Transition Phenomena in Cellular Automata Rule Space
+%A W. Li
+%A N. H. Packard
+%A C. G. Langton
+%B Cellular Automata Theory and Experiment
+%E H. Gutowitz
+%I MIT Press
+%D 1991
+%X
+Argue that bay varying lambda one can get phase transition
+(first and second order) from ``simpl\('e' periodic rule to chaotic rules
+and that ``complex'' rule lies at the phase transition border.
+type of rule obtained from statistical measures.
+appendix explain the computation methods for some statictical quantities:
+spreading rate of difference patterns, entropy and mutual information
+and for the spreading rate of difference pattern by mean-field theory
+also propose some refinement to the wolfram classification
+(mainly about shifting configuration space)
+
+%T Is There a Sharp Phase Transition for Deterministic Cellular Automata?
+%A W. K. Wootters
+%A C. G. Langton
+%B Cellular Automata Theory and Experiment
+%E H. Gutowitz
+%I MIT Press
+%D 1991
+%X
+Try to find a ``sharp phase transition'' in the limit large rules tables
+(mainly by augmenting the number of symbols).
+use mean field theory to predict statistical properties (mainly entropy)
+using lambda as parameter.
+
+%T Wolfram's class IV Automata and a Good Life
+%A H. V. McIntosh
+%B Cellular Automata Theory and Experiment
+%E H. Gutowitz
+%I MIT Press
+%D 1991
+
+%T Criticality in Cellular Automata
+%A H. Chat\('e
+%A P. Manneville
+%B Cellular Automata Theory and Experiment
+%E H. Gutowitz
+%I MIT Press
+%D 1991
+
+%T A Hierarchical Classification of Cellular Automata
+%A H. A. Gutowitz
+%B Cellular Automata Theory and Experiment
+%E H. Gutowitz
+%I MIT Press
+%D 1991
+
+%T Simple Systems That Exhibit Self-Directed Replication
+%A A. Reggia
+%A S. L. Armentrout
+%A Hui-Hsien Chou
+%A Yun Peng
+%J Science
+%N 259 (February)
+%P 1282-1287
+%D 1993
+
+%T A Cellular Automata Simulation system: Version 2.0
+%A J. D. Eckart
+%I Radford University
+%D 1992
+
+%T Cellang 2.0: Language Reference manual
+%A J. D. Eckart
+%I Radford University
+%D 1992
+
+%T The Structure of the Core of the Spiral Wave in the Belousov-Zhabotinskii Reaction
+%A S. C. Mueller
+%A T. Plesser
+%A B. Hess
+%J Science
+%N 230 (November)
+%P 4726
+%D 1985
+%X
+Found in hodje manuel page
+
+%T Cellular automata theory and practice:
+%A D. Farmer
+%A T. Toffoli
+%A S. Wolfram
+%I North-Holland
+%C Amsterdam
+%D 1984
+%X
+Found in hodje manuel page
+
+%T The Hodgepodge Machine Makes Wawes
+%A A. K. Dewdney
+%J Scientific American
+%N 259:2 (August 1988)
+%P 104-107
+%D 1988
+%X
+Found in hodje manuel page
+
+%T Winning Ways, 2
+%A E. Berlekamp
+%A J. H. Conway
+%A R. Guy
+%I Academic Press
+%C New York
+%D 1982
+%X
+Found in ca-archives
+Chapter 25 contains Conways description of Life.
+
+%T Grammatical Man: Information Theory, Entropy, Language, and Life
+%A J. Campbell
+%I Simon & Schuster
+%C New York
+%D 1982
+%X
+Found in ca-archives
+Says Ulam was inspired by Chomsky's theory of generative grammar.
+
+%T Exploiting Regularities in Large Cellular Spaces
+%A W. Gosper
+%J Physica-D
+%N 10
+%P 75-80
+%I North Holland
+%D 1984
+Found in ca-archives
+
+%T Wheels, Life, and Other Mathematical Amusements
+%A M. Gardner
+%I W. H. Freeman
+%C New York
+%D 1983
+%X
+Found in ca-archives
+Contains October '70 and
+February '71 Scientific American columns along with other
+work by Conway and Ulam.
+
+%T Theory of Self-Reproducing Automata
+%A J. Von Neumann
+%I University of Illinois Press
+%C Urbana and Chicago
+%D 1966
+%X
+Found in ca-archives
+Contains a proof that a 29 state automata can reproduce itself.
+
+%J LIFELINE - A Quarterly Newsletter for enthusiast of John Conway's Game of Life
+%E R. T. Wainwright
+%D 1971-73
+%X
+Issues may be obtained from Lifeline, 12 Longvue Ave., New Rochelle, N.Y. 10804.
+
+%B Dynamical Systems and Cellular Automata
+%E J. Demongeot
+%E E. Goles
+%E M. Tchuente
+%I Academic Press
+%D 1985
+
+%B Essays on Cellular Automata
+%E A. W. Burks
+%I University of Illinois Press
+%C Urbana and Chicago
+%D 1970
+%X
+Discusses Von Neumann's and Ulam's work.
+
+%B Parallel Processing by Cellular Automata and Arrays
+%E T. Legendi
+%E D. Parkinson
+%E R. Vollmar
+%E G. Wolf
+%I NORTH-HOLLAND
+%D 1987
+%X
+Proceeding of the Third International Workshop on
+Parallel Processing by Cellular Automata and Arrays
+Berlin, GDR, 9-11 September, 1986
+
+%T Cellular Automata Machines
+%A T. Toffoli
+%A N. Margolus
+%C Cambridge MA
+%I MIT Press
+%D 1987
+
+%T Theory and Applications of Cellular Automata
+%A S. Wolfram
+%C Singapore
+%I World Scientific
+%D 1986
+
+%T Statistical mechanics of cellular automata
+%A S. Wolfram
+%J Rev. Mod. Phys
+%V 55
+%N 3
+%P 601-644
+%D 1983
+
+%T Modern Cellular Automata - Theory and Applications
+%A K. Preston, Jr.
+%A M. J. B. Duff
+%I Plenum Press
+%D 1984
+
+%T Aperiodicity in one-dimensional cellular automata
+%A E. Jen
+%B Cellular Automata Theory and Experiment
+%E H. Gutowitz
+%I MIT Press
+%D 1991
+
+%T Invertible cellular automata: A review
+%A T. Toffoli
+%A N. Margolus
+%B Cellular Automata Theory and Experiment
+%E H. Gutowitz
+%I MIT Press
+%D 1991
+
+%T Digital mechanics: An informational process based on reversible universal cellular automata
+%A E. Fredkin
+%B Cellular Automata Theory and Experiment
+%E H. Gutowitz
+%I MIT Press
+%D 1991
+
+%T Representation of geometrical and topological quantities in cellular automata
+%A M. A. Smith
+%B Cellular Automata Theory and Experiment
+%E H. Gutowitz
+%I MIT Press
+%D 1991
+
+%T Automates Cellulaires
+%A G. Hantcherlian
+%A D. Hervio
+%I Universit\('e de Grenoble
+%D 1972
+
+%T Problems in Complex Systems
+%A W. Li
+%R CCSR-89-9
+%I Center for Complex Systems Research, University of Illinois at Urbana-Champaign
+%D 1989
+
+%T Pretty Picture Generated by Two-state Five-neighbor Cellular Automata
+%A W. Li
+%R CCSR-88-15
+%I Center for Complex Systems Research, University of Illinois at Urbana-Champaign
+%D 1988
+
+%T The Global Dynamics of Cellular Automata
+%A A. Wuensche
+%A M. Lesser
+%V Santa Fe Institute Studies in the Sciences of Complexity, Ref. Vol. I
+%C Reading, MA
+%I Addison-Wesley
+%D 1992
+
+# Architecture et Programation
+
+%T Programmation par configurations des ordinateurs cellulaires \(`a tr\(`es grande \('echelle
+%A J. Signorini
+%I Th\(`ese de l'universit\('e de Paris-8 Vincennes \(`a Saint-Denis
+%D 1992
+
+%T Un routeur pour le chip GAPP: \('etude simulation et programmation
+%A J. Signorini
+%I M\('emoire de D.E.A de l'universit\('e de Paris-8 Vincennes \(`a Saint-Denis
+%D 1986
+
+%T Contr\(^ole et programmation parall\(`eles des architectures pyramidales
+%A J. M\('ehat
+%I Th\(`ese de l'universit\('e de Paris-8 Vincennes \(`a Saint-Denis
+%D 1989
+
+%T Etude pratique des ressources de la programmation plane
+%A M. Rozin
+%I M\('emoire de maitrise de l'universit\('e de Paris-8 Vincennes \(`a Saint-Denis
+%D 1987
+
+%T Programmation des M\('ega-Processeurs - Du GAPP \(`a la Connection Machine
+%A P. Greussay
+%I Universit\('e de Paris-8 Vincennes \(`a Saint-Denis
+%D 1985
+
+%T L'ordinateur cellulaire
+%A P. Greussay
+%J La Recherche
+%N 204
+%P 1320-1330
+%D 1988
+
+%T Multi-Computer Architectures for Artificial Intelligence
+%A L. Uhr
+%I Wiley-Interscience
+%D 1987
+%K parallelism
+
+%T Algorithm-Structured Computer Arrays and Networks
+%A L. Uhr
+%I Academic Press
+%D 1984
+%K parallelism
+
+%T Parallel, Hierarchical Software/Hardware Pyramid Architectures
+%A L. Uhr
+%I University of Wisconsin
+%D 1986
+
+%T Structured SIMD Programming in Parallaxis
+%A T. Braunl
+%I Sprinder-Verlag
+%D 1989
+
+%T VLSI Array Processors
+%A S. Y. Kung
+%I Prentice Hall
+%D 1998
+
+%T Parallel Computers - Architecturem programing and algorithms
+%A R. W. Hockney
+%A C. R. Jesshope
+%I Adam Hilger Ltd
+%D 1986
+
+%T The Connection Machine
+%A W. Daniel Hillis
+%I MIT Press
+%D 1986
+
+%T Processeur GAPP - Geometric Arithmetic Parallel Processor
+%A NCR
+%I Futur IDS
+%D 1985
+
+%T Applications notes to the GAPP
+%A NCR
+%I Futur IDS
+%D 1985
+
+%T Digital Signal Processing - GAPP
+%A NCR
+%I Futur IDS
+%D 1985
+
+# Artificial Life
+
+%T Collective Behaviour for a Micro-colony of Robots
+%A A. Ali Cherif
+%B ECAL 93
+%P 1-8
+%E J. L. Deneubourg
+%E S. Goss
+%E G. Nicolis
+%E H. Bersini
+%E R. Dagonnier
+%I Universtit\('e Libre de Bruxelles
+%D 1993
+
+%T Evolutionary dynamics of spatial games
+%A K. Lindgren
+%A M. G. Nordahl
+%B ECAL 93
+%P 604-615
+%E J. L. Deneubourg
+%E S. Goss
+%E G. Nicolis
+%E H. Bersini
+%E R. Dagonnier
+%I Universtit\('e Libre de Bruxelles
+%D 1993
+
+%T Life at the Edge of Chaos
+%A C. G. Langton
+%B Artificial Life II
+%V Santa Fe Institute Studies in the Sciences of Complexity, Proc. Vol. X
+%P 41-91
+%E C. G. Langton
+%E C. Taylor
+%E J. D. Farmer
+%E S. Rasmussen
+%C Redwood City, CA
+%I Addison-Wesley
+%D 1991
+
+%T An Approach to the Synthesis of Life
+%A T. S. Ray
+%B Artificial Life II
+%V Santa Fe Institute Studies in the Sciences of Complexity, Proc. Vol. X
+%P 371-408
+%E C. G. Langton
+%E C. Taylor
+%E J. D. Farmer
+%E S. Rasmussen
+%C Redwood City, CA
+%I Addison-Wesley
+%D 1991
+
+%T Molecular Automata in Microtubules: Basic Computatioanl Logic of the Living State?
+%A S. Hameroff
+%A S. Rasmussen
+%A B. Mansson
+%B Artificial Life
+%V Santa Fe Institute Studies in the Sciences of Complexity, Proc. Vol. VI
+%P 521-555
+%E C. G. Langton
+%C Redwood City, CA
+%I Addison-Wesley
+%D 1989
+
+%T Cellular Automata, Reaction-Diffusion Systems and the Origin of Life
+%A P. Tamayo
+%A H. Hartman
+%B Artificial Life
+%V Santa Fe Institute Studies in the Sciences of Complexity, Proc. Vol. VI
+%P 105-124
+%E C. G. Langton
+%C Redwood City, CA
+%I Addison-Wesley
+%D 1989
+
+# Origin of Life
+%T Seven clues to the origin of life - A scientific detective story
+%A A. G. Cairns-Smith
+%I Cambridge University Press
+%D 1985
+
+%T The creation of life - From chemical to animal
+%A Andrew Scott
+%I Basil Blackwell
+%D 1986
+
+# Misc
+
+%B Colloque de Cerisy - L'Auto Organisation, de la physique au politique
+%E P. Dumouchel
+%E J. P. Dupuy
+%I Editions du SEUIL
+%D 1983
+
+%T Mathematical Biology
+%A J. D. Murray
+%C Berlin
+%I Spinger-Verlag
+%D 1990
+
+%T Computational Aspect of VLSI
+%A Jeffrey D. Ullman
+%I Computer Science Press
+%D 1984
+
+%T Dynamique des syst\(`emes complexes - Une introduction aux r\('eseaux d'automates
+%A G\('erard Weisbush
+%I InterEditions/Editions du CNRS
+%D 1989
+
+%T The Recursive Universe - Cosmic Complexity and the Limits of Scientific Knowledge
+%A William Poundstone
+%I Oxford University Press
+%D 1987
+%X
+Life, self-reproducing automata, Maxwell's demon, and other phenomena.
+
+%B On Growth and Form - Fractal and Non-Fractal Patternsin Physics
+%E H. Eug\(`ene Stanley
+%E N. Ostrowsky
+%I Martinus Nijhoff Publisher
+%D 1986
+
+%T Alternate realities - Mathematical models of nature and man
+%A J L. Casti
+%I John Wiley & Sons
+%D 1989
+
+%T The Cosmic Blueprint
+%A Paul Davis
+%I Unwin
+%D 1989
+
+%T Entre le cristal et la fun\('ee - Essai sur l'organisation du vivant
+%A Henri Atlan
+%I Seuil
+%D 1979
+
+%T Autonomie et Connaissance
+%A F. J. Varela
+%I Edition du SEUIL
+%D 1982
+
+%T La machine univers - Cr\('eation, cognition et culture informatique
+%A Pierre L\('evy
+%I Edition de la d\('ecouverte
+%D 1987
+
+%T Eloge de la simulation - De la vie des langages \(`a la synth\(`ese des images
+%A Philippe Qu\('eau
+%I Champ Vallon
+%D 1986
+
+%T Engines of Creation
+%A K. E. Drexler
+%I Anchor Press
+%D 1986
+
+%T Three-dimensional Representation of Chemical Gradients
+%A S. C. Mueller
+%A T. Plesser
+%A B. Hess
+%J Biophysical Chemistry
+%N February
+%D 1987
+%X
+Found in hodje manuel page
+
+%T An Illustrated Guide to Chaos Theory and the Science of Wholeness
+%A J. Briggs
+%A F. D Peat
+%I Harper & Row
+%C New York
+%D 1989
+%X
+Found in hodje manuel page
+

@@ -1,0 +1,53 @@
+%%
+%% customize \chapter and \??section
+%% so to get optional argument mean short name for mark only
+%% instead of for mark and toc.
+%% ie. put short title in header or footer and long title in texte an toc.
+%%
+\def\@chapter[#1]#2{\ifnum \c@secnumdepth >\m@ne
+                         \refstepcounter{chapter}%
+                         \typeout{\@chapapp\space\thechapter.}%
+                         \addcontentsline{toc}{chapter}%
+%                                  {\protect\numberline{\thechapter}#1}%
+                                   {\protect\numberline{\thechapter}#2}%
+                    \else
+%                     \addcontentsline{toc}{chapter}{#1}
+                      \addcontentsline{toc}{chapter}{#2}
+                    \fi
+                    \chaptermark{#1}%
+                    \addtocontents{lof}{\protect\addvspace{10\p@}}%
+                    \addtocontents{lot}{\protect\addvspace{10\p@}}%
+                    \if@twocolumn
+                      \@topnewpage[\@makechapterhead{#2}]%
+                    \else
+                      \@makechapterhead{#2}%
+                      \@afterheading
+                    \fi}
+
+\def\@sect#1#2#3#4#5#6[#7]#8{\ifnum #2>\c@secnumdepth
+     \let\@svsec\@empty\else
+     \refstepcounter{#1}%
+     \let\@@protect\protect
+     \def\protect{\noexpand\protect\noexpand}%
+     \edef\@svsec{\@seccntformat{#1}}%
+     \let\protect\@@protect\fi
+     \@tempskipa #5\relax
+      \ifdim \@tempskipa>\z@
+        \begingroup #6\relax
+          \@hangfrom{\hskip #3\relax\@svsec}%
+                    {\interlinepenalty \@M #8\par}%
+        \endgroup
+       \csname #1mark\endcsname{#7}\addcontentsline
+         {toc}{#1}{\ifnum #2>\c@secnumdepth \else
+                      \protect\numberline{\csname the#1\endcsname}\fi
+%                   #7}\else
+                    #8}\else
+        \def\@svsechd{#6\hskip #3\relax  %% \relax added 2 May 90
+                   \@svsec #8\csname #1mark\endcsname
+                      {#7}\addcontentsline
+                           {toc}{#1}{\ifnum #2>\c@secnumdepth \else
+                           \protect\numberline{\csname the#1\endcsname}%
+                                     \fi
+%                      #7}}\fi
+                       #8}}\fi
+     \@xsect{#5}}

@@ -1,0 +1,81 @@
+gapp ns := 0
+single
+gapp c := ns
+
+gapp ns := 0
+bloc
+gapp ew := ns
+
+gapp ns := 0
+random
+
+pause 1
+
+extract 0
+print ns
+pause 1
+
+extract 1
+print ew
+pause 1
+
+extract 2
+print c
+pause 1
+
+print to ram
+#frame2ascii 0
+#print
+gapp ram 0 := c
+#frame2ascii 0
+#print
+gapp c := ew
+gapp ram 1 := c
+#frame2ascii 0
+#print
+gapp c := ns
+gapp ram 2 := c
+#frame2ascii 0
+
+print clear state
+gapp c := 1; ns := 0; ew := 0
+
+extract 0
+print ns
+pause 1
+
+extract 1
+print ew
+pause 1
+
+extract 2
+print c
+pause 1
+
+print load ram
+
+gapp ns := ram 0
+extract 0
+print ram 0
+pause 2
+
+gapp ns := 0
+extract 0
+print cleared
+pause 2
+
+gapp ns := ram 1
+extract 0
+print ram 1
+pause 2
+
+gapp ns := 0
+extract 0
+print cleared
+pause 2
+
+gapp ns := ram 2
+extract 0
+print ram 2
+pause 2
+

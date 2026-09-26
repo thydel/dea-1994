@@ -1,0 +1,399 @@
+This is TeX, Version 3.1415 (C version 6.0) (format=report 94.9.7)  27 SEP 1994 18:16
+**\nonstopmode\input{top.tex}
+(top.tex (Sty/long-title-in-toc.sty) (Sty/mygrind.sty) (Sty/num-in-bib.sty
+\c@mybibcounter=\count117
+)
+(Sty/email.sty) (Sty/greydraft.sty) (Sty/simple.sty) (Sty/ref-and-cite.sty)
+(Sty/fig-cap.sty
+\mylengtha=\skip46
+\mylengthb=\skip47
+\myheigtha=\skip48
+\myboxa=\box57
+\myboxb=\box58
+) (Sty/spl.sty) (top.aux (title.aux) (abstract.aux)
+(intro-top.aux) (obj-space.aux) (obj-time.aux) (obj-law.aux) (rule-space.aux)
+(about-anneal.aux) (conclusion.aux) (ann-rules.aux) (ann-rabbit.aux)
+(ann-caw.aux) (soft-tools.aux) (biblio.aux))
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 62.
+LaTeX Font Info:    ... okay on input line 62.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 62.
+LaTeX Font Info:    ... okay on input line 62.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 62.
+LaTeX Font Info:    ... okay on input line 62.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 62.
+LaTeX Font Info:    ... okay on input line 62.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 62.
+LaTeX Font Info:    ... okay on input line 62.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 62.
+LaTeX Font Info:    ... okay on input line 62.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <12> on input line 62.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <8> on input line 62.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line 62.
+LaTeX Font Info:    Try loading font information for U+msa on input line 62.
+
+(/usr/TeX/lib/texmf/tex/mfnfss/Umsa.fd
+File: Umsa.fd 1994/05/12 v2.2b Standard AMS font definitions
+)
+LaTeX Font Info:    Try loading font information for U+msb on input line 62.
+ (/usr/TeX/lib/texmf/tex/mfnfss/Umsb.fd
+File: Umsb.fd 1994/05/12 v2.2b Standard AMS font definitions
+)
+LaTeX Font Info:    Try loading font information for U+lasy on input line 62.
+(/usr/TeX/lib/texmf/tex/latex/Ulasy.fd
+File: Ulasy.fd 1994/05/27 v2.1eLaTeX symbol font definitions
+) [1] (title.tex
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <20.74> on input line 16.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <14.4> on input line 16.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 16.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <17.28> on input line 16.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <10.95> on input line 16.
+ [1
+
+]) (abstract.tex
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <24.88> on input line 2.
+
+[1
+
+
+]) [2] (top.toc [1
+
+
+])
+\tf@toc=\write4
+ [2] (nocite.tex) (intro-top.tex
+Chapitre 1.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 9.
+[1
+
+
+
+] (intro-part-1.tex [2] [3] [4] [5]
+File: ../dump/casNew.ps Graphic file (type eps)
+ <../dump/casNew.ps> [6] [7] [8]
+File: ../dump/superglider.eps Graphic file (type eps)
+
+<../dump/superglider.eps> [9] [10]
+File: ../fig/timepyrcub.eps Graphic file (type eps)
+ <../fig/timepyrcub.eps>
+
+LaTeX Font Warning: Font shape `OT1/cmss/m/it' in size <12> not available
+(Font)              Font shape `OT1/cmss/m/sl' tried instead on input line 426.
+
+
+File: ../dump/tsum-128x3-diag.ps Graphic file (type eps)
+<../dump/tsum-128x3-diag.ps>
+File: ../dump/life-256x3-rel.ps Graphic file (type eps)
+ <../dump/life-256x3-rel.ps>
+File: ../dump/life-256x3-relmov.ps Graphic file (type eps)
+
+<../dump/life-256x3-relmov.ps>
+File: ../dump/anneal-256x3-rel.ps Graphic file (type eps)
+ <../dump/anneal-256x3-rel.ps>
+File: ../fig/transcub.eps Graphic file (type eps)
+
+<../fig/transcub.eps>
+File: ../dump/anneal-256x3-diag.ps Graphic file (type eps)
+ <../dump/anneal-256x3-diag.ps>
+File: ../dump/tsum-128x3-faces.ps Graphic file (type eps)
+
+<../dump/tsum-128x3-faces.ps>
+File: ../dump/tsum-128x3-trans-bits.ps Graphic file (type eps)
+ <../dump/tsum-128x3-trans-bits.ps>
+File: ../dump/tsum-128x3-trans-byte.ps Graphic file (type eps)
+
+<../dump/tsum-128x3-trans-byte.ps>
+File: ../dump/anneal-256x3-trans-bits.ps Graphic file (type eps)
+ <../dump/anneal-256x3-trans-bits.ps>
+File: ../dump/life-256x3-trans-bits.ps Graphic file (type eps)
+
+<../dump/life-256x3-trans-bits.ps>
+File: ../dump/tsum-128x3-relmovedge.ps Graphic file (type eps)
+ <../dump/tsum-128x3-relmovedge.ps>)
+(intro-part-2.tex [11] [12] [13] [14] [15] [16] [17] [18] [19] [20] [21]
+[22] [23] [24] [25] [26] [27] [28] [29]
+File: ../dump/anneal-sum-1k-8k.ps Graphic file (type eps)
+ <../dump/anneal-sum-1k-8k.ps>
+File: ../dump/anneal-sum-1k-8k-xv.ps Graphic file (type eps)
+
+<../dump/anneal-sum-1k-8k-xv.ps>)) [30] [31] [32] (obj-space.tex
+Chapitre 2.
+(../tbl/neighburhood-size-cube.tbl) [33
+
+
+
+] [34]
+(../tbl/neighburhood-size-croix.tbl) (../tbl/neighburhood-size-sphere.tbl)
+[35]
+File: ../dump/neighburhood-size-tbl-16xor9.ps Graphic file (type eps)
+ <../dump/neighburhood-size-tbl-16xor9.ps> [36] [37]
+File: ../dump/tsum-128-edge.ps Graphic file (type eps)
+
+<../dump/tsum-128-edge.ps>
+File: ../dump/anneal-g128-s11.ps Graphic file (type eps)
+ <../dump/anneal-g128-s11.ps> [38] [39]
+File: ../dump/tube-worm-mix.ps Graphic file (type eps)
+
+<../dump/tube-worm-mix.ps>
+File: ../dump/tsum-grey.ps Graphic file (type eps)
+ <../dump/tsum-grey.ps>
+File: ../dump/tsum.ps Graphic file (type eps)
+ <../dump/tsum.ps>
+File: ../dump/tsum-ray-one.ps Graphic file (type eps)
+
+<../dump/tsum-ray-one.ps>
+File: ../dump/tsum-ray-all.ps Graphic file (type eps)
+ <../dump/tsum-ray-all.ps> [40] [41] [42] [43]
+[44] [45] (../tbl/space-size.tbl) (../tbl/compute-time-100kcps.tbl)
+(../tbl/compute-time-10mcps.tbl) [46
+
+] [47] [48]) (obj-time.tex
+File: ../plot/anneal-sum.ps Graphic file (type eps)
+
+<../plot/anneal-sum.ps>
+File: ../dump/anneal-sum.ps Graphic file (type eps)
+ <../dump/anneal-sum.ps>
+File: ../dump/life-time-xor.ps Graphic file (type eps)
+ <../dump/life-time-xor.ps>
+[49
+
+
+
+] [50] [51] [52]
+File: ../plot/lifex.ps Graphic file (type eps)
+ <../plot/lifex.ps> [53]
+File: ../plot/lifex-sum-1.ps Graphic file (type eps)
+ <../plot/lifex-sum-1.ps>
+File: ../plot/lifex-sum-2.ps Graphic file (type eps)
+
+<../plot/lifex-sum-2.ps>
+File: ../dump/life-3d-New.ps Graphic file (type eps)
+ <../dump/life-3d-New.ps> (../tbl/lifex-sum-1.tbl)
+(../tbl/lifex-sum-2.tbl) [54] [55] [56]
+File: ../dump/anneal-time-xor.ps Graphic file (type eps)
+ <../dump/anneal-time-xor.ps>
+File: ../plot/anneal-pop.ps Graphic file (type eps)
+
+<../plot/anneal-pop.ps>
+File: ../plot/anneal-pop-detail.ps Graphic file (type eps)
+ <../plot/anneal-pop-detail.ps>
+File: ../plot/heart-pop.ps Graphic file (type eps)
+ <../plot/heart-pop.ps>
+File: ../plot/heart-pop-detail.ps Graphic file (type eps)
+
+<../plot/heart-pop-detail.ps> [57] [58] [59] [60]) (obj-law.tex
+File: ../dump/loop-1024.ps Graphic file (type eps)
+
+<../dump/loop-1024.ps>
+File: ../fig/func-1.ps Graphic file (type eps)
+ <../fig/func-1.ps>
+File: ../fig/apply-1.ps Graphic file (type eps)
+ <../fig/apply-1.ps>
+File: ../fig/apply-2.ps Graphic file (type eps)
+
+<../fig/apply-2.ps>
+File: ../fig/func-2.ps Graphic file (type eps)
+ <../fig/func-2.ps>
+File: ../fig/func-3.ps Graphic file (type eps)
+ <../fig/func-3.ps>
+File: ../fig/func-4.ps Graphic file (type eps)
+ <../fig/func-4.ps>
+File: ../fig/func-7.ps Graphic file (type eps)
+
+<../fig/func-7.ps> [61
+
+
+
+] [62] [63] [64]
+File: ../fig/gap-pe.ps Graphic file (type eps)
+ <../fig/gap-pe.ps>
+File: ../fig/gap.ps Graphic file (type eps)
+ <../fig/gap.ps>
+(../src-txt/c-gapp-pe-h.tex) (../src-txt/c-gapp-pe-pe.tex)
+(../src-txt/c-gapp-pe-tbl.tex) (../src-txt/c-gapp-arch-h.tex)
+(../src-txt/c-gapp-arch.tex) (../src-txt/c-gapp-arch-alu.tex) [65] [66]
+[67] [68] [69] [70] [71] [72] [73] [74]
+File: ../fig/life-dfa.ps Graphic file (type eps)
+ <../fig/life-dfa.ps>
+File: ../fig/life-tree.ps Graphic file (type eps)
+
+<../fig/life-tree.ps> [75] [76] [77] [78] [79] (../tbl/gapp-dfa.tbl)
+(../tbl/gapp-dfa-optim.tbl) [80] [81]
+File: ../dump/cantata-1.ps Graphic file (type eps)
+ <../dump/cantata-1.ps>
+File: ../dump/cantata-mk-rule.ps Graphic file (type eps)
+
+<../dump/cantata-mk-rule.ps>
+File: ../dump/cantata-cell.ps Graphic file (type eps)
+ <../dump/cantata-cell.ps> (../src-txt/tcl-cas.tex) [82
+
+] [83] [84] [85] [86]) [87] (rule-space.tex
+Chapitre 3.
+[88
+
+
+
+]
+File: ../plot/lambda.ps Graphic file (type eps)
+ <../plot/lambda.ps>
+File: ../plot/flip.ps Graphic file (type eps)
+ <../plot/flip.ps>
+File: ../plot/lambda-deriv.ps Graphic file (type eps)
+ <../plot/lambda-deriv.ps>
+File: ../plot/flip-deriv.ps Graphic file (type eps)
+
+<../plot/flip-deriv.ps>
+File: ../plot/lambda-prob.ps Graphic file (type eps)
+ <../plot/lambda-prob.ps>
+File: ../plot/flip-prob.ps Graphic file (type eps)
+ <../plot/flip-prob.ps>
+File: ../plot/lambda-versus-prob.ps Graphic file (type eps)
+
+<../plot/lambda-versus-prob.ps>
+File: ../plot/flip-versus-prob.ps Graphic file (type eps)
+ <../plot/flip-versus-prob.ps>
+File: ../plot/lambda-flip-hist.ps Graphic file (type eps)
+
+<../plot/lambda-flip-hist.ps>
+File: ../plot/lambda-versus-flip.ps Graphic file (type eps)
+ <../plot/lambda-versus-flip.ps>
+File: ../plot/lambda-flip-ratio-sorted.ps Graphic file (type eps)
+
+<../plot/lambda-flip-ratio-sorted.ps>
+File: ../plot/lambda-flip-prob-sorted.ps Graphic file (type eps)
+ <../plot/lambda-flip-prob-sorted.ps>
+File: ../plot/E-lambda-1.ps Graphic file (type eps)
+
+<../plot/E-lambda-1.ps> [89] [90] [91] [92] [93] [94] [95] [96] [97]) [98]
+(about-anneal.tex
+Chapitre 4.
+File: ../dump/anneal-3d.ps Graphic file (type eps)
+<../dump/anneal-3d.ps>
+File: ../dump/life-00.eps Graphic file (type eps)
+ <../dump/life-00.eps>
+File: ../dump/anneal-00.eps Graphic file (type eps)
+ <../dump/anneal-00.eps>
+File: ../dump/anneal-03.eps Graphic file (type eps)
+
+<../dump/anneal-03.eps>
+File: ../dump/anneal-02.eps Graphic file (type eps)
+ <../dump/anneal-02.eps>
+File: ../dump/anneal-01.eps Graphic file (type eps)
+ <../dump/anneal-01.eps>
+File: ../plot/anneal-01.eps Graphic file (type eps)
+
+<../plot/anneal-01.eps>
+File: ../plot/anneal-02.eps Graphic file (type eps)
+ <../plot/anneal-02.eps>
+File: ../plot/anneal-03.eps Graphic file (type eps)
+ <../plot/anneal-03.eps>
+File: ../plot/anneal-04.eps Graphic file (type eps)
+
+<../plot/anneal-04.eps>
+File: ../plot/anneal-05.eps Graphic file (type eps)
+ <../plot/anneal-05.eps> [99
+
+
+
+] [100] [101] [102] [103]
+[104] [105] [106]) [107] [108] [109] (conclusion.tex
+Chapitre 5.
+File: ../dump/xu-photo-1.ps Graphic file (type eps)
+<../dump/xu-photo-1.ps>
+File: ../dump/xu-photo-1-top.ps Graphic file (type eps)
+ <../dump/xu-photo-1-top.ps> [110
+
+
+
+] [111] [112]
+File: ../dump/xu-Cfilm-1-1.ps Graphic file (type eps)
+
+<../dump/xu-Cfilm-1-1.ps>
+File: ../dump/xu-Cfilm-1-2.ps Graphic file (type eps)
+ <../dump/xu-Cfilm-1-2.ps>
+File: ../dump/xu-Cfilm-2-1.ps Graphic file (type eps)
+ <../dump/xu-Cfilm-2-1.ps>
+File: ../dump/xu-Cfilm-2-2.ps Graphic file (type eps)
+
+<../dump/xu-Cfilm-2-2.ps>) [113] [114] [115] [116] [117] [118] (ann-rules.tex
+Annexe A.
+(../src-txt/c-qmean.tex) (../src-txt/c-anneal.tex) (../src-txt/tcl-anneal.tex)
+(../src-txt/c-tube-worm.tex)) [119
+
+
+
+] [120] [121] (ann-rabbit.tex
+Annexe B.
+[122
+
+
+
+]
+File: ../plot/rabbit-gnans-1.ps Graphic file (type eps)
+ <../plot/rabbit-gnans-1.ps>
+File: ../plot/rabbit-gnans-2.ps Graphic file (type eps)
+ <../plot/rabbit-gnans-2.ps> [123]
+File: ../plot/rabbit-1.ps Graphic file (type eps)
+
+<../plot/rabbit-1.ps>
+File: ../plot/rabbit-1-512.ps Graphic file (type eps)
+ <../plot/rabbit-1-512.ps> [124]
+File: ../plot/rabbit-2.ps Graphic file (type eps)
+ <../plot/rabbit-2.ps>
+File: ../plot/rabbit-3.ps Graphic file (type eps)
+
+<../plot/rabbit-3.ps> [125] [126]) [127] (ann-caw.tex
+Annexe C.
+(../src-txt/tcl-conex.tex) [128
+
+
+
+] (../src-txt/tcl-data.tex)
+(../src-txt/tcl-func.tex)) [129] [130] (soft-tools.tex
+Annexe D.
+[131
+
+
+
+] [132] [133]) [134] (top.lof [135
+
+
+] [136])
+\tf@lof=\write5
+ [137] (top.lot)
+\tf@lot=\write6
+ [138
+
+]
+(biblio.tex (top.bbl (/usr/TeX/lib/texmf/tex/custom-bib/babelbst.tex) [139
+
+
+]
+[140] [141] [142] [143] [144] [145] [146]
+Missing character: There is no ^^e9 in font cmti12!
+Missing character: There is no ^^e8 in font cmti12!
+Missing character: There is no ^^e0 in font cmti12!
+ [147] [148] [149])) [150] (top.aux
+(title.aux) (abstract.aux) (intro-top.aux) (obj-space.aux) (obj-time.aux)
+(obj-law.aux) (rule-space.aux) (about-anneal.aux) (conclusion.aux)
+(ann-rules.aux) (ann-rabbit.aux) (ann-caw.aux) (soft-tools.aux) (biblio.aux)) )
+ 
+Here is how much of TeX's memory you used:
+ 2110 strings out of 9377
+ 24027 string characters out of 57847
+ 122942 words of memory out of 262141
+ 5248 multiletter control sequences out of 9500
+ 25198 words of font info for 101 fonts, out of 100000 for 255
+ 14 hyphenation exceptions out of 607
+ 33i,15n,37p,496b,782s stack positions out of 300i,40n,60p,3000b,4000s
+
+Output written on top.dvi (156 pages, 446432 bytes).

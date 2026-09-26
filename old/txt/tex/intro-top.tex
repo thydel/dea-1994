@@ -1,0 +1,123 @@
+\chapter{Introduction}
+
+Les automates cellulaires~(AC)\footnote{%
+  Pour des collections th\'ematiques voir
+  \cite{Demongeot85,Wolfram86a,Legendi87,Gutowitz90a}, %
+  pour des ouvrages th\'ematiques voir
+  \cite{Preston84,Toffoli87,Jackson91c}, %
+  pour une approche didactique voir %
+  \cite{Casti89a,Schroeder90a}.} %
+sont des syst\`emes dynamiques virtuels, %
+discrets en espace, en temps et en \'etats, homog\`enes, synchrones et
+d\'eterministes. %
+L'espace est constitu\'e de cellules identiques dot\'ees d'un r\'eseau
+d'interconnexion r\'egulier~(une grille de dimension~2 ou~3 par
+exemple). %
+Une cellule est une variable discr\`ete~(une cha\^ine de bits dont la
+taille d\'etermine le nombre d'\'etats de la cellule). %
+Le temps est une s\'equence d'espaces g\'en\'er\'ee par l'application
+synchrone d'une fonction de transition d\'eterministe. %
+La fonction de transition est locale dans le temps et dans l'espace,
+son argument est un ensemble fini d'\'etats de cellules voisines du
+r\'eseau d'interconnexion, pour un nombre fini de points ant\'erieurs. %
+
+Les AC sont sujets d'\'etudes ou d'applications dans les domaines des
+math\'ematiques %
+\cite[]{Jen90,Vichniac90}, %
+de l'architecture des ordinateurs %
+\cite[]{Legendi87a,Zsoter87}, %
+de la programmation parall\`ele %
+\cite[]{Preston84,Almasi87} %
+et de la simulation de syst\`emes naturels %
+tant physiques\footnote{%
+  En particulier les \aquote{Lattice Gas Automata}~\cite[]{Despain90,Margolus90}.} %
+\cite[]{Margolus84,Toffoli84,Rossi93} %
+que biologiques\footnote{%
+  L'\'etude de la vie artificielle inspire de nombreux travaux sur les
+  AC, souvent assez \'eloign\'es d'observations biologiques. %
+  Une exception notable \'etant \cite{Hameroff89}, qui propose
+  l'existence d'une capacit\'e au calcul cellulaire pour le
+  cytosquelette.} %
+\cite[]{Tamayo89,Boer93}. %
+Ils constituent un champ d'\'etudes des math\'ematiques discr\`etes et un
+mod\`ele important en th\'eorie du calcul\footnote{%
+  Voir par exemple \cite{Lindgren90} pour une \'equivalence
+  entre certains AC~1D et une machine de Turing.}, %
+en particulier pour les probl\`emes li\'es au parall\'elisme\footnote{%
+  Les AC math\'ematiques mettent en jeu
+  un espace infini, en particulier \`a limites p\'eriodiques. %
+  Notre point de vue est \'egalement empirique et
+  impl\'ementatoire: nous viserons sp\'ecifiquement la r\'ealisation de
+  programmes dot\'es du meilleur rendement. %
+  En cons\'equence, dans un contexte de ressources m\'emoire limit\'ees, nos
+  AC seront \'evidemment dot\'es d'un espace restreint, par d\'efaut torique.}; %
+leur structure est tr\`es proche de l'architecture des machines
+SIMD\footnote{%
+  \cite{Greussay85} indique que la structure des AC est tr\`es proche de
+  l'architecture des machines SIMD, et nous pensons que le progr\`es des
+  connaissances et des outils dans ces deux domaines sont intimement
+  li\'es. %
+  Les travaux de \cite{Rozin87,Rozin88,Rozin93} sur la programmation
+  plane et de \cite{Signorini92,signorini94} sur la programmation par
+  configurations cellulaires t\'emoignent de la fertilit\'e de cette
+  approche. %
+  La puissance de calcul et la taille de la m\'emoire disponible sur des
+  machines aujourd'hui largement accessibles permet d'envisager la
+  r\'ealisation de multiples exp\'eriences dans le domaine du parall\'elisme
+  synchrone massif, sans attendre l'arriv\'ee de machines SIMD\@. %
+  Les AC fournissent un outil conceptuel en mesure de jouer un r\^ole
+  central dans la recherche d'objets naturels~(comportement \'emergent)
+  ou artificiels~(comportement construit), pouvant servir de base \`a la
+  d\'efinition d'outils pratiques d'exploitation des ressources du
+  parall\'elisme synchrone massif.}; %
+ind\'ependamment de l'architecture des machines, de nombreux
+algorithmes se pr\^etent \`a une formulation
+cellulaire~\cite[]{Uhr87,Uhr84}, en particulier les algorithmes de
+traitement d'images~\cite[]{Preston84,Hasselbring92}; enfin, les AC
+peuvent \^etre vus comme une version discr\`ete de syst\`emes
+d'\'equations diff\'erentielles\footnote{%
+  Et \`a ce titre permettent la mod\'elisation de nombreux syst\`emes
+  naturels. %
+  La mod\'elisation d'un syst\`eme naturel par un ensemble d'\'equations
+  diff\'erentielles \'etablit des relations diff\'erentielles entre les
+  variables macroscopiques du syst\`eme~(des populations par exemple). %
+  La mod\'elisation par AC \'etablit des relations entre les composants
+  discrets \'el\'ementaires~(les cellules) du syst\`eme. %
+  Les variables macroscopiques deviennent des propri\'et\'es \'emergentes du
+  syst\`eme dont le choix peut \^etre fait a posteriori, mais le mod\`ele
+  doit imp\'erativement reposer sur une description en termes de
+  comportement collectif du ph\'enom\`ene \'etudi\'e. %
+
+  La description d'un syst\`eme naturel en termes de comportement
+  collectif n'implique pas l'identification d'une cellule \`a un
+  individu. %
+  Par exemple, dans une simulation de dynamique des populations, une
+  cellule peut \^etre identifi\'ee \`a une densit\'e de population en un point
+  d'espace. %
+  N\'eanmoins la validit\'e de la mod\'elisation~(conformit\'e de la dynamique
+  des populations d'un AC \`a un syst\`eme d'\'equations diff\'erentielles
+  standard de r\'ef\'erence par exemple) d\'epend toujours de la pr\'esence
+  d'un nombre minimum de cellules dans la simulation.}. %
+
+\input{intro-part-1}
+%% Objectifs et contraintes
+%% Outils existants
+%% Calcul et visualisation
+
+\input{intro-part-2}
+%% Pourquoi notre nouvel environnement?
+%% Optimisation d'usage de ressources
+%% r\'eflexion morphog\'en\'etique
+%% espace, temps et calcul
+%% Plan de lecture
+
+%%
+%% Local Variables:
+%% mode: auto-fill
+%% iso-accents-minor-mode: nil
+%% TeX-command-default: "mytex"
+%% TeX-master: "top"
+%% Local IspellParsing: "latex-mode ~latin1"
+%% Local IspellPersDict: "~/.ispell_lisp"
+%% LocalWords: "impl\'ementatoire SIMD Lattice Gas Automata cytosquelette"
+%% End:

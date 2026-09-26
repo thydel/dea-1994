@@ -1,0 +1,6 @@
+$(CMDNAME): $(OBJS)
+	$(CC) -o $(CMDNAME) $(OBJS) $(LIBS)
+
+install: $(CMDNAME)
+	cp $(CMDNAME) $(CELLDIR)/bin
+

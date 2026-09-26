@@ -1,0 +1,18 @@
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|} \hline
+
+\multicolumn{2}{|c}{} &%
+ \multicolumn{7}{|c|}{$a$}%
+ \\\cline{3-9}
+
+    \multicolumn{2}{|c|}{\raisebox{1.5ex}[0cm][0cm]%
+    {$\frac{\text{G}a^{d}}{\text{D}}$}}
+ & 16 & 32 & 64 & 128 & 256 & 512 & 1K\\\hline
+
+ & 1 & 160ms & 320ms & 640ms & 1s & 2s & 5s & 10s %
+\\\cline{2-9}
+ & 2 & 2s & 10s & 40s & 2m & 10m & 43m & 2h \\\cline{2-9}
+\raisebox{1.5ex}[0cm][0cm]{$d$}%
+ & 3 & 40s & 5m & 43m & 5h & 1j & 15j & 124j \\\cline{2-9}
+ & 4 & 10m & 2h & 1j & 31j & 1a & 21a & 348a %
+\\\hline
+\end{tabular}

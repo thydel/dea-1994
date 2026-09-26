@@ -1,0 +1,46 @@
+% Remember to use the lgrind style
+
+\File{c\-tube\-worm.c},{15:56},{Sep  6 1994}
+\L{\LB{\Proc{tube\_worm}\V{tube\_worm}()_\C{}\1\* moore-1+2 \*\1\CE{}}}
+\L{\LB{\{}}
+\L{\LB{____\C{}\1\* set plane 0, 1 et timers only to random \*\1\CE{}}}
+\L{\LB{}}
+\L{\LB{____\C{}\1\* try looking only frame n\1(4 + timer) \*\1\CE{}}}
+\L{\LB{}}
+\L{\LB{____\C{}\1\* try with timer = 5 \*\1\CE{}}}
+\L{\LB{____\K{static}_\K{int}_\V{alarm\_tab0}[\,]_=_\{_0,_1,_1,_1,_1,_1,_1,_1,_1,_\};}}
+\L{\LB{}}
+\L{\LB{____\C{}\1\* try with timer = 2, 3, 4 or 5 \*\1\CE{}}}
+\L{\LB{____\K{static}_\K{int}_\V{alarm\_tab1}[\,]_=_\{_0,_0,_1,_1,_1,_1,_1,_1,_1,_\};}}
+\L{\LB{}}
+\L{\LB{____\C{}\1\* try with timer = 3, 4 or 5 \*\1\CE{}}}
+\L{\LB{____\K{static}_\K{int}_\V{alarm\_tab2}[\,]_=_\{_0,_0,_0,_1,_1,_1,_1,_1,_1,_\};}}
+\L{\LB{____}}
+\L{\LB{____\C{}\1\* try with timer = 1, 2 (size \>= 256), 3, 4 or 5 \*\1\CE{}}}
+\L{\LB{____\K{static}_\K{int}_\V{alarm\_tab3}[\,]_=_\{_0,_0,_1,_0,_1,_1,_1,_1,_1,_\};}}
+\L{\LB{}}
+\L{\LB{____\K{static}_\K{int}\*_\V{alarm\_tab}[\,]_=_\{_\V{alarm\_tab0},_\V{alarm\_tab1},_\V{alarm\_tab2},_\V{alarm\_tab3},_\};}}
+\L{\LB{____\K{static}_\K{int}_\V{timer\_tab}[\,]_=_\{_0,_0,_1,_2,_3,_4,_5,_6,_7,_\};}}
+\L{\LB{}}
+\L{\LB{____\K{int}_\V{iworm},_\V{oworm},_\V{ialarm},_\V{oalarm},_\V{itimer},_\V{otimer},_\V{alarm},_\V{timer},_\V{ret};}}
+\L{\LB{}}
+\L{\LB{____\V{alarm}_=_\V{num\_arg\_tab}[0];}}
+\L{\LB{____\V{timer}_=_\V{num\_arg\_tab}[1];}}
+\L{\LB{}}
+\L{\LB{____\K{if}_(!\V{alarm}_\&\&_!_\V{timer})_\{}}
+\L{\LB{}\Tab{8}{\V{alarm}_=_2;}}
+\L{\LB{}\Tab{8}{\V{timer}_=_3;}}
+\L{\LB{____\}}}
+\L{\LB{}}
+\L{\LB{____\V{iworm}_=_\V{C};}}
+\L{\LB{____\V{ialarm}_=_\V{L}_\&_1;}}
+\L{\LB{____\V{itimer}_=_(\V{L}_\&_7_\<\<_1)_\>\>_1;}}
+\L{\LB{____}}
+\L{\LB{____\V{oworm}_=_!\V{itimer};}}
+\L{\LB{____\V{oalarm}_=_\V{alarm\_tab}[\V{alarm}][\V{\_8sum}()];}}
+\L{\LB{____\V{otimer}_=_\V{iworm}_\&_\V{ialarm}_?_\V{timer}_:_\V{timer\_tab}[\V{itimer}];}}
+\L{\LB{}}
+\L{\LB{____\V{ret}_=_\V{oworm}_\|_\V{oalarm}_\<\<_1_\|_\V{otimer}_\<\<_2;}}
+\L{\LB{}}
+\L{\LB{____\K{return}_\V{ret};}}
+\L{\LB{\}}}

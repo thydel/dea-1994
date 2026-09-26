@@ -1,0 +1,28 @@
+single
+gapp c := ns
+gapp ram 8 := c
+frame2ascii 0
+print
+bloc
+gapp c := ns
+gapp ram 9 := c
+frame2ascii 0
+print
+random
+gapp c := ns
+gapp ram 10 := c
+frame2ascii 0
+print
+print --------------------
+gapp ns := 0; ew := 0; c := 0
+state2ascii 1
+print
+gapp ns := ram 8
+state2ascii 1
+print
+gapp ns := ram 9
+state2ascii 1
+print
+gapp ns := ram 10
+state2ascii 1
+print

@@ -1,0 +1,132 @@
+/* scale=10 */
+
+kilo=1024
+mega=kilo*kilo
+giga=kilo*mega
+tera=kilo*giga
+
+define print_big(n) {
+	if (n >= tera) {
+		print "\\s-2\\fI", n / tera, "T\\fR\\s+2"
+		return
+	}
+	if (n >= giga) {
+		print "\\s-2\\fI", n / giga , "G\\fR\\s+2"
+		return
+	}
+	if (n >= mega) {
+		if (n > (16 * mega)) {
+			print "\\s-2\\fI", n / mega, "M\\fR\\s+2"
+		} else {
+			print "\\fB", n / mega, "M\\fR"
+		}
+		return
+	}
+	if (n >= kilo) {
+		print "\\fB", n / kilo, "K\\fR"
+		return
+	}
+	print "\\fB", n, "\\fR"
+}
+
+define print_std_big(n) {
+	if (n >= tera) {
+		print n / tera, "T"
+		return
+	}
+	if (n >= giga) {
+		print n / giga , "G"
+		return
+	}
+	if (n >= mega) {
+		print n / mega, "M"
+		return
+	}
+	if (n >= kilo) {
+		print n / kilo, "K"
+		return
+	}
+	print n
+}
+
+define space_size(dim, size) {
+	discard = print_big(size ^ dim)
+}
+
+/* columns */
+ndim=4
+/* lines */
+from_size=4
+to_size=10
+nsize=(to_size - from_size) + 1
+
+print ".TS\n"
+
+print "center allbox;\n"
+
+/*
+ * TBL desc
+ */
+
+/* lines titles */
+print "c\ts\tc"
+for (size = 0; size < nsize - 1; ++size) {
+	print "\ts"
+}
+print "\n"
+
+/* line values */
+print "^\t^"
+for (size = 0; size < nsize; ++size) {
+	print "\tn"
+}
+print "\n"
+
+/* first two data lines */
+print "c\tn"
+for (size = 0; size < nsize; ++size) {
+	print "\tn"
+}
+print "\n"
+print "^\tn"
+for (size = 0; size < nsize; ++size) {
+	print "\tn"
+}
+print ".\n"
+
+/*
+ * TBL datas
+ */
+
+/* first line (line X col title and line title) */
+print "$a sup d$\t$a$\n"
+
+/* second line (line args values) */
+print "\t"
+for (size = from_size; size <= to_size; ++size) {
+	print "\t" 
+	discard = print_std_big(2 ^ size)
+}
+print "\n"
+
+/* third line (columns title and first line values) */
+print "$d$\t"
+dimension = 1
+print dimension, "\t"
+for (size = from_size; size <= to_size; ++size) {
+	discard = space_size(dimension, 2 ^ size)
+	print "\t"
+}
+print "\n"
+
+/* other lines */
+for (dimension = 2; dimension <= ndim; ++dimension) {
+	print "\t", dimension, "\t"
+	for (size = from_size; size <= to_size; ++size) {
+		tmp = space_size(dimension, 2 ^ size)
+		print "\t"
+	}
+	print "\n"
+}
+
+print ".TE\n"

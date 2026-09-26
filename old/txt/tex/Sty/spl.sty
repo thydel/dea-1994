@@ -1,0 +1,17 @@
+%% \mycodeI[placement]{stuff}{list-title}{caption-title}{text}
+%%
+%% placement - first arg of \table
+%% stuff - the inline stuff
+%% list-title: title that go in list of caption
+%% caption-title: title that go in the caption
+%% text: commenting text
+\newcommand{\mycodeI}[5][htp]{%
+  \label{code-tst-section}%
+  \begin{figure}[#1]%
+    \myboxed{full}{%
+      \mycapted{code-tst}%
+      {#2}%
+      {#3}{#4}{#5}%
+      }%
+  \end{figure}%
+  }

@@ -1,0 +1,6 @@
+size=$1
+across=$2
+
+cd mk-photo-seq-tmp
+# pnmindex -black -size $size -across $across ??? > ../photo-seq.pbm
+pnmindex -size $size -across $across ??? > ../photo-seq.pbm

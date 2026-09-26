@@ -1,0 +1,32 @@
+pause 2
+extract 0
+pause 2
+extract 1
+pause 2
+extract 2
+pause 2
+
+gapp ram 0 := c
+gapp c := ns
+gapp ram 1 := c
+gapp c := ew
+gapp ram 2 := c
+
+gapp c := 1; ns := 0; ew := 0
+pause 2
+extract 0
+pause 2
+extract 1
+pause 2
+extract 2
+pause 2
+
+gapp ns := ram 0
+extract 0
+pause 2
+gapp ew := ram 1
+extract 1
+pause 2
+gapp c := ram 2
+extract 2
+pause 2

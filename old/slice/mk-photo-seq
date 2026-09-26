@@ -1,0 +1,17 @@
+size=$1
+from=$2
+to=$3
+step=$4
+across=$5
+
+# sample a serie
+rm -f mk-photo-seq-tmp/*
+for i in `loop $from $to $step`;
+do
+	cp mk-explode-tmp/$i mk-photo-seq-tmp/$i
+done
+
+# make the index
+cd mk-photo-seq-tmp
+# pnmindex -size $size -across $across -black  ??? > ../photo-seq.pgm
+pnmindex -size $size -across $across ??? > ../photo-seq.pgm

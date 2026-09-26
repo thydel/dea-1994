@@ -1,0 +1,122 @@
+%%
+%% old stuff, still in use
+%%
+
+%% \mycaption[style]{type}{file}{list-title}{caption-title}{text}
+%%            #1     #2    #3    #4          #5             #6     
+%% style: full, twothirds, half (default full)
+%% type: dump, fig, tbl, plot
+%% file
+%% list-title: title that go in list of caption
+%% caption-title: title that go in the caption
+%% text: commenting text
+%%
+\newcommand{\mycaption}[6][full]{%
+  \label{#2-#3-section}%
+%  \afterpage{%
+    \ifthenelse{\equal{#2}{tbl}}{\begin{table}[htbp]}{\begin{figure}[htbp]}%
+      \begin{center}%
+        \fbox{%
+          \setlength{\mylengtha}{\textwidth}%
+          \addtolength{\mylengtha}{-2\fboxsep}%
+          \addtolength{\mylengtha}{-2\fboxrule}%
+          \ifthenelse{\equal{#1}{twothirds}}{\setlength{\mylengtha}{.75\mylengtha}}{}%
+          \ifthenelse{\equal{#1}{half}}{\setlength{\mylengtha}{.50\mylengtha}}{}%
+          \begin{minipage}{\mylengtha}%
+            %% put the caption guts
+            \begin{center}%
+              \setlength{\myheigtha}{.05\mylengtha}%
+              \vspace{\myheigtha}%
+              \ifthenelse{\equal{#2}{tbl}}%
+              {\input{../#2/#3.tbl}}%
+              {\epsfig{file=../#2/#3,width=.9\mylengtha}}%
+            \end{center}%
+            %% put the caption text
+            \begin{center}%
+              \begin{minipage}{.9\mylengtha}%
+%                \renewcommand{\baselinestretch}{1}%
+                \ifthenelse{\equal{#2}{plot}}{\vspace{-\bigskipamount}}{}%
+                \begin{small}%
+                  #6%
+                \end{small}%
+%                \vspace{-\bigskipamount}%
+                \ifthenelse{\not\equal{#4}{}}%
+                {\caption[#4]{\label{#2-#3}#5}}%
+                {\caption[#5]{\label{#2-#3}#5}}%
+              \end{minipage}%
+            \end{center}%
+            %% and the caption title
+%            \ifthenelse{\not\equal{#4}{}}%
+%            {\large\parbox{.9\mylengtha}{\caption[#4]{\label{#2-#3}#5}}\normalsize}%
+%            {\large\parbox{.9\mylengtha}{\caption[#5]{\label{#2-#3}#5}}\normalsize}%
+%            \smallskip%
+          \end{minipage}}%
+      \end{center}%
+    \ifthenelse{\equal{#2}{tbl}}{\end{table}}{\end{figure}}%
+%    }%
+}%
+
+%% \mytwocaption[style]{HV}{type}{file1}{file2}{list-title}{caption-title}{text}
+%%               #1     #2  #3    #4     #5     #6          #7             #8
+%% style: full, twothirds, half (default full)
+%% HV: hor, vert
+%% type: dump, fig, tbl, plot
+%% file1
+%% file2
+%% list-title: title that go in list of caption
+%% caption-title: title that go in the caption
+%% text: commenting text
+%%
+\newcommand{\mytwocaption}[8][full]{
+  \label{#3-#4+#5-section}%
+  \afterpage{%
+    \ifthenelse{\equal{#3}{tbl}}{\begin{table}}{\begin{figure}}[!htbp]%
+      \begin{center}%
+        \fbox{%
+          \setlength{\mylengtha}{\textwidth}%
+          \addtolength{\mylengtha}{-2\fboxsep}%
+          \addtolength{\mylengtha}{-2\fboxrule}%
+          \ifthenelse{\equal{#1}{twothirds}}{\setlength{\mylengtha}{.75\mylengtha}}{}%
+          \ifthenelse{\equal{#1}{half}}{\setlength{\mylengtha}{.50\mylengtha}}{}%
+          \begin{minipage}{\mylengtha}%
+            %% put the caption guts
+            \begin{center}%
+              \setlength{\myheigtha}{.05\mylengtha}%
+              \vspace{\myheigtha}%
+              \ifthenelse{\equal{#2}{hor}}%
+              {\epsfig{file=../#3/#4,width=.45\mylengtha}%
+                \epsfig{file=../#3/#5,width=.45\mylengtha}}%
+              {\epsfig{file=../#3/#4,width=.9\mylengtha} \\%
+                \epsfig{file=../#3/#5,width=.9\mylengtha}}%
+            \end{center}%
+            %% put the caption text
+            \begin{center}%
+              \begin{minipage}{.8\mylengtha}%
+                \renewcommand{\baselinestretch}{1}%
+                \ifthenelse{\equal{#3}{plot}}{\vspace{-\bigskipamount}}{}%
+                \begin{small}%
+                  #8%
+                \end{small}%
+                \vspace{-\bigskipamount}%
+              \end{minipage}%
+            \end{center}%
+            %% and the caption title
+            \ifthenelse{\not\equal{#6}{}}%
+            {\caption[#6]{\label{#3-#4+#5}#7}}%
+            {\caption[#7]{\label{#3-#4+#5}#7}}%
+            \smallskip%
+          \end{minipage}}%
+      \end{center}%
+    \ifthenelse{\equal{#3}{tbl}}{\end{table}}{\end{figure}}%
+    }}
+
+\newcommand{\mytbl}[2]{\mycaption[full]{tbl}{#1}{}{#2}{}}
+\newcommand{\mytblnew}[4]{\mycaption[full]{tbl}{#1}{#2}{#3}{#4}}
+\newcommand{\myfig}[2]{\mycaption[full]{fig}{#1}{}{#2}{}}
+\newcommand{\myfignew}[4]{\mycaption[full]{fig}{#1}{#2}{#3}{#4}}
+\newcommand{\mydump}[2]{\mycaption[full]{dump}{#1}{}{#2}{}}
+\newcommand{\mydumpnew}[4]{\mycaption[full]{dump}{#1}{#2}{#3}{#4}}
+\newcommand{\myplot}[2]{\mycaption[full]{plot}{#1}{}{#2}{}}
+\newcommand{\myplotnew}[4]{\mycaption[full]{plot}{#1}{#2}{#3}{#4}}
+\newcommand{\myplottwo}[3]{\mytwocaption[full]{hor}{plot}{#1}{#2}{}{#3}{}}
+\newcommand{\myplottwovert}[3]{\mytwocaption[full]{vert}{plot}{#1}{#2}{}{#3}{}}

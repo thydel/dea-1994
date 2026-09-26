@@ -1,0 +1,102 @@
+la zoologie des automates cellulaires recouvrent deux questions:
+	l'existence (ou les conditions existentielles)
+	la classification - la classification donne des indications sur
+		les conditions existentielles
+
+resencement des formes
+la construction des re`gles
+
+zoologie des automates cellulaires
+structure de l'espace des automates cellulaires
+classification des automates cellulaires
+typologie cellulaires
+
+- necessite' de classifier les AC.
+- difficulte' du a la conjonction de l'explosion combinatoire
+  et le l'universalite' des AC.
+
+limite du pouvoir de mode'lisation de AC?
+
+approche statistique
+approche probabiliste
+
+passage du discret au continu
+
+comment organiser l'espace des AC?
+
+le proble`me de la classification des AC
+se situe a l'intersection du proble`me avant (forward)
+(determiner les propriete' a partir de la re`gle)
+et inverse (determiner la re`gle a partir des proprie'te').
+
+le proble`me de la classification se rame`ne a` la selection
+d'un ensemble de parame^tres (de mesures) descriptif de la fonction de transition,
+d'un ensemble de parame^tres descriptif de la dynamique de la fonction de transition;
+suivi de la classification des dynamiques si possible associe' a une classification
+de la statique.
+
+la mecanique statistique
+	entropie
+		S = - sum(i, p(i) log(p(i)))
+	information mutuelle
+		correlation de deux distributions
+		M = sum(i, sum(j, p(ij) log(p(ij)/p(i)p(j))))
+les de'rive's boole'ennes
+
+les differentes approches
+	la classification de Wolfram
+	le parame`tre lambda de langton
+	la theorie du(des) champs moyen
+	les diagrammes de Bruijn
+	
+les quatres classes de Wolfram (selon Wolfram):
+les class I, II et II sont vue comme des attracteurs de syste`mes dynamiques
+class I: point limite
+	ou tendance a un e'tat spatiallement homoge`ne
+	ou les formes disparraissent avec le temps
+	ou de petits changement sur la configuration initiale
+		sont sans effet sur l'etat final
+class II: cycle limite
+	ou montrant une se'quence de structure simple stable ou periodique
+	ou les formes evolue vers une taille fixe fini
+	ou de petits changement sur la configuration initiale
+		induisent des changement sur des region de taille fini
+class III: attracteur chaotique
+	ou montrant un comportement chaotique ape'riodique
+	ou les formes croissent indefiniment a une vitesse fixe
+	ou de petits changement sur la configuration initiale
+		induisent des changement sur des regions de taille toujours croissante
+class IV: comportement plus complexes que les pre'ce'dent
+	conjecture de calcul universel.
+	Ou montrant des structures localise' complexes, eventuellement propageante
+	ou les formes croissent et se contractent avec le temps
+	ou de petits changement sur la configuration initiale
+		induisent des changement irre'gulier
+
+les quatres classes de Wolfram (selon McIntosh):
+class I: evolution vers un e'tat constant
+class II: evolution vers des segments periodique isole'
+class III: evolution toujours chaotique
+class IV: evolution vers des segment chaotique isole'
+
+les quatres classes de Wolfram (selon Li Packard et Langton):
+class I: point fixe homogene
+class II: periodic
+class III: chaotique
+class IV: complexe
+
+les six classes de Li Packard et Langton pour la dynamiques des CA 1D
+classe' par description quantitative de mesures statistiques:
+	vitesse de diffusion des differences 
+	entropie
+	information mutuelle (correlation de deux distributions)
+class 1: points fixes spatialement homoge`ne
+class 2: points fixes spatialement inhomoge`ne
+		decalage spatial homoge`ne
+class 3: comportement pe'riodique (ou comportement pe'riodique avec de'calage)
+class 4: comportement chaotique local
+class 5: comportement chaotique
+class 6: comportement complexe
+	long transitoire, structure oscillante et propagation de structure
+	manque de convergence statistique
+

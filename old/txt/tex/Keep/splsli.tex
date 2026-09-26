@@ -1,0 +1,349 @@
+%%
+%% CONCEPTS
+%%
+\begin{slide}
+  \begin{itemize}
+    \item{Objects\,:}\\
+      espace, temps, lois.
+    \item{Transformations\,:}\\
+      accumulations, diff\'erences.
+    \item{Visualisations\,:}\\
+      photographiques ou cin\'ematographiques, \\
+      compl\`etes ou r\'eduite, \\
+      solide ou transparente, \\
+      projet\'ees, tranch\'ees, \'eclat\'ees ou coutour\'ees.
+  \end{itemize}
+\end{slide}
+
+%%
+%% ANNEAL 2K BITMAP
+%%
+\begin{slide}
+  \mySfigure{full}{dump}%
+  {anneal-g128-s11}{\arule{anneal} \asquare{2048} \agen{128}}
+\end{slide}
+
+\begin{mynote}
+  ANNEAL 2K BITMAP
+
+  Une photo directe, sans r\'eduction d'information.
+  
+  La r\'esolution du p\'eriph\'erique de sortie fixe une limite \`a la
+  visualisation pratique (sans perte d'information) des configuration
+  cellulaire.
+\end{mynote}
+
+%%
+%% ANNEAL SEQUENCE
+%%
+\myslide{S\'equence de bitmaps}%
+{%
+  \mySfigure{full}{dump}%
+  {anneal-03}{\arule{Anneal} \asquare{256} \agencnt{559}}}
+{%
+  ANNEAL SEQUENCE
+
+  L'application it\'erative de la r\`egle sur la configuration initiale
+  apporte la dimension temporelle au espace du calcul cellulaires.
+
+  Et un probl\`eme de visualisation du \`a la taille en bits des
+  trajectoires ou espace-temps.
+
+  Sur cette s\'equence, l'intervalle de temps s\'eparant deux espace est
+  incr\'ement\'e apr\`es chaque \'echantillonage.
+
+  Une des solution \`a ce probl\`eme est la r\'ealisation de s\'equence anim\'e.
+
+  J'ais r\'ealis\'e des visualisation cin\'ematographiques, mais je me
+  limiterais dans le cadre de cette expos\'e au visualisations
+  photographique.
+
+  Je signale simplement les d\'ebits obtenu Sur un 486DX2 (\`a peu pr\`es 2
+  fois une SparcStation ELC) pour \arule{Life} et \arule{Anneal}.
+
+  Pour le calcul\,: 15 Hz.\\
+  Pour l'animation (copy de fichier \`a fen\`etre)\,: 30 Hz.\\
+  Pour la visualisation en temps r\'eel\,: 10 Hz.\\
+  Pour \arule{Qmean} on obtient calcul\,:\\
+  12 Hz, animation\,: 8 Hz, combin\'e\,: 5 Hz.}
+
+%%
+%% LIFE SUPERLUMINIC GLIDER
+%%
+\myslide{Glider Superluminique}
+{\mySfigure{full}{dump}{superglider}{\arule{Life} \acube{128}}}
+{Cette s\'erie d'espaces de configurations cellulaires est une s\'equence
+  de tranches d'espace-temps non align\'ees sur l'axe du temps.}
+
+%%
+%% QMEAN BITMAPS SERIE
+%%
+\begin{slide}
+  \mySfigure{full}{dump}{qmean-9-128}%
+  {\arule{Qmean} \asquare{512} \agen{128} \aplane{3}}
+\end{slide}
+
+\begin{slide}
+  \mySfigure{full}{dump}{qmean-9-512}%
+  {\arule{Qmean} \asquare{512} \agen{512} \aplane{3}}
+\end{slide}
+
+\begin{slide}
+  \mySfigure{full}{dump}{anneal-02}%
+  {Deux configurations de la r\`egle~\arule{anneal}}%
+\end{slide}
+
+%%
+%%
+%%
+
+\begin{slide}
+  \mySfigure{full}{dump}{anneal-01}%
+  {Les deux configurations de la figure pr\'ecedentes non retouch\'ee}%
+\end{slide}
+
+%%
+%%
+%%
+
+%%
+%% ANNEAL 3D
+%%
+\myslide{Photo d'espace-temps}%
+{%
+  \mySfigure{full}{dump}{anneal-3d}{\arule{Anneal} \acube{512}}}
+{%
+  ANNEAL 3D
+
+  Une autre solution consiste \`a r\'eduire la quantit\'e de donn\'ees
+  visualis\'es par des transformations implicitement associ\'ees \`a une
+  technique de visualisation, ou explicitement appliqu\'e sur un
+  espace-temps avant visualisation.
+
+  Sur cette image la r\'eduction est implicite.
+  
+  La modulation des param\`etres d'une technique de visualisation permet
+  de reconstruire la dimension temporelle.
+
+  J'ais r\'ealis\'e des films de photos d'espace-temps en variant les
+  param\`etre de projections.}
+
+%%
+%% QMEAN PIXMAP
+%%
+\myslide{Visualisation par pixmap}
+{%
+  \mySfigure{full}{dump}{tsum-grey}%
+  {\arule{Qmean} \asquare{256} \agen{128} et \agen{256}}}
+{%
+  QMEAN PIXMAP
+
+  Les g\'en\'erations 128 (\`a gauche) et 256 (\`a droite) d'une trajectoire
+  de \arule{Qmean} sur un espace \asquare{256}.
+
+  L'usage de pixmap pour la visualisation des configurations
+  cellulaires de r\`egle non binaires pose le probl\`eme du choix de la
+  colormap.
+
+  Les colormaps sont ici des greymaps.
+
+  Les deux pixmaps sup\'erieurs utilisent une greymap dont l'\'echelle
+  des  valeurs est progressive.
+
+  Les deux pixmaps inf\'erieurs utilisent une greymap dont l'\'echelle des
+  valeurs est al\'eatoire, masquant la r\'epartition g\'en\'erale des
+  intensit\'es, mais r\'ev\'elant les d\'etails de l'alternance de valeurs.}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%
+%% SPL
+%%
+\begin{slide}
+  \begin{Huge}
+    \begin{center}
+      SPL
+    \end{center}
+  \end{Huge}
+\end{slide}
+
+%%
+%% CA DEFINITION
+%%
+\begin{slide}
+  \begin{center}
+    Les automates cellulaires
+  \end{center}
+  sont des syst\`emes dynamiques virtuels,\\
+  discrets en espace, en temps et en \'etats,\\
+  homog\`enes, synchrones et d\'eterministes.
+\end{slide}
+
+%%
+%% THE RULES WE WILL USE
+%%
+\begin{slide}
+  \mytitle{Les trois r\`egles utilis\'es\,:}
+  \begin{tabbing}
+    XXXXXXXXXXXX\=\kill
+    \>\arule{Life}\\
+    \>\arule{Anneal}\\
+    \>\arule{Qmean}
+  \end{tabbing}
+\end{slide}
+
+%%
+%% SCHEMA FOR TRANSPARENCY MAKING
+%%
+\myslide{Sch\'ema de r\'ealisation de r\'eductions par transparence}
+{\mySfigure{full}{fig}{transcub}{foo}}
+{}
+
+%%
+%% SCHEMAS FOR SPACE-TIME SLICING
+%%
+\myslide{Projection }
+{\mySfigure{full}{fig}{timepyrcub}{foo}}
+{Tranches d'espace-temps et Pyramides relativistes}
+
+
+%%
+%% ANNEAL SPECIAL SECTION
+%%
+
+\begin{slide}
+  \mystitle{Leur utilisation pour l'exploration}
+  \mySfigure{full}{plot}{anneal-01a}%
+  {\'Evolution de la taille des fronti\`eres de~\arule{Anneal}}%
+  \mySfigure{full}{plot}{anneal-02}%
+  {\'Evolution de la population de~\arule{Anneal} lors
+    d'un changement du nombre d'\^iles}%
+\end{slide}
+
+%%\begin{mynote}
+%%  La taille des fronti\`eres est une approximation par la diff\'erence bit
+%%  \`a bit entre l'espace de g\'en\'eration~$n$ et~$n-1$.
+%%
+%%  Cette figure permet de comprendre l'existence des points
+%%  d'inflexions de la courbe d'\'evolution de anneal.
+%%\end{mynote}
+
+%%
+%%
+%%
+
+\begin{slide}
+  \mySfigure{full}{plot}{anneal-03}%
+  {Transition vers la derni\`ere \^ile}%
+  \mySfigure{full}{plot}{anneal-04}%
+  {Populations normalis\'ees pour 4~espaces initiaux de tailles crois\-santes}%
+\end{slide}
+
+%%\begin{mynote}
+%%  Une autre zone de transition sur les m\^emes donn\'ees que celle de la
+%%  figure pr\'ecedente.
+%%  
+%%  R\'eductions int\'egrales normalis\'ees des populations des trajectoires
+%%  associ\'ees \`a 4~espaces initiaux de tailles respectives:~$2^{128}$,
+%%  $2^{256}$, $2^{512}$ et $2^{1024}$. %
+%%  Le plot de gauche pr\'esente le logarithme du plot de droite.
+%%\end{mynote}
+
+%%
+%% LIFE XOR POPULATION PLOT
+%%
+\myslide{\'Evolutions de populations}
+{\mySfigure{full}{plot}{lifex}{\arule{life} \asquare{128} \agencnt{1280}}}
+{}
+
+%%
+%% QMEAN RAY-TRACED MOVIE
+%%
+\begin{slide}
+  \mySfigure{full}{dump}{tsum-ray-all}%
+  {\arule{Qmean} \acube{128}}
+\end{slide}
+
+\begin{mynote}
+  Les variations de param\`etres sur l'axe horizontal porte sur la prise
+  de vues.
+  
+  Les variations de param\`etres sur l'axe vertical porte sur la valeur
+  de seuillage utilis\'ee.
+  
+  La valeur de seuil varie de 0.3~\`a~0.8.
+\end{mynote}
+
+%%
+%% LIFE AND ANNEAL XOR SEQUENCE
+%%
+\begin{slide}
+  \mytitle{Visualisations\,:}
+  \mySfigure{full}{dump}{life-time-xor}%
+  {\arule{Life}}
+  \mySfigure{full}{dump}{anneal-time-xor}%
+  {\arule{Anneal}}
+\end{slide}
+
+%%
+%% QMEAN PIXMAP
+%%
+\myslide{Visualisation par pixmap}
+{%
+  \mySfigure{full}{dump}{tsum-grey}%
+  {\arule{Qmean} \asquare{256} \agen{128} et \agen{256}}}
+{%
+  QMEAN PIXMAP
+
+  Extraction param\'etr\'e par une colormap.
+
+  \'echelle  des  valeurs est progressive.
+
+  \'echelle des  valeurs est al\'eatoire\\
+  masque la r\'epartition g\'en\'erale des intensit\'es\\
+  r\'ev\'ele les d\'etails de l'alternance de valeurs.}
+
+%%
+%% QMEAN BITMAPS
+%%
+\myslide{Bitmaps de 8~plans de 8~g\'en\'erations}
+{%
+  \mySfigure{full}{dump}{tsum}%
+  {\arule{Qmean} \asquare{128} \agencnt{1024}}}%
+{%
+  QMEAN BITMAPS
+
+  Double extraction:\\
+  tranche de temps et trance d'\'etats cellulaire
+
+  Temps de haut en bas
+
+  g\'en\'erations $2^{3}$ \`a $2^{10}$\\
+  premi\`ere g\'en\'eration = 8.
+
+  Les 256~\'etats possibles de chaque cellule sont visualis\'es par
+  8~bitmaps au lieu d'un pixmap.
+
+  Les bitmaps sont pr\'esent\'es de gauche \`a droite pour les bits~0 \`a~7.}
+
+%%
+%% ANNEAL AND LIFE TRANSPARENCY
+%%
+\begin{slide}
+  \mystitle{Transparence par plan de bits}
+  \mySfigure{full}{dump}{anneal-256x3-trans-bits}%
+  {\arule{Anneal} \acube{256}}
+  \mySfigure{full}{dump}{life-256x3-trans-bits}%
+  {\arule{Life} \acube{256}}
+\end{slide}
+
+%%\begin{mynote}
+%%  ANNEAL AND LIFE TRANSPARENCY
+%%  
+%%  R\'eduction par Accumulation.
+%%\end{mynote}
+
+% Local Variables: 
+% mode: latex
+% TeX-master: t
+% End: 

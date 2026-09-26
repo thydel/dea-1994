@@ -1,0 +1,16 @@
+(
+	echo "include(\`file.m4')"
+	echo -e "$1(\c"
+	while [ $# -gt 2 ]
+	do
+		shift
+		echo -e "$1,\c"
+	done
+	shift
+	echo "$1)"
+) | m4 | tee xxx | sed \
+	-e 's/^[ 	]*//' \
+	-e '/^[ 	]*$/d'\
+	-e '/^#/d' \
+	-e 's/[ 	][ 	]*/ /g' \
+	-e 's/[ 	][ 	]*$//'

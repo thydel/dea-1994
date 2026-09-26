@@ -1,0 +1,264 @@
+/* scale=10 */
+
+roff=0
+latex=1
+dcolumn=0
+
+kilo=1024
+mega=kilo*kilo
+giga=kilo*mega
+tera=kilo*giga
+
+define print_big(n) {
+	if (roff) {
+		if (n >= tera) {
+			print "\\s-2\\fI", n / tera, "T\\fR\\s+2"
+			return
+		}
+		if (n >= giga) {
+			print "\\s-2\\fI", n / giga , "G\\fR\\s+2"
+			return
+		}
+		if (n >= mega) {
+			if (n > (16 * mega)) {
+				print "\\s-2\\fI", n / mega, "M\\fR\\s+2"
+			} else {
+				print "\\fB", n / mega, "M\\fR"
+			}
+			return
+		}
+		if (n >= kilo) {
+			print "\\fB", n / kilo, "K\\fR"
+			return
+		}
+		print "\\fB", n, "\\fR"
+	}
+	if (latex) {
+		if (n >= tera) {
+			print "\\textit{\\small", n / tera, "T}"
+			return
+		}
+		if (n >= giga) {
+			print "\\textit{\\small", n / giga , "G}"
+			return
+		}
+		if (n >= mega) {
+			if (n > (16 * mega)) {
+				print "\\textit{\\small", n / mega, "M}"
+			} else {
+				print "\\textbf{", n / mega, "M}"
+			}
+			return
+		}
+		if (n >= kilo) {
+			print "\\textbf{", n / kilo, "K}"
+			return
+		}
+		print "\\textbf{", n, "}"
+	}
+}
+
+define print_std_big(n) {
+	if (n >= tera) {
+		print n / tera, "T"
+		return
+	}
+	if (n >= giga) {
+		print n / giga , "G"
+		return
+	}
+	if (n >= mega) {
+		print n / mega, "M"
+		return
+	}
+	if (n >= kilo) {
+		print n / kilo, "K"
+		return
+	}
+	print n
+}
+
+define space_size(dim, size) {
+	discard = print_big(size ^ dim)
+}
+
+/* columns */
+ndim=4
+/* lines */
+from_size=4
+to_size=10
+nsize=(to_size - from_size) + 1
+
+if (roff) {
+	print ".TS\n"
+
+	print "center allbox;\n"
+}
+
+/*
+ * TBL desc
+ */
+
+if (roff) {
+	/* lines titles */
+	print "c\ts\tc"
+	for (size = 0; size < nsize - 1; ++size) {
+		print "\ts"
+	}
+	print "\n"
+	
+	/* line values */
+	print "^\t^"
+	for (size = 0; size < nsize; ++size) {
+		print "\tn"
+	}
+	print "\n"
+	
+	/* first two data lines */
+	print "c\tn"
+	for (size = 0; size < nsize; ++size) {
+		print "\tn"
+	}
+	print "\n"
+	print "^\tn"
+	for (size = 0; size < nsize; ++size) {
+		print "\tn"
+	}
+	print ".\n"
+}
+
+if (latex) {
+	if (dcolumn) {
+		if (0) {
+			print "\\newcolumntype{.}{D{.}{\\,}{-1}}\n"
+		} else {
+			print "\\newcolumntype{.}{D{.}{}{-1}}\n"
+		}
+	}
+	print "\\begin{tabular}{|c|c"
+	for (size = 0; size < nsize; ++size) {
+		if (dcolumn) {
+			print "|."
+		} else {
+			print "|c"
+		}
+	}
+	print "|} \\hline"
+	print "\n\n"
+}
+
+/*
+ * TBL datas
+ */
+
+if (roff) {
+	/* first line (line X col title and line title) */
+	print "$a sup d$\t$a$\n"
+}
+
+if (latex) {
+	print "\\multicolumn{2}{|c}{} &%"
+	print "\n"
+	print " \\multicolumn{", size, "}{|c|}{$a$}%"
+	print "\n"
+	print " \\\\\\cline{3-", nsize + 2, "}\n\n"
+	print "    \\multicolumn{2}{|c|}{\\raisebox{1.5ex}[0cm][0cm]%\n"
+	print "    {$a^{d}$}}\n"
+}
+
+if (roff) {
+	/* second line (line args values) */
+	print "\t"
+	for (size = from_size; size <= to_size; ++size) {
+		print "\t" 
+		discard = print_std_big(2 ^ size)
+	}
+	print "\n"
+}
+
+if (latex) {
+	for (size = from_size; size <= to_size; ++size) {
+		print " & " 
+		discard = print_std_big(2 ^ size)
+	}
+	print "\\\\\\hline\n\n"
+}
+
+if (roff) {
+	/* third line (columns title and first line values) */
+	print "$d$\t"
+	dimension = 1
+	print dimension, "\t"
+	for (size = from_size; size <= to_size; ++size) {
+		discard = space_size(dimension, 2 ^ size)
+		print "\t"
+	}
+	print "\n"
+}
+
+if (latex) {
+	/* first line */
+	dimension = 1
+	print " & ", dimension, " & "
+	for (size = from_size; size <= to_size; ++size) {
+		discard = space_size(dimension, 2 ^ size)
+		if (size != to_size) {
+			print " & "
+		} else {
+			print " "
+		}
+	}
+	print "%\n\\\\\\cline{2-", nsize + 2, "}\n"
+}
+
+if (roff) {
+	/* other lines */
+	for (dimension = 2; dimension <= ndim; ++dimension) {
+		print "\t", dimension, "\t"
+		for (size = from_size; size <= to_size; ++size) {
+			tmp = space_size(dimension, 2 ^ size)
+			print "\t"
+		}
+		print "\n"
+	}
+}
+
+if (latex) {
+	/* middle lines */
+	for (dimension = 2; dimension < ndim; ++dimension) {
+		if (dimension > ndim / 2) {
+			print "\\raisebox{1.5ex}[0cm][0cm]{"
+			print "$d$"
+			print "}%\n"
+		}		
+		print " & ", dimension, " & "
+		for (size = from_size; size <= to_size; ++size) {
+			tmp = space_size(dimension, 2 ^ size)
+			if (size != to_size) {
+				print " & "
+			} else {
+				print " "
+			}
+		}
+		print "\\\\\\cline{2-", nsize + 2, "}\n"
+	}
+	/* last line */
+	print " & ", dimension, " & "
+	for (size = from_size; size <= to_size; ++size) {
+		tmp = space_size(dimension, 2 ^ size)
+		if (size != to_size) {
+			print " & "
+		} else {
+			print " "
+		}
+	}
+	print "%\n\\\\\\hline\n"
+}
+
+if (roff) {
+	print ".TE\n"
+}
+
+if (latex) {
+	print "\\end{tabular}\n"
+}

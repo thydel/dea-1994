@@ -1,0 +1,261 @@
+\documentclass[a4paper,dvips]{slides}
+\usepackage[francais,english]{babel}
+\usepackage{ifthen}
+\usepackage{epsfig}
+\usepackage{xspace}
+
+\usepackage{Sty/fig-cap}
+\usepackage{Sty/simple}
+
+%%\onlyslides{1-999}
+
+\renewcommand{\arule}[1]{\emph{\mbox{#1}}} % CA rule
+\renewcommand{\asquare}[1]{\ensuremath{#1^{2}}}
+\newcommand{\agen}[1]{gen.\,#1}
+\newcommand{\agencnt}[1]{#1\,gen.}
+\newcommand{\aplane}[1]{bit #1}
+
+\newcommand{\mytitle}[1]{\begin{center}\begin{large}#1\end{large}\end{center}}
+\newcommand{\mystitle}[1]{\begin{center}#1\end{center}}
+
+\sloppy
+\selectlanguage{francais}
+
+\begin{document}
+
+\addtolength{\textheight}{\topmargin}
+\addtolength{\textheight}{\headheight}
+\addtolength{\textheight}{\headsep}
+\addtolength{\textheight}{\footskip}
+
+\setlength{\topmargin}{0pt}
+\setlength{\headheight}{0pt}
+\setlength{\headsep}{0pt}
+\setlength{\footskip}{0pt}
+
+\begin{center}
+  \begin{Large}
+    Exploration et visualisation\\
+    d'espaces du calcul cellulaire
+  \end{Large}
+  \bigskip
+  \begin{large}
+    Thierry Delamare\\
+  \end{large}
+  \bigskip
+  \bigskip
+  DEA d'intelligence artificielle\\
+  Universit\'e Paris-8 et Paris-13\\
+  \bigskip
+  \today
+  \bigskip
+\end{center}
+\bigskip
+\bigskip
+\bigskip
+\mySfigure{twothirds}{dump}{qmean-9-384}%
+{\arule{Qmean} \asquare{512} \agen{384} \aplane{3}}
+
+\begin{slide}
+  \begin{center}
+    \begin{Large}
+      Th\`emes de l'expos\'e\,:
+    \end{Large}
+  \end{center}
+  
+  R\`egles et espaces de r\`egles.
+  
+  Moteurs de calcul et architectures SIMD.
+  
+  Explorations et visualisations de trajectoires.
+\end{slide}
+
+\begin{slide}
+  \mytitle{R\`egles\,:}
+  Additives, \`a voisinage de Moore~(2D).
+  \begin{tabbing}
+    XXXXXX\=\kill
+    \arule{Life$_1$}\>\texttt{00U100000}\\
+    \arule{Anneal$_1$}\>\texttt{0000101111\scriptsize /* annealed majority */}\\
+    \arule{Qmean$_8$}\>\texttt{mask = 3; match = 0; delta = -1;}\\
+  \end{tabbing}
+  \begin{scriptsize}
+    \vspace{-\bigskipamount}
+    \begin{tabbing}
+      XX\=\kill
+      \>\texttt{/* Qmean secondary table computation */}\\
+      \>\texttt{/* Construct Mean */}\\
+      \>\texttt{m = (SUM + C) / 9;}\\
+      \>\texttt{/* Destruct it */}\\
+      \>\texttt{return~m~\&~mask~==~match~?~m~:~m~+~delta;}
+    \end{tabbing}
+  \end{scriptsize}
+  Congifurations initiales al\'eatoires.
+  \mySthreefigure{full}{dump}{hor}{life-00}{anneal-00}{qmean-9-300}%
+  {\begin{scriptsize}
+    \arule{Life} \asquare{128} \agen{128},
+    \arule{Anneal} \asquare{256} \agen{256},\\
+    \arule{Qmean} \asquare{512} \agen{300} \aplane{3}
+    \end{scriptsize}}
+\end{slide}
+
+\begin{slide}
+  \mytitle{Moteurs\,:}
+  \mystitle{Lookup-tables, pipelines, voisinages virtuels}
+  \myStwofigureA{full}{fig}{hor}{apply-1}{func-4}%
+  {Pipeline d'application de \arule{Life} et \arule{Anneal}\\
+    et deux tables non disjointes}
+  \mySfigure{full}{fig}{func-7}%
+  {Fonction d'application du voisinage de \arule{Qmean}}
+\end{slide}
+
+\begin{slide}
+  \mytitle{Explorations\,:}
+  \mystitle{Invariants, limites}
+  \mySfigure{full}{plot}{anneal-04}%
+  {\arule{Anneal} $2^{{7\cdots10}^2}$ $3500\cdots110000$ gen.}
+  \mySfigureR{full}{.9}{plot}{anneal-02}%
+  {\arule{Anneal} \asquare{1024}}
+\end{slide}
+
+\begin{slide}
+  \mytitle{Visualisations\,:}
+  \mystitle{Extractions, diff\'erences, accumulations}
+  \mySfigure{full}{dump}{life-time-xor}%
+  {\arule{Life} \asquare{64} \agencnt{6}}
+  \myStwofigure{full}{plot}{hor}{lifex-sum-1}{lifex-sum-2}%
+  {\arule{Life} \asquare{64} \agencnt{512}}
+\end{slide}
+
+\begin{slide}
+  \mystitle{Espace-temps}
+  \mySfigure{full}{dump}{life-3d-New}%
+  {\arule{Life} \asquare{64} \agencnt{512}}
+\end{slide}
+
+\begin{slide}
+  \mystitle{Projections relativistes, tranches, transparences, iso-surfaces}
+  \mySfigure{full}{dump}{slide-2}{%
+    \arule{Anneal} \acube{256}, %
+    \arule{Life} \acube{256},\\
+    \arule{Qmean} \acube{128}, %
+    \arule{Anneal} \asquare{64} \agencnt{400}}
+\end{slide}
+
+\begin{slide}
+  \mytitle{Espaces de r\`egles\,:}
+  \begin{footnotesize}
+    Soit une r\`egle $R$ d'un AC de $k = 2^n$ \'etats,\\
+    $d$ dimensions et de rayon de voisinage $r$.\\
+    $N = k^{dr+1} = 2^b$ est le nombre d'entr\'ees de la table.
+  \end{footnotesize}
+  \begin{eqnarray}
+    \lambda & = & (N-\#0)/N \nonumber \\
+    {\rm flip} & = & \frac{1}{N}\sum_{i=0}^{N-1}{\rm
+      diff}(R_{i}-R_{(i+1){\rm mod}N}) \nonumber \\
+    {\rm diff}(x) & = & \left\lbrace
+    \begin{array}{l}
+      1\ {\rm if}\ x \ne 0\\ 0\ {\rm if}\ x = 0
+    \end{array} \right. \nonumber
+  \end{eqnarray}
+  \begin{footnotesize}
+    Pour un AC de $k = 2$ \'etats les $b = dr+1$ bits du voisinage donnent
+    un vecteur $E$ de $b$ valeurs.
+  \end{footnotesize}
+  \begin{eqnarray}
+    E_{b}& = &\frac{1}{N} \sum_{i = 0}^{N/2 - 1} R_{e_{ib}} -
+    R_{e_{ib} + 2^b} \nonumber \\
+    e_{ib}& = &2i + i \bmod 2^b \nonumber \\
+    \hat{E}& = &\frac{1}{b} \sum_{i = 0}^{b} E_b \nonumber
+  \end{eqnarray}
+\end{slide}
+
+\begin{slide}
+  \mystitle{Valeurs de \alambda et de l'ench\^assement pour les
+    $\frac{0\cdots 500}{59049}$ AC additifs \texttt{01U}}
+  \mySfigure{full}{plot}{E-lambda-1}%
+  {Valeurs de \protect\alambda et $E$}
+  \begin{eqnarray}
+    E_{life} & = & {0.617\cdots 0.890\cdots 0.617} \nonumber \\
+    \hat{E}_{life} & = & 0.647569 \nonumber \\
+    \lambda_{life} & = & 0.273438 \nonumber
+  \end{eqnarray}
+\end{slide}
+
+\begin{slide}
+  \mytitle{SIMD\,:}
+  Transformation d'architecture SIMD en table de transition \`a
+  voisinage virtuel pour la m\'e\-moire et les instructions.
+  \myStwofigureA{full}{fig}{hor}{gap-pe}{gap}%
+  {Structure d'un PE GAPP\\
+    et fonction d'application de la table \arule{Gapp}}
+  Transformation de table de transition en DFA pour
+  interpr\'etation par algorithme SIMD.
+  \myStwofigureA{full}{fig}{hor}{life-tree}{life-dfa}%
+  {Une partie de l'arbre de d\'ecodage de \arule{Life}\\
+    et Le DFA de \arule{Life}}
+\end{slide}
+
+\begin{slide}
+  \begin{center}
+    \begin{Large}
+      Conclusion
+    \end{Large}
+  \end{center}
+  \mytitle{Propositions pour une \'etude pratique des espaces du calcul
+    cellulaire\,:}
+
+  Un usage g\'en\'eralis\'e de table de transitions.
+
+  Un couplage des architectures SIMD et des tables de transitions.
+
+  Une mesure de l'ench\^assement des tables de transitions.
+
+  Des m\'ethodes de visualisations d'espace-temps.
+\end{slide}
+
+%%
+%% TUBE-WORM MOSAIC
+%%
+\begin{slide}
+  \mystitle{Espace de r\`egle:~huit variations sur les param\`etres
+    d'un algorithme de production de tables de transition}
+  \mySfigure{full}{dump}{tube-worm-mix}%
+  {\arule{Tube-Worm} \asquare{256} \agencnt{64}}
+\end{slide}
+
+%%
+%%
+%% ANNEAL 3D
+%%
+\begin{slide}
+  \mystitle{Fronti\`eres et textures}
+  \mySfigure{full}{dump}{anneal-3d}{\arule{Anneal} \acube{512}}
+\end{slide}
+
+%%% XU
+%%
+\begin{slide}
+  \mystitle{Un AC algorithmique}
+  \mySfigure{full}{dump}{xu-photo-1}%
+  {\arule{Xu} \acube{128}}%
+\end{slide}
+
+\end{document}
+
+%% Local Variables: 
+%% mode: auto-fill
+%% iso-accents-minor-mode: nil
+%% TeX-master: t
+%% Local IspellParsing: "latex-mode ~latin1"
+%% Local IspellPersDict: "~/.ispell_lisp"
+%% LocalWords: "paper dvips slides francais english babel ifthen epsfig xspace"
+%% LocalWords: "Sty fig-cap gen mynote pt Thierry Delamare DEA twothirds dump XX"
+%% LocalWords: "qmean SIMD XXXXXX Anneal mask secondary computation Construct it"
+%% LocalWords: "Mean SUM Destruct return hor anneal apply func santes lifex-sum"
+%% LocalWords: "life-time-xor lifex-sum Espace-temps d-New relativiste rel tsum"
+%% LocalWords: "relmov d'espace-temps anneal-sum iso-surface tsum-ray-one tsum"
+%% LocalWords: "trans-byte trans-bits diag E-lambda tube-worm-mix Tube-Worm PE"
+%% LocalWords: "gap-pe GAPP gap gapp life-tree life-dfa DFA cellulaire-SIMD l'AC"
+%% LocalWords: "xu-photo xu xu-Cfilm \'equi"
+%% End: 

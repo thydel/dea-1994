@@ -1,0 +1,44 @@
+.\"
+.\" PSPIC modified to allow multi picture on same line.
+.\" two new args in pos 1 and 2
+.\" arg 1 give the count of pic
+.\" arg 2 the offset of pic (from 0)
+.\" when arg1 == arg2 - 1, skip vert space
+.\" so the most height pic must be the last
+.\"
+.de thy@PSMPIC
+.br
+.sy echo .ps-bb `psbb \\$3` >/tmp/psbb\\n[$$]
+.so /tmp/psbb\\n[$$]
+.if \\n[ps-nargs]=4 \{\
+.	nr ps-wid (\\n[ps-urx]-\\n[ps-llx])
+.	nr ps-ht (\\n[ps-ury]-\\n[ps-lly])
+.	if \\n[ps-wid]<0 .nr ps-wid 0-\\n[ps-wid]
+.	if \\n[ps-ht]<0 .nr ps-ht 0-\\n[ps-ht]
+.	ie \\n[.$]>=4 .nr ps-deswid (i;\\$4)
+.	el .nr ps-deswid ((\\n[.l]-\\n[.i])/\\$1)<?\\n[ps-wid]p
+.	ie \\n[.$]>=5 .nr ps-desht (i;\\$5)
+.	el .nr ps-desht \\n[ps-deswid]*1000+(\\n[ps-wid]/2)/\\n[ps-wid]\
+*\\n[ps-ht]+500/1000
+.	ne \\n[ps-desht]u+1v
+.	\"nr ps-offset \\n[.l]-\\n[.i]-\\n[ps-deswid]/2
+.	nr thy*tmp \\n[.l]-\\n[.i]/\\$1
+.	nr ps-offset \\n[thy*tmp]*\\$2
+.	ie \\n[.$]>=3 .ds ps-desht \\n[ps-desht]
+.	el .ds ps-desht \" empty
+\h'\\n[ps-offset]u'\
+\X'ps: invis'\
+\Z'\D'p 0 \\n[ps-desht]u \\n[ps-deswid]u 0 0 -\\n[ps-desht]u''\
+\X'ps: endinvis'\
+\v'\\n[ps-desht]u'\X'ps: import \\$3 \
+\\n[ps-llx] \\n[ps-lly] \\n[ps-urx] \\n[ps-ury] \\n[ps-deswid] \\*[ps-desht]'
+.ie \\$1=(\\$2+1) \{\
+.	br
+.	sp \\n[ps-desht]u
+.\}
+.el \{\
+.	sp -1
+.\}
+.\}
+.sy rm /tmp/psbb\\n[$$]
+..

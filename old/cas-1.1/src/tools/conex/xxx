@@ -1,0 +1,91 @@
+moore_1_0_0(StateVect* rule_vect, StateFrame* past_frame, StateFrame* futur_frame)
+{
+	unsigned char* past;
+	unsigned char* futur;
+	unsigned char* rule;
+	register unsigned char* north;
+	register unsigned char* center;
+	register unsigned char* south;
+	register unsigned char* index;
+	int xsize;
+	int ysize;
+	int size;
+	int line;
+	int col;
+
+	past = past_frame->ptr;
+	futur = futur_frame->ptr;
+	rule = rule_vect->ptr;
+	xsize = past_frame->xsize;
+	ysize = past_frame->ysize;
+	size = past_frame->size;
+
+	/* FIRST LINE */
+	north = (past + (size - xsize));
+	center = past;
+	south = (center + xsize);
+	/* FIRST COL */
+	/* SET FIRST COL INDEX */
+	index = ((north[(xsize - 1)] << 8) | (center[(xsize - 1)] << 7) | (south[(xsize - 1)] << 6) | (*north++ << 5) | (*center++
+	    << 4) | (*south++ << 3) | (*north++ << 2) | (*center++ << 1) | *south++);
+	/* SET FUTUR */
+	*futur++ = rule[index];
+	/* MID_COLS */
+	for (col = (xsize - 2); col--;) {
+		/* SET COL INDEX */
+		index = (((index << 3) & 511) | (*north++ << 2) | (*center++ << 1) | *south++);
+		/* SET FUTUR */
+		*futur++ = rule[index];
+	}
+	/* LAST COL */
+	/* SET LAST COL INDEX */
+	index = (((index << 3) & 511) | (north[-xsize] << 2) | (center[-xsize] << 1) | south[-xsize]);
+	/* SET FUTUR */
+	*futur++ = rule[index];
+	/* MID_LINES */
+	north = past;
+	center = (north + xsize);
+	south = (center + xsize);
+	for (line = (ysize - 2); line--;) {
+		/* FIRST COL */
+		/* SET FIRST COL INDEX */
+		index = ((north[(xsize - 1)] << 8) | (center[(xsize - 1)] << 7) | (south[(xsize - 1)] << 6) | (*north++ <<
+		    5) | (*center++ << 4) | (*south++ << 3) | (*north++ << 2) | (*center++ << 1) | *south++);
+		/* SET FUTUR */
+		*futur++ = rule[index];
+		/* MID_COLS */
+		for (col = (xsize - 2); col--;) {
+			/* SET COL INDEX */
+			index = (((index << 3) & 511) | (*north++ << 2) | (*center++ << 1) | *south++);
+			/* SET FUTUR */
+			*futur++ = rule[index];
+		}
+		/* LAST COL */
+		/* SET LAST COL INDEX */
+		index = (((index << 3) & 511) | (north[-xsize] << 2) | (center[-xsize] << 1) | south[-xsize]);
+		/* SET FUTUR */
+		*futur++ = rule[index];
+	}
+	/* LAST LINE */
+	north = (past + (size - (xsize << 1)));
+	center = (north + xsize);
+	south = past;
+	/* FIRST COL */
+	/* SET FIRST COL INDEX */
+	index = ((north[(xsize - 1)] << 8) | (center[(xsize - 1)] << 7) | (south[(xsize - 1)] << 6) | (*north++ << 5) | (*center++
+	    << 4) | (*south++ << 3) | (*north++ << 2) | (*center++ << 1) | *south++);
+	/* SET FUTUR */
+	*futur++ = rule[index];
+	/* MID_COLS */
+	for (col = (xsize - 2); col--;) {
+		/* SET COL INDEX */
+		index = (((index << 3) & 511) | (*north++ << 2) | (*center++ << 1) | *south++);
+		/* SET FUTUR */
+		*futur++ = rule[index];
+	}
+	/* LAST COL */
+	/* SET LAST COL INDEX */
+	index = (((index << 3) & 511) | (north[-xsize] << 2) | (center[-xsize] << 1) | south[-xsize]);
+	/* SET FUTUR */
+	*futur++ = rule[index];
+}

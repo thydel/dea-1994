@@ -1,0 +1,203 @@
+\documentclass[a4paper]{slides}
+\usepackage[francais,english]{babel}
+
+\newcommand{\mytitle}[1]{\begin{center}\begin{large}#1\end{large}\end{center}}
+
+\sloppy
+\selectlanguage{francais}
+
+\begin{document}
+
+\begin{slide}
+  \mytitle{TH\`EMES}
+  Je presenterais les r\`egles choisis pour illustrer mon expos\'e.\\
+  Ces r\`egles sont des automates cellulaires.
+
+  Je presenterais les moteurs \`a tables de transitions que j'ais r\'ealis\'es pour
+  calculer des trajectoires dans l'espaces des configurations de
+  familles de r\`egles.
+  
+  Je commenterais la r\'ealisation d'une ex\-p\'e\-ri\-ence de calcul de trajectoire
+  et je pr\'esenterais quelques visualisation exp\'erimentales de
+  trajectoires.
+  
+  Enfin, j'aborderais les espaces de r\`egles
+  en introduisant un nouveau param\`etre de controle de l'espaces des
+  r\`egles\\
+  et en montrant la r\'ealisation d'une transformation d'architecture
+  SIMD en r\`egle utilisable par un moteur cellulaire.
+\end{slide}
+
+\begin{slide}
+  \mytitle{R\`EGLES}
+  j'ais choisis 3 r\`egles additives \`a voisinnage de MOORE.
+  
+  Les r\`egles additives peuvent \`etre d\'efinis par une table secondaires
+  dont les entr\'ees sont fonctions de la somme des voisins.
+  
+  Life et Anneal sont de r\`egles binaires.
+  Voici leur table secondaire.
+  Le U signifie que l'\'etat de la cellule reste unchang\'e.
+  
+  Les trajectoires pr\'esent\'ees dans l'expos\'e sont obtenu \`a partir d'un
+  configuration initiale al\'eatoire.
+  
+  Qmean est une r\`egle \`a 8 bits par cellule que j'ais d\'ecouvert en
+  testant un moteur \`a voisinnage additif virtuel.
+\end{slide}
+
+\begin{slide}
+  \mytitle{MOTEURS}
+  J'ais choisis d'impl\'ementer les moteurs de calcul par tables de
+  transitions\\
+  et collecte pipelin\'e de l'index de voisinage.
+  
+  Ce choix permet la r\'ealisation de moteurs rapide sur machine
+  s\'equentielle.
+  
+  Il permet \'egalement la manipulation des r\`egles afin de Mesures et
+  controle.\\
+  Ce qui permet l'utilisation des moteurs pour l'exploration des espaces
+  de r\`egles.
+  
+  L'inconv\'enient de tables de transitions est leur taille.\\
+  Je propose des m\'ethodes de compositions de tables et de voisinage
+  virtuels.
+  
+  Ici le pipeline calculant le voisinage virtuel SUM.
+\end{slide}
+
+\begin{slide}
+  \mytitle{EXPLORATIONS}
+  \begin{footnotesize}
+    Cette exp\'erience \`a pour but la mise en \'evidence d'un invariant
+    d'echelle espace-temps sur les trajectoires de Anneal.
+    
+    j'ais calcul\'e des trajectoire de Anneal pour des configuration initiales de
+    tailles croissantes.
+    
+    j'ais mesur\'e la population (le nombre de site \`a 1) et la taille des
+    fronti\`eres pour chaque points de trajectoires.
+    
+    j'ais normalis\'e les mesures.
+    
+    Le r\'esultat le plus important est la mise en \'evidence de l'existence
+    de cycle limite dont la taille est de l'ordre de grandeur de l'ar\`ete
+    de la configurations.
+    
+    Cette figure me permet d'introduire les visualisation:\
+    Dans un contexte de visualisation une trajectoire est un espace-temps.
+    
+    Une extraction d'espace-temps qui pr\'eserve l'espace, mais pas le
+    temps.
+    
+    Une s\'equence d'accumulation sur l'espace qui preserve le temps, mais
+    pas l'espace.
+  \end{footnotesize}
+\end{slide}
+
+\begin{slide}
+  \mytitle{VISUALISATION 1 OF 3}
+
+  Je propose de caract\'eriser les visualisations par une combinatoire
+  de trois familles d'op\'erateurs:~les extractions, les diff\'erences et
+  les accumulations.
+  
+  j'ais utilis\'e l'op\'erateur xor pour r\'ealiser une diff\'erence entre
+  points deux points de temps successif.
+  
+  Une premi\`ere application permet la suppresion des points fixes
+  locaux.
+  
+  Une deuxi\`eme application la suppression des cycle limite de locaux de
+  tailles 2.
+  
+  l'accumulation additive sur le temps r\'ev\`ele les densit\'es d'occupation
+  de l'epace-temps.
+\end{slide}
+
+\begin{slide}
+  \mytitle{VISUALISATION 2 OF 3}
+  
+  Voici une autre visualisation possible de l'espace-temps et de
+  l'espace-temps apr\`es suppression des points fixes locaux et cycles
+  limites locaux de taille 2.
+  
+  Cette visualisation r\'ealise une extraction par projection.
+  
+  C'est un visualisation de fin de chaine, elle ne permet pas d'autre
+  mesure ou transformations.
+\end{slide}
+
+\begin{slide}
+  \mytitle{VISUALISATION 3 OF 3}
+  Cette page pr\'esente quelques exemples de visualisation.
+  
+  j'ais r\'ealis\'e des outils de visualisation adapt\'e \`a la nature
+  binaires des espace-temps cellulaires\\ et je propose une m\'ethode de
+  visualisation par projection relativiste qui associe une variation
+  du temps \`a diff\'erents point d'espaces visualis\'e.
+
+  Ici l'augmentation de la distance au centre de la projection
+  rapproce de la configuration initiale de la trajectoire.
+\end{slide}
+
+\begin{slide}
+  \mytitle{ESPACES DE R\`EGLES 1 of 2}
+  L'exploration des espaces de r\`egles necessite l'existence d'une
+  distance entre les r\`egles qui d\'epends de mesure appliqu\'e sur les
+  tables de transitions.
+  
+  La mesure standard est lamda, qui donne la densit\'e d'une table.
+  
+  Je d\'efinis flip comme le nombre de changement d'\'etats rencontr\'e en
+  balayant une table de transition.\\
+  Sa valeur d\'epends de l'ordre d'ecriture de l'index de voisinnage.
+  
+  je d\'efini le param\`etre d'enchassement comme l'influence de chaque
+  voisin sur une r\`egle.
+  
+  Le calcul est fait pour chaque bit de voisinage par l'application de
+  flip sur la s\'equence extraites de la table de transition en fonction
+  du poid de ce bit d'index.
+  
+  Une valeur unique est obtenu par la moyenne de l'enchassement de
+  chaque voisin.
+\end{slide}
+
+\begin{slide}
+  \mytitle{ESPACES DE R\`EGLES 2 of 2}
+  J'ais calcul\'e la valeurs de lambda et de l'enchassement pour
+  l'ensemble des r\`egles additives \`a 3 fonctions secondaires.
+  
+  Le pic montre la position de Anneal.
+\end{slide}
+
+\begin{slide}
+  \mytitle{SIMD}
+  J'ais r\'ealis\'e une table de transition pour le PE GAPP.
+  
+  Le moteur fournit un voisinage virtuel pour la m\'emoire et les
+  instructions.
+  
+  La table de transition \`a une taille de 1 m\'egabyte.
+\end{slide}
+
+\begin{slide}
+  \mytitle{CONCLUSION}
+  En conclusion je propose deux objectifs reposant sur les r\'ealisations
+  et proposition que j'ais pr\'esent\'ees:
+  
+  La r\'ealisation d'une carte des trajectoires des r\`egles
+  additives binaires param\'etr\'ee par lambda et l'enchassement.
+  
+  L'utilisation de tables de transition d'architectures SIMD pour le
+  s\'equencement et la combinaison de tables de calculs de trajectoire et
+  de visualisation.
+\end{slide}
+
+\end{document}
+
+% Local Variables: 
+% TeX-master: t
+% End: 

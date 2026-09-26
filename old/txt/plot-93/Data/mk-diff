@@ -1,0 +1,5 @@
+diff.cmd $1.data > /tmp/1
+diff.cmd /tmp/1 > /tmp/2
+diff.cmd /tmp/2 > /tmp/3
+paste $1.data /tmp/1 /tmp/2 /tmp/3 > $1-diff.data
+rm /tmp/[123]

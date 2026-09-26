@@ -1,0 +1,47 @@
+\protect \contentsline {chapter}{\protect \numberline {1}Introduction}{1}
+\protect \contentsline {section}{\protect \numberline {1.1}Nos objectifs et contraintes pour un environnement de d\protect \relax \protect \'e\discretionary {-}{}{}ve\discretionary {-}{}{}lop\discretionary {-}{}{}pe\discretionary {-}{}{}ment et d'observation d'AC}{3}
+\protect \contentsline {section}{\protect \numberline {1.2}Les outils existants\protect \active@co \unskip \penalty \@M \ \ignorespaces pas de standard}{6}
+\protect \contentsline {section}{\protect \numberline {1.3}Un nouvel environnement\protect \active@co \unskip \penalty \@M \ \ignorespaces exploration par le calcul et la visualisation}{7}
+\protect \contentsline {section}{\protect \numberline {1.4}Pourquoi notre nouvel environnement\protect \active@qm }{11}
+\protect \contentsline {section}{\protect \numberline {1.5}Des AC pour l'optimisation d'usage de ressources}{16}
+\protect \contentsline {section}{\protect \numberline {1.6}Des AC comme outils de r\protect \relax \protect \'eflexion morphog\protect \relax \protect \'en\protect \relax \protect \'etique}{22}
+\protect \contentsline {section}{\protect \numberline {1.7}Des AC comme outils de r\protect \relax \protect \'eflexion sur l'espace, le temps et le calcul}{24}
+\protect \contentsline {section}{\protect \numberline {1.8}Plan de lecture}{29}
+\protect \contentsline {chapter}{\protect \numberline {2}Vers des objets cellulaires\protect \active@co \unskip \penalty \@M \ \ignorespaces espace, temps, lois}{33}
+\protect \contentsline {section}{\protect \numberline {2.1}L'espace\protect \active@co \unskip \penalty \@M \ \ignorespaces la m\protect \relax \protect \'emoire}{34}
+\protect \contentsline {subsection}{\protect \numberline {2.1.1}Structure de l'espace\protect \active@co \unskip \penalty \@M \ \ignorespaces dimension et voisinage}{35}
+\protect \contentsline {subsection}{\protect \numberline {2.1.2}\protect \relax \protect \'Edition d'espace\protect \active@co \unskip \penalty \@M \ \ignorespaces les configurations cellulaires}{36}
+\protect \contentsline {subsection}{\protect \numberline {2.1.3}R\protect \relax \protect \'eduction d'espace\protect \active@co \unskip \penalty \@M \ \ignorespaces taille et contenu}{37}
+\protect \contentsline {subsection}{\protect \numberline {2.1.4}Transformation d'espace\protect \active@co \unskip \penalty \@M \ \ignorespaces d'une forme \protect \relax \protect \`a l'autre}{38}
+\protect \contentsline {subsection}{\protect \numberline {2.1.5}Visualisation d'espace\protect \active@co \unskip \penalty \@M \ \ignorespaces comprendre les lois}{39}
+\protect \contentsline {subsection}{\protect \numberline {2.1.6}Ressources associ\protect \relax \protect \'ees \protect \relax \protect \`a l'espace\protect \active@co \unskip \penalty \@M \ \ignorespaces des limites \protect \relax \protect \`a choisir}{46}
+\protect \contentsline {section}{\protect \numberline {2.2}Le temps\protect \active@co \unskip \penalty \@M \ \ignorespaces les cycles}{49}
+\protect \contentsline {subsection}{\protect \numberline {2.2.1}Structure du temps\protect \active@co \unskip \penalty \@M \ \ignorespaces un axe d'organisation privil\protect \relax \protect \'egi\protect \relax \protect \'e}{49}
+\protect \contentsline {subsection}{\protect \numberline {2.2.2}\protect \relax \protect \'Edition du temps\protect \active@co \unskip \penalty \@M \ \ignorespaces une m\protect \relax \protect \'etaphore cin\protect \relax \protect \'ematogra\discretionary {-}{}{}phique}{50}
+\protect \contentsline {subsection}{\protect \numberline {2.2.3}R\protect \relax \protect \'eductions du temps\protect \active@co \unskip \penalty \@M \ \ignorespaces sommes et diff\protect \relax \protect \'erences}{52}
+\protect \contentsline {subsection}{\protect \numberline {2.2.4}Transformations du temps\protect \active@co \unskip \penalty \@M \ \ignorespaces l'espace-temps}{59}
+\protect \contentsline {subsection}{\protect \numberline {2.2.5}Visualisation du temps\protect \active@co \unskip \penalty \@M \ \ignorespaces s\protect \relax \protect \'equences de r\protect \relax \protect \'eductions et projections de plongements}{59}
+\protect \contentsline {section}{\protect \numberline {2.3}Les lois\protect \active@co \unskip \penalty \@M \ \ignorespaces la fonction de transition}{61}
+\protect \contentsline {subsection}{\protect \numberline {2.3.1}Structure des lois\protect \active@co \unskip \penalty \@M \ \ignorespaces voisinage et lookup-table}{61}
+\protect \contentsline {subsection}{\protect \numberline {2.3.2}Op\protect \relax \protect \'erations\protect \active@co \unskip \penalty \@M \ \ignorespaces plasticit\protect \relax \protect \'e des tables de transitions}{63}
+\protect \contentsline {subsection}{\protect \numberline {2.3.3}Composition\protect \active@co \unskip \penalty \@M \ \ignorespaces les chemins de donn\protect \relax \protect \'ees}{65}
+\protect \contentsline {subsection}{\protect \numberline {2.3.4}Voisinages sp\protect \relax \protect \'eciaux\protect \active@co \unskip \penalty \@M \ \ignorespaces n\protect \relax \protect \'ecessaire compromis ou g\protect \relax \protect \'en\protect \relax \protect \'era\discretionary {-}{}{}lisation\protect \active@qm }{66}
+\protect \contentsline {subsection}{\protect \numberline {2.3.5}Utilisation\protect \active@co \unskip \penalty \@M \ \ignorespaces construction, composition, m\protect \relax \protect \'elange et s\protect \relax \protect \'e\discretionary {-}{}{}paration}{71}
+\protect \contentsline {subsection}{\protect \numberline {2.3.6}Des machines virtuelles\protect \active@co \unskip \penalty \@M \ \ignorespaces compilation d'architec\discretionary {-}{}{}tures SIMD pour une architec\discretionary {-}{}{}ture cellulaire presque pure}{77}
+\protect \contentsline {subsection}{\protect \numberline {2.3.7}Et leur compilateur\protect \active@co \unskip \penalty \@M \ \ignorespaces la d\protect \relax \protect \'ecompilation des lois pour des architectures SIMD}{80}
+\protect \contentsline {section}{\protect \numberline {2.4}Les s\protect \relax \protect \'equenceurs}{82}
+\protect \contentsline {chapter}{\protect \numberline {3}Structure de l'espace des automates cellulaires}{88}
+\protect \contentsline {section}{\protect \numberline {3.1}Une version minimale du probl\protect \relax \protect \`eme}{89}
+\protect \contentsline {section}{\protect \numberline {3.2}La classification de Wolfram}{89}
+\protect \contentsline {section}{\protect \numberline {3.3}Le param\protect \relax \protect \`etre $\lambda $ de Langton}{91}
+\protect \contentsline {section}{\protect \numberline {3.4}Exp\protect \relax \protect \'erimentations sur le param\protect \relax \protect \'etrage des classes de comportements}{93}
+\protect \contentsline {section}{\protect \numberline {3.5}Proposition pour une recherche d'un param\protect \relax \protect \'etrage de l'ench\protect \french@circumflex as\discretionary {-}{}{}sement}{96}
+\protect \contentsline {chapter}{\protect \numberline {4}Quelques remarques sur la r\protect \relax \protect \`egle Anneal}{99}
+\protect \contentsline {section}{\protect \numberline {4.1}Trajectoires et espaces de trajectoires}{99}
+\protect \contentsline {section}{\protect \numberline {4.2}Vari\protect \relax \protect \'et\protect \relax \protect \'e des objets cellulaires}{101}
+\protect \contentsline {section}{\protect \numberline {4.3}Quelques r\protect \relax \protect \'esultats exp\protect \relax \protect \'erimentaux \protect \relax \protect \`a propos de Anneal}{104}
+\protect \contentsline {chapter}{\protect \numberline {5}Conclusion}{110}
+\protect \contentsline {chapter}{\protect \numberline {A}Les fonctions de transitions utilis\protect \relax \protect \'ees}{119}
+\protect \contentsline {chapter}{\protect \numberline {B}Pr\protect \relax \protect \'edateur/proie}{122}
+\protect \contentsline {chapter}{\protect \numberline {C}Exemple de code Tcl top-level}{128}
+\protect \contentsline {chapter}{\protect \numberline {D}Outils logiciels}{131}

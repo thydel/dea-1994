@@ -1,0 +1,24 @@
+% Remember to use the lgrind style
+
+\File{c\-gapp\-pe\-pe.c},{12:48},{Sep 15 1994}
+\L{\LB{\K{inline}_\K{void}_\V{gapp\_pe}(\K{int}\*_\V{a},_\K{int}\*_\V{i},_\K{int}\*_\V{o})_\{}}
+\L{\LB{__\K{int}_\V{nst}[\,]_=_\{_\V{i}[\V{GAPP\_NS}],_\V{i}[\V{GAPP\_RAM}],_\V{i}[\V{GAPP\_NOS}],}}
+\L{\LB{}\Tab{16}{\V{i}[\V{GAPP\_NOS}],_\V{i}[\V{GAPP\_EW}],_\V{i}[\V{GAPP\_C}],_0_\};}}
+\L{\LB{__\K{int}_\V{ewt}[\,]_=_\{_\V{i}[\V{GAPP\_EW}],_\V{i}[\V{GAPP\_RAM}],_\V{i}[\V{GAPP\_EOW}],}}
+\L{\LB{}\Tab{16}{\V{i}[\V{GAPP\_EOW}],_\V{i}[\V{GAPP\_NS}],_\V{i}[\V{GAPP\_C}],_0_\};}}
+\L{\LB{__\K{int}_\V{ct}[\,]_=_\{_\V{i}[\V{GAPP\_C}],_\V{i}[\V{GAPP\_RAM}],_\V{i}[\V{GAPP\_NS}],_\V{i}[\V{GAPP\_EW}],}}
+\L{\LB{}\Tab{8}{_______\V{i}[\V{GAPP\_CY}],_\V{i}[\V{GAPP\_BW}],_0,_1_\};}}
+\L{\LB{__\K{int}_\V{ramt}[\,]_=_\{_\V{i}[\V{GAPP\_RAM}],_0,_\V{i}[\V{GAPP\_C}],_\V{i}[\V{GAPP\_SM}]_\};}}
+\L{\LB{__\K{int}_\V{tmp};}}
+\L{\LB{}}
+\L{\LB{__\V{o}[\V{GAPP\_NNS}]_=_\V{nst}[\V{i}[\V{GAPP\_NSI}]];}}
+\L{\LB{__\V{o}[\V{GAPP\_NEW}]_=_\V{ewt}[\V{i}[\V{GAPP\_EWI}]];}}
+\L{\LB{__\V{o}[\V{GAPP\_NC}]_=_\V{ct}[\V{i}[\V{GAPP\_CI}]];}}
+\L{\LB{__\V{o}[\V{GAPP\_NRAM}]_=_\V{ramt}[\V{i}[\V{GAPP\_RAMI}]];}}
+\L{\LB{}}
+\L{\LB{__\V{tmp}_=_\V{a}[(\V{o}[\V{GAPP\_NNS}]_\<\<_2)_\|_(\V{o}[\V{GAPP\_NEW}]_\<\<_1)_\|_\V{o}[\V{GAPP\_NC}]];}}
+\L{\LB{}}
+\L{\LB{__\V{o}[\V{GAPP\_NSM}]_=_!!(\V{tmp}_\&_4);}}
+\L{\LB{__\V{o}[\V{GAPP\_NCY}]_=_!!(\V{tmp}_\&_2);}}
+\L{\LB{__\V{o}[\V{GAPP\_NBW}]_=_\V{tmp}_\&_1;}}
+\L{\LB{\}}}

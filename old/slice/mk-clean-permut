@@ -1,0 +1,28 @@
+size=256
+
+(cd $1; for i in trans-B-???-?.pgm; do mv $i `echo $i | sed -e 's/trans-B/trans/'`; done)
+#(cd $1; for i in trans-A-???.pgm; do mv $i `echo $i | sed -e 's/trans-A/trans/'`; done)
+(cd $1; for i in relative-move-???.pgm; do mv $i `echo $i | sed -e 's/relative-move/relmov/'`; done)
+(cd $1; for i in relative-???.pgm; do mv $i `echo $i | sed -e 's/relative/rel/'`; done)
+
+#(cd $1; rm -f trans-yxz-?.pgm trans-zyx-?.pgm trans-zxy-?.pgm)
+(cd $1; for i in trans-???-?.pgm; do mv $i `echo $i | sed -e 's/trans/Trans/'`; done)
+(cd $1; for i in Trans-???-?.pgm; do pnmflip -tb $i > `echo $i | sed -e 's/Trans/trans/'`;done)
+#(cd $1; pnmindex -size $size -across 6 trans-???-[234567].pgm > trans-bits.pgm)
+(cd $1; pnmindex -size $size -across 6 trans-???-?.pgm > trans-bits.pgm)
+
+#(cd $1; rm -f trans-xzy.pgm trans-yzx.pgm trans-zyx.pgm)
+#(cd $1; for i in trans-???.pgm; do mv $i `echo $i | sed -e 's/trans/Trans/'`; done)
+#(cd $1; for i in Trans-???.pgm; do pnmflip -ccw $i > `echo $i | sed -e 's/Trans/trans/'`;done)
+#(cd $1; pnmindex -size $size -across 3 trans-???.pgm > trans-byte.pgm)
+
+(cd $1; rm -f relmov-zyx.pgm relmov-yzx.pgm relmov-zxy.pgm)
+(cd $1; pnmindex -size $size -across 3 relmov-???.pgm > relmov.pgm)
+
+(cd $1; rm -f rel-zyx.pgm rel-yzx.pgm rel-zxy.pgm)
+(cd $1; pnmindex -size $size -across 3 rel-???.pgm > rel.pgm)
+
+(cd $1; rm -f 00-yxz-0??.pgm  00-zxy-0??.pgm 00-zyx-0??.pgm)
+(cd $1; for i in 00-???-???.pgm; do mv $i `echo $i | sed -e 's/00/Zero/'`; done)
+(cd $1; for i in Zero-???-???.pgm; do pnmflip -tb $i > `echo $i | sed -e 's/Zero/00/'`;done)
+(cd $1; pnmindex -size $size -across 3 00-???-???.pgm > faces.pgm)
