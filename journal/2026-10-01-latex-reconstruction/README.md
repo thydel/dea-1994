@@ -10,7 +10,7 @@ does not pretend that the journal existed before execution.
 
 The original detailed specification remains preserved at:
 
-`new/2026-10-01-work-latex-phase-1.md`
+`phase-1-specification.md`
 
 Phase 1 produced the modern compilable project under `new/latex/`. The
 resulting baseline commit is `55aaf7b3f814491a538e5668caa465b48718aa1d`.
