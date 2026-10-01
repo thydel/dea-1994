@@ -1,63 +1,63 @@
-\chapter{Les fonctions de transitions utilis\'ees}
+\chapter{Les fonctions de transitions utilisées}
 \mysetref{the-rules}
 
 \label{rule-xor9}%
-La r\`egle~\arule{Xor9}:\\
+La règle~\arule{Xor9}:\\
 $\Center= \Center \xor \north \xor \south \xor \east \xor \west \xor\\
  \Neast \xor \Nwest \xor \Swest \xor \Seast$
 
 \mycodefull{c-qmean}%
 {}%
-{Le c{\oe}ur de la r\`egle~\arule{Qmean}}%
+{Le cœur de la règle~\arule{Qmean}}%
 {\label{rule-qmean}%
-  Nous avons exp\'eriment\'e plusieurs param\`etres statiques\footnote{%
+  Nous avons expérimenté plusieurs paramètres statiques\footnote{%
     \mygetref[phrase]{static-param}} %
-  pour cette r\`egle qui nous a servi initialement \`a tester le moteur \`a
-  voisinage sp\'ecial d\'ecrit en~\mygetfig{func-7}. %
-  Les param\`etres utilis\'es dans les illustrations de
+  pour cette règle qui nous a servi initialement à tester le moteur à
+  voisinage spécial décrit en~\mygetfig{func-7}. %
+  Les paramètres utilisés dans les illustrations de
   la~\mygetref{obj-visualisation} sont:~%
   mask = 3; match = 0; delta = -1. %
-  Ces param\`etres sont parmi les premiers que nous ayons essay\'es, et
+  Ces paramètres sont parmi les premiers que nous ayons essayés, et
   donne un des comportements les plus riches\footnote{%
     Intuitivement, en remarquant cependant que
-    ce para\-m\'e\-trage est ins\-pir\'e par la recherche d'une opposition
+    ce para\-mé\-trage est ins\-piré par la recherche d'une opposition
     \bialt{cons\-truc\-tion}{des\-truc\-tion},
-    \bialt{\'egal\-isa\-tion}{dif\-f\-\'er\-en\-cia\-tion}, etc.\  typique d'un r\`egle
-    telle~\arule{Life}, et \'evocatrice de ph\'enom\`enes de fronti\`eres.} %
-  que nous ayons trouv\'es pour cette famille\footnote{%
-    La famille est ici comprise comme l'espace de r\`egles engendr\'e par
-    un syst\`eme de param\`etres statique pour un algorithme de g\'en\'eration de
+    \bialt{égal\-isa\-tion}{dif\-f\-ér\-en\-cia\-tion}, etc.\  typique d'un règle
+    telle~\arule{Life}, et évocatrice de phénomènes de frontières.} %
+  que nous ayons trouvés pour cette famille\footnote{%
+    La famille est ici comprise comme l'espace de règles engendré par
+    un système de paramètres statique pour un algorithme de génération de
     table de transition.} %
-  de r\`egles.}
+  de règles.}
 
 \mycodefull{c-anneal}%
 {}%
-{La r\`egle~\arule{Anneal} est impl\'ement\'ee via la r\`egle~\arule{Sum9}}%
+{La règle~\arule{Anneal} est implémentée via la règle~\arule{Sum9}}%
 {\label{rule-anneal}%
-  Le source de la fonction \asoft{C} impl\'ementant la fonction de
-  transition de la r\`egle~\arule{Sum9}, qui re\c{c}oit en argument statique
-  une table secondaire d\'ecrivant une r\`egle additive. %
+  Le source de la fonction \asoft{C} implémentant la fonction de
+  transition de la règle~\arule{Sum9}, qui reçoit en argument statique
+  une table secondaire décrivant une règle additive. %
   \mygetref[phrase]{additive-rules}}%
 
 \mycodefull{tcl-anneal}%
 {}%
 {L'interface de binding \asoft{Tcl} pour~\arule{Anneal}}%
-{\arule{Anneal} est d\'ecrite sous les noms:~%
+{\arule{Anneal} est décrite sous les noms:~%
     \arule{M46789} dans~\cite{Vichniac86}, \\%
     \arule{Lava Lamp}~(une version~3D) dans~\cite{Pickover92b}, %
     \arule{Anneal} dans~\cite{Toffoli87}. %
-    Il s'agit d'une modification de la r\`egle
+    Il s'agit d'une modification de la règle
     dite~\arule{Vote~Majoritaire}~\cite{Toffoli87}, qui
-    \aquote{recuit} la dynamique du vote majoritaire par \'echange des
+    \aquote{recuit} la dynamique du vote majoritaire par échange des
     bits~5 et~6.}
 
 \mycodefull{c-tube-worm}%
 {}%
-{La r\`egle~\arule{Tube-Worm}}%
+{La règle~\arule{Tube-Worm}}%
 {\label{rule-tube-worm}%
-  Le source de la fonction \asoft{C} impl\'ementant la fonction de
-  transition de la r\`egle~\arule{Tube-Worm},
-  d'apr\`es~\cite{Toffoli87}.}
+  Le source de la fonction \asoft{C} implémentant la fonction de
+  transition de la règle~\arule{Tube-Worm},
+  d'après~\cite{Toffoli87}.}
 
 %%
 %% Local Variables:

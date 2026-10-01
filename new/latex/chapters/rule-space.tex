@@ -8,145 +8,145 @@ Cette classification repose sur des mesures statistiques des
 comportements\footnote{%
   Par exemple l'entropie %
   $S = - \sum_{i} p_{i} \log(p_{i})$ %
-  ou l'information mutuelle~(la corr\'elation de deux distributions) %
+  ou l'information mutuelle~(la corrélation de deux distributions) %
   $M = \sum_{i} \sum_{j} p_{ij} \log \frac{p_{ij}}{p_{i} p_{j}}$~\cite[]{Li90b}.}. %
 
-La premi\`ere question est celle de l'existence d'un certain
-comportement, une r\'eponse g\'en\'erale est donn\'ee par l'existence d'AC
+La première question est celle de l'existence d'un certain
+comportement, une réponse générale est donnée par l'existence d'AC
 universels. %
-Un cadre g\'en\'eral est donn\'e par l'utilisation des m\'ethodes de la
-m\'ecanique statistique pour qualifier les comportements. %
+Un cadre général est donné par l'utilisation des méthodes de la
+mécanique statistique pour qualifier les comportements. %
 
-La deuxi\`eme question est celle du nombre d'AC d'un type donn\'e et de
-leurs localisations dans l'espace des r\`egles. %
-Cette question introduit le probl\`eme de l'existence de param\`etres
-permettant de parcourir l'espace des r\`egles. %
+La deuxième question est celle du nombre d'AC d'un type donné et de
+leurs localisations dans l'espace des règles. %
+Cette question introduit le problème de l'existence de paramètres
+permettant de parcourir l'espace des règles. %
 
-Le probl\`eme de la classification des~AC se situe \`a l'intersection du
-probl\`eme \aquote{forward}\footnote{%
-  D\'eterminer les propri\'et\'es \`a partir de la r\`egle.} %
+Le problème de la classification des~AC se situe à l'intersection du
+problème \aquote{forward}\footnote{%
+  Déterminer les propriétés à partir de la règle.} %
 et inverse\footnote{%
-  D\'eterminer la r\`egle \`a partir des propri\'et\'es.}~%
+  Déterminer la règle à partir des propriétés.}~%
 \cite[]{Gutowitz90a}. %
-Il implique l'existence d'un ensemble de mesures r\'ealisables sur les
-r\`egles et sur leurs dynamiques. %
+Il implique l'existence d'un ensemble de mesures réalisables sur les
+règles et sur leurs dynamiques. %
 
-L'existence de param\`etres de contr\^ole de la dynamique des~AC permet
-de d\'eterminer une structure pour l'espace des~AC. %
+L'existence de paramètres de contrôle de la dynamique des~AC permet
+de déterminer une structure pour l'espace des~AC. %
 
 %%
 %% MINIMAL VERSION
 %%
-\section{Une version minimale du probl\`eme}
+\section{Une version minimale du problème}
 
-Les~AC \'el\'ementaires, tel que d\'efinis par~\cite{Wolfram86a}
+Les~AC élémentaires, tel que définis par~\cite{Wolfram86a}
 sont les~AC de dimension~$d = 1$, de rayon\footnote{%
   Le nombre de cellules voisines est $d r + 1$.} %
-$r = 1$ et de nombre d'\'etats~$k = 2$. %
-Une simplification ultime consid\`ere l'espace des~AC de param\`etres %
+$r = 1$ et de nombre d'états~$k = 2$. %
+Une simplification ultime considère l'espace des~AC de paramètres %
 $d = 0$, $r = 0$, $k = 2$, %
-Ce qui donne $k^{^{d r + 1}} = 4$ r\`egles~(Z\'ero, Flip, Same, One),
+Ce qui donne $k^{^{d r + 1}} = 4$ règles~(Zéro, Flip, Same, One),
 lesquelles donnent 8~dynamiques:
 
 \noindent Z(0) = 0*, Z(1) = 10*, O(0) = 01*, O(1) = 1*\\
 S(0) = 0*, S(1) = 1*, F(0) = (01)*, F(1) = (10)*
 
-soit 4~points fixes sans transitoire~(en 2 vari\'et\'es), 2 points fixes
+soit 4~points fixes sans transitoire~(en 2 variétés), 2 points fixes
 avec transitoire de taille 1, 2 cycles de taille 2 sans transitoire.
 
-Les~AC \'el\'ementaires, dont le nombre est~256 peuvent \^etre
-\'enum\'er\'es\footnote{%
-  Des donn\'ees statistiques peuvent \^etre obtenues pour
-  chaque r\`egle appliqu\'ee sur un espace de configuration.}, %
-mais l'\'etude des dynamiques associ\'ees \`a une r\`egle d\'epend du
+Les~AC élémentaires, dont le nombre est~256 peuvent être
+énumérés\footnote{%
+  Des données statistiques peuvent être obtenues pour
+  chaque règle appliquée sur un espace de configuration.}, %
+mais l'étude des dynamiques associées à une règle dépend du
 nombre~$N$ de cellules de l'espace de configuration~(qui tend
-vers l'infini) et fait n\'ecessairement appel \`a des m\'ethodes statistiques. %
-Pour $d = 1$, $k = 2$, $r = 2$, le nombre de r\`egle est $2^{32}$ et ne
-permet d\'ej\`a plus une \'enum\'eration.
+vers l'infini) et fait nécessairement appel à des méthodes statistiques. %
+Pour $d = 1$, $k = 2$, $r = 2$, le nombre de règle est $2^{32}$ et ne
+permet déjà plus une énumération.
 
 \mytwoplotfull[htb]{lambda}{flip}%
 {}%
-{Les 128 premi\`ere valeur de \protect\alambda et \protect\Flip, pour un calcul sur les
+{Les 128 première valeur de \protect\alambda et \protect\Flip, pour un calcul sur les
   16384 premiers entier}%
-{Le param\`etre appel\'e \alambda par~\cite{Li90b} est d\'efini par %
+{Le paramètre appelé \alambda par~\cite{Li90b} est défini par %
   $\lambda = \frac{k^{dr+1}-\#0}{k^{dr+1}}$~%
   \mygetref[paren]{lambda}. %
-  Pour les r\`egles binaires, \alambda est une version normalis\'ee de la
+  Pour les règles binaires, \alambda est une version normalisée de la
   fonction $\#_{1}(n) = n - \sum_{i=1}\lfloor n/2^{i}\rfloor$~%
-  \cite[]{Wolfram83} donnant le nombre de bits \`a~1 dans la
-  repr\'esentation binaire d'un nombre. %
-  Nous d\'efinissons \Flip pour les r\`egles binaires comme le nombre de
-  \aconcept{bit-flip} rencontr\'es en balayant les entr\'ees de la table de
+  \cite[]{Wolfram83} donnant le nombre de bits à~1 dans la
+  représentation binaire d'un nombre. %
+  Nous définissons \Flip pour les règles binaires comme le nombre de
+  \aconcept{bit-flip} rencontrés en balayant les entrées de la table de
   transition~\mygetref[paren]{flip-par}. %
-  Les calculs sont fait sur les 16384 premiers entiers consid\'er\'es comme
-  autant de r\`egles d'un hypoth\'etique voisinage \`a~$\log_{2}(14)$
+  Les calculs sont fait sur les 16384 premiers entiers considérés comme
+  autant de règles d'un hypothétique voisinage à~$\log_{2}(14)$
   voisins.\\
-  $\#0$ d\'esigne le nombre de z\'eros de la table de transition.}
+  $\#0$ désigne le nombre de zéros de la table de transition.}
 
 \mytwoplotfull[htb]{lambda-deriv}{flip-deriv}%
 {}%
-{Les 256 premi\`eres valeurs de la d\'eriv\'ee de \protect\alambda et \protect\Flip}%
-{La d\'eriv\'ee est calcul\'ee \`a partir des donn\'ees pr\'esent\'ees en
+{Les 256 premières valeurs de la dérivée de \protect\alambda et \protect\Flip}%
+{La dérivée est calculée à partir des données présentées en
   figure~\mygetplot{lambda+flip}:\\ %
   $f^{\prime}_{i} = f_{i} - f_{i-1}$.}
 
 \mytwoplotfull[htb]{lambda-prob}{flip-prob}%
 {}%
-{Les 512 premi\`eres valeurs des fonctions \protect\alambda et
-  \protect\Flip, et de leur probabilit\'e d'apparition}%
-{La distribution des valeurs d'une fonction utilis\'ee comme para\-m\`e\-tre
-  d'\'echantillonage d'un espace de r\`egles influence la nature de
-  l'\'echan\-til\-lonage. %
-  Les exp\'eriences utilisant \alambda comme param\`etre de
-  contr\^ole~(\cite{Li90b} par exemple), ne tiennent pas compte de la
-  non lin\'earit\'e de la distribution des probabilit\'es d'apparition des
-  valeurs de \alambda sur un espace de r\`egles.}
+{Les 512 premières valeurs des fonctions \protect\alambda et
+  \protect\Flip, et de leur probabilité d'apparition}%
+{La distribution des valeurs d'une fonction utilisée comme para\-mè\-tre
+  d'échantillonage d'un espace de règles influence la nature de
+  l'échan\-til\-lonage. %
+  Les expériences utilisant \alambda comme paramètre de
+  contrôle~(\cite{Li90b} par exemple), ne tiennent pas compte de la
+  non linéarité de la distribution des probabilités d'apparition des
+  valeurs de \alambda sur un espace de règles.}
 
 \mytwoplotfull[htb]{lambda-versus-prob}{flip-versus-prob}%
 {}%
-{Plot de \protect\alambda et \protect\Flip \protect\vs leur probabilit\'e d'apparition}%
-{Nous n'avons pas actuellement d'explication compl\`ete de ces
-  r\'esultats, il est n\'eanmoins clair que \alambda et \Flip poss\`edent des
-  propri\'et\'es suffisamment diff\'erentes pour justifier la poursuite
-  d'exp\'eriences utilisant \Flip} 
+{Plot de \protect\alambda et \protect\Flip \protect\vs leur probabilité d'apparition}%
+{Nous n'avons pas actuellement d'explication complète de ces
+  résultats, il est néanmoins clair que \alambda et \Flip possèdent des
+  propriétés suffisamment différentes pour justifier la poursuite
+  d'expériences utilisant \Flip} 
 
 \mytwoplotfull[htb]{lambda-flip-hist}{lambda-versus-flip}%
 {}%
 {L'histogramme des distribution de \protect\alambda et \protect\Flip, et
   \protect\alambda \protect\vs \protect\Flip.}%
-{Les valeurs de l'histogramme apparaissent ici non normalis\'ees, \ie en
-  nombre de bits \`a~1 pour \alambda et en nombre de bit-flips pour
+{Les valeurs de l'histogramme apparaissent ici non normalisées, \ie en
+  nombre de bits à~1 pour \alambda et en nombre de bit-flips pour
   \Flip.}
 
 \mytwoplotfull[htb]{lambda-flip-ratio-sorted}{lambda-flip-prob-sorted}%
 {}%
-{Un tri des valeurs de la fonction et leurs probabilit\'es d'apparition
+{Un tri des valeurs de la fonction et leurs probabilités d'apparition
   pour \protect\alambda et \protect\Flip}%
 {Le nombre de paliers correspond au nombre de valeurs possibles pour
-  chaque fonction, faible pour notre espace \`a voisinage
+  chaque fonction, faible pour notre espace à voisinage
   de~$\log_{2}(14)$~bits.}
 
 \myplotfullR[htb]{.75}{E-lambda-1}%
 {}%
 {Valeurs de \protect\alambda et \protect\En}%
-{Nous avons calcul\'e les valeurs de \alambda et \En{}\footnote{%
-    \aconcept{L'ench\^assement}, voir \'equation~\ref{rs-eq1}.} %
-  pour un sous-espace \'echantillon de l'espace des r\`egles binaires \`a
+{Nous avons calculé les valeurs de \alambda et \En{}\footnote{%
+    \aconcept{L'enchâssement}, voir équation~\ref{rs-eq1}.} %
+  pour un sous-espace échantillon de l'espace des règles binaires à
   voisinage de Moore. %
-  Le sous espace est constitu\'e des r\`egles additives, centre inclu, dont la table
-  secondaire supporte les fonctions constantes \aquote{z\'ero} et
+  Le sous espace est constitué des règles additives, centre inclu, dont la table
+  secondaire supporte les fonctions constantes \aquote{zéro} et
   \aquote{un} et la fonction \aquote{unchanged}. %
-  L'espace contient donc $3^{10} = 59049$ r\`egles. %
-  Les valeurs plot\'ees pour \En sont:~$\mEn_{centre}$,
+  L'espace contient donc $3^{10} = 59049$ règles. %
+  Les valeurs plotées pour \En sont:~$\mEn_{centre}$,
   $\mEn_{rayon}$ et la valeur moyenne de \En sur tous les
   voisins. %
   Le pic montre la position de \arule{Anneal} dans le sous-espace de
-  r\`egles. %
-  Nous avons tent\'e de corr\'eler les param\`etres calcul\'es sur l'espace des
-  r\`egles aux propri\'et\'es des trajectoires associ\'ees \`a ces r\`egles pour des
-  configurations initiales al\'eatoires de densit\'e\,\Sundemi sur des espaces
+  règles. %
+  Nous avons tenté de corréler les paramètres calculés sur l'espace des
+  règles aux propriétés des trajectoires associées à ces règles pour des
+  configurations initiales aléatoires de densité\,\Sundemi sur des espaces
   de tailles entre \asquare{64} et \asquare{256}, en vue de
-  d\'eterminer les restrictions suppl\'ementaires \`a appliquer \`a une
+  déterminer les restrictions supplémentaires à appliquer à une
   recherche automatique.}
 
 %%
@@ -154,198 +154,198 @@ permet d\'ej\`a plus une \'enum\'eration.
 %%
 \section{La classification de Wolfram}
 
-La classification de Wolfram est une classification de r\'ef\'erence pour
+La classification de Wolfram est une classification de référence pour
 de nombreux
 auteurs~\cite[]{Vichniac90,Li90b,Wootters90,McIntosh90,Chate90,Gutowitz90b}.
 
 Dans les quatre classes de Wolfram, %
-les classes I, II et III sont vues comme des attracteurs de syst\`emes
+les classes I, II et III sont vues comme des attracteurs de systèmes
 dynamiques:
 
 \subsection*{classe I}
 
 \begin{itemize}
 \item point limite
-\item ou tendance \`a un \'etat spatialement homog\`ene
+\item ou tendance à un état spatialement homogène
 \item ou les formes disparaissent avec le temps
 \item ou de petits changements sur la configuration initiale sont
-  sans effet sur l'\'etat final
+  sans effet sur l'état final
 \end{itemize}
 
 \subsection*{classe II}
 
 \begin{itemize}
 \item cycle limite
-\item ou montrant une s\'equence de structure simple, stable ou
-  p\'eriodique
-\item ou les formes \'evoluent vers une taille fixe finie
+\item ou montrant une séquence de structure simple, stable ou
+  périodique
+\item ou les formes évoluent vers une taille fixe finie
 \item ou de petits changements sur la configuration initiale
-  induisent des changements sur des r\'egions de tailles finies
+  induisent des changements sur des régions de tailles finies
 \end{itemize}
 
 \subsection*{classe III}
 
 \begin{itemize}
 \item attracteur chaotique
-\item ou montrant un comportement chaotique ap\'eriodique
-\item ou les formes croissent ind\'efiniment \`a une vitesse fixe
+\item ou montrant un comportement chaotique apériodique
+\item ou les formes croissent indéfiniment à une vitesse fixe
 \item ou de petits changements sur la configuration initiale
-  induisent des changements sur des r\'egions de tailles toujours
+  induisent des changements sur des régions de tailles toujours
   croissantes
 \end{itemize}
 
 \subsection*{classe IV}
 
 \begin{itemize}
-\item comportement plus complexe que les pr\'ec\'edents, conjecture de
+\item comportement plus complexe que les précédents, conjecture de
   calcul universel
-\item ou montrant des structures localis\'ees complexes,
-  \'eventuellement propageantes
+\item ou montrant des structures localisées complexes,
+  éventuellement propageantes
 \item ou les formes croissent et se contractent avec le temps
 \item ou de petits changements sur la configuration initiale
-  induisent des changements irr\'eguliers
+  induisent des changements irréguliers
 \end{itemize}
 
 La description des classes varie selon les auteurs. %
-On peut introduire la notion de d\'ecalage spatial
-homog\`ene~\cite[]{Li90b}, %
-souligner la difficult\'e que pr\'esente certains comportements
-interm\'ediaires~\cite[]{McIntosh90}, %
-ou proposer des interpr\'etations structurelles faisant, par exemple,
-des~AC de la classe~IV un \emph{m\'elange} d'AC de la classe~II
+On peut introduire la notion de décalage spatial
+homogène~\cite[]{Li90b}, %
+souligner la difficulté que présente certains comportements
+intermédiaires~\cite[]{McIntosh90}, %
+ou proposer des interprétations structurelles faisant, par exemple,
+des~AC de la classe~IV un \emph{mélange} d'AC de la classe~II
 et~III~\cite[]{Kayama93}. %
-Les 4 classes~(fixe, p\'eriodique, chaotique, complexe) apparaissent
-actuellement comme un point de d\'epart in\'evitable de toute tentative de
+Les 4 classes~(fixe, périodique, chaotique, complexe) apparaissent
+actuellement comme un point de départ inévitable de toute tentative de
 classification. %
-La question de la structure de l'espace, et donc des param\`etres de
-contr\^ole devient alors la question premi\`ere.
+La question de la structure de l'espace, et donc des paramètres de
+contrôle devient alors la question première.
 
 %%
 %% LAMBDA
 %%
-\section{Le param\`etre $\lambda$ de Langton}
+\section{Le paramètre $\lambda$ de Langton}
 \label{ref-lambda}
 
-Le param\`etre~$\lambda$ est d\'efini comme le pourcentage d'entr\'ees de la
-table de transition dont la valeur est diff\'erente de l'\'etat z\'ero:~%
+Le paramètre~$\lambda$ est défini comme le pourcentage d'entrées de la
+table de transition dont la valeur est différente de l'état zéro:~%
 $\lambda = \frac{k^{dr+1}-\#0}{k^{dr+1}}$. %
 
 A une petite variation de~$\lambda$~\cite[]{Langton92b} entre deux
-r\`egles correspond une petite distance de Hamming entre deux r\`egles. %
-La variation du param\`etre~$\lambda$ permet d'\'echantillonner
-un espace de r\`egles pour~$d$, $k$ et~$r$ fix\'es. %
-Chaque r\`egle est appliqu\'ee sur un ensemble de configurations
-initiales, et des mesures statistiques sont faites \`a la vol\'ee. %
-Les s\'eries temporelles de mesures sont utilis\'ees pour d\'eterminer
-l'appartenance de la r\`egle \`a une classe ou une autre. %
-On peut alors essayer d'\'etablir une corr\'elation entre~$\lambda$
+règles correspond une petite distance de Hamming entre deux règles. %
+La variation du paramètre~$\lambda$ permet d'échantillonner
+un espace de règles pour~$d$, $k$ et~$r$ fixés. %
+Chaque règle est appliquée sur un ensemble de configurations
+initiales, et des mesures statistiques sont faites à la volée. %
+Les séries temporelles de mesures sont utilisées pour déterminer
+l'appartenance de la règle à une classe ou une autre. %
+On peut alors essayer d'établir une corrélation entre~$\lambda$
 et la classe d'appartenance de l'AC. %
 
-Cette proc\'edure est a priori applicable pour d'autres param\`etres, %
-et vise \`a travers l'\'echantillonnage \`a r\'ev\'eler la structure g\'en\'erale
-que la variation du param\`etre de contr\^ole imprime \`a l'espace des r\`egles. %
+Cette procédure est a priori applicable pour d'autres paramètres, %
+et vise à travers l'échantillonnage à révéler la structure générale
+que la variation du paramètre de contrôle imprime à l'espace des règles. %
 
-Une question associ\'ee \`a la structure de l'espace d\'efini par un
-param\`etre est la pr\'esence et le type d'une \'eventuelle transition de
-phase, qui associe \`a une valeur critique du param\`etre de contr\^ole une
+Une question associée à la structure de l'espace défini par un
+paramètre est la présence et le type d'une éventuelle transition de
+phase, qui associe à une valeur critique du paramètre de contrôle une
 transition plus ou moins brusque de la classe de comportement des
-r\`egles. %
+règles. %
 
-Une autre question est la pr\'esence d'une tendance au continu associ\'ee
-\`a l'augmentation de la taille de l'espace des r\`egles. %
+Une autre question est la présence d'une tendance au continu associée
+à l'augmentation de la taille de l'espace des règles. %
 
 %%
 %% EXPERIMENTS
 %%
-\section[param\'etrage des classes de comportements]%
-{Exp\'erimentations sur le param\'etrage des classes de comportements}
+\section[paramétrage des classes de comportements]%
+{Expérimentations sur le paramétrage des classes de comportements}
 
 Li, Packard et Langton~(\citeyear{Li90b}) proposent l'existence de
-transitions de phase contr\^ol\'ees par le param\`etre~$\lambda$. %
+transitions de phase contrôlées par le paramètre~$\lambda$. %
 Il s'agit d'une transition du premier ordre~(transition brutale) entre
-les r\`egles de type II et III, %
-ou d'une transition de deuxi\`eme ordre~(transition graduelle) associant
-les r\`egles de type IV \`a une zone d'intersection des types II et III\@. %
-Les mesures statistiques utilis\'ees sont l'entropie, l'information
-mutuelle et la vitesse de propagation des diff\'erences sur l'espace
+les règles de type II et III, %
+ou d'une transition de deuxième ordre~(transition graduelle) associant
+les règles de type IV à une zone d'intersection des types II et III\@. %
+Les mesures statistiques utilisées sont l'entropie, l'information
+mutuelle et la vitesse de propagation des différences sur l'espace
 cellulaire\footnote{%
-  Consid\'er\'ee comme une mesure de l'impr\'edictibilit\'e de l'\'evolution
+  Considérée comme une mesure de l'imprédictibilité de l'évolution
   des \emph{formes} de l'espace cellulaire, elle devient une mesure
-  de la qualit\'e chaotique du comportement de l'AC.}. %
-Les espaces de r\`egles sont typiquement born\'es par $d <= 2$, $k < 10$,
+  de la qualité chaotique du comportement de l'AC.}. %
+Les espaces de règles sont typiquement bornés par $d <= 2$, $k < 10$,
 $r < 12$. %
-Ce type d'exp\'eriences a d'abord \'et\'e men\'e sur les~AC
-\'el\'ementaires~\cite[]{Li90a}. %
-\cite{Wootters90} \'etendent la recherche \`a des
-espaces de r\`egles plus vastes, dans le but de r\'eduire la dispersion de
+Ce type d'expériences a d'abord été mené sur les~AC
+élémentaires~\cite[]{Li90a}. %
+\cite{Wootters90} étendent la recherche à des
+espaces de règles plus vastes, dans le but de réduire la dispersion de
 la valeur critique. %
 L'augmentation de~$r$ supprime la transition~(la valeur critique tend
-vers z\'ero), l'augmentation de~$k$ tend \`a r\'eduire la dispersion de la
+vers zéro), l'augmentation de~$k$ tend à réduire la dispersion de la
 valeur critique.
 
-Toutefois, la critique d'une exp\'erience de \cite{Packard88},
-formul\'ee par \cite{Mitchell93a} fait appara\^itre les limites
-de l'hypoth\`ese de Langton sur l'\'emergence du \emph{calcul}\footnote{%
-  Il s'agit en fait de la transition vers des r\`egles dont les mesures
-  statistiques indiquent une appartenance \`a la classe IV, lesquelles
-  sont suppos\'ees universelles.} %
-\`a la fronti\`ere du chaos~\cite[]{Langton90,Langton92b}. %
-Packard utilise un algorithme g\'en\'etique pour faire \'evoluer des r\`egles
-effectuant un calcul particulier, et interpr\`ete les r\'esultats comme
-une indication de l'existence d'une pression s\'elective sur l'\'evolution
-des r\`egles vers les valeurs critiques de~$\lambda$ associ\'ees \`a une
-transition de phase et \`a la r\'ealisation d'un calcul complexe.
+Toutefois, la critique d'une expérience de \cite{Packard88},
+formulée par \cite{Mitchell93a} fait apparaître les limites
+de l'hypothèse de Langton sur l'émergence du \emph{calcul}\footnote{%
+  Il s'agit en fait de la transition vers des règles dont les mesures
+  statistiques indiquent une appartenance à la classe IV, lesquelles
+  sont supposées universelles.} %
+à la frontière du chaos~\cite[]{Langton90,Langton92b}. %
+Packard utilise un algorithme génétique pour faire évoluer des règles
+effectuant un calcul particulier, et interprète les résultats comme
+une indication de l'existence d'une pression sélective sur l'évolution
+des règles vers les valeurs critiques de~$\lambda$ associées à une
+transition de phase et à la réalisation d'un calcul complexe.
 
 %% 0.27 quoi
-Mitchell trouve des r\'esultats diff\'erents, et souligne la n\'ecessit\'e
-d'une meilleure compr\'ehension~(d\'efinition) des concepts utilis\'es. %
-Mitchell montre, par exemple, que l'\'evolution par algorithme g\'en\'etique
-d'une r\`egle calculant l'\'etat majoritaire de la configuration initiale
-en tendant vers un point fixe homog\`ene de l'\'etat majoritaire, %
-se trouve n\'ecessairement loin du point critique~(0.27 d'apr\`es Wooter
+Mitchell trouve des résultats différents, et souligne la nécessité
+d'une meilleure compréhension~(définition) des concepts utilisés. %
+Mitchell montre, par exemple, que l'évolution par algorithme génétique
+d'une règle calculant l'état majoritaire de la configuration initiale
+en tendant vers un point fixe homogène de l'état majoritaire, %
+se trouve nécessairement loin du point critique~(0.27 d'après Wooter
 et Langton) avec $\lambda$ = 0.5. %
 
-Li a par ailleurs sugg\'er\'e~\cite[]{Li89}, en apparente contradiction
-avec l'id\'ee d'une association entre calcul, complexit\'e et ph\'enom\`enes
+Li a par ailleurs suggéré~\cite[]{Li89}, en apparente contradiction
+avec l'idée d'une association entre calcul, complexité et phénomènes
 critiques~\cite[]{Li90b} une structure fractale~\cite[]{Mandelbrot84}
-pour la distribution des r\`egles complexes dans l'espace des r\`egles.
+pour la distribution des règles complexes dans l'espace des règles.
 
 %%
 %% PROPOSITIONS
 %%
-\section[Le param\'etrage d'ench\^assement]%
-{Proposition pour une recherche d'un param\'etrage de l'ench\^as\-sement}
+\section[Le paramétrage d'enchâssement]%
+{Proposition pour une recherche d'un paramétrage de l'enchâs\-sement}
 \mysetref{flip-par}
 
-Face aux probl\`emes soulev\'es par l'utilisation du param\`etre~$\lambda$,
-nous proposons quelques remarques pouvant servir de point de d\'epart \`a
-de nouvelles exp\'eriences sur la structure de l'espace des~AC.
+Face aux problèmes soulevés par l'utilisation du paramètre~$\lambda$,
+nous proposons quelques remarques pouvant servir de point de départ à
+de nouvelles expériences sur la structure de l'espace des~AC.
 
-La premi\`ere remarque concerne l'existence d'autres param\`etres
-de contr\^oles que~$\lambda$. %
+La première remarque concerne l'existence d'autres paramètres
+de contrôles que~$\lambda$. %
 Li, Packard et Langton~\cite[]{Li90b} soulignent l'importance de la
-recherche d'autres param\`etres de contr\^ole et sugg\`erent que la
-dispersion de la valeur critique pourrait \^etre r\'eduite par un
-param\`etre suppl\'ementaire~(le \emph{param\`etre myst\'erieux} permettant de
-localiser des fronti\`eres plus pr\'ecises entre les diff\'erents comportements). %
-Il nous semble n\'eanmoins peu probable qu'un seul param\`etre
-suppl\'ementaire suffise.
+recherche d'autres paramètres de contrôle et suggèrent que la
+dispersion de la valeur critique pourrait être réduite par un
+paramètre supplémentaire~(le \emph{paramètre mystérieux} permettant de
+localiser des frontières plus précises entre les différents comportements). %
+Il nous semble néanmoins peu probable qu'un seul paramètre
+supplémentaire suffise.
 
-La deuxi\`eme remarque concerne la structure ench\^ass\'ee des espaces de
-r\`egles. %
-Nous sugg\'erons que l'\'etude du degr\'e d'ench\^assement d'une r\`egle dans un
-espace permet la d\'efinition d'un nouveau param\`etre de contr\^ole.
+La deuxième remarque concerne la structure enchâssée des espaces de
+règles. %
+Nous suggérons que l'étude du degré d'enchâssement d'une règle dans un
+espace permet la définition d'un nouveau paramètre de contrôle.
 
-La troisi\`eme remarque concerne les techniques de r\'eductions du nombre
-de r\`egles l\'egales \`a consid\'erer pour un espace donn\'e, c'est \`a dire
-l'ablation des r\`egles anisotropiques ou ench\^ass\'ees, et la possibilit\'e
-d'utiliser un mapping interm\'ediaire.
+La troisième remarque concerne les techniques de réductions du nombre
+de règles légales à considérer pour un espace donné, c'est à dire
+l'ablation des règles anisotropiques ou enchâssées, et la possibilité
+d'utiliser un mapping intermédiaire.
 
-\subsection*{Le param\`etre Flip}
+\subsection*{Le paramètre Flip}
 
-Nous proposons l'utilisation du param\`etre~\emph{Flip} d\'efini comme le
-nombre de changements d'\'etats rencontr\'e en balayant successivement
-chaque entr\'ee de la table de transition.
+Nous proposons l'utilisation du paramètre~\emph{Flip} défini comme le
+nombre de changements d'états rencontré en balayant successivement
+chaque entrée de la table de transition.
 
 \[{\rm flip} =
 \frac{1}{N}\sum_{i=0}^{N-1}{\rm diff}(f_{i}-f_{(i+1){\rm mod}N})\]
@@ -359,46 +359,46 @@ avec $N=k^{dr+1}$, et
 \right.\]
 
 Si l'on plonge\footnote{%
-  Nous d\'efinissons le plongement de r\`egles comme augmentation de la
+  Nous définissons le plongement de règles comme augmentation de la
   taille du voisinage sans influence sur les trajectoires.} %
-une r\`egle~$R_{N}$ param\'etr\'ee par~$r = N$ dans une
-r\`egle~$R_{N + 1}$, l'insensibilit\'e de la r\`egle aux deux voisins
-suppl\'ementaires se traduit par une duplication des entr\'ees de la r\`egle
+une règle~$R_{N}$ paramétrée par~$r = N$ dans une
+règle~$R_{N + 1}$, l'insensibilité de la règle aux deux voisins
+supplémentaires se traduit par une duplication des entrées de la règle
 $R_{N}$. %
-Par exemple pour~$k = 2$, si pour la colonne~$i$ l'\'egalit\'e de chacune
-des~$N/2$ paires~$x_{j} = x_{j + 2^{i}}$ est v\'erifi\'ee, la colonne~$i$
-est inutilis\'ee, et soit la r\`egle est anisotropique, soit la r\`egle est
-isomorphe \`a une r\`egle d'espace de taille inf\'erieure et peut \^etre
+Par exemple pour~$k = 2$, si pour la colonne~$i$ l'égalité de chacune
+des~$N/2$ paires~$x_{j} = x_{j + 2^{i}}$ est vérifiée, la colonne~$i$
+est inutilisée, et soit la règle est anisotropique, soit la règle est
+isomorphe à une règle d'espace de taille inférieure et peut être
 isotropique.
 
-La somme des degr\'es d'\'egalit\'e de chaque colonne est un candidat
-possible au r\^ole de param\`etre de contr\^ole.
+La somme des degrés d'égalité de chaque colonne est un candidat
+possible au rôle de paramètre de contrôle.
 
-Parce que l'on peut construire une r\`egle pour un espace de taille
-donn\'ee en plongeant une r\`egle d'un espace de taille inf\'erieure~(par
-duplication des entr\'ees), \`a~$\lambda$ et Flip constant, puis d\'eplacer
-peu \`a peu la r\`egle vers l'espace de taille sup\'erieure en flippant des
-entr\'ees~(\'eventuellement en conservant~$\lambda$ constant), la mesure
-de Flip pourrait \^etre associ\'ee au degr\'e d'ench\^assement d'une r\`egle.
+Parce que l'on peut construire une règle pour un espace de taille
+donnée en plongeant une règle d'un espace de taille inférieure~(par
+duplication des entrées), à~$\lambda$ et Flip constant, puis déplacer
+peu à peu la règle vers l'espace de taille supérieure en flippant des
+entrées~(éventuellement en conservant~$\lambda$ constant), la mesure
+de Flip pourrait être associée au degré d'enchâssement d'une règle.
 
-L'utilisation d'un mapping interm\'ediaire permet de r\'eduire la taille
-de l'espace des r\`egles, tout en maintenant une coh\'erence forte sur le
+L'utilisation d'un mapping intermédiaire permet de réduire la taille
+de l'espace des règles, tout en maintenant une cohérence forte sur le
 sous-ensemble choisi. %
-Par exemple le r\'eduction du voisinage \`a une somme excluant la cellule
-centrale, conserve un sous ensemble isotropique de r\`egle. %
-Pour~$d = 2$, $k = 2$, $r = 1$ les~$2^{512}$ r\`egles
-deviennent~$4^{9}$, en utilisant les 4 op\'erations des r\`egles
-minimales~(Z\'ero, Same, Flip, One) comme valeur de la table
-interm\'ediaire. %
+Par exemple le réduction du voisinage à une somme excluant la cellule
+centrale, conserve un sous ensemble isotropique de règle. %
+Pour~$d = 2$, $k = 2$, $r = 1$ les~$2^{512}$ règles
+deviennent~$4^{9}$, en utilisant les 4 opérations des règles
+minimales~(Zéro, Same, Flip, One) comme valeur de la table
+intermédiaire. %
 
-\subsection*{Le param\`etre d'ench\^assement}
+\subsection*{Le paramètre d'enchâssement}
 
-Nous d\'efinissons le param\`etre d'ench\^assement d'un voisin pour une
-r\`egle comme l'influence de ce voisin sur la r\`egle. %
-Soit une r\`egle $R$ d'un AC de $k = 2^n$ \'etats, $d$ dimensions et de
+Nous définissons le paramètre d'enchâssement d'un voisin pour une
+règle comme l'influence de ce voisin sur la règle. %
+Soit une règle $R$ d'un AC de $k = 2^n$ états, $d$ dimensions et de
 rayon de voisinage $r$. %
-$N = k^{dr+1} = 2^b$ est le nombre d'entr\'ees de la table. %
-Pour un AC de $k = 2$ \'etats les $b = dr+1$ bits du voisinage donnent
+$N = k^{dr+1} = 2^b$ est le nombre d'entrées de la table. %
+Pour un AC de $k = 2$ états les $b = dr+1$ bits du voisinage donnent
 un vecteur $E$ de $b$ valeurs.
 
 %%\begin{eqnarray}
@@ -413,11 +413,11 @@ un vecteur $E$ de $b$ valeurs.
         \mbox{avec : } e_{ib} = 2i + i \bmod 2^b \nonumber
 \end{eqnarray}
 
-Une valeur moyenne $E = \frac{1}{b} \sum_{i = 0}^{b} E_b$ peut \^etre
-d\'efinie, pour servir de param\`etre de contr\^ole \`a la fa\c{c}on du
-param\`etre $\lambda$ cependant d'autre r\'eduction que la moyenne
-pourrait \^etre choisie, afin d'exploiter l'information sur le degr\'e de
-sym\'etrie $R$.
+Une valeur moyenne $E = \frac{1}{b} \sum_{i = 0}^{b} E_b$ peut être
+définie, pour servir de paramètre de contrôle à la façon du
+paramètre $\lambda$ cependant d'autre réduction que la moyenne
+pourrait être choisie, afin d'exploiter l'information sur le degré de
+symétrie $R$.
 
 \begin{eqnarray}
         E_{life} & = &
@@ -426,12 +426,12 @@ sym\'etrie $R$.
         \lambda_{life} & = & 0.273438 \nonumber
 \end{eqnarray}
 
-Le probl\`eme de la structure de l'espace des~AC, semble \^etre un
-probl\`eme encore largement ouvert. %
+Le problème de la structure de l'espace des~AC, semble être un
+problème encore largement ouvert. %
 La question des formes possibles de la dynamique des~AC pour des
-espaces de r\`egles de grande taille, et la question d'une combinatoire
-de r\`egles permettant de contr\^oler l'\'emergence de ces formes ne
-poss\`edent pas actuellement de r\'eponses.
+espaces de règles de grande taille, et la question d'une combinatoire
+de règles permettant de contrôler l'émergence de ces formes ne
+possèdent pas actuellement de réponses.
 
 %%
 %% Local Variables:

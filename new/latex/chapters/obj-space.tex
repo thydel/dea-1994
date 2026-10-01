@@ -4,120 +4,120 @@
 \chapter[Espace, temps, lois]{Vers des objets cellulaires:~espace, temps, lois}
 \mysetref{space-time-law}
 
-Nous soutenons qu'un environnement de d\'eveloppement d'AC doit reposer
-sur un ensemble d'objets permettant la construction d'exp\'eriences. %
+Nous soutenons qu'un environnement de développement d'AC doit reposer
+sur un ensemble d'objets permettant la construction d'expériences. %
 Ces objets doivent correspondre aux ressources utilisables par une
-simulation et fournir les op\'erations et les fonctions de r\'eduction
-d'information utilis\'ees lors de la description de l'exp\'erience
-projet\'ee. %
+simulation et fournir les opérations et les fonctions de réduction
+d'information utilisées lors de la description de l'expérience
+projetée. %
 
 Les objets de base d'une simulation sont l'\aconcept{espace}, %
 le \aconcept{temps} et la \aconcept{fonc\-tion de transition}. %
 La fonction de transition se compose d'une structure d'interconnexion
-cellulaire associable \`a un espace, d'une fonction de transition
+cellulaire associable à un espace, d'une fonction de transition
 locale\footnote{%
-  L'expression \aquote{fonction de transition} d\'esigne, suivant le
-  contexte, soit l'objet regroupant le r\'eseau d'interconnexion et la
+  L'expression \aquote{fonction de transition} désigne, suivant le
+  contexte, soit l'objet regroupant le réseau d'interconnexion et la
   fonction de transition locale, soit la fonction de transition locale
-  elle-m\^eme. %
-  La fonction de transition locale sera par ailleurs \'egalement nomm\'ee
-  \aquote{r\`egle} ou \aquote{table de transition}, et l'objet fonction
-  de transition sera \`a l'occasion nomm\'e loi, ou AC.}, %
-applicable de mani\`ere synchrone sur l'ensemble des cellules d'un
-espace dot\'e d'un r\'eseau d'interconnexion, et d'une fonction
+  elle-même. %
+  La fonction de transition locale sera par ailleurs également nommée
+  \aquote{règle} ou \aquote{table de transition}, et l'objet fonction
+  de transition sera à l'occasion nommé loi, ou AC.}, %
+applicable de manière synchrone sur l'ensemble des cellules d'un
+espace doté d'un réseau d'interconnexion, et d'une fonction
 d'application utilisant les composants de la
-fonction de transition pour g\'en\'erer le nouvel \'etat d'un l'espace. %
-La fonction de transition r\'ealise les lois de la dynamique de
-l'univers cellulaire simul\'e. %
-Elle est g\'en\'eratrice du temps par application sur l'espace. %
+fonction de transition pour générer le nouvel état d'un l'espace. %
+La fonction de transition réalise les lois de la dynamique de
+l'univers cellulaire simulé. %
+Elle est génératrice du temps par application sur l'espace. %
 
-Des instances d'objets de base sont regroup\'ees pour la r\'ealisation
-d'une simulation au sein d'un objet de type s\'equenceur. %
-Des manipulateurs et des observateurs peuvent \^etre associ\'es aux objets
+Des instances d'objets de base sont regroupées pour la réalisation
+d'une simulation au sein d'un objet de type séquenceur. %
+Des manipulateurs et des observateurs peuvent être associés aux objets
 de la simulation. %
 
 %%
 %% OBJECTS/SPACE
 %%
-\section{L'espace:~la m\'emoire}
+\section{L'espace:~la mémoire}
 
-L'espace est un ensemble de cellules ordonn\'ees conform\'ement \`a la
+L'espace est un ensemble de cellules ordonnées conformément à la
 structure d'interconnexion de la fonction. %
-La structure de l'espace peut th\'eoriquement \^etre quelconque pourvu
-qu'elle soit homog\`ene. %
+La structure de l'espace peut théoriquement être quelconque pourvu
+qu'elle soit homogène. %
 En pratique nous limitons initialement les structures disponibles aux
 espaces de dimension~$d$~1, 2~ou~3. %
 \mysetref{nombre-de-voisin}%
-Le nombre~$r$ de cellules distantes de $n$~unit\'es au plus d'une
+Le nombre~$r$ de cellules distantes de $n$~unités au plus d'une
 cellule quelconque de l'espace est $(2n + 1)^{d}$. %
 La structure d'interconnexion sera un sous-ensemble de l'ensemble des
-cellules distantes de $n$~unit\'es au plus, avec~$n$ typiquement limit\'e
-\`a 1~ou~2 unit\'es. %
+cellules distantes de $n$~unités au plus, avec~$n$ typiquement limité
+à 1~ou~2 unités. %
 Nous appellerons \anewterm{cube d'interconnexion} de dimension~$d$ une
-structure d'interconnexion compl\`ete pour la dimension~$d$ et
+structure d'interconnexion complète pour la dimension~$d$ et
 \anewterm{croix d'interconnexion} de dimension~$d$ l'ensemble des
-cellules distantes de $n$~unit\'es au plus sur une dimension de l'espace
+cellules distantes de $n$~unités au plus sur une dimension de l'espace
 au plus. %
 Le cube d'interconnexion de dimension~2 et distance~1 correspond au
 voisinage de Moore, et la croix d'interconnexion de dimension~2 et
 distance~1 au voisinage de von Neumann. %
-Le nombre d'\'el\'ements d'une croix d'interconnexion est $2 n d + 1$.
+Le nombre d'éléments d'une croix d'interconnexion est $2 n d + 1$.
 %%
 \mytable{neighburhood-size-cube}%
-{Nombres d'\'etats pour quelques cubes d'interconnexions,}%
+{Nombres d'états pour quelques cubes d'interconnexions,}%
 {Tailles induites par des cubes d'interconnexions}%
 {Taille en octets des tables de transitions de quelques cubes
   d'interconnexions de cellules binaires.}
 
 Le tableau~\mygettbl{neighburhood-size-cube} donne la taille en bytes
 des tables de transitions des cubes d'interconnexions de cellules
-binaires pour les 4~premi\`eres dimensions d'espace et les 4~premi\`eres
+binaires pour les 4~premières dimensions d'espace et les 4~premières
 distances. %
-Les entr\'ees en caract\`eres gras sont r\'ealisables par lookup-table.
+Les entrées en caractères gras sont réalisables par lookup-table.
 
-Le tableau \mygettbl{neighburhood-size-croix} sugg\`ere l'int\'er\^et de
+Le tableau \mygettbl{neighburhood-size-croix} suggère l'intérêt de
 voisinages mixtes
 \[\text{croix}(d, n) \cup \text{cube}(d, n - 1)\]
 
-Mais la structure d'interconnexion r\'eguli\`ere offrant le meilleur
-compromis \trialt{distance}{volume}{isotropie} est une \anewterm{sph\`ere de
-  Manhattan}, une hyper-sph\`ere de dimension~$d$ dont le rayon est une
+Mais la structure d'interconnexion régulière offrant le meilleur
+compromis \trialt{distance}{volume}{isotropie} est une \anewterm{sphère de
+  Manhattan}, une hyper-sphère de dimension~$d$ dont le rayon est une
 distance de Manhattan\footnote{%
-  Le volume d'une sph\`ere de Manhattan est %
+  Le volume d'une sphère de Manhattan est %
   $S(d, r) = S(d - 1, r) + 2 \sum_{i=0}^{i=R-1} S(d - 1, i)$ %
   avec $S(1, r) = 2r + 1$. %
-  Les d\'efinitions que nous proposons pour les cubes, croix et sph\`ere de
-  connexions consid\`erent le centre comme exclu du rayon. %
-  L'inclusion du centre dans le rayon permet la d\'efinition de cubes et
-  de sph\`eres priv\'es d'un centre ponctuel. %
+  Les définitions que nous proposons pour les cubes, croix et sphère de
+  connexions considèrent le centre comme exclu du rayon. %
+  L'inclusion du centre dans le rayon permet la définition de cubes et
+  de sphères privés d'un centre ponctuel. %
   Le voisinage de Margolus~\cite[]{Toffoli87} par exemple utilise un
-  carr\'e de 2~cellules de c\^ot\'e.}. %
-Une sph\`ere de Manhattan de rayon~1 d\'efinit la m\^eme structure
+  carré de 2~cellules de côté.}. %
+Une sphère de Manhattan de rayon~1 définit la même structure
 d'interconnexion qu'une croix de rayon~1. %
-Le voisinage de von Neumann est donc une sph\`ere de Manhattan, mais pas
+Le voisinage de von Neumann est donc une sphère de Manhattan, mais pas
 un voisinage de Moore. %
-Avec des cellules binaires, en dimension~2 les sph\`eres de rayon
-2~et~3 sont accessibles\footnote{1K et 4M}, en dimension~3 la sph\`ere
+Avec des cellules binaires, en dimension~2 les sphères de rayon
+2~et~3 sont accessibles\footnote{1K et 4M}, en dimension~3 la sphère
 de rayon~2 est accessible\footnote{4M}.
 
-\noindent L'espace supporte des fonctions d'\bialt{entr\'ee}{sortie},
-d'\'edition, de r\'eduction et de transformation.
+\noindent L'espace supporte des fonctions d'\bialt{entrée}{sortie},
+d'édition, de réduction et de transformation.
 %%
 \mytable{neighburhood-size-croix}%
 {quelques croix d'interconnexions,}%
 {Tailles induites par des croix d'interconnexions}%
 {La taille en bytes des tables de transitions induite par des croix
   d'interconnexions de cellules binaires permet l'exploration de
-  voisinages utilisant de plus grandes valeurs pour les param\`etres
-  dimension et rayon, au d\'etriment du rapport
+  voisinages utilisant de plus grandes valeurs pour les paramètres
+  dimension et rayon, au détriment du rapport
   $\frac{\text{volume}}{\text{rayon}}$, donc de l'isotropie.}
 %%
 \mytable{neighburhood-size-sphere}%
-{et quelques sph\`eres d'interconnexions.}%
-{Tailles induites par des sph\`eres d'interconnexions}%
-{La taille en bytes des tables de transitions induite par des sph\`eres
-  d'interconnexions de cellules binaires, est particuli\`erement
-  int\'eressante pour les valeurs $d=2, n=3$ et $d=3, n=2$ qui sont
+{et quelques sphères d'interconnexions.}%
+{Tailles induites par des sphères d'interconnexions}%
+{La taille en bytes des tables de transitions induite par des sphères
+  d'interconnexions de cellules binaires, est particulièrement
+  intéressante pour les valeurs $d=2, n=3$ et $d=3, n=2$ qui sont
   inaccessibles au voisinage cube \mygettbl[paren]{neighburhood-size-cube}.}
 %%
 
@@ -126,135 +126,135 @@ d'\'edition, de r\'eduction et de transformation.
 %%
 \subsection{Structure de l'espace:~dimension et voisinage}
 
-L'espace appara\^it comme une ligne, un plan, ou un volume de cellules
-adres\-sables globalement par leurs coordonn\'ees euclidiennes. %
-Nous utiliserons un espace de dimension~2 par d\'efaut pour exposer les
-op\'erations applicables sur les espaces. %
-Cet espace peut \^etre vu et manipul\'e soit comme un plan de cellules,
-soit comme un vecteur de plans de bits correspondant \`a une tranche
+L'espace apparaît comme une ligne, un plan, ou un volume de cellules
+adres\-sables globalement par leurs coordonnées euclidiennes. %
+Nous utiliserons un espace de dimension~2 par défaut pour exposer les
+opérations applicables sur les espaces. %
+Cet espace peut être vu et manipulé soit comme un plan de cellules,
+soit comme un vecteur de plans de bits correspondant à une tranche
 cellulaire. %
-Les op\'erations sur un espace sont toutes les op\'erations possibles sur
-une m\'emoire organis\'ee selon une dualit\'e vecteur de plans de bits, plan
+Les opérations sur un espace sont toutes les opérations possibles sur
+une mémoire organisée selon une dualité vecteur de plans de bits, plan
 de vecteurs de bits.
 
-Id\'ealement, en association avec une structure d'interconnexion, le
-vecteur de bits de la m\'emoire cellulaire est associ\'e \`a une structure
+Idéalement, en association avec une structure d'interconnexion, le
+vecteur de bits de la mémoire cellulaire est associé à une structure
 de nommage. %
-Les noms des zones de m\'emoire sont utilisables en param\`etres des
-op\'erations portant sur les tranches d'espaces cellulaires~(\'edition,
-visualisation, r\'eduction) et sur les variables cellulaires~(d\'efinition
+Les noms des zones de mémoire sont utilisables en paramètres des
+opérations portant sur les tranches d'espaces cellulaires~(édition,
+visualisation, réduction) et sur les variables cellulaires~(définition
 de la fonction de transition).
 
 %%
 %% OBJECTS/SPACE/EDIT
 %%
-\subsection{\'Edition d'espace:~les configurations cellulaires}
+\subsection{Édition d'espace:~les configurations cellulaires}
 
-Une premi\`ere famille d'op\'erations est fournie par un \'editeur de
+Une première famille d'opérations est fournie par un éditeur de
 \astrangeterm{pixmaps}{%
-  Une m\'emoire de pixels.} %
+  Une mémoire de pixels.} %
 permettant la construction des configurations d'espaces
-au temps z\'ero d'une simulation. %
-L'\'editeur permet \'egalement la modification du point d'espace courant
+au temps zéro d'une simulation. %
+L'éditeur permet également la modification du point d'espace courant
 dans le temps entre chaque application de la fonction de transition.
 %%
 %% neighburhood-size-tbl-16xor9
 %%
 \mydumpfullR[htb]{.75}{neighburhood-size-tbl-16xor9}%
-{Vari\'et\'e des configurations initiales}%
-{\'Edition d'espace;~g\'en\'eration~16 de la r\`egle \arule{Xor9} sur le
+{Variété des configurations initiales}%
+{Édition d'espace;~génération~16 de la règle \arule{Xor9} sur le
   tableau~\mygettbl{neighburhood-size-cube}}%
 {Nous avons choisi \mysoftcite[PBM]{pbm} comme format\footnote{%
-    Les num\'eros en indice sup\'erieur entre crochets renvoient au
-    r\'epertoire des outils~\mygetref[paren]{tools}.} %
+    Les numéros en indice supérieur entre crochets renvoient au
+    répertoire des outils~\mygetref[paren]{tools}.} %
   pivot de \bialt{bitmap}{pixmap}. %
-  Cette figure montre l'application de la r\`egle~\myrulecite{xor9} sur
-  un espace obtenu \`a partir du tableau~\mygettbl{neighburhood-size-cube}. %
-  Pour ce faire \mysoftcite{groff} est utilis\'e pour produire une
-  repr\'esentation PostScript de la page, puis \mysoftcite{ghostscript}
-  est utilis\'e pour produire une repr\'esentation \asoft{PBM} de la page,
+  Cette figure montre l'application de la règle~\myrulecite{xor9} sur
+  un espace obtenu à partir du tableau~\mygettbl{neighburhood-size-cube}. %
+  Pour ce faire \mysoftcite{groff} est utilisé pour produire une
+  représentation PostScript de la page, puis \mysoftcite{ghostscript}
+  est utilisé pour produire une représentation \asoft{PBM} de la page,
   divers outils comprenant le format \asoft{PBM} tel \mysoftcite{xv}
-  peuvent \^etre utilis\'es \`a ce stade pour retravailler le bitmap, enfin
-  le bitmap est utilis\'e par le workbench qui fournit le bitmap
-  transform\'e par l'application it\'erative d'une r\`egle, lequel est
-  retransform\'e en PostScript pour insertion dans le document final.}
+  peuvent être utilisés à ce stade pour retravailler le bitmap, enfin
+  le bitmap est utilisé par le workbench qui fournit le bitmap
+  transformé par l'application itérative d'une règle, lequel est
+  retransformé en PostScript pour insertion dans le document final.}
 %%
 Il est souhaitable de pouvoir utiliser aussi d'autres outils que les
-n\^otres~(que nous nommons outils externes) pour manipuler les espaces. %
+nôtres~(que nous nommons outils externes) pour manipuler les espaces. %
 Le format de stockage externe doit permettre l'application
-\astrangeterm{off-line}{Le terme off-line d\'esigne le passage des
-  objets de la simulation \`a d'autres processus.} de nombreux outils
+\astrangeterm{off-line}{Le terme off-line désigne le passage des
+  objets de la simulation à d'autres processus.} de nombreux outils
 sur les espaces. %
-Ceci permet une int\'egration \'etroite de ces outils \`a l'environnement de
-d\'eveloppement \bialt{et}{ou} d'interaction, mais implique l'existence de
-plusieurs classes de d\'ebit pour les op\'erations applicables sur les
+Ceci permet une intégration étroite de ces outils à l'environnement de
+développement \bialt{et}{ou} d'interaction, mais implique l'existence de
+plusieurs classes de débit pour les opérations applicables sur les
 objets. %
 Cette contrainte est quasiment sans effet pour l'utilisation
-d'\'editeurs interactifs de type \astrangeterm{painter}{%
-  Un outil m\'etaphore de la palette et du pinceau, lorsque ceux-ci sont utilis\'es
+d'éditeurs interactifs de type \astrangeterm{painter}{%
+  Un outil métaphore de la palette et du pinceau, lorsque ceux-ci sont utilisés
   pour peindre une surface} %
 ou \astrangeterm{drawer}{%
-  Un outil m\'etaphore du crayon
-  lorsqu'il est utilis\'e pour dessiner.} %
+  Un outil métaphore du crayon
+  lorsqu'il est utilisé pour dessiner.} %
 sur un espace.
 %%
-L'\'editeur devrait \'egalement fournir une famille de fonctions de
-remplissage al\'eatoire de l'espace aussi riche que possible.
+L'éditeur devrait également fournir une famille de fonctions de
+remplissage aléatoire de l'espace aussi riche que possible.
 %%
 
 %%
 %% OBJECTS/SPACE/REDUCT
 %%
-\subsection{R\'eduction d'espace:~taille et contenu}
+\subsection{Réduction d'espace:~taille et contenu}
 
-La deuxi\`eme famille d'op\'erations fournit des fonctions de r\'eduction de
+La deuxième famille d'opérations fournit des fonctions de réduction de
 l'information contenu dans un espace. %
-Il s'agit de r\'eductions arithm\'etiques \'el\'ementaires~(somme,
-histogramme, parit\'e) de r\'eductions statistiques standard~(minimum,
-maximum, moyenne, entropie, dimension fractale) ou sp\'ecialis\'ees comme
-le comptage de patterns propres \`a une simulation. %
-On peut ajouter les outils standards de compressions de donn\'ees qui,
-outre l'archivage des espaces, fournissent des quantit\'es
+Il s'agit de réductions arithmétiques élémentaires~(somme,
+histogramme, parité) de réductions statistiques standard~(minimum,
+maximum, moyenne, entropie, dimension fractale) ou spécialisées comme
+le comptage de patterns propres à une simulation. %
+On peut ajouter les outils standards de compressions de données qui,
+outre l'archivage des espaces, fournissent des quantités
 informationnelles.
 
-\noindent Ici encore l'utilisation d'un format pivot standard et dot\'e
+\noindent Ici encore l'utilisation d'un format pivot standard et doté
 de nombreux outils de conversion de format permet l'utilisation
 d'outils statistiques off-line.\footnote{%
   \mygettbl[phrase]{lifex-sum-1}} %
-De plus les outils externes se pr\'esentant sous la forme de librairie
-sont \'egalement int\'egrables \`a l'environnement de d\'eveloppement et
-permettent une utilisation directe qui ne n\'ecessite pas l'emploi de
+De plus les outils externes se présentant sous la forme de librairie
+sont également intégrables à l'environnement de développement et
+permettent une utilisation directe qui ne nécessite pas l'emploi de
 fichiers temporaires.
 
 %%
 %% OBJECTS/SPACE/TRANSFORM
 %%
-\subsection{Transformation d'espace:~d'une forme \`a l'autre}
+\subsection{Transformation d'espace:~d'une forme à l'autre}
 
 %%
 %% tsum-128-edge
 %%
 \mydumpfull{tsum-128-edge}%
 {Transformation d'espace}%
-{Transformation d'espace;~un dithering et deux d\'etections de contours}%
-{L'espace original est pr\'esent\'e par la figure \mygetdump{tsum-grey}. %
-  Ces transformations ont \'et\'e r\'ealis\'ees avec les outils \asoft{PBM}.
-  Le \aquote{dithering} permet la r\'eduction d'un greymap \`a un bitmap.}
+{Transformation d'espace;~un dithering et deux détections de contours}%
+{L'espace original est présenté par la figure \mygetdump{tsum-grey}. %
+  Ces transformations ont été réalisées avec les outils \asoft{PBM}.
+  Le \aquote{dithering} permet la réduction d'un greymap à un bitmap.}
 %%
 Enfin, des transformations globales arbitraires sont applicables sur
 les espaces. %
 Il s'agit par exemple des fonctions de traitement du signal en
-g\'en\'eral, et de traitement d'images tel que la reconnaissance des
+général, et de traitement d'images tel que la reconnaissance des
 formes et l'extraction de contour. %
-La figure \mygetdump{tsum-128-edge} montre une d\'etection de contours
+La figure \mygetdump{tsum-128-edge} montre une détection de contours
 utilisant des outils fournis par \asoft{PBM}. %
 \mygetdump[seealso]{tsum-grey}
 
-Certaines de ces fonctions sont elles m\^emes bas\'ees sur des algorithmes
-cellulaires, elle doivent alors pouvoir \^etre r\'ealis\'ees \`a l'aide de
-l'environnement de d\'eveloppement, les fonctions de s\'equencement
-permettant leur application non destructive \`a la vol\'ee sur le point
-d'espace courant d'une s\'equence.
+Certaines de ces fonctions sont elles mêmes basées sur des algorithmes
+cellulaires, elle doivent alors pouvoir être réalisées à l'aide de
+l'environnement de développement, les fonctions de séquencement
+permettant leur application non destructive à la volée sur le point
+d'espace courant d'une séquence.
 
 %%
 %% OBJECTS/SPACE/VISUAL
@@ -262,227 +262,227 @@ d'espace courant d'une s\'equence.
 \subsection{Visualisation d'espace:~comprendre les lois}
 \mysetref{obj-visualisation}
 
-L'espace constitue un objet de visualisation \'el\'ementaire a priori. %
-Il peut \^etre vu par l'interm\'ediaire de fen\^etres X11 associ\'ees \`a un
-bitmap, ou \`a une s\'equence de plans de bits~(pixmap) associ\'ee \`a une
+L'espace constitue un objet de visualisation élémentaire a priori. %
+Il peut être vu par l'intermédiaire de fenêtres X11 associées à un
+bitmap, ou à une séquence de plans de bits~(pixmap) associée à une
 \aquote{colormap}.
 %%
 \mydumpfullR[ht]{.75}{anneal-g128-s11}%
 {Visualisations par bitmap:~d'un espace,}%
 {Un bitmap point-bit~\asquare{2048}}%
-{G\'en\'eration~128 de la r\`egle~\arule{Anneal}, sur une espace initial de
-  densit\'e\,\Sundemi, et de taille~\asquare{2048}.}
+{Génération~128 de la règle~\arule{Anneal}, sur une espace initial de
+  densité\,\Sundemi, et de taille~\asquare{2048}.}
 %%
 
 \noindent%
 La figure~\mygetdump{anneal-g128-s11} montre la visualisation par
-bitmap de l'espace de la g\'en\'e\-ration~128 de la
-r\`egle~\arule{Anneal}\footnote{%
+bitmap de l'espace de la géné\-ration~128 de la
+règle~\arule{Anneal}\footnote{%
   \mygetrule[phrase]{anneal}}. %
 L'espace est de taille~\asquare{2048}. %
-L'espace initial a une densit\'e al\'eatoire\,\undemi. %
-La taille de la cellule \'etant de 1~bit, le bitmap permet de visualiser
-l'int\'egralit\'e des \'etats cellulaires. %
-Chaque point de l'image correspond \`a un bit.
+L'espace initial a une densité aléatoire\,\undemi. %
+La taille de la cellule étant de 1~bit, le bitmap permet de visualiser
+l'intégralité des états cellulaires. %
+Chaque point de l'image correspond à un bit.
 
 \noindent%
-La figure~\mygetdump{tube-worm-mix} montre 8~s\'equences de
+La figure~\mygetdump{tube-worm-mix} montre 8~séquences de
 8~espaces chacune. %
-Il s'agit de s\'equences de la r\`egle~\arule{Tube-Worm}\footnote{%
+Il s'agit de séquences de la règle~\arule{Tube-Worm}\footnote{%
   \mygetrule[phrase]{tube-worm}} %
-appliqu\'ee sur le m\^eme espace initial, les variations portant sur les
-param\`etres statiques\footnote{%
+appliquée sur le même espace initial, les variations portant sur les
+paramètres statiques\footnote{%
   \mygetref[phrase]{static-param}} %
-de la r\`egle. %
-Le nombre de g\'en\'erations entre deux espaces d\'epend d'un des param\`etres
-statiques de la r\`egle. %
-Il est de 32~intervalles du temps propre \`a cette r\`egle.
+de la règle. %
+Le nombre de générations entre deux espaces dépend d'un des paramètres
+statiques de la règle. %
+Il est de 32~intervalles du temps propre à cette règle.
 
 \noindent%
 La figure~\mygetdump{tsum-grey} montre la visualisation par pixmap de
-2~g\'en\'erations de la r\`egle \arule{Qmean} \mygetrule[paren]{qmean}. %
-La taille de la cellule \'etant de 8~bits, 256~couleurs sont n\'ecessaires
-pour visualiser tous les \'etats possibles\footnote{%
+2~générations de la règle \arule{Qmean} \mygetrule[paren]{qmean}. %
+La taille de la cellule étant de 8~bits, 256~couleurs sont nécessaires
+pour visualiser tous les états possibles\footnote{%
   Bien entendu, en termes purement informationnel l'espace est comme
   pour la  figure~\mygetdump{anneal-g128-s11}~\asquare{2048}.}.
 
 \noindent%
 La figure \mygetdump{tsum} montre la visualisation des
-g\'en\'erations~$2^{3}$ \`a~$2^{10}$~(de haut en bas) de la
-r\`egle~\arule{Qmean}. %
+générations~$2^{3}$ à~$2^{10}$~(de haut en bas) de la
+règle~\arule{Qmean}. %
 L'espace est de taille \asquare{128}. %
-L'espace initial a une densit\'e al\'eatoire\,\undemi. %
-Les 256~\'etats possibles de chaque cellule sont visualis\'es par
+L'espace initial a une densité aléatoire\,\undemi. %
+Les 256~états possibles de chaque cellule sont visualisés par
 8~bitmaps au lieu d'un pixmap. %
-Les bitmaps sont pr\'esent\'es de gauche \`a droite pour les bits~0 \`a~7.
+Les bitmaps sont présentés de gauche à droite pour les bits~0 à~7.
 
-Les variables de r\'eductions d'espace sont pr\'esent\'ees sous forme ASCII,
-associ\'ees aux fen\^etres pixmap, ou \'eventuellement par des
+Les variables de réductions d'espace sont présentées sous forme ASCII,
+associées aux fenêtres pixmap, ou éventuellement par des
 \astrangeterm{viewers}{%
   visualiseurs.} %
 de groupe de variables scalaires~(bargraph par exemple). %
 Ce type de visualisation~(bitmaps + scalaires) est assez rapide pour
-permettre la r\'ealisation de films de s\'equences d'espaces \`a une
-fr\'equence sup\'erieure \`a 1~Hz.
+permettre la réalisation de films de séquences d'espaces à une
+fréquence supérieure à 1~Hz.
 
-D'autres types de visualisations d\'edi\'ees \`a une simulation particuli\`ere
+D'autres types de visualisations dédiées à une simulation particulière
 ou plus consommatrice en ressources sont possibles:
 \begin{itemize}
-\item Une version iconique de l'\'etat d'une cellule.
-\item Une vision tridimensionnelle, r\'ealis\'ee par \astrangeterm{plotter}%
-  {Traceur. Ce type de visualisation repose \'evidemment sur le
-    transfert d'un espace \`a un outil externe sp\'ecialis\'e. %
-    Nous avons utilis\'e \mysoftcite{gnuplot} et \mysoftcite{Khoros}.} %
+\item Une version iconique de l'état d'une cellule.
+\item Une vision tridimensionnelle, réalisée par \astrangeterm{plotter}%
+  {Traceur. Ce type de visualisation repose évidemment sur le
+    transfert d'un espace à un outil externe spécialisé. %
+    Nous avons utilisé \mysoftcite{gnuplot} et \mysoftcite{Khoros}.} %
   \mygetplot[paren]{anneal-sum} ou \astrangeterm{renderer}%
-  {G\'en\'erateur de rendu. Nous avons utilis\'e \mysoftcite{qrt} et la toolbox
+  {Générateur de rendu. Nous avons utilisé \mysoftcite{qrt} et la toolbox
     \mysoftcite{vart} sous \asoft{Khoros}.} %
-  \mygetdump[paren]{tsum-ray-one} d'un espace consid\'er\'e comme surface
-  d'\'el\'evation, ou dont une des variables d'\'etat de la cellule est
-  consid\'er\'ee comme donn\'ee d'\'el\'evation, et une autre comme donn\'ee de
+  \mygetdump[paren]{tsum-ray-one} d'un espace considéré comme surface
+  d'élévation, ou dont une des variables d'état de la cellule est
+  considérée comme donnée d'élévation, et une autre comme donnée de
   projection.
 \item Pour les espaces de dimension~3, une vision tridimensionnelle
-  par seuillage, \'epluchage ou transparence.
+  par seuillage, épluchage ou transparence.
 \end{itemize}
-Les visualisations co\^uteuses en ressources, ne permettant pas la
-r\'ealisation de films temps r\'eel, servent \`a la r\'ealisation
-d'instantan\'es, la r\'ealisation de films de s\'equences d'instantan\'es
-restant possibles en temps diff\'er\'e.
+Les visualisations coûteuses en ressources, ne permettant pas la
+réalisation de films temps réel, servent à la réalisation
+d'instantanés, la réalisation de films de séquences d'instantanés
+restant possibles en temps différé.
 %%
 \mydumpfull{tube-worm-mix}%
-{et de plusieurs s\'equences d'espaces.}%
-{Un bitmap constitu\'e de $64$~bitmaps~\asquare{256}}%
-{Une composition construite avec 8~s\'equences~(de haut en bas), de
-  8~espaces chacune~(de gauche \`a droite) de la r\`egle
-\arule{Tube-Worm} appliqu\'ee sur le m\^eme espace initial}
+{et de plusieurs séquences d'espaces.}%
+{Un bitmap constitué de $64$~bitmaps~\asquare{256}}%
+{Une composition construite avec 8~séquences~(de haut en bas), de
+  8~espaces chacune~(de gauche à droite) de la règle
+\arule{Tube-Worm} appliquée sur le même espace initial}
 %%
 \mydumpfull{tsum-grey}%
 {Visualisations d'espaces par un pixmap}
-{Visualisation par pixmap de 2~g\'en\'erations de la r\`egle \arule{Qmean}}%
-{Les g\'en\'eration~128 et~256~(de gauche \`a droite) de la r\`egle
+{Visualisation par pixmap de 2~générations de la règle \arule{Qmean}}%
+{Les génération~128 et~256~(de gauche à droite) de la règle
   \arule{Qmean} utilisant deux types de colormaps~(de haut en bas). %
   L'espace est de taille~\asquare{256}. %
-  L'espace initial a une densit\'e al\'eatoire\,\Sundemi. %
+  L'espace initial a une densité aléatoire\,\Sundemi. %
   Les colormaps sont ici des greymaps. %
-  Les deux pixmaps sup\'erieurs utilisent une greymap dont l'\'echelle des
+  Les deux pixmaps supérieurs utilisent une greymap dont l'échelle des
   valeurs est progressive. %
-  Les deux pixmaps inf\'erieurs utilisent une greymap dont l'\'echelle des
-  valeurs est al\'eatoire, masquant la r\'epartition g\'en\'erale des
-  intensit\'es, mais r\'ev\'elant les d\'etails de l'alternance
+  Les deux pixmaps inférieurs utilisent une greymap dont l'échelle des
+  valeurs est aléatoire, masquant la répartition générale des
+  intensités, mais révélant les détails de l'alternance
   de valeurs.}
 %%
 \mydumpfull{tsum}%
 {ou par plusieurs bitmaps}%
-{Visualisation par bitmap de 8~plans de 8~g\'en\'erations de la
-  r\`egle~\arule{Qmean}}%
-{Les g\'en\'erations~$2^{3}$ \`a~$2^{10}$~(de haut en bas) de la r\`egle
+{Visualisation par bitmap de 8~plans de 8~générations de la
+  règle~\arule{Qmean}}%
+{Les générations~$2^{3}$ à~$2^{10}$~(de haut en bas) de la règle
   \arule{Qmean}. %
   L'espace est de taille~\asquare{128}. %
-  L'espace initial a une densit\'e al\'eatoire\,\Sundemi. %
-  Les 256~\'etats possibles de chaque cellule sont visualis\'es par
+  L'espace initial a une densité aléatoire\,\Sundemi. %
+  Les 256~états possibles de chaque cellule sont visualisés par
   8~bitmaps au lieu d'un pixmap. %
-  Les bitmaps sont pr\'esent\'es de gauche \`a droite pour les bits~0 \`a~7.}
+  Les bitmaps sont présentés de gauche à droite pour les bits~0 à~7.}
 %%
 \mydumpfull{tsum-ray-one}%
 {Visualisation par lancer de rayons~(ray tracing)}
-{Visualisation par lanc\'e de rayons~(ray tracing) d'espaces de la
-  r\`egle \arule{Qmean}}%
+{Visualisation par lancé de rayons~(ray tracing) d'espaces de la
+  règle \arule{Qmean}}%
 {La fonction d'extraction d'isosurface fournie par \mysoftcite{vart} a
-  \'et\'e utilis\'ee sur le volume constitu\'e par l'empilement de
-  128~espaces~(128~g\'en\'erations) de~\asquare{128} cellules. %
-  L'espace initial est issu de la g\'en\'eration~8192 de la
-  r\`egle~\arule{Anneal} elle-m\^eme appliqu\'ee sur un espace de
-  taille~\asquare{1024} et de densit\'e al\'eatoire\,\Sundemi, r\'eduit
-  \`a~\asquare{128}.}
+  été utilisée sur le volume constitué par l'empilement de
+  128~espaces~(128~générations) de~\asquare{128} cellules. %
+  L'espace initial est issu de la génération~8192 de la
+  règle~\arule{Anneal} elle-même appliquée sur un espace de
+  taille~\asquare{1024} et de densité aléatoire\,\Sundemi, réduit
+  à~\asquare{128}.}
 %% 
 \mydumpfullR{.8}{tsum-ray-all}%
-{Visualisation par films de vues ray-trac\'ees}%
-{Visualisation par films de vues ray-trac\'ees d'espaces de la
-  r\`egle \arule{Qmean}}%
-{Par rapport \`a la figure \mygetdump{tsum-ray-one}, les variations de
-  param\`etres sur l'axe horizontal porte sur la prise de vues; %
-  les variations de param\`etres sur l'axe vertical porte sur la valeur
-  de seuillage utilis\'ee. %
-  La valeur de seuil varie de 0.3~\`a~0.8.}
+{Visualisation par films de vues ray-tracées}%
+{Visualisation par films de vues ray-tracées d'espaces de la
+  règle \arule{Qmean}}%
+{Par rapport à la figure \mygetdump{tsum-ray-one}, les variations de
+  paramètres sur l'axe horizontal porte sur la prise de vues; %
+  les variations de paramètres sur l'axe vertical porte sur la valeur
+  de seuillage utilisée. %
+  La valeur de seuil varie de 0.3~à~0.8.}
 %%
 \clearpage
 
 %%
 %% OBJECTS/SPACE/RESSOURCE
 %%
-\subsection{Ressources associ\'ees \`a l'espace:~des limites \`a choisir}
+\subsection{Ressources associées à l'espace:~des limites à choisir}
 
-La consommation m\'emoire d'un espace d'ar\^ete~$a$ et de dimension~$d$
+La consommation mémoire d'un espace d'arête~$a$ et de dimension~$d$
 est~$a^{d}$. %
-Pour des raisons d\'etaill\'ees lors de la pr\'esentation de
+Pour des raisons détaillées lors de la présentation de
 la fonction de tran\-si\-tion\footnote{%
  \mygetref[phrase]{mem-struct}}, %
-l'organisation m\'emoire de l'espace privil\'egie le plan de vecteurs de
-bits, d'une taille multiple de l'unit\'e adressable, c'est \`a dire que
-les cellules seront constitu\'ees au minimum d'un byte.
+l'organisation mémoire de l'espace privilégie le plan de vecteurs de
+bits, d'une taille multiple de l'unité adressable, c'est à dire que
+les cellules seront constituées au minimum d'un byte.
 %%
 \mytable{space-size}
 {Taille d'espaces fonction de la dimension et
-  de l'ar\^ete}%
-{Tailles d'espaces pour quelques tailles d'ar\^ete des premi\`eres dimensions}%
-{Ce tableau donne les tailles en byte, fonction des param\`etres dimension
-  et ar\^ete, d'espaces accessibles \`a l'exp\'erimentation.}
+  de l'arête}%
+{Tailles d'espaces pour quelques tailles d'arête des premières dimensions}%
+{Ce tableau donne les tailles en byte, fonction des paramètres dimension
+  et arête, d'espaces accessibles à l'expérimentation.}
 
-Le tableau~\mygettbl{space-size} donne un aper\c{c}u des tailles d'espaces
-maximum accessibles pour les 4~premi\`eres dimensions d'espace. %
+Le tableau~\mygettbl{space-size} donne un aperçu des tailles d'espaces
+maximum accessibles pour les 4~premières dimensions d'espace. %
 On peut voir que si les espaces de dimension~2 ne posent pas de
-probl\`emes, les espaces de dimension~3 seront avantageusement ramen\'es \`a
+problèmes, les espaces de dimension~3 seront avantageusement ramenés à
 des parties de cube. %
 Par exemple, les~256K d'un espace~$128 \times  64 \times  32$ sont probablement
 plus avantageux que les~256K d'un espace~$64 \times  64 \times  64$. %
 La consommation CPU de la fonction de transition, croissant
-lin\'eairement en fonction de la taille de l'espace, on peut \'egalement
-avoir une id\'ee des temps de calculs associ\'es \`a la taille des espaces. %
+linéairement en fonction de la taille de l'espace, on peut également
+avoir une idée des temps de calculs associés à la taille des espaces. %
 Celui-ci est $\frac{\text{G} a^{d}}{\text{D}}$, avec $\text{G}$ pour
-le nombre de g\'en\'erations, $d$ pour la dimension de l'espace et
-$\text{D}$ pour le d\'ebit de la fonction d'application.
+le nombre de générations, $d$ pour la dimension de l'espace et
+$\text{D}$ pour le débit de la fonction d'application.
 %%
 \mytable{compute-time-100kcps}%
-{Temps de calcul sur ces espaces de 1000~g\'en\'erations \`a 100~KCPS,}%
+{Temps de calcul sur ces espaces de 1000~générations à 100~KCPS,}%
 {Temps de calcul sur les espaces du tableau~\mygettbl{space-size}
-  fonction du nombre de g\'en\'eration et de la puissance de calcul}%
-{Ce tableau donne un aper\c{c}u des exp\'eriences r\'ealisables fonction des
+  fonction du nombre de génération et de la puissance de calcul}%
+{Ce tableau donne un aperçu des expériences réalisables fonction des
   tailles d'espace et de la puissance de calcul du moteur cellulaire. %
-  Les param\`etres nombre de g\'en\'erations et puissance de calcul sont
-  fix\'es respectivement \`a 1000~g\'en\'erations et 100~KCPS\@. %
-  Un temps de calcul d'une journ\'ee pour 1000~g\'en\'erations est consid\'er\'e
+  Les paramètres nombre de générations et puissance de calcul sont
+  fixés respectivement à 1000~générations et 100~KCPS\@. %
+  Un temps de calcul d'une journée pour 1000~générations est considéré
   comme la limite praticable. %
-  Un d\'ebit \`a 100~KCPS constitue une hypoth\`ese basse. %
-  Notre environnement fournit actuellement un d\'ebit sup\'erieur d'un
+  Un débit à 100~KCPS constitue une hypothèse basse. %
+  Notre environnement fournit actuellement un débit supérieur d'un
   ordre de grandeur.}
 %%
 \mytable{compute-time-10mcps}%
-{et de 1000~g\'en\'erations \`a 10~MCPS.}%
+{et de 1000~générations à 10~MCPS.}%
 {Variations des temps de calculs du
-  tableau~\mygettbl{compute-time-100kcps} r\'esultant d'une augmentation
+  tableau~\mygettbl{compute-time-100kcps} résultant d'une augmentation
   de deux ordre de grandeur de la puissance de calcul}%
 {Le gain d'un ordre de grandeur, par rapport au performance de notre
-  impl\'ementation, ouvrirait l'exploration des espaces de
-  dimension~3~(nous consid\'erons empiriquement qu'une ar\^ete de
-  taille~256 constitue une base suffisante \`a l'exploration de ces
+  implémentation, ouvrirait l'exploration des espaces de
+  dimension~3~(nous considérons empiriquement qu'une arête de
+  taille~256 constitue une base suffisante à l'exploration de ces
   espaces). %
-  Ce gain pourrait \^etre obtenu en partie par une
-  impl\'ementation r\'epartie du moteur cellulaire.}
+  Ce gain pourrait être obtenu en partie par une
+  implémentation répartie du moteur cellulaire.}
 
-Le tableau~\mygettbl{compute-time-100kcps} montre les temps associ\'es
+Le tableau~\mygettbl{compute-time-100kcps} montre les temps associés
 au calcul de 1K\footnote{%
-  Les d\'ebits sont en puissance
+  Les débits sont en puissance
   de~10:\hfil\break 1~kilocell = 1024~cell, %
-  1~kilo~g\'en\'eration = 1000~g\'en\'erations.}%
-~g\'en\'erations d'espaces du tableau \mygettbl{space-size} avec une
-fonction d'application \`a 100~KCPS\footnote{%
+  1~kilo~génération = 1000~générations.}%
+~générations d'espaces du tableau \mygettbl{space-size} avec une
+fonction d'application à 100~KCPS\footnote{%
   Kilo Cell update Per
   Second.}, (consommant 100~instructions par cellule sur une machine
 10~MIPS, par exemple). %
-Seule l'unit\'e de temps la plus significative est indiqu\'ee. %
-On pourrait obtenir un d\'ebit de 10~MCPS avec une fonction
+Seule l'unité de temps la plus significative est indiquée. %
+On pourrait obtenir un débit de 10~MCPS avec une fonction
 d'application consommant 20~instructions par cellule, et quatre
-processeurs \`a 50~MIPS, lesquels ne partagent qu'une faible partie de
-la m\'emoire totale\footnote{%
+processeurs à 50~MIPS, lesquels ne partagent qu'une faible partie de
+la mémoire totale\footnote{%
   \mygetref[phrase]{repartition-du-calcul}}. %
 Le tableau \mygettbl{compute-time-10mcps} reprend les calculs du
 tableau \mygettbl{compute-time-10mcps} pour %

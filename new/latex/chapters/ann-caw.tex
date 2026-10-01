@@ -5,61 +5,61 @@ utilisable comme interface de programmes interactifs.
 
 \mycodefull{tcl-conex}%
 {}%
-{Cr\'eation des structures de donn\'ees pour le voisinage}%
-{Les fonction \asoft{Tcl} sont associ\'e \`a des fonctions \asoft{C}
-  cr\'eant les objets permettant la composition des sp\'ecification de
+{Création des structures de données pour le voisinage}%
+{Les fonction \asoft{Tcl} sont associé à des fonctions \asoft{C}
+  créant les objets permettant la composition des spécification de
   connexions de voisinage.}
 
-La figure~\mygetcode{tcl-func} pr\'esente du code \asoft{Tcl} de
-cr\'eation et manipulation de table de transition. %
-On peut y voir la liaison des r\`egles \arule{Ink}, \arule{maj} et
+La figure~\mygetcode{tcl-func} présente du code \asoft{Tcl} de
+création et manipulation de table de transition. %
+On peut y voir la liaison des règles \arule{Ink}, \arule{maj} et
 \arule{anneal}. %
 \mysetref{additive-rules}%
-Ce sont des r\`egles additives. %
-Leurs lookup-tables peuvent \^etre sp\'ecifi\'ees par une table secondaire
-dont le nombre d'entr\'ees correspond au nombre de voisins. %
-Les entr\'ees de cette table secondaire codent la nouvelle valeur de la
-cellule, cette valeur est soit un des \'etats de la r\`egle~(ici les
-r\`egles sont binaires), soit un code d\'esignant une fonction de
-g\'en\'eration de la nouvelle valeur. Dans le cas pr\'esent seul le code
-``U'' pour \aquote{Unchanged} est utilis\'e. %
-Pour des r\`egles binaires nous proposons d'\'etudier, et avons
-exp\'eriment\'e la seule autre fonction possible:~``F'', pour
-\aquote{Flip} bit. L'int\'er\^et de cette approche est de permettre un
-\'echantillonnage de l'espace des r\`egle pour les voisinages
+Ce sont des règles additives. %
+Leurs lookup-tables peuvent être spécifiées par une table secondaire
+dont le nombre d'entrées correspond au nombre de voisins. %
+Les entrées de cette table secondaire codent la nouvelle valeur de la
+cellule, cette valeur est soit un des états de la règle~(ici les
+règles sont binaires), soit un code désignant une fonction de
+génération de la nouvelle valeur. Dans le cas présent seul le code
+``U'' pour \aquote{Unchanged} est utilisé. %
+Pour des règles binaires nous proposons d'étudier, et avons
+expérimenté la seule autre fonction possible:~``F'', pour
+\aquote{Flip} bit. L'intérêt de cette approche est de permettre un
+échantillonnage de l'espace des règle pour les voisinages
 classiques\footnote{%
   Moore et von Neumann.}
-dont la taille permet une exploration syst\'ematique. %
-Le nombre de r\`egles d'un des AC binaire pour un voisinage de Moore
-reste prohibitif, m\^eme en consid\'erant une r\'eduction par
-sym\'etrie~\cite[]{Wolfram83} et notre plongement de r\`egle; %
-le nombre de r\`egles additives sp\'ecifi\'e par une table
+dont la taille permet une exploration systématique. %
+Le nombre de règles d'un des AC binaire pour un voisinage de Moore
+reste prohibitif, même en considérant une réduction par
+symétrie~\cite[]{Wolfram83} et notre plongement de règle; %
+le nombre de règles additives spécifié par une table
 secondaire\footnote{%
-  Dont les entr\'ees correspondent \`a une fonction du voisinage, la somme
-  dans le cas des r\`egles additives} %
-binaire est~$2^9$ ou $2^{10}$(Selon que l'on consid\`ere le centre ou pas
+  Dont les entrées correspondent à une fonction du voisinage, la somme
+  dans le cas des règles additives} %
+binaire est~$2^9$ ou $2^{10}$(Selon que l'on considère le centre ou pas
 dans les termes de la somme); %
-le nombre de r\`egles sp\'ecifi\'e par un table secondaire utilisant les
+le nombre de règles spécifié par un table secondaire utilisant les
 deux transformations binaires possible~(U~et~F), en plus des deux
-constantes d'\'etats, est~$2^{20}$. L'id\'ee est d'utiliser cette
-technique en augmentant le nombre d'\'etats et en modulant le choix des
+constantes d'états, est~$2^{20}$. L'idée est d'utiliser cette
+technique en augmentant le nombre d'états et en modulant le choix des
 fonctions de transformation figurant dans la table secondaire pour
-obtenir un espace de r\`egles dont la taille est adapt\'ee aux ressources
+obtenir un espace de règles dont la taille est adaptée aux ressources
 disponibles fonction d'une recherche de valeurs limites pour les
-mesures effectu\'ees.
+mesures effectuées.
 
 \mycodefull{tcl-data}%
 {}%
-{D\'efinitions d'objets top-level}%
-{Les structures de donn\'ees cr\'e\'ees correspondent aux objets d\'ecrits en
+{Définitions d'objets top-level}%
+{Les structures de données créées correspondent aux objets décrits en
   \mygetref{space-time-law}, l'objet de type ``Simple'' est un
-  s\'equenceur.}
+  séquenceur.}
 
 \mycodetwocol{tcl-func}%
 {}%
-{D\'efinitions des fonctions}%
-{Les r\`egles additives \arule{Ink}, \arule{maj} et \arule{anneal} sont
-  d\'ecrites dans~\cite{Toffoli87}.}
+{Définitions des fonctions}%
+{Les règles additives \arule{Ink}, \arule{maj} et \arule{anneal} sont
+  décrites dans~\cite{Toffoli87}.}
 
 %%
 %% Local Variables:

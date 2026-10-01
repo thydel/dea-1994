@@ -1,0 +1,988 @@
+{
+  "files": {
+    "new/latex/chapters/about-anneal.tex": {
+      "converted": 339,
+      "forms": {
+        "\\`e": 63,
+        "\\`a": 31,
+        "\\'e": 217,
+        "\\^e": 11,
+        "\\'E": 2,
+        "\\^i": 7,
+        "\\c{c}": 1,
+        "\\^o": 3,
+        "\\^a": 3,
+        "{\\oe}": 1
+      },
+      "protected": {
+        "commentaire": 1,
+        "identifiant/ressource": 0,
+        "mathématiques": 0,
+        "code/verbatim": 0
+      }
+    },
+    "new/latex/chapters/abstract.tex": {
+      "converted": 121,
+      "forms": {
+        "\\'e": 87,
+        "\\`e": 18,
+        "\\`a": 11,
+        "\\^o": 3,
+        "\\^a": 2
+      },
+      "protected": {
+        "nom d’environnement": 0,
+        "commentaire": 9,
+        "identifiant/ressource": 0
+      }
+    },
+    "new/latex/chapters/ann-caw.tex": {
+      "converted": 63,
+      "forms": {
+        "\\'e": 44,
+        "\\`a": 2,
+        "\\`e": 14,
+        "\\^e": 3
+      },
+      "protected": {
+        "identifiant/ressource": 0,
+        "commentaire": 0,
+        "mathématiques": 0
+      }
+    },
+    "new/latex/chapters/ann-rabbit.tex": {
+      "converted": 132,
+      "forms": {
+        "\\'e": 91,
+        "\\`a": 12,
+        "\\`e": 26,
+        "\\'E": 1,
+        "\\^e": 2
+      },
+      "protected": {
+        "identifiant/ressource": 0,
+        "commentaire": 6,
+        "nom d’environnement": 0,
+        "mathématiques": 0,
+        "code/verbatim": 0
+      }
+    },
+    "new/latex/chapters/ann-rules.tex": {
+      "converted": 49,
+      "forms": {
+        "\\'e": 24,
+        "\\`e": 21,
+        "{\\oe}": 1,
+        "\\`a": 2,
+        "\\c{c}": 1
+      },
+      "protected": {
+        "identifiant/ressource": 0,
+        "commentaire": 1,
+        "mathématiques": 0
+      }
+    },
+    "new/latex/chapters/biblio.tex": {
+      "converted": 0,
+      "forms": {},
+      "protected": {
+        "identifiant/ressource": 0,
+        "commentaire": 0
+      }
+    },
+    "new/latex/chapters/conclusion.tex": {
+      "converted": 143,
+      "forms": {
+        "\\'e": 113,
+        "\\`a": 12,
+        "\\^a": 1,
+        "\\`e": 13,
+        "\\^e": 2,
+        "\\^o": 2
+      },
+      "protected": {
+        "commentaire": 0,
+        "identifiant/ressource": 0,
+        "code/verbatim": 0
+      }
+    },
+    "new/latex/chapters/intro-part-1.tex": {
+      "converted": 763,
+      "forms": {
+        "\\'e": 573,
+        "\\`a": 91,
+        "\\`e": 67,
+        "\\^e": 7,
+        "\\^i": 7,
+        "\\^u": 1,
+        "{\\oe}": 1,
+        "\\'E": 1,
+        "\\c{c}": 3,
+        "\\^o": 6,
+        "\\^a": 4,
+        "\\\"i": 2
+      },
+      "protected": {
+        "commentaire": 16,
+        "identifiant/ressource": 0,
+        "mathématiques": 0,
+        "nom d’environnement": 0
+      }
+    },
+    "new/latex/chapters/intro-part-2.tex": {
+      "converted": 727,
+      "forms": {
+        "\\^e": 21,
+        "\\'e": 531,
+        "\\`a": 87,
+        "\\`e": 65,
+        "\\^o": 5,
+        "\\^i": 3,
+        "{\\oe}": 3,
+        "\\c{c}": 2,
+        "\\^u": 7,
+        "\\^a": 2,
+        "\\\"i": 1
+      },
+      "protected": {
+        "identifiant/ressource": 0,
+        "commentaire": 32,
+        "nom d’environnement": 0,
+        "mathématiques": 1
+      }
+    },
+    "new/latex/chapters/intro-top.tex": {
+      "converted": 122,
+      "forms": {
+        "\\'e": 87,
+        "\\`e": 22,
+        "\\^i": 1,
+        "\\`a": 7,
+        "\\^o": 1,
+        "\\^e": 4
+      },
+      "protected": {
+        "commentaire": 4,
+        "identifiant/ressource": 0
+      }
+    },
+    "new/latex/chapters/nocite.tex": {
+      "converted": 0,
+      "forms": {},
+      "protected": {
+        "commentaire": 0,
+        "identifiant/ressource": 0
+      }
+    },
+    "new/latex/chapters/obj-law.tex": {
+      "converted": 1012,
+      "forms": {
+        "\\'e": 706,
+        "\\`e": 101,
+        "\\`a": 113,
+        "\\^e": 42,
+        "\\^u": 9,
+        "{\\oe}": 6,
+        "\\`u": 2,
+        "\\^o": 18,
+        "\\c{c}": 7,
+        "\\^i": 4,
+        "\\^a": 4
+      },
+      "protected": {
+        "commentaire": 21,
+        "identifiant/ressource": 0,
+        "mathématiques": 0,
+        "nom d’environnement": 0,
+        "code/verbatim": 0
+      }
+    },
+    "new/latex/chapters/obj-space.tex": {
+      "converted": 460,
+      "forms": {
+        "\\'e": 324,
+        "\\`a": 50,
+        "\\^e": 21,
+        "\\`e": 57,
+        "\\^o": 2,
+        "\\^i": 1,
+        "\\'E": 2,
+        "\\^u": 1,
+        "\\c{c}": 2
+      },
+      "protected": {
+        "commentaire": 5,
+        "identifiant/ressource": 0,
+        "mathématiques": 0,
+        "nom d’environnement": 0
+      }
+    },
+    "new/latex/chapters/obj-time.tex": {
+      "converted": 494,
+      "forms": {
+        "\\'e": 386,
+        "\\`a": 40,
+        "\\^a": 1,
+        "\\^e": 12,
+        "\\`e": 40,
+        "\\^i": 5,
+        "\\'E": 8,
+        "\\`u": 1,
+        "\\^u": 1
+      },
+      "protected": {
+        "commentaire": 14,
+        "mathématiques": 0,
+        "identifiant/ressource": 0,
+        "nom d’environnement": 0,
+        "définition de macro": 0
+      }
+    },
+    "new/latex/chapters/rule-space.tex": {
+      "converted": 464,
+      "forms": {
+        "\\'e": 267,
+        "\\`e": 125,
+        "\\`a": 40,
+        "\\^o": 13,
+        "\\^e": 8,
+        "\\^a": 9,
+        "\\^i": 1,
+        "\\c{c}": 1
+      },
+      "protected": {
+        "commentaire": 6,
+        "identifiant/ressource": 0,
+        "mathématiques": 0,
+        "nom d’environnement": 0
+      }
+    },
+    "new/latex/chapters/soft-tools.tex": {
+      "converted": 0,
+      "forms": {},
+      "protected": {
+        "identifiant/ressource": 0,
+        "commentaire": 0,
+        "nom d’environnement": 0
+      }
+    },
+    "new/latex/chapters/title.tex": {
+      "converted": 6,
+      "forms": {
+        "\\'e": 6
+      },
+      "protected": {
+        "nom d’environnement": 0,
+        "identifiant/ressource": 0,
+        "commentaire": 0
+      }
+    }
+  },
+  "deliberately_unconverted": [
+    {
+      "file": "new/latex/chapters/about-anneal.tex",
+      "line": 313,
+      "form": "\\'e",
+      "context": "commentaire"
+    },
+    {
+      "file": "new/latex/chapters/abstract.tex",
+      "line": 88,
+      "form": "\\'e",
+      "context": "commentaire"
+    },
+    {
+      "file": "new/latex/chapters/abstract.tex",
+      "line": 89,
+      "form": "\\'e",
+      "context": "commentaire"
+    },
+    {
+      "file": "new/latex/chapters/abstract.tex",
+      "line": 89,
+      "form": "\\`e",
+      "context": "commentaire"
+    },
+    {
+      "file": "new/latex/chapters/abstract.tex",
+      "line": 90,
+      "form": "\\'e",
+      "context": "commentaire"
+    },
+    {
+      "file": "new/latex/chapters/abstract.tex",
+      "line": 90,
+      "form": "\\'e",
+      "context": "commentaire"
+    },
+    {
+      "file": "new/latex/chapters/abstract.tex",
+      "line": 90,
+      "form": "\\'e",
+      "context": "commentaire"
+    },
+    {
+      "file": "new/latex/chapters/abstract.tex",
+      "line": 91,
+      "form": "\\'e",
+      "context": "commentaire"
+    },
+    {
+      "file": "new/latex/chapters/abstract.tex",
+      "line": 92,
+      "form": "\\'e",
+      "context": "commentaire"
+    },
+    {
+      "file": "new/latex/chapters/abstract.tex",
+      "line": 92,
+      "form": "\\`e",
+      "context": "commentaire"
+    },
+    {
+      "file": "new/latex/chapters/ann-rabbit.tex",
+      "line": 268,
+      "form": "\\'e",
+      "context": "commentaire"
+    },
+    {
+      "file": "new/latex/chapters/ann-rabbit.tex",
+      "line": 268,
+      "form": "\\'e",
+      "context": "commentaire"
+    },
+    {
+      "file": "new/latex/chapters/ann-rabbit.tex",
+      "line": 268,
+      "form": "\\'e",
+      "context": "commentaire"
+    },
+    {
+      "file": "new/latex/chapters/ann-rabbit.tex",
+      "line": 269,
+      "form": "\\'e",
+      "context": "commentaire"
+    },
+    {
+      "file": "new/latex/chapters/ann-rabbit.tex",
+      "line": 271,
+      "form": "\\'e",
+      "context": "commentaire"
+    },
+    {
+      "file": "new/latex/chapters/ann-rabbit.tex",
+      "line": 271,
+      "form": "\\'e",
+      "context": "commentaire"
+    },
+    {
+      "file": "new/latex/chapters/ann-rules.tex",
+      "line": 71,
+      "form": "\\'e",
+      "context": "commentaire"
+    },
+    {
+      "file": "new/latex/chapters/intro-part-1.tex",
+      "line": 595,
+      "form": "\\'e",
+      "context": "commentaire"
+    },
+    {
+      "file": "new/latex/chapters/intro-part-1.tex",
+      "line": 596,
+      "form": "\\'e",
+      "context": "commentaire"
+    },
+    {
+      "file": "new/latex/chapters/intro-part-1.tex",
+      "line": 596,
+      "form": "\\'e",
+      "context": "commentaire"
+    },
+    {
+      "file": "new/latex/chapters/intro-part-1.tex",
+      "line": 597,
+      "form": "\\'e",
+      "context": "commentaire"
+    },
+    {
+      "file": "new/latex/chapters/intro-part-1.tex",
+      "line": 599,
+      "form": "\\'e",
+      "context": "commentaire"
+    },
+    {
+      "file": "new/latex/chapters/intro-part-1.tex",
+      "line": 599,
+      "form": "\\'E",
+      "context": "commentaire"
+    },
+    {
+      "file": "new/latex/chapters/intro-part-1.tex",
+      "line": 599,
+      "form": "\\'e",
+      "context": "commentaire"
+    },
+    {
+      "file": "new/latex/chapters/intro-part-1.tex",
+      "line": 599,
+      "form": "\\'e",
+      "context": "commentaire"
+    },
+    {
+      "file": "new/latex/chapters/intro-part-1.tex",
+      "line": 599,
+      "form": "\\'e",
+      "context": "commentaire"
+    },
+    {
+      "file": "new/latex/chapters/intro-part-1.tex",
+      "line": 600,
+      "form": "\\'e",
+      "context": "commentaire"
+    },
+    {
+      "file": "new/latex/chapters/intro-part-1.tex",
+      "line": 600,
+      "form": "\\'e",
+      "context": "commentaire"
+    },
+    {
+      "file": "new/latex/chapters/intro-part-1.tex",
+      "line": 601,
+      "form": "\\'e",
+      "context": "commentaire"
+    },
+    {
+      "file": "new/latex/chapters/intro-part-1.tex",
+      "line": 602,
+      "form": "\\'e",
+      "context": "commentaire"
+    },
+    {
+      "file": "new/latex/chapters/intro-part-1.tex",
+      "line": 603,
+      "form": "\\'e",
+      "context": "commentaire"
+    },
+    {
+      "file": "new/latex/chapters/intro-part-1.tex",
+      "line": 603,
+      "form": "\\'e",
+      "context": "commentaire"
+    },
+    {
+      "file": "new/latex/chapters/intro-part-1.tex",
+      "line": 611,
+      "form": "\\'e",
+      "context": "commentaire"
+    },
+    {
+      "file": "new/latex/chapters/intro-part-2.tex",
+      "line": 367,
+      "form": "\\'e",
+      "context": "mathématiques"
+    },
+    {
+      "file": "new/latex/chapters/intro-part-2.tex",
+      "line": 547,
+      "form": "\\'e",
+      "context": "commentaire"
+    },
+    {
+      "file": "new/latex/chapters/intro-part-2.tex",
+      "line": 549,
+      "form": "\\'e",
+      "context": "commentaire"
+    },
+    {
+      "file": "new/latex/chapters/intro-part-2.tex",
+      "line": 550,
+      "form": "\\'e",
+      "context": "commentaire"
+    },
+    {
+      "file": "new/latex/chapters/intro-part-2.tex",
+      "line": 550,
+      "form": "\\'e",
+      "context": "commentaire"
+    },
+    {
+      "file": "new/latex/chapters/intro-part-2.tex",
+      "line": 552,
+      "form": "\\'e",
+      "context": "commentaire"
+    },
+    {
+      "file": "new/latex/chapters/intro-part-2.tex",
+      "line": 552,
+      "form": "\\'e",
+      "context": "commentaire"
+    },
+    {
+      "file": "new/latex/chapters/intro-part-2.tex",
+      "line": 552,
+      "form": "\\'e",
+      "context": "commentaire"
+    },
+    {
+      "file": "new/latex/chapters/intro-part-2.tex",
+      "line": 552,
+      "form": "\\'e",
+      "context": "commentaire"
+    },
+    {
+      "file": "new/latex/chapters/intro-part-2.tex",
+      "line": 552,
+      "form": "\\'e",
+      "context": "commentaire"
+    },
+    {
+      "file": "new/latex/chapters/intro-part-2.tex",
+      "line": 552,
+      "form": "\\'e",
+      "context": "commentaire"
+    },
+    {
+      "file": "new/latex/chapters/intro-part-2.tex",
+      "line": 552,
+      "form": "\\'e",
+      "context": "commentaire"
+    },
+    {
+      "file": "new/latex/chapters/intro-part-2.tex",
+      "line": 552,
+      "form": "\\'e",
+      "context": "commentaire"
+    },
+    {
+      "file": "new/latex/chapters/intro-part-2.tex",
+      "line": 552,
+      "form": "\\'e",
+      "context": "commentaire"
+    },
+    {
+      "file": "new/latex/chapters/intro-part-2.tex",
+      "line": 553,
+      "form": "\\'e",
+      "context": "commentaire"
+    },
+    {
+      "file": "new/latex/chapters/intro-part-2.tex",
+      "line": 553,
+      "form": "\\'e",
+      "context": "commentaire"
+    },
+    {
+      "file": "new/latex/chapters/intro-part-2.tex",
+      "line": 553,
+      "form": "\\'e",
+      "context": "commentaire"
+    },
+    {
+      "file": "new/latex/chapters/intro-part-2.tex",
+      "line": 553,
+      "form": "\\'e",
+      "context": "commentaire"
+    },
+    {
+      "file": "new/latex/chapters/intro-part-2.tex",
+      "line": 553,
+      "form": "\\'e",
+      "context": "commentaire"
+    },
+    {
+      "file": "new/latex/chapters/intro-part-2.tex",
+      "line": 554,
+      "form": "\\'e",
+      "context": "commentaire"
+    },
+    {
+      "file": "new/latex/chapters/intro-part-2.tex",
+      "line": 554,
+      "form": "\\'e",
+      "context": "commentaire"
+    },
+    {
+      "file": "new/latex/chapters/intro-part-2.tex",
+      "line": 554,
+      "form": "\\`e",
+      "context": "commentaire"
+    },
+    {
+      "file": "new/latex/chapters/intro-part-2.tex",
+      "line": 554,
+      "form": "\\'e",
+      "context": "commentaire"
+    },
+    {
+      "file": "new/latex/chapters/intro-part-2.tex",
+      "line": 555,
+      "form": "\\'e",
+      "context": "commentaire"
+    },
+    {
+      "file": "new/latex/chapters/intro-part-2.tex",
+      "line": 555,
+      "form": "\\'e",
+      "context": "commentaire"
+    },
+    {
+      "file": "new/latex/chapters/intro-part-2.tex",
+      "line": 556,
+      "form": "\\'e",
+      "context": "commentaire"
+    },
+    {
+      "file": "new/latex/chapters/intro-part-2.tex",
+      "line": 556,
+      "form": "\\'e",
+      "context": "commentaire"
+    },
+    {
+      "file": "new/latex/chapters/intro-part-2.tex",
+      "line": 556,
+      "form": "\\'e",
+      "context": "commentaire"
+    },
+    {
+      "file": "new/latex/chapters/intro-part-2.tex",
+      "line": 556,
+      "form": "\\'e",
+      "context": "commentaire"
+    },
+    {
+      "file": "new/latex/chapters/intro-part-2.tex",
+      "line": 556,
+      "form": "\\`e",
+      "context": "commentaire"
+    },
+    {
+      "file": "new/latex/chapters/intro-part-2.tex",
+      "line": 557,
+      "form": "\\'e",
+      "context": "commentaire"
+    },
+    {
+      "file": "new/latex/chapters/intro-part-2.tex",
+      "line": 557,
+      "form": "\\'e",
+      "context": "commentaire"
+    },
+    {
+      "file": "new/latex/chapters/intro-part-2.tex",
+      "line": 558,
+      "form": "\\'e",
+      "context": "commentaire"
+    },
+    {
+      "file": "new/latex/chapters/intro-top.tex",
+      "line": 110,
+      "form": "\\'e",
+      "context": "commentaire"
+    },
+    {
+      "file": "new/latex/chapters/intro-top.tex",
+      "line": 110,
+      "form": "\\'e",
+      "context": "commentaire"
+    },
+    {
+      "file": "new/latex/chapters/intro-top.tex",
+      "line": 110,
+      "form": "\\'e",
+      "context": "commentaire"
+    },
+    {
+      "file": "new/latex/chapters/intro-top.tex",
+      "line": 122,
+      "form": "\\'e",
+      "context": "commentaire"
+    },
+    {
+      "file": "new/latex/chapters/obj-law.tex",
+      "line": 181,
+      "form": "\\'e",
+      "context": "commentaire"
+    },
+    {
+      "file": "new/latex/chapters/obj-law.tex",
+      "line": 181,
+      "form": "\\oe",
+      "context": "commentaire"
+    },
+    {
+      "file": "new/latex/chapters/obj-law.tex",
+      "line": 182,
+      "form": "\\'e",
+      "context": "commentaire"
+    },
+    {
+      "file": "new/latex/chapters/obj-law.tex",
+      "line": 182,
+      "form": "\\'e",
+      "context": "commentaire"
+    },
+    {
+      "file": "new/latex/chapters/obj-law.tex",
+      "line": 951,
+      "form": "\\'e",
+      "context": "commentaire"
+    },
+    {
+      "file": "new/latex/chapters/obj-law.tex",
+      "line": 951,
+      "form": "\\'e",
+      "context": "commentaire"
+    },
+    {
+      "file": "new/latex/chapters/obj-law.tex",
+      "line": 952,
+      "form": "\\'e",
+      "context": "commentaire"
+    },
+    {
+      "file": "new/latex/chapters/obj-law.tex",
+      "line": 953,
+      "form": "\\'e",
+      "context": "commentaire"
+    },
+    {
+      "file": "new/latex/chapters/obj-law.tex",
+      "line": 955,
+      "form": "\\'e",
+      "context": "commentaire"
+    },
+    {
+      "file": "new/latex/chapters/obj-law.tex",
+      "line": 958,
+      "form": "\\'e",
+      "context": "commentaire"
+    },
+    {
+      "file": "new/latex/chapters/obj-law.tex",
+      "line": 959,
+      "form": "\\'e",
+      "context": "commentaire"
+    },
+    {
+      "file": "new/latex/chapters/obj-law.tex",
+      "line": 961,
+      "form": "\\'e",
+      "context": "commentaire"
+    },
+    {
+      "file": "new/latex/chapters/obj-law.tex",
+      "line": 961,
+      "form": "\\'e",
+      "context": "commentaire"
+    },
+    {
+      "file": "new/latex/chapters/obj-law.tex",
+      "line": 963,
+      "form": "\\'e",
+      "context": "commentaire"
+    },
+    {
+      "file": "new/latex/chapters/obj-law.tex",
+      "line": 964,
+      "form": "\\'e",
+      "context": "commentaire"
+    },
+    {
+      "file": "new/latex/chapters/obj-law.tex",
+      "line": 965,
+      "form": "\\'e",
+      "context": "commentaire"
+    },
+    {
+      "file": "new/latex/chapters/obj-law.tex",
+      "line": 968,
+      "form": "\\`e",
+      "context": "commentaire"
+    },
+    {
+      "file": "new/latex/chapters/obj-law.tex",
+      "line": 969,
+      "form": "\\'e",
+      "context": "commentaire"
+    },
+    {
+      "file": "new/latex/chapters/obj-law.tex",
+      "line": 969,
+      "form": "\\'e",
+      "context": "commentaire"
+    },
+    {
+      "file": "new/latex/chapters/obj-law.tex",
+      "line": 969,
+      "form": "\\'e",
+      "context": "commentaire"
+    },
+    {
+      "file": "new/latex/chapters/obj-law.tex",
+      "line": 970,
+      "form": "\\'e",
+      "context": "commentaire"
+    },
+    {
+      "file": "new/latex/chapters/obj-space.tex",
+      "line": 503,
+      "form": "\\`e",
+      "context": "commentaire"
+    },
+    {
+      "file": "new/latex/chapters/obj-space.tex",
+      "line": 507,
+      "form": "\\'e",
+      "context": "commentaire"
+    },
+    {
+      "file": "new/latex/chapters/obj-space.tex",
+      "line": 507,
+      "form": "\\'e",
+      "context": "commentaire"
+    },
+    {
+      "file": "new/latex/chapters/obj-space.tex",
+      "line": 512,
+      "form": "\\'e",
+      "context": "commentaire"
+    },
+    {
+      "file": "new/latex/chapters/obj-space.tex",
+      "line": 517,
+      "form": "\\'e",
+      "context": "commentaire"
+    },
+    {
+      "file": "new/latex/chapters/obj-time.tex",
+      "line": 334,
+      "form": "\\'e",
+      "context": "commentaire"
+    },
+    {
+      "file": "new/latex/chapters/obj-time.tex",
+      "line": 334,
+      "form": "\\'e",
+      "context": "commentaire"
+    },
+    {
+      "file": "new/latex/chapters/obj-time.tex",
+      "line": 334,
+      "form": "\\'e",
+      "context": "commentaire"
+    },
+    {
+      "file": "new/latex/chapters/obj-time.tex",
+      "line": 349,
+      "form": "\\'e",
+      "context": "commentaire"
+    },
+    {
+      "file": "new/latex/chapters/obj-time.tex",
+      "line": 349,
+      "form": "\\'e",
+      "context": "commentaire"
+    },
+    {
+      "file": "new/latex/chapters/obj-time.tex",
+      "line": 349,
+      "form": "\\'e",
+      "context": "commentaire"
+    },
+    {
+      "file": "new/latex/chapters/obj-time.tex",
+      "line": 349,
+      "form": "\\'e",
+      "context": "commentaire"
+    },
+    {
+      "file": "new/latex/chapters/obj-time.tex",
+      "line": 455,
+      "form": "\\'e",
+      "context": "commentaire"
+    },
+    {
+      "file": "new/latex/chapters/obj-time.tex",
+      "line": 455,
+      "form": "\\'e",
+      "context": "commentaire"
+    },
+    {
+      "file": "new/latex/chapters/obj-time.tex",
+      "line": 455,
+      "form": "\\'e",
+      "context": "commentaire"
+    },
+    {
+      "file": "new/latex/chapters/obj-time.tex",
+      "line": 455,
+      "form": "\\'e",
+      "context": "commentaire"
+    },
+    {
+      "file": "new/latex/chapters/obj-time.tex",
+      "line": 455,
+      "form": "\\'e",
+      "context": "commentaire"
+    },
+    {
+      "file": "new/latex/chapters/obj-time.tex",
+      "line": 456,
+      "form": "\\'e",
+      "context": "commentaire"
+    },
+    {
+      "file": "new/latex/chapters/obj-time.tex",
+      "line": 456,
+      "form": "\\'e",
+      "context": "commentaire"
+    },
+    {
+      "file": "new/latex/chapters/rule-space.tex",
+      "line": 445,
+      "form": "\\'e",
+      "context": "commentaire"
+    },
+    {
+      "file": "new/latex/chapters/rule-space.tex",
+      "line": 446,
+      "form": "\\'e",
+      "context": "commentaire"
+    },
+    {
+      "file": "new/latex/chapters/rule-space.tex",
+      "line": 446,
+      "form": "\\'e",
+      "context": "commentaire"
+    },
+    {
+      "file": "new/latex/chapters/rule-space.tex",
+      "line": 446,
+      "form": "\\'e",
+      "context": "commentaire"
+    },
+    {
+      "file": "new/latex/chapters/rule-space.tex",
+      "line": 446,
+      "form": "\\^a",
+      "context": "commentaire"
+    },
+    {
+      "file": "new/latex/chapters/rule-space.tex",
+      "line": 451,
+      "form": "\\'e",
+      "context": "commentaire"
+    }
+  ],
+  "special_character_forms_preserved": {
+    "\\ ": 16,
+    "\\#": 5,
+    "\\&": 3,
+    "\\-": 78,
+    "\\S": 1,
+    "\\_": 1,
+    "~ (espace insécable TeX)": 972
+  }
+}

@@ -11,5 +11,7 @@
   "underfull_hbox": 14,
   "old_inchange": true,
   "references_non_resolues": 0,
-  "citations_non_resolues": 0
+  "citations_non_resolues": 0,
+  "conservation_unicode_semantique": true,
+  "accents_tex_prose_restants": 0
 }

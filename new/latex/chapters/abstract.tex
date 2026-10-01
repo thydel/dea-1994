@@ -1,78 +1,78 @@
 \begin{small}
-\begin{center}\begin{Huge}R\'esum\'e\end{Huge}\end{center}
+\begin{center}\begin{Huge}Résumé\end{Huge}\end{center}
 \bigskip\bigskip
 
-Nous proposons des m\'ethodes et des outils d'exploration et de
-visualisation d'espaces de r\`egles de grande dimension pour des
+Nous proposons des méthodes et des outils d'exploration et de
+visualisation d'espaces de règles de grande dimension pour des
 automates cellulaires. %
-Ces objec\-tifs nous ont amen\'e \`a r\'ealiser des exp\'eriences de calcul
-parall\`ele cellulaire et \`a concevoir des architectures logicielles bien
-adapt\'ees qui nous ont permis de mener \`a bien nos exp\'eriences sur des
-machines enti\`erement s\'equentielles.
+Ces objec\-tifs nous ont amené à réaliser des expériences de calcul
+parallèle cellulaire et à concevoir des architectures logicielles bien
+adaptées qui nous ont permis de mener à bien nos expériences sur des
+machines entièrement séquentielles.
 
-Nous avons r\'ealis\'e des moteurs cellulaires rapides bas\'es sur une
-repr\'esentation des lois par la lookup-table r\'esultante d'un morphisme
+Nous avons réalisé des moteurs cellulaires rapides basés sur une
+représentation des lois par la lookup-table résultante d'un morphisme
 et sur une collecte pipeline du voisinage cellulaire. %
-Afin de d\'emontrer la validit\'e de cette approche nous avons \'egalement
-r\'ealis\'e une impl\'ementation d'un processeur cellulaire SIMD particulier
-sous forme du morphisme associ\'e \`a un pr\'ed\'ecodage des instructions pour
+Afin de démontrer la validité de cette approche nous avons également
+réalisé une implémentation d'un processeur cellulaire SIMD particulier
+sous forme du morphisme associé à un prédécodage des instructions pour
 une exploitation optimale de la lookup-table; nous proposons en outre
-une m\'ethode de transformation d'une lookup-table quelconque en
-s\'equence de contr\^ole pour cette machine. %
-Nous avons exp\'eriment\'e des modes d'analyse et de visualisation
-sp\'ecifiques, en particulier des \aconcept{r\'eductions diff\'erentielles}
+une méthode de transformation d'une lookup-table quelconque en
+séquence de contrôle pour cette machine. %
+Nous avons expérimenté des modes d'analyse et de visualisation
+spécifiques, en particulier des \aconcept{réductions différentielles}
 et des \aconcept{projections relativistes}. %
-Nous avons tourn\'e ces outils vers la production de trajectoires pour
-des r\`egles des \aconcept{familles} \arule{Anneal}, \arule{Life},
-\arule{Qmean}, \arule{Tube-Worm}, \arule{Fox-Rabbit}, et test\'e les
-limites de calcul accessible en r\'ealisant des mesures plus compl\`etes
-sur la r\`egle \arule{M46789}. %
-En vue de la g\'en\'eralisation de ces exp\'eriences de calcul cellulaire \`a
-la visualisation de la structure de l'espace des r\`egles, nous
-proposons un nouveau param\`etre de contr\^ole pour l'\'echantillonnage des
-espaces de r\`egles, le \aquote{param\`etre d'ench\^assement}, d\'efini pour
-chaque \'el\'ement de voisinage du r\'eseau d'interconnexion associ\'e \`a une
-r\`egle, comme l'influence de ce voisin sur la r\`egle.
+Nous avons tourné ces outils vers la production de trajectoires pour
+des règles des \aconcept{familles} \arule{Anneal}, \arule{Life},
+\arule{Qmean}, \arule{Tube-Worm}, \arule{Fox-Rabbit}, et testé les
+limites de calcul accessible en réalisant des mesures plus complètes
+sur la règle \arule{M46789}. %
+En vue de la généralisation de ces expériences de calcul cellulaire à
+la visualisation de la structure de l'espace des règles, nous
+proposons un nouveau paramètre de contrôle pour l'échantillonnage des
+espaces de règles, le \aquote{paramètre d'enchâssement}, défini pour
+chaque élément de voisinage du réseau d'interconnexion associé à une
+règle, comme l'influence de ce voisin sur la règle.
 
-Nous proposons de consid\'erer la programmation cellulaire par tables
-comme une m\'ethode d'exploitation des ressources disponibles sur les
-machines SISD modernes~(50~Mips, 32~M\'egas), sans pr\'ejudice de l'usage
-du calcul cellulaire sur des architectures cellulaires mat\'erielles. %
-Nous tentons de d\'efinir les objets \'el\'ementaires permettant de
-sp\'ecifier des objets cellulaires arbitrairement complexes constituant
-des exp\'eriences de calcul cellulaire. %
-Nous consid\'erons d'une part l'existence de dualit\'es \'epist\'emologiques
+Nous proposons de considérer la programmation cellulaire par tables
+comme une méthode d'exploitation des ressources disponibles sur les
+machines SISD modernes~(50~Mips, 32~Mégas), sans préjudice de l'usage
+du calcul cellulaire sur des architectures cellulaires matérielles. %
+Nous tentons de définir les objets élémentaires permettant de
+spécifier des objets cellulaires arbitrairement complexes constituant
+des expériences de calcul cellulaire. %
+Nous considérons d'une part l'existence de dualités épistémologiques
 ou empiriques organisant les objets cellulaires selon des axes
-synth\'etique-analytique, temps-espace, algorithme-heuristique,
-s\'equentiel-parall\`ele. %
-Nous consid\'erons d'autre part la plasticit\'e de l'approche par table,
+synthétique-analytique, temps-espace, algorithme-heuristique,
+séquentiel-parallèle. %
+Nous considérons d'autre part la plasticité de l'approche par table,
 qui nous permet de projeter les objets du calcul cellulaire
-sur ces diff\'erents axes.
+sur ces différents axes.
 
-Dans le chapitre~\mygetref{space-time-law} nous pr\'esentons la
-structure des objets de notre \'etude:~l'espace, le temps et les lois, %
-ainsi que les m\'ethodes applicables sur ces objets:~\'edition, r\'eduction,
+Dans le chapitre~\mygetref{space-time-law} nous présentons la
+structure des objets de notre étude:~l'espace, le temps et les lois, %
+ainsi que les méthodes applicables sur ces objets:~édition, réduction,
 transformation, visualisation pour l'espace et le temps, ainsi que
-construction, alt\'eration, composition, m\'elange et s\'eparation pour les
+construction, altération, composition, mélange et séparation pour les
 lois. %
-Nous pr\'esentons \'egalement dans ce chapitre l'architecture de nos
+Nous présentons également dans ce chapitre l'architecture de nos
 moteurs cellulaires. %
 
-Dans le chapitre~\mygetref{rule-space} nous pr\'esentons les outils
-conceptuels utilis\'es pour la quantification de l'espace des r\`egles, et
-nous proposons un nouveau param\`etre de contr\^ole pour l'exploration et
-la structuration de cet espace:~le param\`etre d'ench\^assement. %
+Dans le chapitre~\mygetref{rule-space} nous présentons les outils
+conceptuels utilisés pour la quantification de l'espace des règles, et
+nous proposons un nouveau paramètre de contrôle pour l'exploration et
+la structuration de cet espace:~le paramètre d'enchâssement. %
 
-Le chapitre~\mygetref{about-anneal} est consacr\'e \`a une \'etude
-exp\'erimentale de la r\`egle~\arule{Anneal} bas\'ee sur l'exploitation de nos outils. %
-Les exp\'eriences r\'ealis\'ees nous am\`enent \`a proposer l'existence d'une
-relative invariance spatio-temporelle des trajectoires associ\'ees \`a
+Le chapitre~\mygetref{about-anneal} est consacré à une étude
+expérimentale de la règle~\arule{Anneal} basée sur l'exploitation de nos outils. %
+Les expériences réalisées nous amènent à proposer l'existence d'une
+relative invariance spatio-temporelle des trajectoires associées à
 une transition de phase dans l'espace des configurations initiales. %
 
-La conclusion introduit les limites de notre approche qui \`a associ\'e
-un constructivisme bottom-up \`a une \aquote{gestion de tables
-  g\'en\'eralis\'ee}. %
-Nous \'evoquons pour finir une approche alternative de r\'ealisation
+La conclusion introduit les limites de notre approche qui à associé
+un constructivisme bottom-up à une \aquote{gestion de tables
+  généralisée}. %
+Nous évoquons pour finir une approche alternative de réalisation
 cellulaire purement algorithmique. %
 
 \end{small}

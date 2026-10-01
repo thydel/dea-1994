@@ -3,38 +3,38 @@
 %%
 \section{Le temps:~les cycles}
 
-Le temps~$t$ est un ensemble de~$N$ espaces ordonn\'es. %
-Il supporte toutes les op\'erations sur les s\'equences d'espaces. %
-Ces op\'erations sont plus difficiles \`a d\'efinir que celles portant sur
+Le temps~$t$ est un ensemble de~$N$ espaces ordonnés. %
+Il supporte toutes les opérations sur les séquences d'espaces. %
+Ces opérations sont plus difficiles à définir que celles portant sur
 les espaces. %
-Leur mise en oeuvre n\'ecessite l'ench\^assement du temps dans un
-s\'equenceur. %
-C'est pr\'ecis\'ement le choix des primitives appartenant en propre au
-temps, par opposition \`a celles qui doivent \^etre associ\'ees \`a un
-s\'equenceur qui pose probl\`eme. %
-Nous esp\'erons que ces probl\`emes seront peu \`a peu lev\'es \`a l'usage. %
-Nous tenterons n\'eanmoins de d\'efinir, en faisant momentan\'ement
-abstraction de la structure particuli\`ere d'un s\'equenceur, une liste
-d'op\'erations possibles. %
+Leur mise en oeuvre nécessite l'enchâssement du temps dans un
+séquenceur. %
+C'est précisément le choix des primitives appartenant en propre au
+temps, par opposition à celles qui doivent être associées à un
+séquenceur qui pose problème. %
+Nous espérons que ces problèmes seront peu à peu levés à l'usage. %
+Nous tenterons néanmoins de définir, en faisant momentanément
+abstraction de la structure particulière d'un séquenceur, une liste
+d'opérations possibles. %
 
-Le temps est a priori une s\'equence d'espaces g\'en\'er\'ee par l'application
-it\'erative d'une fonction de transition sur un espace initial. %
-Si l'on utilise une m\'etaphore cin\'ematographique, il permet
+Le temps est a priori une séquence d'espaces générée par l'application
+itérative d'une fonction de transition sur un espace initial. %
+Si l'on utilise une métaphore cinématographique, il permet
 l'enregistrement, le tirage et le montage de films. %
-Il permet \'egalement des r\'eductions d'informations diff\'erentielles sur
-les espaces, des r\'eductions de s\'equences de r\'eductions d'espaces, et
+Il permet également des réductions d'informations différentielles sur
+les espaces, des réductions de séquences de réductions d'espaces, et
 des transformations arbitraires. %
 
 \myplotfullR[t]{.75}{anneal-sum}%
-{Visualisation par surface d'\'el\'evation d'une r\'eduction int\'egrale du temps}%
-{Somme de 400~g\'en\'erations de la r\`egle~\arule{Anneal}}%
-{Cette visualisation par surface d'\'el\'evation d'une r\'eduction int\'egrale
-  du temps r\'esultant de la somme de 400~g\'en\'erations de la
-  r\`egle~\arule{Anneal} \`a \'et\'e r\'ealis\'ee avec \asoft{gnuplot}, elle
-  illustre l'int\'er\^et d'une cha\^ine de traitement combinant g\'en\'eration,
-  \bialt{r\'eduction}{transformation} et visualisation d'espaces cellulaires. %
-  D'autres d'images r\'esultant de manipulations d'espaces g\'en\'er\'es par la
-  r\`egle~\arule{Anneal} sont pr\'esent\'ees dans les figures~%
+{Visualisation par surface d'élévation d'une réduction intégrale du temps}%
+{Somme de 400~générations de la règle~\arule{Anneal}}%
+{Cette visualisation par surface d'élévation d'une réduction intégrale
+  du temps résultant de la somme de 400~générations de la
+  règle~\arule{Anneal} à été réalisée avec \asoft{gnuplot}, elle
+  illustre l'intérêt d'une chaîne de traitement combinant génération,
+  \bialt{réduction}{transformation} et visualisation d'espaces cellulaires. %
+  D'autres d'images résultant de manipulations d'espaces générés par la
+  règle~\arule{Anneal} sont présentées dans les figures~%
   \mygetdump{anneal-3d}, %
   \mygetdump{anneal-sum}, %
   \mygetdump{anneal-time-xor}, %
@@ -44,169 +44,169 @@ des transformations arbitraires. %
   \mygetdump{anneal-g128-s11} et en \S{}~\mygetref{about-anneal}}
 
 \mydumpfull[t]{anneal-sum}%
-{Visualisation par pixmaps des donn\'ees de la figure~\protect\mygetplot{anneal-sum}}%
-{D'autres  vues sur la r\'eduction de la
+{Visualisation par pixmaps des données de la figure~\protect\mygetplot{anneal-sum}}%
+{D'autres  vues sur la réduction de la
   figure~\mygetplot{anneal-sum} par pixmaps utilisant des colormaps
-  diff\'erentes}%
-{Le processus d'\'erosion \'evoqu\'e par cette visualisation~(et celle de la
-  figure~\mygetplot{anneal-sum}) est r\'ev\'el\'e par une r\'eduction int\'egrale.}
+  différentes}%
+{Le processus d'érosion évoqué par cette visualisation~(et celle de la
+  figure~\mygetplot{anneal-sum}) est révélé par une réduction intégrale.}
 
 \mydumpfull[t]{life-time-xor}%
-{Visualisation par bitmaps de s\'equences de r\'eductions dif\-f\'erentiel\-les
-  de la r\`egle~\arule{Life}}%
-{Six g\'en\'erations de la r\`egle~\arule{Life} et leurs r\'eductions dif\-f\'e\-ren\-tiel\-les
+{Visualisation par bitmaps de séquences de réductions dif\-férentiel\-les
+  de la règle~\arule{Life}}%
+{Six générations de la règle~\arule{Life} et leurs réductions dif\-fé\-ren\-tiel\-les
   d'ordre~1 et~2}%
-{Le r\'esultat de la diff\'erence bit \`a bit se lit de gauche \`a droite sur
-  les diagonales descendantes, l'espace~2 de la ligne~2 r\'esulte de la
-  diff\'erence de l'espace~1 de la ligne~1 et de l'espace~2 de la
+{Le résultat de la différence bit à bit se lit de gauche à droite sur
+  les diagonales descendantes, l'espace~2 de la ligne~2 résulte de la
+  différence de l'espace~1 de la ligne~1 et de l'espace~2 de la
   ligne~1\footnote{%
-    Ou l'inverse, le \xor\ \'etant commutatif};
+    Ou l'inverse, le \xor\ étant commutatif};
   l'espace~(3,3) de~$(1,2)-(3,1)$, mais aussi de~$(2,2)-(2,3)$.}
 
 %%
 %% OBJECTS/TIME/STRUCT
 %%
-\subsection{Structure du temps:~un axe d'organisation privil\'egi\'e}
+\subsection{Structure du temps:~un axe d'organisation privilégié}
 
-Le temps est un vecteur d'espaces de taille fixe associ\'e \`a divers
+Le temps est un vecteur d'espaces de taille fixe associé à divers
 compteurs et pointeurs. %
-La construction des op\'erateurs complexes sur le temps repose sur ces
-\'el\'ements, devant permettre un acc\`es plus ou moins structur\'e \`a la
-m\'emoire temps. %
+La construction des opérateurs complexes sur le temps repose sur ces
+éléments, devant permettre un accès plus ou moins structuré à la
+mémoire temps. %
 
-Lorsque le syst\`eme est r\'ealis\'e sur une machine s\'equentielle, le temps
-fournit les espaces temporaires~(accumulateurs) n\'ecessaires \`a la
-r\'ealisation de la fonction d'application synchrone de la fonction de
+Lorsque le système est réalisé sur une machine séquentielle, le temps
+fournit les espaces temporaires~(accumulateurs) nécessaires à la
+réalisation de la fonction d'application synchrone de la fonction de
 transition sur l'ensemble des cellules de l'espace courant. %
-La notion d'accumulateur recevant le r\'esultat de l'application
-d'op\'erateurs sur les espaces est sans doute n\'ecessaire dans tous les
-contextes, mais sa r\'ealisation sur une machine parall\`ele arbitraire,
-ou d\'edi\'ee AC pourrait s'av\'erer d\'elicate\footnote{%
-  Sur une architecture SIMD privil\'egiant le nombre de PE~(Processeur
-  \'El\'ementaire) au d\'etriment de la m\'emoire locale \`a chaque PE~(de type
-  GAPP), o\`u chaque PE est associ\'e \`a une cellule, et la m\'emoire locale
-  de chaque PE aux \'etats de chaque cellule, la source et la cible de
+La notion d'accumulateur recevant le résultat de l'application
+d'opérateurs sur les espaces est sans doute nécessaire dans tous les
+contextes, mais sa réalisation sur une machine parallèle arbitraire,
+ou dédiée AC pourrait s'avérer délicate\footnote{%
+  Sur une architecture SIMD privilégiant le nombre de PE~(Processeur
+  Élémentaire) au détriment de la mémoire locale à chaque PE~(de type
+  GAPP), où chaque PE est associé à une cellule, et la mémoire locale
+  de chaque PE aux états de chaque cellule, la source et la cible de
   l'application d'une fonction de transition sont potentiellement la
-  m\'emoire totale de la machine.}. %
+  mémoire totale de la machine.}. %
 
 %%
 %% OBJECTS/TIME/EDIT
 %%
-\subsection{\'Edition du temps:~une m\'etaphore cin\'ematogra\-phique}
+\subsection{Édition du temps:~une métaphore cinématogra\-phique}
 
-Voici les op\'erateurs d'\'edition du temps:
+Voici les opérateurs d'édition du temps:
 \begin{itemize}
-\item Remise \`a z\'ero et incr\'ementation d'un compteur d'application
+\item Remise à zéro et incrémentation d'un compteur d'application
   d'une fonction de transition\footnote{%
-    Ce compteur doit \^etre ensuite associ\'e \`a un espace. %
-    En r\`egle g\'en\'erale l'inclusion d'un espace dans un objet de plus
-    haut niveau implique la cr\'eation de champs nouveaux servant \`a
-    m\'emoriser le contexte d'usage de cet espace. %
+    Ce compteur doit être ensuite associé à un espace. %
+    En règle générale l'inclusion d'un espace dans un objet de plus
+    haut niveau implique la création de champs nouveaux servant à
+    mémoriser le contexte d'usage de cet espace. %
     Par exemple, la photo d'un espace doit si possible contenir des
-    annotations sur les conditions exp\'erimentales de sa cr\'eation.}. %
+    annotations sur les conditions expérimentales de sa création.}. %
 \item Positionnement absolu et relatif du point d'espace courant. %
 \item Test du point courant, relatif aux bornes. %
-\item Acc\`es au point d'espace pass\'e. %
+\item Accès au point d'espace passé. %
 \item Application d'une fonction de transition de l'espace courant sur
   l'accumulateur. %
-\item \'Echange du point d'espace courant et de l'accumulateur. %
+\item Échange du point d'espace courant et de l'accumulateur. %
 \end{itemize}
 
-Ces primitives permettent la construction de proc\'edures composites. %
-Par exemple, pour enregistrer une s\'equence d'espaces d'indice de temps
-multiple de~$n$, il faut, apr\`es initialisation de l'espace d'indice
-z\'ero et d'un \aquote{timer} \`a~$n$:
+Ces primitives permettent la construction de procédures composites. %
+Par exemple, pour enregistrer une séquence d'espaces d'indice de temps
+multiple de~$n$, il faut, après initialisation de l'espace d'indice
+zéro et d'un \aquote{timer} à~$n$:
 \begin{itemize}
 \item Appliquer la fonction transition du point courant sur
   l'accumulateur,
-\item D\'ecr\'ementer le timer, et si z\'ero incr\'ementer le point courant,
-\item \'Echanger le point courant et l'accumulateur. %
+\item Décrémenter le timer, et si zéro incrémenter le point courant,
+\item Échanger le point courant et l'accumulateur. %
   Optionnellement, estampiller le point courant avec le compteur
   d'application de la fonction de transition,
-\item It\'erer tant que le point courant n'est pas le dernier,
+\item Itérer tant que le point courant n'est pas le dernier,
 \end{itemize}
 
-Ces proc\'edures doivent pouvoir \^etre construites par l'utilisateur
-aussi simplement que possible, par l'interm\'ediaire d'un interpr\'eteur. %
+Ces procédures doivent pouvoir être construites par l'utilisateur
+aussi simplement que possible, par l'intermédiaire d'un interpréteur. %
 
 %%
 %% OBJECTS/TIME/REDUCT
 %%
-\subsection{R\'eductions du temps:~sommes et diff\'erences}
+\subsection{Réductions du temps:~sommes et différences}
 
-Il existe plusieurs types d'op\'eration de r\'eductions sur le temps. %
-Les r\'eductions des s\'equences de r\'eductions d'espaces constituent un
-deuxi\`eme niveau de r\'eduction arithm\'etique et statistique. %
-On peut par exemple calculer la dimension fractale de l'\'evolution de
-n'importe quelle quantit\'e associ\'ee \`a un espace. %
+Il existe plusieurs types d'opération de réductions sur le temps. %
+Les réductions des séquences de réductions d'espaces constituent un
+deuxième niveau de réduction arithmétique et statistique. %
+On peut par exemple calculer la dimension fractale de l'évolution de
+n'importe quelle quantité associée à un espace. %
 
-Les r\'eductions d'information int\'egrale\footnote{%
-  La relation entre les notions classiques de d\'eriv\'ee et d'int\'egrale et
-  le contenu informationnel nous pose probl\`eme. %
+Les réductions d'information intégrale\footnote{%
+  La relation entre les notions classiques de dérivée et d'intégrale et
+  le contenu informationnel nous pose problème. %
   Dans notre contexte de production d'objets discrets et finis, %
-  les d\'eriv\'es et les int\'egrales ne sont pas des valeurs limites
-  mais des cha\^ines de bits. %
-  Le contenu informationnel est la taille de cette cha\^ine de bit, il
-  ne se confond pas avec la quantit\'e d'information. %
-  Une op\'eration d'int\'egration discr\`ete d\'efinie comme une somme sur une
+  les dérivés et les intégrales ne sont pas des valeurs limites
+  mais des chaînes de bits. %
+  Le contenu informationnel est la taille de cette chaîne de bit, il
+  ne se confond pas avec la quantité d'information. %
+  Une opération d'intégration discrète définie comme une somme sur une
   direction de l'espace temps cellulaire produit un espace cellulaire
-  dont la taille en bits est inf\'erieure \`a la taille de l'espace
+  dont la taille en bits est inférieure à la taille de l'espace
   initial. %
-  Par extension, nous consid\'erons toute op\'eration de r\'eduction du
+  Par extension, nous considérons toute opération de réduction du
   contenu informationnel par diminution du nombre de dimensions de
-  l'espace cellulaire comme une int\'egration. %
+  l'espace cellulaire comme une intégration. %
   
-  Une transformation diff\'erentielle~(dont le prototype est le \xor~(xor) bit
-  \`a bit ou la distance de Hamming cha\^ine \`a cha\^ine) ne r\'eduit pas le
+  Une transformation différentielle~(dont le prototype est le \xor~(xor) bit
+  à bit ou la distance de Hamming chaîne à chaîne) ne réduit pas le
   contenu informationnel, mais le but poursuivi est a priori une
-  r\'eduction de la quantit\'e d'information, ce qui nous am\`ene \`a parler
-  d'op\'eration de r\'eduction diff\'erentielle.}%
-sur les espaces permettent de passer d'un ensemble d'espaces \`a un
+  réduction de la quantité d'information, ce qui nous amène à parler
+  d'opération de réduction différentielle.}%
+sur les espaces permettent de passer d'un ensemble d'espaces à un
 espace unique\footnote{%
-  La taille en bit des cellules de l'espace r\'esultat peut \^etre
-  sup\'erieure \`a celle des cellules des espaces arguments.}. %
+  La taille en bit des cellules de l'espace résultat peut être
+  supérieure à celle des cellules des espaces arguments.}. %
 Par exemple un espace dont chaque cellule est la somme
 $\sum_{i=0}^{i=n}t_{i}xy$ des valeurs de l'ensemble des cellules de
-coordonn\'ees spatiales~$xy$ identiques, sur une s\'equence~$t$ de $n$~espaces. %
+coordonnées spatiales~$xy$ identiques, sur une séquence~$t$ de $n$~espaces. %
 
 \noindent%
 La figure~\mygetplot{anneal-sum} montre une vue perspective d'un
-espace somme de 400~g\'en\'e\-rations de la r\`egle~\arule{Anneal}. %
+espace somme de 400~géné\-rations de la règle~\arule{Anneal}. %
 L'espace est de taille \asquare{64}. %
-L'espace initial a une densit\'e al\'eatoire\,\undemi. %
+L'espace initial a une densité aléatoire\,\undemi. %
 
 \noindent%
 La figure~\mygetdump{anneal-sum} montre quatre visions pixmap
-du m\^eme espace utilisant 4~greymap diff\'erentes. %
+du même espace utilisant 4~greymap différentes. %
 
-Une autre r\'eduction simple est le \xor\ plan de bits \`a plan de bits de
-deux espaces, qui identifie les points d'espace modifi\'es d'un point de
-temps \`a son successeur. %
-Appliqu\'e \`a un AC tel que le jeu de la vie qui produit des patterns
+Une autre réduction simple est le \xor\ plan de bits à plan de bits de
+deux espaces, qui identifie les points d'espace modifiés d'un point de
+temps à son successeur. %
+Appliqué à un AC tel que le jeu de la vie qui produit des patterns
 statiques ou de cycle~2 en nombres, cet
-op\'erateur permet d'\'eliminer les points d'espace %
+opérateur permet d'éliminer les points d'espace %
 de cycle~1~($t_{n-1} \xor t_{n}$),
 ou~1 et~2~($t_{n-2} \xor t_{n}$). %
 
 \noindent%
-La premi\`ere ligne de la figure~\mygetdump{life-time-xor} montre
-6~g\'en\'erations de~\arule{Life}~(de~100 \`a~106) pour un espace de
-\asquare{64} cellules et un espace initial al\'eatoire de
-densit\'e\,\undemi, la deuxi\`eme ligne le r\'esultat de l'\'elimination de
-cellules de cycle~1 et la troisi\`eme de l'\'elimination des cycles~1 et~2. %
-Bien s\^ur, ces \'eliminations ne laissent pas intactes les zones non \'elimin\'ees. %
+La première ligne de la figure~\mygetdump{life-time-xor} montre
+6~générations de~\arule{Life}~(de~100 à~106) pour un espace de
+\asquare{64} cellules et un espace initial aléatoire de
+densité\,\undemi, la deuxième ligne le résultat de l'élimination de
+cellules de cycle~1 et la troisième de l'élimination des cycles~1 et~2. %
+Bien sûr, ces éliminations ne laissent pas intactes les zones non éliminées. %
 
 \myplotfull{lifex}%
-{\'Evolution de populations de s\'equences de r\'eductions dif\-f\'erentiel\-les}%
-{\'Evolution d'une trajectoire compl\`ete de~\arule{Life}}%
-{Population de~\arule{Life} et Cycles~1 et~2 sur~(1280 g\'en\'erations)}
+{Évolution de populations de séquences de réductions dif\-férentiel\-les}%
+{Évolution d'une trajectoire complète de~\arule{Life}}%
+{Population de~\arule{Life} et Cycles~1 et~2 sur~(1280 générations)}
 
 \noindent%
-La figure~\mygetplot{lifex} montre l'\'evolution sur 1280~g\'en\'erations
-des populations associ\'ees aux cycles~1 et~2, pour un espace de
-\asquare{128} cellules~(densit\'e al\'eatoire initiale\,\undemi)\footnote{%
+La figure~\mygetplot{lifex} montre l'évolution sur 1280~générations
+des populations associées aux cycles~1 et~2, pour un espace de
+\asquare{128} cellules~(densité aléatoire initiale\,\undemi)\footnote{%
   Dans ce qui suit nous utilisons le logarithme pour normaliser les
-  r\'esultats}. %
+  résultats}. %
 
 \noindent%
 $\text{life} = \log(P_0)$, %
@@ -222,122 +222,122 @@ et $P2$ pour la population moins les points d'espace %
 de $\text{cycle}^{<3} = t_{n-2} \xor t_{n}$). %
 
 \noindent%
-A la g\'en\'eration~1280, il ne reste plus que des cellules
-engag\'ees dans un cycle~1 ou~2. %
+A la génération~1280, il ne reste plus que des cellules
+engagées dans un cycle~1 ou~2. %
 
 \mytwoplotfull{lifex-sum-1}{lifex-sum-2}%
-{Une r\'eduction int\'egrale du temps et une r\'eduction diff\'erentiel\-le d'espace}%
-{Somme de 512~g\'en\'erations de~\arule{Life} et~\arule{Life} filtr\'e}%
-{Une r\'eduction int\'egrale du temps sur une s\'equence de 512~g\'en\'erations
-  de~\arule{Life}~(\`a gauche), et sur la s\'equence obtenu par r\'eduction
-  diff\'erentielle d'espace avec l'op\'erateur \xor. %
-  Cette comparaison sugg\`ere l'existence pour~\arule{Life} d'un
-  invariant d'\'echelle pour la densit\'e d'occupation de l'espace
-  cellulaire, apr\`es filtrage. %
-  Nous consid\'erons cette question, ainsi que la relation entre cette question et les
-  exp\'eriences de~\cite{Bak93} sur l'auto-organisation critique
+{Une réduction intégrale du temps et une réduction différentiel\-le d'espace}%
+{Somme de 512~générations de~\arule{Life} et~\arule{Life} filtré}%
+{Une réduction intégrale du temps sur une séquence de 512~générations
+  de~\arule{Life}~(à gauche), et sur la séquence obtenu par réduction
+  différentielle d'espace avec l'opérateur \xor. %
+  Cette comparaison suggère l'existence pour~\arule{Life} d'un
+  invariant d'échelle pour la densité d'occupation de l'espace
+  cellulaire, après filtrage. %
+  Nous considérons cette question, ainsi que la relation entre cette question et les
+  expériences de~\cite{Bak93} sur l'auto-organisation critique
   de~\arule{Life}\footnote{%
     Celle-ci portent sur la taille des avalanches~(le nombre
-    d'\'ev\`enements cellulaires \'els\'ementaire, \ie de bit flip) r\'esultant
-    d'une perturbation al\'eatoire d'un cycle limite.}, %
-  comme une source d'exp\'eriences futures.}
+    d'évènements cellulaires élsémentaire, \ie de bit flip) résultant
+    d'une perturbation aléatoire d'un cycle limite.}, %
+  comme une source d'expériences futures.}
 
 \mydumpfull{life-3d-New}%
-{Une visualisation 3D du temps, et d'un temps de r\'eduction diff\'erentiel\-le d'espace}%
+{Une visualisation 3D du temps, et d'un temps de réduction différentiel\-le d'espace}%
 {Une autre vue de la figure~\mygetplot{lifex-sum-1+lifex-sum-2}}%
 {Une visualisation~3D du temps de~\arule{Life} en partie gauche, %
-  et d'un temps de r\'eduction diff\'erentielle
+  et d'un temps de réduction différentielle
   d'espace de~\arule{Life}~\mygetplot[paren]{lifex-sum-1+lifex-sum-2}.}
 
 \noindent%
 La figure~\mygetplot{lifex-sum-1+lifex-sum-2} montre les contours de
-la somme de 512~g\'en\'erations de~\arule{Life}~(\`a gauche)
-et~\arule{Life} moins les points d'espace de cycle~1 et~2~(\`a droite). %
+la somme de 512~générations de~\arule{Life}~(à gauche)
+et~\arule{Life} moins les points d'espace de cycle~1 et~2~(à droite). %
 
 \mytable{lifex-sum-1}%
-{R\'eductions statistiques sur un espace obtenu par r\'eduction int\'egrale
+{Réductions statistiques sur un espace obtenu par réduction intégrale
   du temps,}%
 {\mysoftcite{pgmtexture} sur \mygetplot{lifex-sum-1+lifex-sum-2}~(gauche)}%
-{Caract\'eristiques texturales de l'espace de la
+{Caractéristiques texturales de l'espace de la
   figure~\mygetplot{lifex-sum-1+lifex-sum-2}~(version non
-  filtr\'ee):~exemple de r\'eductions statistiques sur un espace obtenu par
-  r\'eduction int\'egrale du temps.}%
+  filtrée):~exemple de réductions statistiques sur un espace obtenu par
+  réduction intégrale du temps.}%
 
 \mytable{lifex-sum-2}%
-{et par r\'eduction int\'egrale d'une s\'equence
-  temporelle de r\'e\-duc\-tion diff\'erentiel\-le d'espaces.}%
+{et par réduction intégrale d'une séquence
+  temporelle de ré\-duc\-tion différentiel\-le d'espaces.}%
 {\mysoftcite{pgmtexture} sur \mygetplot{lifex-sum-1+lifex-sum-2}~(droite)}%
-{Caract\'eristiques texturales de l'espace de la
+{Caractéristiques texturales de l'espace de la
   figure~\protect\mygetplot{lifex-sum-1+lifex-sum-2}~(version
-  filtr\'ee):~\`a partir d'une r\'eduction int\'egrale d'une s\'equence
-  temporelle de r\'eduction diff\'erentielle d'espaces.}
+  filtrée):~à partir d'une réduction intégrale d'une séquence
+  temporelle de réduction différentielle d'espaces.}
 
 \noindent Les tableaux~\mygettbl{lifex-sum-1}
-et~\mygettbl{lifex-sum-2} montrent le r\'esultat de la commande
+et~\mygettbl{lifex-sum-2} montrent le résultat de la commande
 \mysoftcite{pgmtexture} sur deux espaces somme de la
 figure~\mygetplot{lifex-sum-1+lifex-sum-2}. %
 
-La r\'ealisation d'une proc\'edure de mesure de la proportion des cellules
-actives engag\'ees dans un point fixe ou un cycle de longueur~2 ou~3, au
+La réalisation d'une procédure de mesure de la proportion des cellules
+actives engagées dans un point fixe ou un cycle de longueur~2 ou~3, au
 top level du Workbench, par combinaison d'objets et de primitives du
 noyau ou de la librairie d'application, constitue un objectif
-exemplaire de la souplesse d'usage recherch\'ee. %
+exemplaire de la souplesse d'usage recherchée. %
 
 \mydumpfull{anneal-time-xor}%
-{Visualisation par bitmaps de s\'equences de r\'eductions dif\-f\'erentiel\-les
-  de la r\`egle~\arule{Anneal}}%
-{Six g\'en\'erations de la r\`egle~\arule{Anneal} et leurs r\'eductions dif\-f\'e\-ren\-tiel\-les
+{Visualisation par bitmaps de séquences de réductions dif\-férentiel\-les
+  de la règle~\arule{Anneal}}%
+{Six générations de la règle~\arule{Anneal} et leurs réductions dif\-fé\-ren\-tiel\-les
   d'ordre~1 et~2}%
-{Le mode de production de cette s\'equence est identique \`a celui de la
+{Le mode de production de cette séquence est identique à celui de la
   figure~\mygetdump{life-time-xor}, son observation\footnote{%
-    Plus exactement, l'observation interactive de nombreuses s\'equences
-    pour une taille d'espace et un nombre de g\'en\'erations plus
+    Plus exactement, l'observation interactive de nombreuses séquences
+    pour une taille d'espace et un nombre de générations plus
     important.} %
-    sugg\`ere comme pour~\arule{Life}, la recherche d'invariants
-    d'\'echelle\footnote{%
+    suggère comme pour~\arule{Life}, la recherche d'invariants
+    d'échelle\footnote{%
       \mygetref[phrase]{about-anneal}}}
 
 \mytwoplotfull[t]{anneal-pop}{anneal-pop-detail}%
-{\'Evolution de la population de la r\`egle~\arule{Anneal}}%
-{La population de 5640~g\'en\'erations de la r\`egle~\arule{Anneal}}%
+{Évolution de la population de la règle~\arule{Anneal}}%
+{La population de 5640~générations de la règle~\arule{Anneal}}%
 {Le plot de gauche est un agrandissement sur le cycle limite atteint par
   cette trajectoire de anneal. %
-  La d\'ecouverte de l'existence de cycles limite de grande
+  La découverte de l'existence de cycles limite de grande
   taille\footnote{%
-    Du m\^eme ordre de grandeur que l'ar\^ete de l'espace, ici~127. %
+    Du même ordre de grandeur que l'arête de l'espace, ici~127. %
     } %
   fut une surprise\footnote{%
-    Ni la litt\'erature mentionnant la r\`egle:~%
+    Ni la littérature mentionnant la règle:~%
     \arule{M46789} pour~\cite{Vichniac86}, %
     \arule{Lava Lamp}~(une version~3D) pour~\cite{Pickover92b}, %
     \arule{Anneal} pour~\cite{Toffoli87}; %
-    ni une exp\'erimentation restreinte ne permettent d'attendre autre
+    ni une expérimentation restreinte ne permettent d'attendre autre
     chose qu'un point fixe ou un cycle limite court~(\ie d'une taille
-    ind\'ependante de la taille de l'espace).}. %
+    indépendante de la taille de l'espace).}. %
   \mygetref[phrase]{about-anneal}}
 
 \mytwoplotfull[t]{heart-pop}{heart-pop-detail}%
-{\'Evolution des deux plans de population de la r\`egle~\arule{Heart}}
-{512~g\'en\'erations d'un espace de \asquare{256} de la r\`egle~\arule{Heart}}
-{La population du plan z\'ero est en abscisse, la population du plan un
-  en ordonn\'ee. %
+{Évolution des deux plans de population de la règle~\arule{Heart}}
+{512~générations d'un espace de \asquare{256} de la règle~\arule{Heart}}
+{La population du plan zéro est en abscisse, la population du plan un
+  en ordonnée. %
   Cette figure illustre la recherche de possibles attracteurs de
-  faibles dimensions, extrait de syst\`emes dot\'es de tr\`es grand nombre de
-  degr\'es de libert\'es. %
+  faibles dimensions, extrait de systèmes dotés de très grand nombre de
+  degrés de libertés. %
   }
 
 \noindent%
-La figure~\mygetdump{anneal-time-xor} montre le m\^eme traitement
-appliqu\'e aux g\'en\'erations~2 \`a~12, par pas de~2, sur la fonction anneal
-dans les m\^emes conditions d'espace. %
+La figure~\mygetdump{anneal-time-xor} montre le même traitement
+appliqué aux générations~2 à~12, par pas de~2, sur la fonction anneal
+dans les mêmes conditions d'espace. %
 
 %% reduction diff\'erentielle du temps sur des r\'eductions int\'egrale
 %% d'espace
 %%
-Nous avons exp\'eriment\'e des r\'eductions diff\'erentielles du temps sur des
-s\'equences de la r\'eduction int\'egrale \'el\'ementaire d'espace que constitue
+Nous avons expérimenté des réductions différentielles du temps sur des
+séquences de la réduction intégrale élémentaire d'espace que constitue
 le nombre de bits d'un plan cellulaire. %
-Ces r\'eductions sont d\'efinies par une diff\'erence locale des
+Ces réductions sont définies par une différence locale des
 populations: %
 
 \newcommand{\pop}{\operatorname{Pop}}
@@ -349,39 +349,39 @@ populations: %
 %% s\'equence de reduction int\'egrale~(d'espace obtenus par r\'eductions diff\'erentielle
 %% d'espace)
 %%
-Nous cherchons \`a \'etablir la relation entre de telles s\'equences et des
-s\'equences de r\'eductions int\'egrales~(population) d'espaces; %
-ces espaces \'etant obtenus par la r\'eduction diff\'erentielle spatiale
-\'el\'ementaire r\'esultant de l'application du \xor\ plan \`a plan:
+Nous cherchons à établir la relation entre de telles séquences et des
+séquences de réductions intégrales~(population) d'espaces; %
+ces espaces étant obtenus par la réduction différentielle spatiale
+élémentaire résultant de l'application du \xor\ plan à plan:
 
 \[\pop_{i}=\pop(\spac_{i}\xor\spac_{i-1})\]
 
-Les r\'eductions diff\'erentielles associatives sont r\'ealisables par
-it\'eration cumul\'ee d'un op\'erateur \`a nombre d'arguments fixe sur une
-fen\^etre de temps. %
-On peut alors les consid\'erer comme l'application d'une fonction de
+Les réductions différentielles associatives sont réalisables par
+itération cumulée d'un opérateur à nombre d'arguments fixe sur une
+fenêtre de temps. %
+On peut alors les considérer comme l'application d'une fonction de
 transition sur un espace composite. %
 
-Par exemple, comment transformer une s\'equence de plan de bits d'un
-espace~(ou copier cette transformation en conservant la s\'equence
-initiale), en s\'equence des diff\'erences plan \`a plan en utilisant
-l'op\'erateur \xor. %
+Par exemple, comment transformer une séquence de plan de bits d'un
+espace~(ou copier cette transformation en conservant la séquence
+initiale), en séquence des différences plan à plan en utilisant
+l'opérateur \xor. %
 \mysetref{time-xor} La fonction de transition \arule{Xor} a deux
-arguments d'un bit, et un bit de r\'esultat. %
-Ses param\`etres formels sont li\'es aux variables de connexion
+arguments d'un bit, et un bit de résultat. %
+Ses paramètres formels sont liés aux variables de connexion
 \aquote{past} et \aquote{present}~(au lieu de \aquote{east} et
-\aquote{west} par exemple), et son r\'esultat est li\'e \`a la variable de
+\aquote{west} par exemple), et son résultat est lié à la variable de
 connexion \aquote{present}~(au lieu de \aquote{center}). %
-Lors de l'application de la fonction de transition l'espace r\'esultant
-est stock\'e dans l'accumulateur. %
-Un s\'equenceur peut alors soit copier l'accumulateur dans le point
+Lors de l'application de la fonction de transition l'espace résultant
+est stocké dans l'accumulateur. %
+Un séquenceur peut alors soit copier l'accumulateur dans le point
 d'espace courant d'un temps accumulateur de la transformation du temps
-courant, soit dans le point d'espace pass\'e du temps courant. %
+courant, soit dans le point d'espace passé du temps courant. %
 
-Plus g\'en\'eralement, si l'on consid\`ere le temps comme un espace de
-dimension sup\'erieure, on peut r\'ealiser des projections, ou extraire
-des coupes de cet espace de dimension sup\'erieure sur un espace de
-dimension inf\'erieure. %
+Plus généralement, si l'on considère le temps comme un espace de
+dimension supérieure, on peut réaliser des projections, ou extraire
+des coupes de cet espace de dimension supérieure sur un espace de
+dimension inférieure. %
 Par exemple, une ligne d'espace de dimension~2 permet d'extraire une
 tranche~(un espace de dimension~2) d'un temps d'espace de dimension~2. %
 
@@ -390,56 +390,56 @@ tranche~(un espace de dimension~2) d'un temps d'espace de dimension~2. %
 %%
 \subsection{Transformations du temps:~l'espace-temps}
 
-Les transformations sur le temps r\'esultent soit d'une combinaison
-\bialt{extraction}{construction} qui permet de r\'ealiser des films de
+Les transformations sur le temps résultent soit d'une combinaison
+\bialt{extraction}{construction} qui permet de réaliser des films de
 coupes, soit de l'application sur chaque point d'espace du temps d'une
 transformation d'espace, soit de l'application d'une transformation
-d'espace sur un temps consid\'er\'e comme un espace de dimension
-sup\'erieure. %
+d'espace sur un temps considéré comme un espace de dimension
+supérieure. %
 
 %%
 %% OBJECTS/TIME/VISUAL
 %%
-\subsection{Visualisation du temps:~s\'equences de r\'eductions et
+\subsection{Visualisation du temps:~séquences de réductions et
   projections de plongements}
 
-Les visualisations du temps utilisent les techniques \'evoqu\'ees \`a propos
+Les visualisations du temps utilisent les techniques évoquées à propos
 de la visualisation des espaces. %
-Celles-ci sont pilot\'ees par un s\'equenceur qui combine les primitives
+Celles-ci sont pilotées par un séquenceur qui combine les primitives
 de manipulation du temps et les primitives de visualisation de
 l'espace. %
-Les m\^emes outils sont utilis\'es pour visualiser les espaces r\'esultant
-de r\'eduction du temps. %
+Les mêmes outils sont utilisés pour visualiser les espaces résultant
+de réduction du temps. %
 
-La visualisation des s\'equences de r\'eductions d'espace utilise des
-plotters pour pr\'esenter des graphes \bialt{temps}{variable}, %
+La visualisation des séquences de réductions d'espace utilise des
+plotters pour présenter des graphes \bialt{temps}{variable}, %
 ou multi-variables~(population plan~1, population plan~2 e.g.), %
-ou toutes combinaisons de variables, de r\'eductions et d'expressions
-autoris\'ees par les outils off-line utilisables. %
+ou toutes combinaisons de variables, de réductions et d'expressions
+autorisées par les outils off-line utilisables. %
 
 \noindent%
-La figure~\mygetplot{anneal-pop+anneal-pop-detail}~(anneal) pr\'esente
-l'\'evolution de la population de la r\`egle~\arule{Anneal} pendant
-5640~g\'en\'erations \'echantillonn\'ees chaque 20~g\'en\'erations. %
+La figure~\mygetplot{anneal-pop+anneal-pop-detail}~(anneal) présente
+l'évolution de la population de la règle~\arule{Anneal} pendant
+5640~générations échantillonnées chaque 20~générations. %
 La taille de l'espace est \asquare{127}. %
 On peut y voir un cycle limite. %
 
 \noindent%
-La figure~\mygetplot{anneal-pop+anneal-pop-detail}~(anneal d\'etail)
-pr\'esente un agrandissement sur le cycle. %
-La d\'etection et la mesure de cycles limites sur les populations sont des
-exemples de r\'eductions appliqu\'ees sur une s\'equence de r\'eduction. %
+La figure~\mygetplot{anneal-pop+anneal-pop-detail}~(anneal détail)
+présente un agrandissement sur le cycle. %
+La détection et la mesure de cycles limites sur les populations sont des
+exemples de réductions appliquées sur une séquence de réduction. %
 
 \noindent%
-La figure~\mygetplot{heart-pop+heart-pop-detail}~(heart) pr\'esente
-l'\'evolution de la population du plan~0 contre l'\'evolution de la
-population du plan~1 de la r\`egle \arule{Heart} pendant 512~g\'en\'erations d'un
+La figure~\mygetplot{heart-pop+heart-pop-detail}~(heart) présente
+l'évolution de la population du plan~0 contre l'évolution de la
+population du plan~1 de la règle \arule{Heart} pendant 512~générations d'un
 espace de \asquare{256}. %
 
 \noindent%
-On peut y voir le d\'ecouplage des deux variables. %
-La figure~\mygetplot{heart-pop+heart-pop-detail}~(heart d\'etail) est un
-agrandissement sur le d\'ecouplage. 
+On peut y voir le découplage des deux variables. %
+La figure~\mygetplot{heart-pop+heart-pop-detail}~(heart détail) est un
+agrandissement sur le découplage. 
 
 \clearpage
 

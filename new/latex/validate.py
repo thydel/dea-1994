@@ -1,18 +1,22 @@
 """Acceptance checks against the historical sources, not just PDF existence."""
 from pathlib import Path
 import re, subprocess, json
+from tex_unicode import normalize, changes
 ROOT=Path(__file__).resolve().parent
 import os
 os.chdir(ROOT)
 old=Path('../../old/txt/tex')
 chapters=['title','abstract','intro-top','obj-space','obj-time','obj-law','rule-space','about-anneal','conclusion','ann-rules','ann-rabbit','ann-caw','soft-tools','biblio']
-# Exactly the documented, technical-only edits; all other source characters agree.
+# Documented technical edits plus equivalent prose accent representation.
+# Mathematics, identifiers, code, macros and comments remain exact source.
 for name in chapters+['intro-part-1','intro-part-2','nocite']:
     expected=(old/(name+'.tex')).read_text(encoding='ascii')
     if name=='title': expected=expected.replace(r'\today','27 septembre 1994')
     if name=='intro-top': expected=expected.replace(r'\input{intro-part-',r'\input{chapters/intro-part-')
     if name=='biblio': expected=expected.replace('  journal,','  bib/journal,').replace('Bib/','bib/')
-    assert Path('chapters',name+'.tex').read_text()==expected, f'Contenu modifié: {name}'
+    actual = Path('chapters', name+'.tex').read_text()
+    assert normalize(actual) == normalize(expected), f'Contenu modifié: {name}'
+    assert not list(changes(actual)), f'Accents TeX en prose: {name}'
 for p in Path('tables').glob('*.tbl'):
     assert p.read_text()==(old.parent/'tbl'/p.name).read_bytes().decode('latin1'), p
 for p in Path('bib').glob('*.bib'):
@@ -55,6 +59,6 @@ text=subprocess.check_output(['pdftotext','main.pdf','-'],text=True)
 assert '27 septembre 1994' in text and 'Bibliographie' in text
 assert '\ufffd' not in text and '??' not in text
 resources=Path('main.resources').read_text().splitlines()
-summary={'pages':pages,'labels':len(labels(''.join(p.read_text() for p in Path('chapters').glob('*.aux')))),'bibliographie':len(b),**counts,'images_differees':sum(x.startswith('image:') for x in resources),'codes_differes':sum(x.startswith('code:') for x in resources),'tables_incluses':len(list(Path('tables').glob('*.tbl'))),'underfull_hbox':log.count('Underfull \\hbox'),'old_inchange':True,'references_non_resolues':0,'citations_non_resolues':0}
+summary={'pages':pages,'labels':len(labels(''.join(p.read_text() for p in Path('chapters').glob('*.aux')))),'bibliographie':len(b),**counts,'images_differees':sum(x.startswith('image:') for x in resources),'codes_differes':sum(x.startswith('code:') for x in resources),'tables_incluses':len(list(Path('tables').glob('*.tbl'))),'underfull_hbox':log.count('Underfull \\hbox'),'old_inchange':True,'references_non_resolues':0,'citations_non_resolues':0,'conservation_unicode_semantique':True,'accents_tex_prose_restants':0}
 Path('validation.json').write_text(json.dumps(summary,ensure_ascii=False,indent=2)+'\n')
 print(json.dumps(summary,ensure_ascii=False,indent=2))

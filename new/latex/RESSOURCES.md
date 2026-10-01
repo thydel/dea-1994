@@ -1,6 +1,9 @@
 # Inventaire des ressources de la phase 1
 
-Inventaire issu des appels réellement exécutés, consignés dans `main.resources`. Les légendes et textes explicatifs restent dans les chapitres, sans modification. Les labels composés correspondent aux figures à plusieurs ressources.
+Inventaire issu des appels réellement exécutés, consignés dans
+`main.resources`. Les légendes et textes explicatifs restent dans les
+chapitres, sans modification. Les labels composés correspondent aux
+figures à plusieurs ressources.
 
 ## Images et listings différés
 
@@ -111,7 +114,8 @@ Inventaire issu des appels réellement exécutés, consignés dans `main.resourc
 
 ## Tables incluses
 
-Les dix tableaux sont compilés directement. Aucun tableau n’est neutralisé.
+Les dix tableaux sont compilés directement. Aucun tableau n’est
+neutralisé.
 
 | Source locale | Label et numéro |
 |---|---|
@@ -128,7 +132,14 @@ Les dix tableaux sont compilés directement. Aucun tableau n’est neutralisé.
 
 ## Limites et ambiguïtés conservées
 
-- Les noms de ressource sont ceux des macros historiques, même lorsqu’ils ne comportent pas d’extension. Les chemins affichés sont informatifs et ne sont jamais chargés par TeX.
-- Les fichiers `.tex` des listings externes sont des sorties historiques de `lgrind`, pas du texte scientifique à reformuler ; leur inclusion complète est différée.
-- Les listings `verbatim` présents dans les chapitres restent intégralement inclus.
-- Aucune ambiguïté scientifique n’a nécessité de substitution de contenu. Les formulations, coquilles et valeurs historiques restent conservées.
+- Les noms de ressource sont ceux des macros historiques, même
+  lorsqu’ils ne comportent pas d’extension. Les chemins affichés sont
+  informatifs et ne sont jamais chargés par TeX.
+- Les fichiers `.tex` des listings externes sont des sorties
+  historiques de `lgrind`, pas du texte scientifique à reformuler ;
+  leur inclusion complète est différée.
+- Les listings `verbatim` présents dans les chapitres restent
+  intégralement inclus.
+- Aucune ambiguïté scientifique n’a nécessité de substitution de
+  contenu. Les formulations, coquilles et valeurs historiques restent
+  conservées.

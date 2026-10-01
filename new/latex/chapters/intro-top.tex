@@ -1,102 +1,102 @@
 \chapter{Introduction}
 
 Les automates cellulaires~(AC)\footnote{%
-  Pour des collections th\'ematiques voir
+  Pour des collections thématiques voir
   \cite{Demongeot85,Wolfram86a,Legendi87,Gutowitz90a}, %
-  pour des ouvrages th\'ematiques voir
+  pour des ouvrages thématiques voir
   \cite{Preston84,Toffoli87,Jackson91c}, %
   pour une approche didactique voir %
   \cite{Casti89a,Schroeder90a}.} %
-sont des syst\`emes dynamiques virtuels, %
-discrets en espace, en temps et en \'etats, homog\`enes, synchrones et
-d\'eterministes. %
-L'espace est constitu\'e de cellules identiques dot\'ees d'un r\'eseau
-d'interconnexion r\'egulier~(une grille de dimension~2 ou~3 par
+sont des systèmes dynamiques virtuels, %
+discrets en espace, en temps et en états, homogènes, synchrones et
+déterministes. %
+L'espace est constitué de cellules identiques dotées d'un réseau
+d'interconnexion régulier~(une grille de dimension~2 ou~3 par
 exemple). %
-Une cellule est une variable discr\`ete~(une cha\^ine de bits dont la
-taille d\'etermine le nombre d'\'etats de la cellule). %
-Le temps est une s\'equence d'espaces g\'en\'er\'ee par l'application
-synchrone d'une fonction de transition d\'eterministe. %
+Une cellule est une variable discrète~(une chaîne de bits dont la
+taille détermine le nombre d'états de la cellule). %
+Le temps est une séquence d'espaces générée par l'application
+synchrone d'une fonction de transition déterministe. %
 La fonction de transition est locale dans le temps et dans l'espace,
-son argument est un ensemble fini d'\'etats de cellules voisines du
-r\'eseau d'interconnexion, pour un nombre fini de points ant\'erieurs. %
+son argument est un ensemble fini d'états de cellules voisines du
+réseau d'interconnexion, pour un nombre fini de points antérieurs. %
 
-Les AC sont sujets d'\'etudes ou d'applications dans les domaines des
-math\'ematiques %
+Les AC sont sujets d'études ou d'applications dans les domaines des
+mathématiques %
 \cite[]{Jen90,Vichniac90}, %
 de l'architecture des ordinateurs %
 \cite[]{Legendi87a,Zsoter87}, %
-de la programmation parall\`ele %
+de la programmation parallèle %
 \cite[]{Preston84,Almasi87} %
-et de la simulation de syst\`emes naturels %
+et de la simulation de systèmes naturels %
 tant physiques\footnote{%
   En particulier les \aquote{Lattice Gas Automata}~\cite[]{Despain90,Margolus90}.} %
 \cite[]{Margolus84,Toffoli84,Rossi93} %
 que biologiques\footnote{%
-  L'\'etude de la vie artificielle inspire de nombreux travaux sur les
-  AC, souvent assez \'eloign\'es d'observations biologiques. %
-  Une exception notable \'etant \cite{Hameroff89}, qui propose
-  l'existence d'une capacit\'e au calcul cellulaire pour le
+  L'étude de la vie artificielle inspire de nombreux travaux sur les
+  AC, souvent assez éloignés d'observations biologiques. %
+  Une exception notable étant \cite{Hameroff89}, qui propose
+  l'existence d'une capacité au calcul cellulaire pour le
   cytosquelette.} %
 \cite[]{Tamayo89,Boer93}. %
-Ils constituent un champ d'\'etudes des math\'ematiques discr\`etes et un
-mod\`ele important en th\'eorie du calcul\footnote{%
-  Voir par exemple \cite{Lindgren90} pour une \'equivalence
+Ils constituent un champ d'études des mathématiques discrètes et un
+modèle important en théorie du calcul\footnote{%
+  Voir par exemple \cite{Lindgren90} pour une équivalence
   entre certains AC~1D et une machine de Turing.}, %
-en particulier pour les probl\`emes li\'es au parall\'elisme\footnote{%
-  Les AC math\'ematiques mettent en jeu
-  un espace infini, en particulier \`a limites p\'eriodiques. %
-  Notre point de vue est \'egalement empirique et
-  impl\'ementatoire: nous viserons sp\'ecifiquement la r\'ealisation de
-  programmes dot\'es du meilleur rendement. %
-  En cons\'equence, dans un contexte de ressources m\'emoire limit\'ees, nos
-  AC seront \'evidemment dot\'es d'un espace restreint, par d\'efaut torique.}; %
-leur structure est tr\`es proche de l'architecture des machines
+en particulier pour les problèmes liés au parallélisme\footnote{%
+  Les AC mathématiques mettent en jeu
+  un espace infini, en particulier à limites périodiques. %
+  Notre point de vue est également empirique et
+  implémentatoire: nous viserons spécifiquement la réalisation de
+  programmes dotés du meilleur rendement. %
+  En conséquence, dans un contexte de ressources mémoire limitées, nos
+  AC seront évidemment dotés d'un espace restreint, par défaut torique.}; %
+leur structure est très proche de l'architecture des machines
 SIMD\footnote{%
-  \cite{Greussay85} indique que la structure des AC est tr\`es proche de
-  l'architecture des machines SIMD, et nous pensons que le progr\`es des
+  \cite{Greussay85} indique que la structure des AC est très proche de
+  l'architecture des machines SIMD, et nous pensons que le progrès des
   connaissances et des outils dans ces deux domaines sont intimement
-  li\'es. %
+  liés. %
   Les travaux de \cite{Rozin87,Rozin88,Rozin93} sur la programmation
   plane et de \cite{Signorini92,signorini94} sur la programmation par
-  configurations cellulaires t\'emoignent de la fertilit\'e de cette
+  configurations cellulaires témoignent de la fertilité de cette
   approche. %
-  La puissance de calcul et la taille de la m\'emoire disponible sur des
+  La puissance de calcul et la taille de la mémoire disponible sur des
   machines aujourd'hui largement accessibles permet d'envisager la
-  r\'ealisation de multiples exp\'eriences dans le domaine du parall\'elisme
-  synchrone massif, sans attendre l'arriv\'ee de machines SIMD\@. %
-  Les AC fournissent un outil conceptuel en mesure de jouer un r\^ole
-  central dans la recherche d'objets naturels~(comportement \'emergent)
-  ou artificiels~(comportement construit), pouvant servir de base \`a la
-  d\'efinition d'outils pratiques d'exploitation des ressources du
-  parall\'elisme synchrone massif.}; %
-ind\'ependamment de l'architecture des machines, de nombreux
-algorithmes se pr\^etent \`a une formulation
+  réalisation de multiples expériences dans le domaine du parallélisme
+  synchrone massif, sans attendre l'arrivée de machines SIMD\@. %
+  Les AC fournissent un outil conceptuel en mesure de jouer un rôle
+  central dans la recherche d'objets naturels~(comportement émergent)
+  ou artificiels~(comportement construit), pouvant servir de base à la
+  définition d'outils pratiques d'exploitation des ressources du
+  parallélisme synchrone massif.}; %
+indépendamment de l'architecture des machines, de nombreux
+algorithmes se prêtent à une formulation
 cellulaire~\cite[]{Uhr87,Uhr84}, en particulier les algorithmes de
 traitement d'images~\cite[]{Preston84,Hasselbring92}; enfin, les AC
-peuvent \^etre vus comme une version discr\`ete de syst\`emes
-d'\'equations diff\'erentielles\footnote{%
-  Et \`a ce titre permettent la mod\'elisation de nombreux syst\`emes
+peuvent être vus comme une version discrète de systèmes
+d'équations différentielles\footnote{%
+  Et à ce titre permettent la modélisation de nombreux systèmes
   naturels. %
-  La mod\'elisation d'un syst\`eme naturel par un ensemble d'\'equations
-  diff\'erentielles \'etablit des relations diff\'erentielles entre les
-  variables macroscopiques du syst\`eme~(des populations par exemple). %
-  La mod\'elisation par AC \'etablit des relations entre les composants
-  discrets \'el\'ementaires~(les cellules) du syst\`eme. %
-  Les variables macroscopiques deviennent des propri\'et\'es \'emergentes du
-  syst\`eme dont le choix peut \^etre fait a posteriori, mais le mod\`ele
-  doit imp\'erativement reposer sur une description en termes de
-  comportement collectif du ph\'enom\`ene \'etudi\'e. %
+  La modélisation d'un système naturel par un ensemble d'équations
+  différentielles établit des relations différentielles entre les
+  variables macroscopiques du système~(des populations par exemple). %
+  La modélisation par AC établit des relations entre les composants
+  discrets élémentaires~(les cellules) du système. %
+  Les variables macroscopiques deviennent des propriétés émergentes du
+  système dont le choix peut être fait a posteriori, mais le modèle
+  doit impérativement reposer sur une description en termes de
+  comportement collectif du phénomène étudié. %
 
-  La description d'un syst\`eme naturel en termes de comportement
-  collectif n'implique pas l'identification d'une cellule \`a un
+  La description d'un système naturel en termes de comportement
+  collectif n'implique pas l'identification d'une cellule à un
   individu. %
   Par exemple, dans une simulation de dynamique des populations, une
-  cellule peut \^etre identifi\'ee \`a une densit\'e de population en un point
+  cellule peut être identifiée à une densité de population en un point
   d'espace. %
-  N\'eanmoins la validit\'e de la mod\'elisation~(conformit\'e de la dynamique
-  des populations d'un AC \`a un syst\`eme d'\'equations diff\'erentielles
-  standard de r\'ef\'erence par exemple) d\'epend toujours de la pr\'esence
+  Néanmoins la validité de la modélisation~(conformité de la dynamique
+  des populations d'un AC à un système d'équations différentielles
+  standard de référence par exemple) dépend toujours de la présence
   d'un nombre minimum de cellules dans la simulation.}. %
 
 \input{chapters/intro-part-1}

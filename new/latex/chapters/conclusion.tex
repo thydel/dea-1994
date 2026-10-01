@@ -3,78 +3,78 @@
 %%
 \chapter{Conclusion}
 
-Nous avons expos\'e les raisons pour lesquelles nous d\'efendons une
-approche bottom-up g\'en\'erale en vue de la r\'ealisation d'un
-environnement de d\'eveloppement cellulaire \`a vocation universelle. %
-L'ampleur de la t\^ache, qui reste largement inachev\'ee, mais aussi
-l'exp\'erience acquise, nous conduit \`a pr\'eciser quelques directions
-privil\'egi\'ees de d\'eveloppement ult\'erieur.
+Nous avons exposé les raisons pour lesquelles nous défendons une
+approche bottom-up générale en vue de la réalisation d'un
+environnement de développement cellulaire à vocation universelle. %
+L'ampleur de la tâche, qui reste largement inachevée, mais aussi
+l'expérience acquise, nous conduit à préciser quelques directions
+privilégiées de développement ultérieur.
 
-Les principaux r\'esultats portent sur l'obtention d'un moteur
+Les principaux résultats portent sur l'obtention d'un moteur
 cellulaire rapide et sur la validation de plusieurs outils bien
-adapt\'es \`a l'analyse et la pr\'esentation visuelle des dynamiques
-g\'en\'er\'ees par le Workbench.
+adaptés à l'analyse et la présentation visuelle des dynamiques
+générées par le Workbench.
 
-La r\'ealisation des m\'ecanismes de sp\'ecification des architectures
-cellulaires pose un probl\`eme de bootstrap. %
-Ce probl\`eme se pose \'egalement pour la r\'ealisation d'une biblioth\`eque
-d'objets cellulaires \'el\'ementaires. %
+La réalisation des mécanismes de spécification des architectures
+cellulaires pose un problème de bootstrap. %
+Ce problème se pose également pour la réalisation d'une bibliothèque
+d'objets cellulaires élémentaires. %
 Ainsi, nous pensons qu'il convient de consolider le noyau de
-fonctionnalit\'es acquises, par une int\'egration plus \'etroite de quelques
+fonctionnalités acquises, par une intégration plus étroite de quelques
 moteurs cellulaires simples et rapides aux environnements externes,
-tout en poursuivant la recherche des m\'ethodes utilisables pour la
-d\'efinition d'architectures plus g\'en\'erales. %
-N\'eanmoins, la r\'ealisation d'outils puissants~(rapides et flexibles) de
-manipulation de tables de transitions, n'\'eloignerait pas la tentation
-d'exp\'erimenter des AC moins radicalement bottom-up.
+tout en poursuivant la recherche des méthodes utilisables pour la
+définition d'architectures plus générales. %
+Néanmoins, la réalisation d'outils puissants~(rapides et flexibles) de
+manipulation de tables de transitions, n'éloignerait pas la tentation
+d'expérimenter des AC moins radicalement bottom-up.
 
 %% \section{Un AC d'un autre type}
 
 \mydumpfull[t]{xu-photo-1}%
 {}
 {La dynamique de l'AC \arule{xu}}%
-{Un cube d'espace-temps d'ar\^ete~128, rendu par ray-tracing
+{Un cube d'espace-temps d'arête~128, rendu par ray-tracing
   d'iso-sur\-face. %
-  De tels traitements sont, avec les outils que nous avons utilis\'es \`a
-  la limite des capacit\'es des ressources dont nous disposions.}
+  De tels traitements sont, avec les outils que nous avons utilisés à
+  la limite des capacités des ressources dont nous disposions.}
 
 \mydumpfull[t]{xu-photo-1-top}%
 {}%
 {Un rendu d'une tranche des valeurs du dernier
   plan de la figure~\protect\mygetdump{xu-photo-1}}%
-{La photo~\mygetdump{xu-photo-1} permet de ce faire une id\'ee de la
-  dynamique de croissance de la r\`egle, mais elle ne permet pas de
-  distinguer le pattern de distribution \'energ\'etique de chaque tranche
+{La photo~\mygetdump{xu-photo-1} permet de ce faire une idée de la
+  dynamique de croissance de la règle, mais elle ne permet pas de
+  distinguer le pattern de distribution énergétique de chaque tranche
   de temps.}
 
-Nous pr\'esentons donc en conclusion un AC dont la r\'ealisation effective
+Nous présentons donc en conclusion un AC dont la réalisation effective
 exclut l'usage d'une combinatoire de tables de transitions. %
-Cet AC utilise un voisinage de von Neumann, l'horloge interne est \`a
-deux pas, et la structure cellulaire est \`a six champs. %
+Cet AC utilise un voisinage de von Neumann, l'horloge interne est à
+deux pas, et la structure cellulaire est à six champs. %
 Chaque champ est un entier, dont la taille est, dans notre
-r\'ealisation, de 32~bits. %
-La fonction de transition est exprim\'ee\footnote{%
-  Contrairement \`a toutes les autres r\`egles sp\'ecifi\'ees dans la pr\'esente \'etude.}%
-en terme de modification simultan\'ee des cinq cellules du voisinage,
-avec consultation de l'\'etat local uniquement. %
-La r\`egle de transition r\'ealise une \aquote{physique} \'energ\'etique
+réalisation, de 32~bits. %
+La fonction de transition est exprimée\footnote{%
+  Contrairement à toutes les autres règles spécifiées dans la présente étude.}%
+en terme de modification simultanée des cinq cellules du voisinage,
+avec consultation de l'état local uniquement. %
+La règle de transition réalise une \aquote{physique} énergétique
 qualitative. %
-Les quatre premiers champs de la variable d'\'etat cellulaire associent
+Les quatre premiers champs de la variable d'état cellulaire associent
 des poids aux quatre directions de l'espace~(nord, sud, est et
 ouest). %
-Les deux derniers champs associent des potentiels cin\'etiques aux axes
+Les deux derniers champs associent des potentiels cinétiques aux axes
 \bialt{nord}{sud} et \bialt{est}{ouest}. %
-Les poids sont des donn\'ees initiales. %
+Les poids sont des données initiales. %
 La somme des poids sur l'ensemble des cellules de l'espace reste
-invariante par conservation de l'\'energie. %
-Les potentiels associ\'es aux axes~NS et~EO sont fonction du cumul des
+invariante par conservation de l'énergie. %
+Les potentiels associés aux axes~NS et~EO sont fonction du cumul des
 poids des deux directions de chaque axe. %
-Le rapport de cette quantit\'e \`a la somme des poids des quatre
-directions d\'etermine le d\'eplacement additif, champ par champ, de la
+Le rapport de cette quantité à la somme des poids des quatre
+directions détermine le déplacement additif, champ par champ, de la
 cellule vers une de ses quatre voisines par fusion. %
 Ce mouvement-fusion a lieu au temps~2 de chaque cycle. %
-L'op\'eration de fusion porte \'egalement sur les potentiels, dont les
-reliquats sont conserv\'es. %
+L'opération de fusion porte également sur les potentiels, dont les
+reliquats sont conservés. %
 
 Par exemple pour l'axe EO:
 
@@ -96,23 +96,23 @@ Par exemple pour l'axe EO:
 \end{verbatim}
 \normalsize
 
-Au temps~1 de chaque cycle, la somme est compar\'ee \`a la constante
+Au temps~1 de chaque cycle, la somme est comparée à la constante
 universelle~K de notre physique. %
-Si la somme est sup\'erieure \`a~K, la cellule explose. %
+Si la somme est supérieure à~K, la cellule explose. %
 Cette explosion distribue la cellule dans les quatre voisins par
-l'op\'eration de fusion. %
-La division de la cellule en quatre parties est une division enti\`ere:
-le reliquat de cette division permet d'ajouter la rupture de sym\'etrie
-\`a la conservation de la quantit\'e allou\'ee au temps z\'ero. %
+l'opération de fusion. %
+La division de la cellule en quatre parties est une division entière:
+le reliquat de cette division permet d'ajouter la rupture de symétrie
+à la conservation de la quantité allouée au temps zéro. %
 Le choix de la distribution du reliquat de cette division constitue
 avec le choix de l'espace initial et de la valeur de~K les seuls
-param\`etres contr\^olables. %
-Un reliquat subit une rotation et une translation relative \`a sa
+paramètres contrôlables. %
+Un reliquat subit une rotation et une translation relative à sa
 position cellulaire. %
-Les exemples de dynamique expos\'es le sont
+Les exemples de dynamique exposés le sont
 pour K = 4, rotation = clockwise next, translation = clockwise next. %
 
-la figure~\mygetdump{xu-photo-1} est une photo de l'\'evolution~(de bas en
+la figure~\mygetdump{xu-photo-1} est une photo de l'évolution~(de bas en
 haut) de l'espace initial suivant:
 
 \footnotesize
@@ -125,42 +125,42 @@ X       Y       N       S       E       O
 \end{verbatim}
 \normalsize
 
-de taille 128 par 128, sur 128 g\'en\'erations. %
-L'origine du rep\`ere est au centre.
+de taille 128 par 128, sur 128 générations. %
+L'origine du repère est au centre.
 
 \vspace{4cm}
-Les r\'ealisations et propositions que nous avons expos\'ees
-constituent des \'el\'ements d'une \'etude pratique des espaces du calcul
-cellulaire reposant sur un usage g\'en\'eralis\'e de tables de transitions
+Les réalisations et propositions que nous avons exposées
+constituent des éléments d'une étude pratique des espaces du calcul
+cellulaire reposant sur un usage généralisé de tables de transitions
 qui permet la construction de moteurs rapides pour le calcul
-cellulaire sur machines s\'equentielles. %
-Nous avons montr\'e comment cette approche permet des transformations
+cellulaire sur machines séquentielles. %
+Nous avons montré comment cette approche permet des transformations
 cellulaire-SIMD. %
-Nous avons \'egalement propos\'e l'usage d'un nouveau param\`etre de contr\^ole
-sur les espaces de r\`egles et des techniques de visualisation
-sp\'eciales pour les espaces-temps cellulaire. %
-Nous comptons utiliser ces \'el\'ements pour base de nouveaux
-d\'eveloppements int\'egrant la dimension esth\'etique des visualisations
-comme m\'ethode d'\'evaluation heuristique des propri\'et\'es morphog\'en\'etiques
-des r\'egions d'espaces du calcul cellulaire visit\'ees.
+Nous avons également proposé l'usage d'un nouveau paramètre de contrôle
+sur les espaces de règles et des techniques de visualisation
+spéciales pour les espaces-temps cellulaire. %
+Nous comptons utiliser ces éléments pour base de nouveaux
+développements intégrant la dimension esthétique des visualisations
+comme méthode d'évaluation heuristique des propriétés morphogénétiques
+des régions d'espaces du calcul cellulaire visitées.
 
 \mydumpfull{xu-Cfilm-1-1}%
 {}%
 {D'autre points de vue}%
-{La pr\'esentation d'une photo d'une projection~2D d'un plongement~3D de la
-  dynamique d'un r\`egle sur un espace cellulaire, ne remplace pas
-  l'exp\'erience d'un pr\'esentation incarn\'ee dans le temps\footnote{%
+{La présentation d'une photo d'une projection~2D d'un plongement~3D de la
+  dynamique d'un règle sur un espace cellulaire, ne remplace pas
+  l'expérience d'un présentation incarnée dans le temps\footnote{%
     A priori un film classique, respectant le temps propre de la
-    dynamique, mais sans exclure la possibilit\'e que des distortions de
+    dynamique, mais sans exclure la possibilité que des distortions de
     l'axe de projection temporelle soient porteuse d'informations
     pertinentes.}, %
-  qui plus est, ces photos appellent par elle-m\^emes le besoin d'un
-  film de la variation des param\`etres de projections.}
+  qui plus est, ces photos appellent par elle-mêmes le besoin d'un
+  film de la variation des paramètres de projections.}
 
 \mydumpfull{xu-Cfilm-1-2}%
 {}%
-{Et un \'epluchage}%
-{R\'ealis\'e en variant lin\'eairement la valeur de seuil d'extraction d'iso-sur\-face}
+{Et un épluchage}%
+{Réalisé en variant linéairement la valeur de seuil d'extraction d'iso-sur\-face}
 
 \mydumpfull{xu-Cfilm-2-1}%
 {}%
@@ -169,7 +169,7 @@ des r\'egions d'espaces du calcul cellulaire visit\'ees.
 
 \mydumpfull{xu-Cfilm-2-2}%
 {}%
-{Et un \'epluchage exponentiel}%
+{Et un épluchage exponentiel}%
 {}
 
 %%
