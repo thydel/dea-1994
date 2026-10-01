@@ -8,8 +8,8 @@ usable figures to the reconstructed LaTeX document.
 - [`PROMPT.md`](PROMPT.md) contains the operational directive for
   Codex.
 - [`DONE.md`](DONE.md) records the implementation passes.
-- `REVIEW.md` will be written independently after the work is
-  complete.
+- [`REVIEW.md`](REVIEW.md) records the independent review of the
+  completed work.
 
 The existing Phase 1 resource inventory under
 [`new/latex/RESSOURCES.md`](../../new/latex/RESSOURCES.md) is an input
