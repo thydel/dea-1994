@@ -61,3 +61,33 @@ Interactive instructions to Codex should normally serve only to identify the
 journal or directive to execute. Material requirements, decisions,
 corrections, and acceptance criteria belong in the version-controlled
 journal.
+
+## Author intent and independent review
+
+Each journal directory may contain three documents with distinct roles:
+
+- `AUTHOR.md` records the human author's intent as reconstructed from the
+  conversation. It should be concise and faithful to the request, without
+  expanding it into an implementation specification.
+- `README.md` is the operational work journal: it contains the formalized
+  directives, implementation decisions, execution notes, and outcomes.
+- `REVIEW.md` records independent reviews of completed work against both the
+  author's intent and the operational directive.
+
+`AUTHOR.md` and `REVIEW.md` are independent records. Codex may read them for
+context but must not create, rewrite, append to, or otherwise modify them.
+They are maintained outside the implementation agent's execution role.
+
+Both author-intent and review history are append-oriented. When reconstructed
+retrospectively, say so explicitly rather than implying that the record
+existed before the work was performed.
+
+A review should identify the commit or result examined, its scope, material
+findings, any open issues, and the review conclusion. Multiple review passes
+for the same journal are appended as successive sections of `REVIEW.md`.
+
+The intended workflow is:
+
+human intent (`AUTHOR.md`) -> operational directive (`README.md`) -> Codex
+implementation -> commit -> independent review (`REVIEW.md`) -> human
+decision.
