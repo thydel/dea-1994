@@ -1,0 +1,272 @@
+\chapter{Pr\'edateur/proie}
+\mysetref{fox-rabbit}
+
+Existe t-il une m\'ethode de transformation syst\'ematique\footnote{%
+  Pouvant \`a terme devenir un algorithme ou au  moins une heuristique.} %
+d'une description diff\'erentielle continue d'un syst\`eme en \'equation
+cellulaire? %
+Confront\'e au probl\`eme de la d\'ecouverte d'une r\`egle de transition
+codant un comportement\footnote{%
+  Le probl\`eme de la r\'eduction d'un comportement \`a une dynamique, ou
+  plus g\'e\-n\'e\-ra\-le\-ment la d\'etermination des observables de
+  l'espace-temps, nous am\`ene \`a une utilisation plus m\'etaphorique
+  de termes d\'esignant les donn\'ees initiales ou r\'esultantes
+  d'une exp\'erience cellulaire.}, %
+la d\'emarche usuelle repose plus sur la recherche intuitive d'une
+description ph\'enom\'enologique locale, que sur l'utilisation
+combinatoire d'un r\'epertoire de primitives dot\'e d'un comportement
+pr\'evisible\footnote{%
+  Voir~\cite{Richards90} pour une recherche de r\`egles \`a partir
+  d'espaces de configurations, utilisant un algorithme g\'en\'etique pour
+  la recherche dans l'espace des r\`egles, mais concernant des AC
+  probabilistes.}. %
+Partant d'un comportement global donn\'e, cette d\'emarche intuitive
+postule l'existence d'un comportement local associ\'e \`a un observable
+global. %
+Une r\`egle locale est obtenue par la simplification symbolique
+d'une description analytique. %
+Comme exemple de l'utilisation de cette m\'ethode empirique, prenons
+un probl\`eme classique de dynamique des populations. %
+Nous avons choisi un syst\`eme d\'ej\`a fort complexe, permettant une
+formulation cellulaire:~un syst\`eme proie/pr\'edateur \`a deux esp\`eces. %
+Le squelette de la fonction de transition s'obtient ais\'ement par la
+description litt\'erale des comportements individuels suppos\'es d'une
+population naturelle:
+
+\begin{itemize}
+\item Les individus naissent, durent et meurent.
+\item Les proies meurent en pr\'esence des pr\'edateurs.
+\end{itemize}
+
+Un bit d'existence et $n$ bits de long\'evit\'e sont allou\'es dans l'espace
+cellulaires \`a chaque esp\`ece\footnote{% 
+  Nous avons utilis\'e des compteurs sur 3 bits.}. %
+La naissance d'un individu d\'epend de la densit\'e de la population locale. %
+Les param\`etres facteurs de croissance et de d\'ecroissance de chaque
+population ne sont donc pas fix\'es de mani\`ere absolue, mais r\'esultent de
+la conjonction du compteur de long\'evit\'e et des seuils locaux
+d\'eclenchant une naissance. %
+A l'observation, les variations de population r\'esultantes pr\'esentent
+l'aspect cyclique corr\'el\'e attendu, mais le r\'epertoire des
+comportements accessibles via les param\`etres de la fonction de
+transition ou par des modifications du squelette de
+l'automate\footnote{%
+  Par exemple en imposant la pr\'esence de proies dans le voisinage
+  d'une cellule, en plus de la pr\'esence de pr\'edateurs, comme une
+  condition n\'ecessaire \`a la naissance d'un pr\'edateur.} %
+est difficilement comparable \`a l'expression diff\'erentielle classique
+de ce probl\`eme.
+
+\mytwoplotVfull{rabbit-gnans-1}{rabbit-gnans-2}%
+{\asoft{gnans} et Lokta-Volterra}%
+{Les \'equations~\ref{rabbit-1} et~\ref{rabbit-2} calcul\'ees par~\asoft{gnans}}%
+{Deux solutions p\'eriodiques obtenues avec \protect\mysoftcite{gnans} pour
+  l'\'equation du mod\`ele pr\'edateur-proie de Lokta-Volterra.}
+
+La figure~\mygetplot{rabbit-gnans-1+rabbit-gnans-2}
+est obtenue avec \mysoftcite{gnans} pour l'\'equation
+du mod\`ele pr\'edateur-proie de Lokta-Volterra. %
+D'apr\`es~\cite{Murray90}:
+
+\begin{eqnarray}
+  \frac{dN}{dt} & = N(a-bP), \label{rabbit-1}\\
+  \frac{dP}{dt} & = P(cN-d), \label{rabbit-2}
+\end{eqnarray}
+
+Avec a, b, c et d constantes positives. %
+Les \'equations~\ref{rabbit-1} et~\ref{rabbit-2} sont sp\'ecifi\'ees tel
+que \`a~\asoft{gnans}:
+
+\footnotesize
+\begin{verbatim}
+        CONTINUOUS TIME SYSTEM lokta;
+        
+        AT TIME t:
+        d(n) = n * (a - b * p);
+        d(p) = p * (c * n - dd);
+\end{verbatim}
+\normalsize
+
+Les valeurs des variables et des param\`etres sont, pour la
+solution~1\footnote{%
+  Et les conditions op\'erationnelles:~%
+  timestep = 1, %
+  stoptime = 48, %
+  algo = RKF45.}:
+
+\begin{footnotesize}
+\begin{verbatim}
+        STATE n = 2;
+        STATE p = 1.99;
+        TIME t;
+        
+        PARAMETER a = 4;
+        PARAMETER b = 3;
+        PARAMETER c = 2;
+        PARAMETER dd = 5;
+\end{verbatim}
+\end{footnotesize}
+
+Et pour la solution~2\footnote{%
+  Timestep = 1, stoptime = 200, algo = Ode.}:
+
+\footnotesize
+\begin{verbatim}
+        STATE n = 1;
+        STATE p = 1;
+        TIME t;
+        
+        PARAMETER a = .8;
+        PARAMETER b = .1;
+        PARAMETER c = .1;
+        PARAMETER dd = .1;
+\end{verbatim}
+\normalsize
+
+\mytwoplotVfull{rabbit-1}{rabbit-1-512}%
+{\arule{Fox-Rabbit} Version 1}%
+{Une tentative transposition cellulaire}%
+{\'Evolution des populations proie-pr\'edateurs obtenue avec la r\`egle\\
+  \arule{Fox-Rabbit} version~1}
+
+La figure~\mygetplot{rabbit-1+rabbit-1-512} montre l'\'evolution des
+populations proie-pr\'edateurs obtenue avec la r\`egle \arule{Fox-Rabbit}
+version~1, pour 100~g\'en\'erations sur un espace taille \asquare{128}~(haut)
+et \asquare{512}~(bas). %
+Dans les deux cas, l'espace initial est de densit\'e al\'eatoire\,\undemi~%
+sur le plan \avar{fox} et sur le plan \avar{rabbit}.
+
+\medskip
+\large
+\arule{Fox-Rabbit} version~1:
+\normalsize
+
+\footnotesize
+\begin{verbatim}
+        fox_sum = W0 + N0 + S0 + E0;
+        rabbit_sum = W1 + N1 + S1 + E1;
+        ofox = ifox;
+        orabbit = irabbit;
+
+        if (ifox && irabbit) {
+                orabbit = 0;
+        }
+        if (ifox) {
+                ofox_life = ifox_life - 1;
+                ofox = ofox_life > 0;
+        } 
+        if (irabbit && !ifox) {
+                orabbit_life = irabbit_life - 1;
+                orabbit = orabbit_life > 0;
+        }
+        if (!ifox && fox_sum >= 2 && rabbit_sum >= 1) {
+                ofox = 1;
+                ofox_life = 3;
+        }
+        if (!irabbit && rabbit_sum >= 2) {
+                orabbit = 1;
+                orabbit_life = 3;
+        }
+\end{verbatim}
+\normalsize
+
+\mytwoplotVfull{rabbit-2}{rabbit-3}%
+{}%
+{\arule{Fox-Rabbit} Versions~2 et~3}%
+{Nous consid\'erons la vari\'et\'e des comportements dynamique obtenue pour
+  les perturbations apport\'es \`a la r\`egle initiale\footnote{%
+    Compte tenu de la taille du voisinage~(2~plans von Neumann de
+    1~bit chacun et 6~bits locaux).} comme un indicateur de l'int\'er\^et
+  d'une recherche empirique d'une typologie m\'etaphorique des
+  dynamiques cellulaires, \ie d'une tentative de classification des
+  sc\'enarios utilis\'es pour \'etablir des exp\'eriences cellulaires.}
+
+La figure~\mygetplot{rabbit-2+rabbit-3} montre l'\'evolution des
+populations proie-pr\'edateurs obtenue avec la r\`egle \arule{Fox-Rabbit}
+version 2~(haut) et 3~(bas). %
+Pour~200 et 400~g\'en\'erations sur un espace taille~\asquare{128}, m\^eme
+espace initial que pour la figure~\mygetplot{rabbit-1+rabbit-1-512}.
+
+\medskip
+\large
+\arule{Fox-Rabbit} version~2\footnote{%
+  La derni\`ere condition de
+  cr\'eation d'un rabbit est suspecte!}:
+\normalsize
+
+\footnotesize
+\begin{verbatim}
+        if (ifox && irabbit) {
+                ofox_life = ifox_life - 1;
+                ofox = ofox_life > 0;
+                orabbit = 0;
+        }
+        if (ifox && !irabbit) {
+                ofox_life = ifox_life - 3;
+                ofox = ofox_life > 0;
+        } 
+        if (irabbit && !ifox) {
+                orabbit_life = irabbit_life - 1;
+                orabbit = orabbit_life > 0;
+        }
+        if (!ifox && fox_sum == 2 && rabbit_sum >= 1) {
+                ofox = 1;
+                ofox_life = 7;
+        }
+        if (!irabbit && (rabbit_sum >= 2 || rabbit_sum <= 3)) {
+                orabbit = 1;
+                orabbit_life = 2;
+        }
+\end{verbatim}
+\normalsize
+
+\large
+\arule{Fox-Rabbit} version~3:
+\normalsize
+
+\footnotesize
+\begin{verbatim}
+        if (ifox && irabbit) {
+                if (fox_sum > rabbit_sum) {
+                        ofox_life = ifox_life - 1;
+                        ofox = ofox_life > 0;
+                        orabbit = 0;
+                } else if (fox_sum < rabbit_sum) {
+                        orabbit_life = irabbit_life - 1;
+                        orabbit = orabbit_life > 0;
+                        ofox = 0;
+                }
+        }
+        if (ifox && !irabbit) {
+                ofox_life = ifox_life - 2;
+                ofox = ofox_life > 0;
+        }
+        if (irabbit && !ifox) {
+                orabbit_life = irabbit_life - 2;
+                orabbit = orabbit_life > 0;
+        }
+        if (!ifox && fox_sum == 2) {
+                ofox = 1;
+                ofox_life = 7;
+        }
+        if (!irabbit && rabbit_sum >= 2 && fox_sum >= 1) {
+                orabbit = 1;
+                orabbit_life = 3;
+        }
+\end{verbatim}
+\normalsize
+
+%%
+%% Local Variables:
+%% mode: latex
+%% mode: auto-fill
+%% iso-accents-minor-mode: nil
+%% TeX-master: "top"
+%% TeX-command-default: "mytex"
+%% Local IspellParsing: "latex-mode ~latin1"
+%% Local IspellPersDict: "~/.ispell_lisp"
+%% LocalWords: "fox-rabbit t-il g\'e ra ph\'enom\'enologique rabbit-gnans gnans AT"
+%% LocalWords: "Lokta-Volterra pr\'edateur-proie CONTINUOUS TIME SYSTEM lokta dd"
+%% LocalWords: "timestep stoptime algo RKF STATE PARAMETER rabbit Fox-Rabbit sum"
+%% LocalWords: "proie-pr\'edateurs ofox ifox orabbit irabbit von Neumann bug\'e else"
+%% End:

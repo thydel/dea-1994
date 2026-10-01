@@ -1,0 +1,974 @@
+%%
+%% OBJECTS/LOIS
+%%
+\section{Les lois:~la fonction de transition}
+
+La \aconcept{fonction de transition} est l'\'el\'ement central de notre
+probl\'ematique des environnements de programmation pour automates
+cellulaires. %
+Les objets pr\'esent\'es pr\'ec\'edemment ne sont pas particuli\`erement
+sp\'ecifiques d'un environnement de d\'eveloppement d'AC\@. %
+Ils pourraient convenir \`a un environnement de production et de
+traitement d'images anim\'ees quelconques. %
+Ils constituent des extensions plus ou moins \'evidentes d'outils
+existants\footnote{%
+  Initialement nous pensions m\^eme pouvoir utiliser un des outils
+  existants~(dans le domaine de l'animation interactive d'images),
+  auquel des fonctions sp\'ecifiques d'application de fonctions de
+  transitions auraient pu \^etre ajout\'ees.} %
+ou sont bas\'es sur des imp\'eratifs d'architectures et de gestion de
+ressources totalement in\'evitables. %
+
+La fonction de transition concentre les probl\`emes de gestion de
+ressources en m\'emoire et en CPU, et le probl\`eme du pouvoir expressif
+de la sp\'ecification du r\'eseau d'interconnexion cellulaire et de la
+table de transition. %
+
+\mydumpfullR[t]{.5}{loop-1024}%
+{Un espace produit par une table import\'e}%
+{Une table import\'ee pour la g\'en\'eration~1024 de l'automate auto-reproducteur de Langton}%
+{la table de la r\`egle~\arule{loop} qui a produit cette image vient de
+  \asoft{cellsim}. %
+  Le source servant \`a produire la table ne faisant pas partie de
+  \asoft{cellsim}\footnote{%
+    La reconstruction d'un tel source ne pose bien s\^ur pas de
+    probl\`eme, mais nous souhaitions user des propri\'et\'es des tables.} %
+  Un examen sommaire du code source de \asoft{cellsim} permet de
+  d\'eterminer l'ordre choisi pour l'index, et un programme de
+  permutation des entr\'ees de la table en fonction de cet ordre permet
+  la conversion de la table au format de notre moteur.}
+
+\myfigtwothirdsR[t]{.75}{func-1}%
+{}%
+{Deux visions du voisinage}%
+{Cette figure montre la transformation d'un fragment
+  d'espace en index d'une table de transition. %
+  Le choix du mapping des coordonn\'ees des cellules de l'espace
+  (de dimension $d$) vers le vecteur d'index est arbitraire. %
+  Ce choix n'est pas neutre cependant, car il peut \^etre d\'eterminant pour
+  l'efficacit\'e de la fonction de mapping. %
+  \mygetfig[phrase]{apply-1}}
+
+\myfigfull[t]{apply-1}%
+{Le pipeline d'application}%
+{Trois \'etapes successives de collecte de voisinage, illustrant le
+  principe du pipeline de collecte mis en {\oe}uvre par la fonction
+  d'application.}%
+{Cette figure montre comment pipeliner la fonction de mapping pour un
+  voisinage de Moore, r\'eduisant l'obtention d'un nouvel index \`a
+  1~shift et 3~copies, \`a la place des 9~copies
+  n\'ecessaires en l'absence de pipeline. %
+  \mysetref{mem-struct}}
+
+\myfigtwothirds[t]{apply-2}%
+{}%
+{Quelques r\'eseaux d'interconnexion}%
+{Quelques r\'eseaux d'interconnexions. %
+  Les premier et troisi\`eme, ainsi que les deuxi\`eme et troisi\`eme
+  d'entre eux, dont les bits cibles sont disjoints, sont applicables
+  en parall\`ele sur le m\^eme espace. %
+  Les deuxi\`eme et troisi\`eme, de tailles d'index et de tailles de valeur
+  cible identiques, peuvent \^etre associ\'es \`a une table de transition
+  identique.}
+
+\myfigtwothirds[t]{func-2}%
+{}%
+{Mise \`a jour par table}%
+{Cette figure montre l'application d'un r\'eseau d'interconnexion sur
+  une table.}
+
+\myfigtwothirds[t]{func-3}%
+{}%
+{Deux tables disjointes}%
+{Mise en {\oe}uvre de deux AC disjoints partageant un m\^eme espace
+  d'exploitation.}
+
+\myfigtwothirds[t]{func-4}%
+{}%
+{Deux tables non disjointes}%
+{Mise en {\oe}uvre de deux AC coordonn\'es par l'interm\'ediaire de deux
+  r\'eseaux d'interconnexions non disjoints partageant un m\^eme espace
+  d'exploitation, permettant la transmission d'information d'un plan
+  cellulaire \`a l'autre.}
+
+\myfigfull[t]{func-7}%
+{Fonction d'application pour un voisinage sp\'ecial}%
+{Une fonction d'application pour un voisinage sp\'ecial dot\'e d'un
+  accumulateur additif.}%
+{Une fonction d'application pour un voisinage de Moore o\`u l'addition
+  des cellules sources remplace leur concat\'enation. %
+  Les connexions barr\'ees sont activ\'ees au cycle~2, et les connexions
+  doublement barr\'ees au cycle~3 du pipeline.}
+
+%%
+%% OBJECTS/LOIS/STRUCTURE
+%%
+\subsection{Structure des lois:~voisinage et lookup-table}
+
+La fonction de transition est la structure de contr\^ole de l'AC\@. %
+Une fonction de transition locale re\c{c}oit en argument un fragment
+d'espace~(un ensemble de cellules ordonn\'ees)\footnote{%
+  Encore appel\'ee voisinage.}. %
+Il existe un tel fragment pour chaque cellule de l'espace. %
+La fonction retourne le nouvel \'etat de la cellule associ\'ee \`a ce
+fragment~(la cellule cible). %
+En g\'en\'eral, la cellule cible est un des \'el\'ements du fragment. %
+Si le fragment n'est pas r\'eduit \`a la cellule cible, les fragments ne
+sont pas disjoints et l'information peut circuler de cellule en
+cellule. %
+
+Sur une machine s\'equentielle, un espace temporaire stocke le nouvel
+\'etat des cellules cibles et l'espace temporaire devient le nouvel \'etat
+d'espace apr\`es l'application de la fonction de transition locale \`a
+chaque cellule de l'espace courant\footnote{%
+  Avec la contribution du s\'equenceur.}. %
+Ce m\'ecanisme de simulation d'une architecture SIMD dot\'ee d'un r\'eseau
+d'interconnexion homog\`ene ne pr\'esente pas de difficult\'e algorithmique
+mais l'efficacit\'e et la souplesse du syst\`eme d\'ependent de
+l'architecture choisie pour sa r\'ealisation. %
+
+Il faut une m\'ethode de \aconcept{balayage} et de \aconcept{collecte}
+des fragments d'espace pour chaque cellule cible,
+d'\aconcept{association}\footnote{%
+  Encore appel\'e liaison ou \aquote{binding}.} %
+des param\`etres formels de la fonction de transition aux cellules du
+fragment et d'\aconcept{invocation} de la fonction. %
+La fonction qui re\c{c}oit en argument un ensemble d'espaces, un r\'eseau
+d'interconnexion et une fonction de transition, est la
+\aconcept{fonction d'application}\footnote{%
+  Encore appel\'ee moteur cellulaire.}. %
+
+Le choix du m\'ecanisme d'invocation conditionne la m\'ethode de liaison. %
+La \emph{m\'ethode} la plus \emph{rapide} d'\emph{invocation} de
+\emph{fonction} est l'acc\`es par \emph{table}. %
+On construit une table des valeurs de la fonction pour l'ensemble des
+valeurs possibles de ses arguments et chaque \'el\'ement de l'ensemble des
+valeurs est consid\'er\'e comme un indice d'acc\`es \`a la table. %
+La liaison des valeurs d'appel de la fonction se ram\`ene \`a la
+concat\'enation des valeurs des cellules du fragment d'espace et le
+calcul du nouvel \'etat de la cellule cible \`a un acc\`es m\'emoire
+indirect. %
+
+Les avantages sont \'evidents. %
+Les fonctions de transitions peuvent \^etre r\'ealis\'ees dans n'importe
+quel langage, sans souci de performance. %
+L'op\'eration de mise \`a jour d'une cellule est r\'eduite \`a un nombre
+minimum d'instructions. %
+Les inconv\'enients sont \'egalement \'evidents. %
+Les fonctions r\'ealisables sont limit\'ees par la taille des tables~(en
+nombre d'entr\'ees) qui est une fonction exponentielle de la taille des
+arguments~(produit du nombre de bits~$k = \log_{2}(K)$ codant le
+nombre~$K$ d'\'etats par cellules et du nombre~$r$ de cellules du
+fragment d'espace). %
+La taille~$T$ des tables exprim\'ee en bytes d\'epend de~$k$ exprim\'e
+en~bytes, $T = \byte(k) 2^{kr}$. %
+Le rendement de la contraction de la table au strict nombre de bits
+n\'ecessaires est proportionnel au rapport du nombre de voisins et du
+nombre d'\'etats. %
+Un espace de dimension~$d = 3$ dot\'e du voisinage complet %
+des $r = 26$~cellules distantes de 1~unit\'e de la cellule cible
+\mygetref[paren]{nombre-de-voisin} et de $k = 1$~bit d'\'etat requiert
+une table de 128~m\'egabytes sans contraction et 16~m\'egabytes avec
+contraction. %
+
+Nous pensons que les avantages sont plus grands que les inconv\'enients. %
+Le nombre d'AC accessibles, m\^eme limit\'e, reste \'enorme, et l'\'etude des
+AC concerne pour une bonne part les plus simples d'entre eux. %
+De plus il est possible de cr\'eer des fonctions complexes
+en combinant\footnote{%
+  \mygetref[phrase]{combine-func}} %
+l'application de tables de fonction simple. %
+%% Cette id\'ee constitue en fait le c{\oe}ur de notre recherche,
+%% et la seule v\'eritable source de cr\'eation d'objets cellulaires.
+
+%%
+%% OBJECTS/LOIS/OPERATIONS
+%%
+\subsection{Op\'erations:~plasticit\'e des tables de transitions}
+
+Un autre avantage des tables est de permettre tr\`es simplement la
+g\'en\'eration ou la transformation de fonctions. %
+Un param\`etre \'el\'ementaire de g\'en\'eration de fonctions est par exemple
+donn\'e par la densit\'e de remplissage de la table\footnote{%
+  Il s'agit du param\`etre $\lambda$~\cite{Langton92b}, d'une richesse
+  \'etonnante~\mygetref[paren]{lambda} puisqu'il est directement associ\'e
+  \`a la classe de comportement dynamique de la fonction.}. %
+En fait, une fonction assimil\'ee \`a un vecteur d'\'etats devient un objet
+cible de multiples r\'eductions et transformations au m\^eme titre qu'un
+espace de dimension~1. %
+Des attributs comme la tranquillit\'e\footnote{%
+  Un voisinage dont toutes les cellules sont \`a z\'ero~(un \'etat
+  conventionnel nul), donne une cellule cible \'egalement \`a z\'ero.} %
+ou l'isotropie impliquent, cependant, une connaissance du mapping
+\bialt{espace}{index} du voisinage. %
+Le simple comptage des acc\`es aux entr\'ees de la table pour une
+transition~(ou cumul\'e sur le temps) fournit une information
+statistique relativement complexe\footnote{%
+  L'histogramme de l'occurrence de toutes les combinaisons d'espaces
+  possibles sur un fragment d'espace de la taille du voisinage,
+  qui peut servir \`a calculer l'entropie de l'espace.} %
+sur le point d'espace pr\'ec\'edent pour un co\^ut CPU
+n\'egligeable\footnote{% 
+  Au prix n\'eanmoins d'une consommation m\'emoire~$M$ p\'enalisante pour
+  les plus grandes tables %
+  $M = \log_{2}(SN)T$, en pratique $2 T$ ou $4 T$ bytes.}. %
+On peut encore citer les op\'erateurs de bruitage~(ou mutation) sur
+table et de cross-over sur deux tables, qui permettent la r\'ealisation
+d'algorithmes g\'en\'etiques pour l'exploration de l'espace des fonctions,
+ou enfin l'utilisation possible de r\'eseaux de neurones sur une
+table. %
+
+%%
+%% OBJECTS/LOIS/COMPOSITION
+%%
+\subsection{Composition:~les chemins de donn\'ees}
+
+\mysetref{combine-func}%
+La coordination de plusieurs tables n\'ecessite la mise au point d'un
+syst\`eme de liaison \bialt{param\`etres}{valeurs} pour le multiplexage spatial
+des tables et d'un s\'equenceur pour le multiplexage temporel. %
+
+La n\'ecessit\'e d'adresser rapidement chaque cellule de l'espace sur des
+machines adressables au niveau du byte, conduit au choix d'une
+organisation en plan de vecteur de bits~(tableau de bytes) plut\^ot
+qu'en vecteur de plan de bits. %
+Le r\'eseau d'interconnexion est une liste de couples
+\bialt{cellule}{bit} sp\'ecifiant les coordonn\'ees spatiales de chacun
+des bits constituant l'index d'acc\`es \`a la table, associ\'e \`a une liste
+des bits cibles de la valeur de l'entr\'ee dans la table. %
+
+\myfigfull[t]{gap-pe}%
+{}%
+{Structure d'un PE GAPP}%
+{Reproduite d'apr\`es~\cite{NCR85a}, sans faire figurer le registre CM}%
+
+\myfigfull[t]{gap}%
+{}%
+{Sch\'ema de la fonction d'application de la table \arule{gapp}}
+{Les fl\`eches figurant sur le sch\'ema indique les chemins de donn\'ees des
+  bits constituant l'index de la table \arule{gapp}. %
+  Les conditions d'affectation et les temps de cycles internes \`a la
+  fonction d'application sont indiqu\'es \`a droite du sch\'ema.}
+
+\mycodefull[t]{c-gapp-pe-h}%
+{}%
+{La structure de donn\'ees de description de l'architecture d'un PE GAPP}%
+{La simplicit\'e de l'impl\'ementation appara\^it clairement. %
+  Les champs \avar{Bit\_Field} contiennent les parties d\'eclaratives de
+  l'architecture. %
+  Les deux m\'ethodes associ\'ees \`a cet objet sont la fabrication de la
+  table de transition et la fabrication de la table de s\'election d'une
+  fonction d'application qui r\'ealise l'association
+  \bialt{instruction}{fonction d'application}.}
+
+\mycodefull[t]{c-gapp-pe-pe}%
+{}%
+{La fonction impl\'ementant un PE GAPP}%
+{Lib\'er\'e des contraintes h\'erit\'ees du m\'elange de la sp\'ecification et de
+  l'ex\'ecution, la fonction impl\'ementant le PE GAPP est un mapping
+  presque imm\'ediat de sa sp\'ecification architecturale\footnote{%
+    L'ajout d'une sp\'ecification de m\^eme type pour la partie ALU,
+    permettra la synth\`ese automatique de fonctions d'impl\'ementation de
+    PE \`a partir de sp\'ecification purement d\'eclaratives.}.}
+
+\mycodefull[t]{c-gapp-pe-tbl}%
+{}%
+{La fabrication de la table de transition de l'AC \aquote{PE GAPP}}%
+{La fabrication de la table ne pose \'evidemment aucun probl\`eme, il
+  s'agit d'une simple boucle. %
+  La figure fait appara\^itre clairement comment le passage par table
+  lib\`ere le style de l'impl\'ementation, en effet les fonctions
+  \avar{implode} et \avar{explode} qui assurent les conversions entre une
+  repr\'esentation bit-packed et bit-expanded\footnote{%
+    Dans laquelle un bit est stock\'e dans un mot de la taille naturelle
+    de l'architecture, ici un entier de 32~bits est utilis\'e pour
+    stocker 1~bit.} %
+  peuvent \^etre utilis\'ees sans pr\'eoccupations inu\-tiles de
+  performances ou d'occupation m\'emoire\footnote{%
+    La pr\'esence d'une d\'eclaration \aquote{inline}, indique toutefois
+    qu'il reste possible d'utiliser des optimisations qui ne
+    compromettent pas la g\'en\'eralit\'e de l'impl\'ementation. %
+    En phase de d\'eveloppement, la rapidit\'e de construction de la table
+    est importante.}.}
+
+\mycodefull[t]{c-gapp-arch-h}%
+{}%
+{La structure de donn\'ees de la partie d\'eclarative de la description de
+  l'architecture d'un PE GAPP}%
+{Un PE est compos\'e d'un champ de bits pour les entr\'ees, les sorties,
+  l'instruction, et d'une table de v\'erit\'e pour l'alu\footnote{%
+    Cette table est ici donn\'ee in extenso sans description
+    associ\'ee~\mygetcode[paren]{c-gapp-arch-alu}.}. %
+  Une description purement d\'eclarative d'une architecture de PE,
+  n\'ecessiterait la mise en champ de bits de celle-ci.}
+
+\mycodefull[p]{c-gapp-arch}%
+{}%
+{Les initialisation de la structure de donn\'ees de la partie d\'eclarative
+  de la description de l'architecture d'un PE GAPP}%
+{On conviendra ais\'ement de la possibilit\'e d'une g\'en\'eration
+  automatique d'un telle description \`a partir d'un syntaxe de plus
+  haut niveau.}
+
+\mycodefull[t]{c-gapp-arch-alu}%
+{}%
+{Initialisation de l'ALU d'un PE GAPP}%
+{Une architecture mixte \bialt{SIMD}{cellulaire} consid\`ere l'ALU comme
+  une table de transition d'un AC, et permet le s\'equencement des
+  chemins de donn\'ees \`a travers ces tables.}
+
+%%
+%% OBJECTS/LOIS/VOISINAGES-SPECIAUX
+%%
+\subsection{Voisinages sp\'eciaux:~n\'ecessaire compromis ou g\'en\'era\-lisation?}
+
+On remarque sur la figure~\mygetfig{func-4} la pr\'esence d'un
+\'el\'ement~(X) de voisinage non issu de l'espace. %
+La fonction d'application peut fournir une valeur fonction du temps ou
+de l'espace utilisable comme \'el\'ement de l'index. %
+Ce type d'extension \`a la notion de voisinage peut sembler contraire \`a
+la d\'efinition que nous avons donn\'e d'un AC\@. %
+M\^eme si les AC qui nous int\'eressent sont b\^atis par combinatoire d'AC
+simples, il existe toujours un couple \aquote{espace initial, fonc\-tion
+  de transition} permettant de calculer et de diffuser une valeur
+globale quelconque de l'espace ou du temps\footnote{%
+  Ou si l'on pr\'ef\`ere il est possible de simuler une architecture de
+  von Neuman dans un espace cellulaire.}. %
+Les \'el\'ements de voisinages sp\'eciaux sont des acc\'el\'erateurs d'acc\`es \`a
+ces valeurs. %
+Certains d'entre eux sont simplement des \'economiseurs d'espace. %
+Par exemple, au lieu d'utiliser un plan m\'emoire pour stocker un
+pattern r\'egulier permettant \`a l'AC de conna\^itre la parit\'e des
+coordonn\'ees d'une cellule\footnote{%
+  Ce qui revient \`a organiser un multiplexage$^*$ spatial des r\`egles,
+  qui pourrait \'egalement \^etre r\'ealis\'e en acc\'edant \`a la table de
+  transition \`a travers une indirection suppl\'ementaire via un index de
+  type spatial d'une cellule. $^*$Param\'etrage des r\`egles selon leurs
+  positions dans l'espace.}, %
+la fonction d'application maintient un bit de parit\'e par dimension
+d'espace. %
+D'autres permettent de r\'eduire la taille d'une table en fournissant
+un compteur ou un timer synchrone sur l'espace\footnote{%
+  Dans ce cas, la table contient plusieurs fonctions de transition
+  distinctes qui alternent cycliquement, et il est sans doute plus
+  avantageux d'utiliser un s\'equenceur externe.}. %
+Enfin certaines r\'eductions de l'espace, dont le calcul n\'ecessiterait
+un protocole cellulaire complexe, sont \'evidemment utiles, tel le OR de
+l'ensemble des valeurs d'un plan de bit qui permet \`a chaque cellule de
+savoir que ce plan est \`a z\'ero pour toutes les cellules de l'espace. %
+
+La fonction d'application peut \'egalement calculer une valeur locale,
+permettant ainsi une r\'ealisation par tables de fonctions autrement
+inaccessibles. %
+Si la fonction de transition op\`ere une r\'eduction simple sur l'index,
+celle-ci peut \^etre confi\'ee \`a la fonction d'application. %
+Si l'op\'erateur de r\'eduction est commutatif, associatif, et poss\`ede un
+op\'erateur inverse, la r\'eduction peut \^etre pipelin\'ee. %
+Par exemple, un voisinage de $r$ cellules \`a $k$ bits d'\'etat
+donnerait une table de taille $2^{rk}$. %
+La distribution de l'op\'erateur d'addition sur les $r$ cellules
+sources permet de r\'eduire la taille de la table \`a %
+%%$2^{\log_{2}(r 2^{k})}$. %
+$r 2^{k}$. %
+Dans ce cas pour $k = 8$, la taille de la table passe de %
+$2^{72}$~bytes \`a $2^{12}$~bytes, et le pipeline de liaison remplace une
+op\'eration de d\'ecalage\footnote{%
+  A condition de disposer d'une arithm\'etique sur mots de 72 bits.} %
+par une soustraction, et trois concat\'enations~(un shift et un or) par
+trois additions. %
+
+La distribution de l'op\'erateur d'addition sur les $r - 1$~cellules
+sources (priv\'ees de la cellule cible dont la pr\'eservation est en
+g\'en\'eral souhaitable pour obtenir une gamme d'AC accessibles plus
+vaste) associ\'ee \`a la concat\'enation de la cellule cible,
+donnerait une taille
+%%2^(log((R - 1) * 2^K) + K)
+%%2^(log(R - 1) + K + K)
+%%2^(log(R - 1) + 2K)
+$M = 2^{\log_{2}((r - 1) 2^{k}) + k} = 2^{\log_{2}(r - 1) + 2k} = (r-1)2^{k}$. %
+Cette architecture op\`ere l'addition pipelin\'ee des cellules du
+voisinage de Moore moins la cellule cible, et la concat\'enation de
+cette somme avec la valeur de la cellule cible. %
+Dans ce cas, pour $k = 8$, la taille de la table passe \`a~$2^{19}$~bytes. %
+
+D'autres r\`egle locales, telles les minimums et maximums des
+valeurs cellulaires, pourraient \^etre calcul\'ees par la fonction
+d'application. %
+L'association d'AC dont les cellules poss\`edent une vari\'et\'e de densit\'e
+large pour une vari\'et\'e de comportements r\'eduite, \`a des AC de nature
+oppos\'ee, est un de nos objectifs. %
+
+En plus d'\'el\'ements de voisinages sp\'eciaux, la fonction d'application
+peut fournir toutes sortes de voisinages non standards, destin\'es \`a une
+utilisation dans le cadre du s\'equenceur, ou \`a un usage g\'en\'eralis\'e du
+m\'ecanisme des tables de transitions. %
+Nous avons d\'ej\`a \'evoqu\'e~\mygetref[paren]{time-xor} un voisinage \`a deux
+bits associ\'e \`a la table \arule{Xor} pour la r\'ealisation d'une transformation
+sur le temps. %
+Le s\'equencement d'une s\'erie de voisinages \`a deux cellules, balayant un
+espace r\'egulier standard en pivot sur la cellule cible, permet
+d'accumuler une op\'eration quelconque sans faire appel \`a un \'el\'ement de
+voisinage sp\'ecial~(non spatial) pour cette
+r\'eduction\footnote{%
+  \mysetref{seq-vs-pipe}%
+  Le nombre d'op\'erations n\'ecessaires \`a la fabrication d'un index est
+  r\'eduit mais le balayage de la m\'emoire est multipli\'e et la pr\'esence
+  possible d'un pipeline pour les voisinages disposant d'un plus grand
+  nombre de cellules r\'eduit cet avantage.}. %
+Une table \`a deux arguments, utilisable comme accumulateur, a deux
+entr\'ees de tailles diff\'erentes et une sortie de taille \'egale \`a
+l'entr\'ee accumulatrice. %
+Cette table peut \^etre utilis\'ee par une fonction d'application pour le
+calcul d'une valeur locale en place de la concat\'enation pour la
+fabrication de l'index. %
+
+Dans le cas d'une g\'en\'eralisation de l'usage de tables \`a une
+combinatoire~(multiplexage spatial et temporel) d'usage de tables non
+disjointes sur un m\^eme espace, le gain escompt\'e n'est pas toujours un
+gain de m\'emoire, mais \'egalement du pouvoir d'expression des structures
+de donn\'ees associ\'ees \`a cette combinatoire. %
+Par exemple, il n'est pas n\'ecessaire de consid\'erer le OR de tous les
+bits d'un plan cellulaire comme un \'el\'ement de voisinage sp\'ecial dont
+le calcul est laiss\'e au soin de la fonction d'application. %
+Il est possible d'utiliser une variable sp\'eciale, un accumulateur~(une
+variable scalaire, contrairement aux variables cellulaires), comme un
+\'el\'ement de cellule cible, et non plus seulement d'index. %
+Le binding de la table de la fonction binaire OR, ou de toute autre
+fonction binaire, aux arguments CENTRE et ACU et au r\'esultat ACU, et
+le report au s\'equenceur de la t\^ache de l'application de cette fonction
+sur l'espace~(ou plus probablement \`a la capacit\'e de la fonction
+d'application d'appliquer plusieurs AC sur un m\^eme pipeline) permet
+d'utiliser la machinerie cellulaire \`a son propre service. %
+Bien s\^ur, dans ce cas, seul le r\'esultat de la r\'eduction appliqu\'ee sur
+le plan pr\'ec\'edent est accessible~(\`a moins de faire deux passes), et ce
+type d'approche n'est pas possible sur une architecture SIMD r\'eelle. %
+
+%%
+%% OBJECTS/LOIS/UTILISATION
+%%
+\subsection{Utilisation:~construction, composition, m\'elange et
+  s\'e\-paration}
+
+Si l'on veut consid\'erer l'application de tables sur des espaces,
+lesquels ne sont pas toujours confondus avec l'espace cellulaire \`a
+proprement parler, comme la structure de contr\^ole
+\'el\'ementaire\footnote{%
+  En tout cas dans un environnement SISD\@. %
+  Nous choisissons d\'elib\'er\'ement d'ignorer les probl\`emes que poserait
+  le portage du syst\`eme sur une architecture SIMD\@. %
+  Les AC \'etant quant \`a eux \'evidemment ind\'ependants de
+  l'architecture. %
+  Nous pensons que l'usage d'une architecture SIMD simul\'ee reposant
+  sur une organisation pipelin\'ee de la transformation de plans
+  m\'emoires par tables permet une utilisation efficace des ressources
+  d'une architecture von Neumann, applicable \`a une vaste classe de
+  probl\`emes g\'en\'eraux.} %
+de l'univers cellulaire, celle-ci doit \^etre munie d'une structure de
+donn\'ees supportant la construction, le m\'elange et la composition. %
+
+%%
+%% OBJECTS/LOIS/USAGE/CONSTRUCTION
+%%
+\begin{itemize}
+\item%
+  \mysetref{static-param}%
+  La construction des tables permet l'association d'une fonction \`a ses
+  param\`etres statiques. %
+  Les param\`etres statiques d'une fonction sont les param\`etres de la
+  fonction qui ne sont pas associ\'es \`a un des \'el\'ements du voisinage
+  cellulaire, mais permettent de g\'en\'eraliser le comportement de la
+  fonction. %
+  Il s'agit par exemple de la valeur de timers locaux~(propres \`a
+  chaque cellule) ou de valeurs de seuil d\'eclenchant des portions de
+  code de la fonction. %
+
+%%
+%% OBJECTS/LOIS/USAGE/COMPOSITION
+%%
+\item%
+  La composition des tables permet la construction d'une liste de
+  fonctions travaillant en parall\`ele sur un m\^eme espace. %
+  On peut obtenir le m\^eme effet en utilisant un s\'equenceur temporel,
+  mais au d\'etriment de l'usage du pipeline\footnote{%
+    \mygetref[phrase]{seq-vs-pipe}}. %
+  De plus, la disponibilit\'e d'un objet sp\'ecifique de composition de
+  fonctions permet l'application d'op\'erateurs de m\'elange et de
+  s\'eparation sur les tables. %
+  On peut enfin imaginer une g\'en\'eralisation de cette liste \`a un arbre,
+  permettant l'utilisation de r\'esultats interm\'ediaires d'application
+  de table comme \'el\'ement de voisinage d'une autre table. %
+
+%%
+%% OBJECTS/LOIS/MELANGE
+%%
+\item%
+  Le m\'elange de deux tables consiste en la combinaison de leurs
+  param\`etres formels en une seule liste de param\`etres, r\'esultant en
+  une table dont la taille est \'egale au plus~(si l'intersection des
+  ensembles de param\`etres est vide) au produit de la taille de chaque
+  table\footnote{%
+    Il s'agit de la taille de la table en nombre d'entr\'ees, qui doit
+    \^etre multipli\'ee par le cardinal de l'union des param\`etres,
+    exprim\'e en bits, pour obtenir la taille en bits.}. %
+  Cette op\'eration est applicable soit au niveau des fonctions elles
+  m\^emes, et n\'ecessite une nouvelle invocation de chaque fonction
+  pour la construction de la nouvelle table\footnote{%
+    Cela peut s'av\'erer relativement co\^uteux pour les grandes tables,
+    si la fonction est fournie par un interpr\`ete.}, %
+  soit directement sur les tables elles m\^emes. %
+  Le m\'elange de tables permet une optimisation de l'usage des
+  ressources CPU au d\'etriment des ressources m\'emoire. %
+  Cette optimisation peut sembler douteuse puisqu'elle \'echange une
+  augmentation lin\'eaire\footnote{%
+    Le facteur de gain d\'epend de fa\c{c}on difficile \`a pr\'evoir du co\^ut
+    relatif de la construction s\'epar\'ee ou unifi\'ee de l'index et de la
+    dispersion des index produit par la simulation.} %
+  de la vitesse de calcul contre une augmentation exponentielle de la
+  taille de la m\'emoire utilis\'ee. %
+  De plus la construction de grandes tables redondantes est en
+  elle-m\^eme un processus co\^uteux, voire tr\`es co\^uteux si l'on en vient
+  \`a faire appel \`a la m\'emoire pagin\'ee. %
+  Cependant une m\'emoire qui se compte en dizaine de m\'egabytes sur une
+  station de travail, rend int\'eressant ce genre d'optimisation. %
+  D'autant plus qu'une fois achev\'ee la construction de la table,
+  son usage peut r\'ev\'eler une densit\'e d'acc\`es concentr\'ee sur des
+  fractions de la table\footnote{%
+    Cela d\'epend des espaces initiaux et des AC, bien s\^ur. %
+    Tous ceux qui ont observ\'e \arule{life} partant d'un espace
+    initial al\'eatoire de densit\'e\,\protect\Fundemi,
+    comprennent qu'apr\`es les premiers points de temps
+    la densit\'e d'impact des index se concentre en fonction de la
+    densit\'e g\'en\'erale de l'espace,
+    et de la densit\'e des patterns produits.} %
+  allant jusqu'\`a justifier l'usage de tables d'une taille
+  sup\'erieure \`a la m\'emoire r\'eelle disponible. %
+  Encore que dans ce cas, le cache devrait plut\^ot \^etre fourni par
+  l'applicatif, sous forme d'une construction virtuelle de la
+  table\footnote{%
+    Pour ne pas \^etre trop co\^uteuse, celle-ci doit reposer sur les
+    services du syst\`eme d'exploitation qui permettent une
+    r\'ecup\'eration~(trap) des d\'efauts de pages.}, %
+  que par le syst\`eme d'exploitation. %
+  La dualit\'e opposant l'usage de nombreuses petites tables appliqu\'ees
+  en parall\`ele sur un m\^eme espace, \`a l'usage d'une seule grande ou
+  tr\`es grande table, permet de choisir entre une mise en~{\oe}uvre
+  adapt\'ee au d\'eveloppement incr\'emental interactif~(faible d\'elai de
+  mise en marche d'une architecture, associ\'e \`a un d\'ebit de mise \`a jour
+  cellulaire non optimum), et une mise en~{\oe}uvre adapt\'ee \`a
+  l'exploration de la dynamique \`a long terme d'AC sur de grands
+  espaces~(temps de d\'emarrage important, associ\'e \`a un d\'ebit de mise \`a
+  jour cellulaire optimum pour une architecture mat\'erielle donn\'ee). %
+
+%%
+%% OBJECTS/LOIS/SEPARATION
+%%
+\item%
+  La s\'eparation des tables est l'op\'eration inverse du m\'elange. %
+  Cette op\'eration~(pour laquelle nous n'avons pas actuellement cherch\'e
+  d'algorithme) devrait permettre de d\'eterminer la qualit\'e de
+  primitive d'une fonction. %
+\end{itemize}
+
+\myfigfull[t]{life-dfa}%
+{}%
+{Le DFA de \arule{Life}}%
+{La construction automatique du DFA de nombre d'\'etats minimum associ\'e
+  \`a une table ne pose pas de probl\`eme:~il suffit de construire l'arbre
+  de d\'ecodage des index, et d'appliquer sur cet arbre consid\'er\'e
+  comme un DFA un algorithme de minimisation.}
+
+\myfigfull[t]{life-tree}%
+{}%
+{Une partie de l'arbre de d\'ecodage de \textbf{life}}%
+{les 32 premi\`eres entr\'ees de la table de transition. %
+  La racine de l'arbre est l'\'etat initial du DFA, les feuilles de
+  l'arbre sont les entr\'ees de la table. %
+  Une entr\'ee \`a~1 est un \'etat acceptant du DFA\@.}
+
+%%
+%% OBJECTS/LOIS/VIRTUAL
+%%
+\subsection{Des machines virtuelles:~compilation d'architec\-tures SIMD
+  pour une architec\-ture cellulaire presque pure}
+
+Nous avons d\'ej\`a \'evoqu\'e l'\'equivalence entre une fonction de transition
+et une machine SIMD\@. %
+La cellule d'espace est la m\'emoire locale \`a un PE, la table de
+transition le PE, le r\'eseau d'interconnexion les liens entre les PE,
+et la fonction d'application l'\'emulateur~(la machine) qui
+d\'eplace les bits de la m\'emoire aux PE\@. %
+Le choix d'une fonction d'application d\'etermine la taille de la table
+de transition, et donc le nombre de machines virtuelles possibles
+associ\'ees \`a cette fonction. %
+Les contraintes qui p\`esent sur la conception d'une architecture
+mat\'erielle r\'eelle ne sont pas les m\^emes que celles qui p\`esent
+sur une architecture mat\'erielle virtuelle. %
+Les machines virtuelles peuvent \^etre tr\`es sp\'ecifiques,
+et pas n\'ecessairement universelles. %
+Les machines SIMD r\'eelles doivent \^etre universelles. %
+N\'eanmoins, le but de l'objet loi de transition, est bien de permettre
+la sp\'ecification d'une architecture SIMD quelconque, et sa mise
+en~{\oe}uvre la plus efficace possible. %
+
+Que doit \^etre une fonction de transition pour simuler un plan de $N$~GAPP\@?
+
+La cellule est compos\'ee %
+des 3~registres~(C, NS et EW), %
+des 3~bits de sortie de l'alu~(SM, CY et BW), %
+des 2~bits de voisinage~(N ou S, et E ou W), %
+et de 1~bit de ram~(M). %
+La fonction d'application re\c{c}oit en plus des arguments usuels, %
+les 11~bits de contr\^ole, %
+les 7~bits d'adresse %
+et un espace suppl\'ementaire de $N \times  128$~bits. %
+Voir la figure~\mygetfig{gap}. %
+
+Le travail de d\'ecodage des bits de contr\^ole est minimal et peut donc
+\^etre sorti de la boucle d'application. %
+
+Le bit de ram de la cellule est charg\'e depuis la m\'emoire.\\
+Condition $\text{Ctl}_{8} \text{Ctl}_{9} \equiv 0$. %
+
+\begin{verbatim}
+*cellule &= CLEAR_RAM;
+*cellule |= !!(ram[adresse_hi] & adresse_pos) << RAM;
+\end{verbatim}
+
+Le registre NS est charg\'e depuis la cellule au nord.\\
+Condition $\text{Ctl}_{4} \text{Ctl}_{3} \text{Ctl}_{2} \equiv 2$. %
+
+\begin{verbatim}
+*cellule &= CLEAR_NS;
+*cellule |= *north & NS;
+\end{verbatim}
+
+L'action existe aussi pour les cas $\text{NS} \leftarrow \text{S}$,
+$\text{EW} \leftarrow \text{E}$ et $\text{EW} \leftarrow \text{W}$. %
+
+L'index est compos\'e avec les 11~bits de contr\^ole et
+les 7~bits d'\'etats de la cellule\footnote{%
+  La table de transition a donc une taille de 1024~kilobytes,
+  chaque byte contenant 7 bits utiles.}. %
+Le nouvel \'etat de la cellule est calcul\'e. %
+
+\begin{verbatim}
+*cellule = transition[*cellule | controle];
+\end{verbatim}
+
+Le bit de ram est \'ecrit dans la m\'emoire.\\
+Condition $\text{Ctl}_{8} \text{Ctl}_{9} \neq 0$. %
+
+\begin{verbatim}
+ram[adresse_hi] &= clear_ram;
+ram[adresse_hi] |= !!(*cellule & GET_RAM) << adresse_pos;
+\end{verbatim}
+
+Les 3~conditions possibles pour l'acc\`es \`a la ram~%
+(pas d'acc\`es ou read ou write) %
+et les 5~conditions possibles pour l'acc\`es aux voisins~%
+(pas d'acc\`es ou $\text{NS} \leftarrow (\text{N} \vee \text{S})$ %
+ou $\text{EW} \leftarrow (\text{E} \vee \text{W})$) %
+donnent 15 fonctions de boucle d'application, qui peuvent pr\'ecalculer
+certaines valeurs associ\'ees aux conditions~(offset en bytes et en bits
+de l'adresse par exemple), et dans le cas d'une instruction sans acc\`es
+m\'emoire ni voisins, peut se ramener \`a %
+\texttt{*cellule = transition[*cellule]}~%
+(apr\`es un pr\'ecalcul \texttt{transition += contr\^ole}). %
+
+On peut aussi ajouter le traitement du \emph{global output},
+dont la condition de r\'ealisation est sous contr\^ole du s\'equenceur. %
+
+\begin{verbatim}
+global |= *cellule & NS;
+\end{verbatim}
+
+Nous avons tout de m\^eme besoin d'\'ecrire la fonction qui remplit la
+table de transition, mais le passage par table simplifie
+consid\'erablement la t\^ache, comme le montre clairement les
+figures~\mygetcode{c-gapp-pe-h}, %
+\mygetcode{c-gapp-pe-pe} et %
+\mygetcode{c-gapp-pe-tbl}\footnote{%
+  L'impl\'ementation de la construction de la table.
+}. %
+
+%%
+%% OBJECTS/LOIS/COMPILE
+%%
+\subsection{Et leur compilateur:~la d\'ecompilation des lois pour des
+  architectures SIMD}
+
+Nous avons montr\'e comment un AC r\'ealis\'e par table
+peut simuler une architecture SIMD\@. %
+Comment transformer une fonction de transition en une s\'equence
+d'instructions pour une machine SIMD\@? %
+Soit une table de transition de $N$ bits de voisinage
+et $R$ bits de r\'esultats. %
+Construisons $R$ tables de taille $2^{N}$ bits. %
+Nous cherchons un g\'en\'erateur d'instructions pour une machine SIMD pour
+chacune des $R$ fonctions bool\'eennes associ\'ees \`a la fonction de
+transition. %
+Soit $T$ une table de $N$ bits de voisinage,
+avec $R = 1$. %
+La table $T$ d\'efinit un langage sur les $2^{N}$ index de la table. %
+Le nombre de mots du langage \'etant fini, il est toujours possible de
+construire un DFA pour reconna\^itre ce langage. %
+Les expressions r\'eguli\`eres constituent donc un mode d'expression
+possible d'une table de transition. %
+Par exemple pour \arule{Life}, si le premier bit de l'index est le bit cible:\\
+%%\texttt{(00*10*10*10*)|(10*10*10*10*)|(10*10*10*)}
+$(00^*10^*10^*10^*)|(10^*10^*10^*10^*)|(10^*10^*10^*)$
+
+\mytable{gapp-dfa}%
+{Compilation d'un table pour le GAPP,}%
+{Calcul d'une g\'en\'eration de \arule{Life}}%
+{Une table repr\'esentant l'encodage du DFA de \arule{Life}, utilisant
+  les noms des \'etats de la figure~\mygetfig{life-dfa}}
+
+\mytable{gapp-dfa-optim}%
+{et une optimisation imm\'ediate.}%
+{Une optimisation de la table~\mygettbl{gapp-dfa}}%
+{Il est possible d'obtenir un encodage plus \'economique\footnote{%
+    En nombre d'instructions.} %
+  du DFA de \arule{Life}, plus proche d'un encodage utilisant la
+  nature arithm\'etique de la r\`egle. %
+  L'optimisation pr\'esent\'ee repose quant \`a elle sur un m\'ecanisme
+  g\'en\'eral.}
+
+Chaque PE de la machine SIMD est d\'edi\'e \`a une cellule. %
+La m\'emoire locale de chaque PE maintient l'\'etat de la cellule,
+plus l'\'etat courant du DFA\@. %
+Pour chacun des bits de voisinage de l'automate, chaque PE re\c{c}oit le
+sous-ensemble du DFA construit \`a partir de l'ensemble des \'etats du DFA
+pr\'ec\'edemment acc\'ed\'es. %
+Le DFA est transmis sous la forme de triplets~(\'etat courant, \'etat si~1,
+\'etat si~0). %
+Pour finir, chaque PE re\c{c}oit la liste des \'etats acceptants. %
+
+\clearpage
+
+%%
+%% OBJECTS/SEQUENCER
+%%
+\section{Les s\'equenceurs}
+
+Nous pensions initialement que la phase de sp\'ecification de
+l'architecture d'une exp\'erience cellulaire pouvait \^etre s\'epar\'ee de la
+phase de s\'equencement d'ex\'ecution. %
+Nous n'avons pas de solution g\'en\'erale satisfaisante au probl\`eme de
+la s\'eparation de ces op\'erations, de la sp\'ecification\footnote{%
+  Une fonction de s\'equencement exemplaire est la r\'egulation d'un temps
+  relatif pour une trajectoire. %
+  Certain AC pr\'esentent une \'evolution croissante tendant vers un point
+  fixe ou un cycle limite court, passant par une phase de croissance
+  tr\`es rapide suivie d'une phase de croissance tr\`es lente d'une
+  variable macroscopique \'el\'ementaire comme la population d'un  plan de
+  bits. %
+  Le couplage de la variation de cette variable \`a la commande
+  d'enregistrement du point de temps courant permet de r\'ealiser des
+  films \`a \'echantillonnage variable et \`a variation de densit\'e
+  spatiale constante.} %
+et de l'impl\'ementation des s\'equenceurs. %
+Les solutions particuli\`eres que nous avons envisag\'ees, test\'ees ou
+impl\'ement\'ees reposent toutes sur une approche \aquote{classique}
+centr\'ee sur des m\'ethodologies ou des outils d'impl\'ementation
+d'interfaces. %
+Cependant, nos exp\'eriences de traduction pratiques d'architectures
+SIMD vers cellulaire, et cellulaire vers SIMD, nous am\`enent \`a proposer
+une nouvelle approche des fonctions du s\'equenceur, bas\'ee sur la
+d\'efinition d'une architecture mixte:~une architecture SIMD incluant des
+primitives de traduction et de manipulation d'architectures
+cellulaires pures. %
+Le probl\`eme du s\'equenceur cellulaire devient alors celui, %
+plus g\'en\'eral, de la sp\'ecification et du pilotage d'une machine SIMD
+virtuelle.
+
+\mydumpfull[t]{cantata-1}%
+{}%
+{Une session avec \asoft{Cantata}}%
+{\asoft{Cantata} est le shell visuel interactif de \asoft{khoros}. %
+  Dans cette session, nous utilisons les panneaux de contr\^ole de nos
+  modules de g\'en\'eration de tables de transition et de g\'en\'eration de
+  trajectoires cellulaires pour explorer l'espace des param\`etres
+  statiques d'une r\`egle, via une visualisation tridimensionnelle de
+  la trajectoire utilisant des outils de la biblioth\`eque
+  \asoft{khoros}.}
+
+\mytwodumpfull[t]{cantata-mk-rule}{cantata-cell}%
+{}%
+{Les panneaux de contr\^ole de nos modules \asoft{Cantata}}%
+{La solution de \asoft{Cantata} aux probl\`emes de s\'equencement passe
+  par l'existence de variables partag\'ees par les panneaux de contr\^oles
+  des diff\'erents modules. %
+  Un module de contr\^ole de boucle peut ainsi calculer un indice en
+  fonction d'arguments de modules de g\'en\'erations d'espaces situ\'es en
+  amont dans le graphe de production.}
+
+\mycodetwocol[p]{tcl-cas}%
+{}%
+{D\'efinitions de proc\'edures de s\'equencements}%
+{Ces proc\'edures travaillent sur des objets top-level destin\'es \`a
+  l'interface humaine\footnote{%
+    Soit par un tty, soit par une interface \asoft{Tk}. %
+    \mygetdump[phrase]{casNew}}}
+
+Nous avons cherch\'e les solutions possibles, exp\'eriment\'e plusieurs modes
+de s\'equencement et impl\'ement\'e une interface \aquote{langage de commande} bas\'ee
+sur~\asoft{Tcl} et une extension graphique interactive bas\'ee sur
+\asoft{Tk}. %
+
+La solution la plus simple consiste \`a b\^atir une commande sp\'ecialis\'ee
+par classe de fonction de la librairie, puis \`a utiliser le shell Unix
+comme s\'equenceur et le syst\`eme de fichiers comme syst\`eme de nommage des
+objets interm\'ediaires. %
+Cette solution, la solution Unix classique, reste irrempla\c{c}able. %
+Nous l'avons largement utilis\'ee. %
+Le sc\'enario de base est le suivant:
+\begin{verbatim}
+mk-rule-foo > foo.rule; mk-space-bar > bar.space
+run-ca foo.rule bar.space | xdumper
+run-ca -n 8192 foo.rule bar.space | do-stats > data
+plot data
+\end{verbatim}
+
+Une autre solution classique consiste \`a d\'efinir un
+langage~\cite[]{Almasi87,Eckart92b} dot\'e de structures de donn\'ees et de
+contr\^oles adapt\'ees aux objets manipul\'es. %
+Les outils de r\'ealisation existent\footnote{%
+  lex, yacc, TXL~\cite[]{Cordy91}}, %
+mais les choix des objets et des op\'erations primitives \'etant
+pr\'ecis\'ement un des objets de notre recherche, ne peuvent venir avant
+l'exp\'erimentation.
+
+Une solution interm\'ediaire se trouve dans l'usage d'un interpr\`ete d'un
+langage extensible permettant une manipulation interactive des objets
+de la librairie. %
+C'est la solution que nous avons retenue pour le workbench\footnote{%
+  C'est aussi la solution retenue pour le contr\^ole de la machine
+  CAM6\cite[]{Toffoli87}, sur base Forth.}, %
+sur base \asoft{Tcl}. %
+
+Nous avons \'egalement imagin\'e l'usage d'interpr\`etes sp\'ecialis\'es dans les
+traitements num\'eriques, en particulier matriciels, comme support
+d'interface \`a la librairie. %
+En effet, nous avons r\'ealis\'e des manipulations de donn\'ees \`a l'aide
+d'outils \`a la \asoft{matlab}:~\mysoftcite{Octave},
+\mysoftcite{Rlab}. %
+Ceux-ci constituent un envi\-ron\-nement bien adapt\'e \`a la manipulation
+statistique des donn\'ees associ\'ees \`a une trajectoire, et sont par ailleurs
+des langages suffisamment g\'en\'eraux pour la r\'ealisation de fonctions de
+s\'equencement simples. %
+L'id\'ee est d'ajouter les types de donn\'ees \aquote{espace} et
+\aquote{r\`egle}, et une op\'eration d'application, ainsi que des
+op\'erations de conversion \bialt{matrices}{espaces} et
+\bialt{matrices}{r\`egles} \`a ces environnements.
+
+La derni\`ere solution classique, est l'usage des outils de
+visualisation scien\-tifique, en particulier de leurs shells graphiques
+interactifs permettant la construction de graphes de traitement.
+Nous avons utilis\'e \mysoftcite{Khoros}, dont l'outil de programmation
+visuelle est \mysoftcite{cantata}. %
+A fin de prototypage nous avons d\'evelopp\'e des panneaux de contr\^oles
+\asoft{Khoros}, associ\'es \`a l'interface \aquote{commande Unix} de notre
+librairie\footnote{%
+  La solution la plus compl\`ete consisterait \`a d\'evelopper un toolkit
+  \asoft{Khoros} bas\'e sur notre librairie.}. %
+Le sc\'enario de base est alors une session interactive
+\asoft{Cantata}, au cours de laquelle les sorties des modules
+g\'en\'eration d'espaces de configurations et de g\'en\'eration de tables de
+transitions, ad\'equatement param\'etr\'ees via les panneaux de contr\^ole
+associ\'es, sont connect\'es aux entr\'ees correspondantes d'un module
+\aquote{moteur cellulaire}, lequel est lui-m\^eme connect\'e \`a un module
+de visualisation. %
+L'int\'er\^et principal de cette approche, outre l'aspect visuel, r\'eside
+dans la possibilit\'e, une fois l'adaptation aux normes d'interface
+r\'ealis\'ee, d'utiliser la vaste biblioth\`eque de modules disponibles dans
+ce genre d'environnement, et en particulier sous \asoft{Khoros}. %
+Des modules de synth\`ese et manipulation ou d'analyse d'images de \asoft{Khoros}
+peuvent \^etre utilis\'es en compl\'ement de nos modules. %
+
+Aucune des solutions pr\'ec\'edentes ne nous a permis de nous affranchir
+des probl\`emes de s\'equencement. %
+
+La solution que nous proposons pour am\'eliorer cette situation passe
+par la mise en pratique d'une association architecturale mixte
+\bialt{SIMD}{cellulaire}. %
+
+Nous pensons que l'association d'AC localement universels~(PE) \`a des
+AC non localement universels fournit un cadre conceptuel adapt\'e au
+calcul cellulaire appliqu\'e \`a l'\'etude des AC dans un contexte mat\'eriel
+s\'equentiel ou de parall\'elisme non massif. %
+
+En compl\'ement de la transformation d'un AC donn\'e par sa table de
+transition en s\'equence d'instructions pour une machine SIMD, nous
+consid\'erons la transformation d'un algorithme cellulaire en un
+ensemble d'AC donn\'e par leur table, associ\'e \`a une s\'equence
+d'instructions pour une machine SIMD, r\'ealisant le s\'equencement des
+sous-AC de l'algorithme.
+
+Le probl\`eme du s\'equencement devient alors un programme d'\'etude des
+architectures de calcul cellulaire appliqu\'e \`a l'exp\'erimentation et
+l'\'etude des AC\footnote{%
+  Les architectures cellulaires sont \'evidemment applicables \`a d'autres
+  domaines que les AC:~%
+  traitement d'image, visualisation, certain calculs num\'eriques,
+  simulation d'architecture mat\'erielle, en g\'en\'eral tous les domaines
+  pour lequel le SIMD est applicable.}. %
+Nous insistons sur le point suivant:~%
+une architecture cellulaire n'a pas besoin d'une machine parall\`ele.
+Hypoth\`ese:~\aquote{On peut impl\'ementer de mani\`ere effi\-cace une
+  architecture cellulaire sur une machine s\'equentielle}. %
+Une telle impl\'ementation a pour vocation de supporter des
+impl\'ementations cellulaires d'algorithmes cellulaires sur machine non
+cellulaire sans perte d'efficacit\'e\footnote{%
+  Les algorithmes du traitement d'image sont candidats \`a la validation
+  de cette hypoth\`ese.}. %
+Les avantages sont multiples:~coh\'erence et clart\'e de la description
+des algorithmes dans leur environnement architectural naturel. %
+Simplicit\'e\footnote{%
+  Au sens o\`u la nature cellulaire de l'algorithme n'a pas \`a \^etre
+  traduite en boucles.}, %
+facilit\'e de debug,
+portabilit\'e et efficacit\'e de la programmation par look-up table, %
+enfin parall\'elisation facile, ou plut\^ot, mapping sur une architecture
+parall\`ele arbitraire d'une description cellulaire d'un algorithme.
+
+Les AC peuvent alors \^etre vus comme les primitives d'une
+architecture cellulaire, et ceux-ci deviennent ainsi les moyens
+d'\'etude de leur propre univers, car ils posent de probl\`emes de
+visualisation, de r\'eduction num\'erique, de sp\'ecification d'architecture
+mat\'erielle et de dynamique cellulaire, toutes choses pour lesquelles
+le calcul cellulaire est applicable.
+
+%%
+%% Local Variables:
+%% mode: latex
+%% mode: auto-fill
+%% TeX-master: "top"
+%% TeX-command-default: "mytex"
+%% iso-accents-minor-mode: nil
+%% Local IspellParsing: "latex-mode ~latin1"
+%% Local IspellPersDict: "~/.ispell_lisp"
+%% LocalWords: "d'AC l'AC s\'equenceur SIMD binding concat\'enation bytes byte thy"
+%% LocalWords: "GET-REF nombre-de-voisin m\'egabytes combine-func l'isotropie SETR"
+%% LocalWords: "mapping p\'enalisante cross-over multiplexage BIG loop Langton"
+%% LocalWords: "func apply apply fig-apply pipeliner Moore shift quote cellsim"
+%% LocalWords: "ref-mem-struct adressables br bp von Neuman \'economiseurs pattern"
+%% LocalWords: "rk log times Ctl sub Ctl sub NS EW EW auto-reproducteur gapp"
+%% LocalWords: "paren lambda auto-re uvre mem-struct indirection timer sum XOR"
+%% LocalWords: "cycliquement time-xor s\'equencement seq-vs-pipe accumulatrice ACU"
+%% LocalWords: "ACU SISD static-param timers l'applicatif trap PE l'\'emulateur SM"
+%% LocalWords: "gap-pe gap l'alu CY BW ram CLEAR hi pos north kilobyte controle"
+%% LocalWords: "clear GET read write pr\'ecalculer pr\'ecalcul output DFA life-dfa"
+%% LocalWords: "life-tree state Center South East West NW SW lookup-table fonc"
+%% LocalWords: "lisation tion Xor s\'e paration Neumann architec ture kilobytes Tk"
+%% LocalWords: "d\'ecompilation triplets acceptants gapp-dfa gapp-dfa-optim shell"
+%% LocalWords: "s\'equenceurs transmutations transmutation cantata khoros Tcl lex"
+%% LocalWords: "cantata-mk-rule cantata-cell nommage mk-rule-foo foo.rule run-ca"
+%% LocalWords: "mk-space-bar bar.space xdumper do-stats yacc TXL workbench CAM"
+%% LocalWords: "Forth d'interpr\`ete MathLab Rlab shells prototypage toolkit debug"
+%% LocalWords: "sous-AC impl\'ementation impl\'ementations portabilit\'e look-up tty"
+%% LocalWords: "tcl-cas s\'equencements top-level casNew matriciel c-gapp-pe-h"
+%% LocalWords: "Field c-gapp-pe-pe purements c-gapp-pe-tbl implode explode in"
+%% LocalWords: "bit-packed bit-expanded inline c-gapp-arch-h extenso c-gapp-arch"
+%% LocalWords: "c-gapp-arch-alu l'ALU"
+%% End:

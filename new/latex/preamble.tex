@@ -1,0 +1,27 @@
+% Modern, explicit replacement of the private mytex format.
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\pdfpagewidth=\paperwidth
+\pdfpageheight=\paperheight
+\usepackage[utf8]{inputenc}
+\usepackage{natbib}
+\usepackage[english,french]{babel}
+\usepackage{amsmath,amssymb}
+\usepackage{ifthen,xspace,fancyhdr}
+\input{compat/simple}
+\input{compat/ref-and-cite}
+\input{compat/email}
+\makeatletter
+\input{compat/num-in-bib}
+\makeatother
+\input{compat/fig-cap}
+\input{compat/spl}
+\input{compat/phase-one}
+\sloppy
+\setlength{\headheight}{30pt}
+\fancyhf{}
+\fancyhead[L]{\small\slshape\leftmark}
+\fancyhead[R]{\thepage}
+\renewcommand{\footrulewidth}{0.4pt}
+\renewcommand{\baselinestretch}{1.11}
+\renewcommand{\topfraction}{0.8}

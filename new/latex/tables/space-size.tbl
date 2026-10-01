@@ -1,0 +1,18 @@
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|} \hline
+
+\multicolumn{2}{|c}{} &%
+ \multicolumn{7}{|c|}{$a$}%
+ \\\cline{3-9}
+
+    \multicolumn{2}{|c|}{\raisebox{1.5ex}[0cm][0cm]%
+    {$a^{d}$}}
+ & 16 & 32 & 64 & 128 & 256 & 512 & 1K\\\hline
+
+ & 1 & \textbf{16} & \textbf{32} & \textbf{64} & \textbf{128} & \textbf{256} & \textbf{512} & \textbf{1K} %
+\\\cline{2-9}
+ & 2 & \textbf{256} & \textbf{1K} & \textbf{4K} & \textbf{16K} & \textbf{64K} & \textbf{256K} & \textbf{1M} \\\cline{2-9}
+\raisebox{1.5ex}[0cm][0cm]{$d$}%
+ & 3 & \textbf{4K} & \textbf{32K} & \textbf{256K} & \textbf{2M} & \textbf{16M} & \textit{\small128M} & \textit{\small1G} \\\cline{2-9}
+ & 4 & \textbf{64K} & \textbf{1M} & \textbf{16M} & \textit{\small256M} & \textit{\small4G} & \textit{\small64G} & \textit{\small1T} %
+\\\hline
+\end{tabular}

@@ -1,0 +1,18 @@
+\begin{tabular}{|c|c|c|c|c|c|} \hline
+
+\multicolumn{2}{|c}{} &%
+ \multicolumn{4}{|c|}{$n$}%
+ \\\cline{3-6}
+
+    \multicolumn{2}{|c|}{\raisebox{1.5ex}[0cm][0cm]%
+    {$2^{2nd-2}$}}
+ & 1 & 2 & 3 & 4\\\hline
+
+ & 1 & \textbf{1} & \textbf{4} & \textbf{16} & \textbf{64} %
+\\\cline{2-6}
+ & 2 & \textbf{4} & \textbf{64} & \textbf{1K} & \textbf{16K} \\\cline{2-6}
+\raisebox{1.5ex}[0cm][0cm]{$d$}%
+ & 3 & \textbf{16} & \textbf{1K} & \textbf{64K} & \textbf{4M} \\\cline{2-6}
+ & 4 & \textbf{64} & \textbf{16K} & \textbf{4M} & \textit{\small1G} %
+\\\hline
+\end{tabular}

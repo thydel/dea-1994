@@ -1,0 +1,18 @@
+\begin{tabular}{|c|c|c|c|c|c|} \hline
+
+\multicolumn{2}{|c}{} &%
+ \multicolumn{4}{|c|}{$n$}%
+ \\\cline{3-6}
+
+    \multicolumn{2}{|c|}{\raisebox{1.5ex}[0cm][0cm]%
+    {$2^{\text{S}(d,n) - 3}$}}
+ & 1 & 2 & 3 & 4\\\hline
+
+ & 1 & \textbf{1} & \textbf{4} & \textbf{16} & \textbf{64} %
+\\\cline{2-6}
+ & 2 & \textbf{4} & \textbf{1K} & \textbf{4M} & \textit{\small 256G} \\\cline{2-6}
+\raisebox{1.5ex}[0cm][0cm]{$d$}%
+ & 3 & \textbf{16} & \textbf{4M} & \footnotesize${> 10 ^ {18}}$ & \footnotesize${> 10 ^ {37}}$ \\\cline{2-6}
+ & 4 & \textbf{64} & \textit{\small 256G} & \footnotesize${> 10 ^ {37}}$ & \footnotesize${> 10 ^ {95}}$ %
+\\\hline
+\end{tabular}

@@ -1,0 +1,11 @@
+*.aux
+*.log
+*.bbl
+*.blg
+*.lof
+*.lot
+*.toc
+*.fls
+*.resources
+build-*.txt
+__pycache__/
