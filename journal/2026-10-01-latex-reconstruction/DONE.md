@@ -1,3 +1,10 @@
+---
+date: 2026-10-01
+model: GPT-6.1 Sol
+interface: Codex
+role: implementer
+---
+
 # Codex work report — LaTeX reconstruction
 
 This report was reconstructed retrospectively on 2026-10-01 from the
