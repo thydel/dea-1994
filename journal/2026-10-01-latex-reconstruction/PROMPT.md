@@ -1,3 +1,10 @@
+---
+date: 2026-10-01
+model: GPT-5.6 Sol
+interface: ChatGPT Voice
+role: prompt-author
+---
+
 # Operational directives — LaTeX reconstruction
 
 This prompt record was reconstructed retrospectively on 2026-10-01 after
