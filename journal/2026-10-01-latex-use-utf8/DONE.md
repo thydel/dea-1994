@@ -1,3 +1,10 @@
+---
+date: 2026-10-01
+model: GPT-6.1 Sol
+interface: Codex
+role: implementer
+---
+
 # Codex work report — Literal UTF-8 LaTeX source
 
 ## Inventory and execution approach — 2026-10-01
