@@ -56,6 +56,22 @@ Each journal directory uses these records:
 - `REVIEW.md` records independent reviews of completed work against both
   `AUTHOR.md` and `PROMPT.md`.
 
+`PROMPT.md`, `DONE.md`, and `REVIEW.md` must record provenance in YAML
+front matter. The provenance fields are:
+
+- `date`: ISO date of the recorded intervention;
+- `model`: model that produced the record;
+- `interface`: interaction environment, for example `ChatGPT Voice` or
+  `Codex`;
+- `role`: function performed, for example `prompt-author`, `implementer`,
+  or `reviewer`.
+
+When a file contains successive interventions with different provenance, the
+provenance must be recorded with the corresponding intervention rather than
+allowing one file-level declaration to misattribute later material. Existing
+records may be annotated retrospectively, but the retrospective nature of the
+annotation must remain explicit.
+
 A journal may also contain supporting inputs or artifacts such as
 specifications, manuals, grammar files, test data, examples, scripts, or
 other material referenced by `PROMPT.md`.
