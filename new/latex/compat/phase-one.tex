@@ -1,12 +1,26 @@
-% Never loads an image. Record each executed resource in the build inventory.
+% Load only inventoried local PDFs; audit every executed historical call.
 \newwrite\resourceaudit
 \immediate\openout\resourceaudit=main.resources
+\input{figures-map.tex}
+\newlength{\historicalmaxheight}
+\setlength{\historicalmaxheight}{.48\textheight}
 \ExplSyntaxOn
+\tl_new:N \l_historical_file_tl
+\dim_new:N \l_historical_width_dim
 \keys_define:nn { historical/image } {
- file .code:n = {\historicalplaceholder{image}{#1}},
- width .code:n = {}, height .code:n = {}
+ file .tl_set:N = \l_historical_file_tl,
+ width .dim_set:N = \l_historical_width_dim,
+ height .code:n = {}
 }
-\NewDocumentCommand\historicalimage{m}{\keys_set:nn{historical/image}{#1}}
+\NewDocumentCommand\historicalimage{m}{
+ \keys_set:nn{historical/image}{#1}
+ \cs_if_exist:cTF {historical@\l_historical_file_tl}
+ {\immediate\write\resourceaudit{image-restored:~\l_historical_file_tl}
+  \includegraphics[width=\l_historical_width_dim,
+   height=\historicalmaxheight,keepaspectratio]
+   {\use:c{historical@\l_historical_file_tl}}}
+ {\historicalplaceholder{image}{\l_historical_file_tl}}
+}
 \ExplSyntaxOff
 \newcommand{\historicalplaceholder}[2]{%
  \immediate\write\resourceaudit{#1: #2}%
@@ -14,7 +28,7 @@
  \texttt{\detokenize{#2}}}\par\smallskip}
 \newcommand{\mylgrindfile}[1]{\historicalplaceholder{code}{#1}}
 % Captions remain genuine numbered captions, with the original list text and label.
-\renewcommand{\myboxed}[2]{\begin{center}\begin{minipage}{.95\linewidth}#2\end{minipage}\end{center}}
+\renewcommand{\myboxed}[2]{\begin{center}\begin{minipage}{.95\linewidth}\setlength{\mylengtha}{\linewidth}\ifthenelse{\equal{#1}{twothirds}}{\setlength{\mylengtha}{.75\mylengtha}}{}\ifthenelse{\equal{#1}{half}}{\setlength{\mylengtha}{.50\mylengtha}}{}\centering #2\end{minipage}\end{center}}
 \renewcommand{\mycapted}[5]{%
  #2\par\smallskip{\small #5\par}%
  \ifthenelse{\equal{#3}{}}{\caption[#4]{#4}}{\caption[#3]{#4}}%

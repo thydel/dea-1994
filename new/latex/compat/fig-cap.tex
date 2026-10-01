@@ -171,7 +171,7 @@
       {\ifthenelse{\equal{#4}{hor}}%
       {\historicalimage{file=../#3/#5,width=.45\mylengtha}%
         \historicalimage{file=../#3/#6,width=.45\mylengtha}}%
-      {\historicalimage{file=../#3/#5,width=.9\mylengtha} \par%
+      {\setlength{\historicalmaxheight}{.24\textheight}\historicalimage{file=../#3/#5,width=.9\mylengtha} \par%
         \historicalimage{file=../#3/#6,width=.9\mylengtha}}}%
       {#7}{#8}{#9}%
       }%

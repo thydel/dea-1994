@@ -9,3 +9,4 @@
 *.resources
 build-*.txt
 __pycache__/
+figures/.prepared

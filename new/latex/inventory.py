@@ -4,9 +4,10 @@ import re
 import textwrap
 root=Path(__file__).resolve().parent
 labels=dict(re.findall(r'\\newlabel\{([^}]+)\}\{\{([^}]+)\}', ''.join(p.read_text() for p in (root/'chapters').glob('*.aux'))))
-lines=['# Inventaire des ressources de la phase 1','','Inventaire issu des appels réellement exécutés, consignés dans `main.resources`. Les légendes et textes explicatifs restent dans les chapitres, sans modification. Les labels composés correspondent aux figures à plusieurs ressources.','','## Images et listings différés','','| Type | Ressource attendue | Fichier historique disponible | Label(s) et numéro(s) | Appel dans le texte |','|---|---|---|---|---|']
+lines=['# Inventaire des ressources compilées','','Inventaire issu des appels réellement exécutés, consignés dans `main.resources`. Les légendes et textes explicatifs restent dans les chapitres, sans modification. Les labels composés correspondent aux figures à plusieurs ressources.','','## Images et listings externes','','| Type | Ressource attendue | Fichier historique disponible | Label(s) et numéro(s) | Appel dans le texte |','|---|---|---|---|---|']
 for record in (root/'main.resources').read_text().splitlines():
     kind,resource=record.split(': ',1)
+    kind='image réintégrée' if kind=='image-restored' else kind
     parts=Path(resource).parts; directory,name=parts[-2:]
     historical=root/'../../old/txt'/directory
     available=sorted(p.name for p in historical.glob(name+'.*') if not p.name.endswith('~'))
@@ -22,7 +23,7 @@ lines+=['','## Tables incluses','','Les dix tableaux sont compilés directement.
 for p in sorted((root/'tables').glob('*.tbl')):
     label='tbl-'+p.stem
     lines.append(f'| [tables/{p.name}](tables/{p.name}) | `{label}` ({labels[label]}) |')
-lines+=['','## Limites et ambiguïtés conservées','','- Les noms de ressource sont ceux des macros historiques, même lorsqu’ils ne comportent pas d’extension. Les chemins affichés sont informatifs et ne sont jamais chargés par TeX.','- Les fichiers `.tex` des listings externes sont des sorties historiques de `lgrind`, pas du texte scientifique à reformuler ; leur inclusion complète est différée.','- Les listings `verbatim` présents dans les chapitres restent intégralement inclus.','- Aucune ambiguïté scientifique n’a nécessité de substitution de contenu. Les formulations, coquilles et valeurs historiques restent conservées.','']
+lines+=['','## Limites et ambiguïtés conservées','','- Les noms de ressource sont ceux des macros historiques, même lorsqu’ils ne comportent pas d’extension. Les chemins historiques affichés sont informatifs ; TeX charge seulement les dérivés locaux inventoriés.','- Les 88 images sont chargées depuis des dérivés PDF locaux ; leurs sources, liens et candidats sont détaillés dans [FIGURES.md](FIGURES.md). Les fichiers `.tex` des listings externes sont des sorties historiques de `lgrind`, pas du texte scientifique à reformuler ; leur inclusion complète est différée.','- Les listings `verbatim` présents dans les chapitres restent intégralement inclus.','- Aucune ambiguïté scientifique n’a nécessité de substitution de contenu. Les formulations, coquilles et valeurs historiques restent conservées.','']
 wrapped = [line if not line or line.startswith(('|', '#')) else
            textwrap.fill(line, width=70, break_long_words=False,
                          break_on_hyphens=False,
