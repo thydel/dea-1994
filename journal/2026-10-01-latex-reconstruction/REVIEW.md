@@ -1,3 +1,10 @@
+---
+date: 2026-10-01
+model: GPT-5.6 Sol
+interface: ChatGPT Voice
+role: reviewer
+---
+
 # Independent review — LaTeX reconstruction
 
 This review was reconstructed retrospectively on 2026-10-01.
