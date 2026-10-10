@@ -79,3 +79,19 @@ Ordre des travaux envisagé, sans lancement immédiat :
 
 Ces points sont des orientations pour un futur journal de travail,
 pas une directive à exécuter dès maintenant.
+
+## Positionnement vis-à-vis des bibliothèques existantes
+
+Après un premier survol des bibliothèques et environnements
+d'expérimentation cellulaire cités dans les références, l'auteur
+les juge intéressants comme points de comparaison, mais
+probablement trop généraux et trop riches pour son objectif
+immédiat. Le projet privilégie de petits composants spécialisés,
+un traitement minimaliste, du code compact et une interface de
+pipeline simple. L'optimisation du débit reste une motivation,
+sans supposer qu'elle doive être maximale à tout prix.
+
+Ces outils restent dans la bibliographie ; leur adoption n'est
+pas prévue à ce stade. Le prochain travail avec l'agent sera
+défini ultérieurement, en commençant par récupérer et remettre
+en état le reste des sources historiques.
