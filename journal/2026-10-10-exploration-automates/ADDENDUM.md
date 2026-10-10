@@ -46,3 +46,36 @@ mais potentiellement plus élaboré que nécessaire pour le
 premier prototype. L'article de P. M. Binder (1993) sur les
 automates cellulaires élémentaires a particulièrement retenu
 son attention ; lecture détaillée à poursuivre.
+
+## Configuration et ordre des travaux
+
+Précision de l'auteur : l'en-tête n'a pas vocation à transporter
+les résultats calculés pendant le flux. Les statistiques ou autres
+sorties secondaires peuvent aller dans un fichier distinct, voire
+être coordonnées ultérieurement par un outil comme `pipexec`.
+
+Le but premier de l'en-tête JSON est d'éviter la répétition des
+arguments communs à chaque étage. Le générateur reçoit les options
+de l'expérience, applique ses valeurs par défaut, puis publie
+dans l'en-tête les paramètres effectifs : taille, profondeur,
+voisinage, format des cellules, etc. Chaque composant les lit
+automatiquement ; il peut conserver ou enrichir le descripteur
+pour le composant suivant. Les paramètres strictement locaux,
+comme le nombre de pixels affichés par bit dans le visualiseur,
+restent des options propres à ce programme.
+
+Ordre des travaux envisagé, sans lancement immédiat :
+
+1. Demander à l'agent d'inventorier les sources, bibliothèques et
+   outils historiques, puis de remettre en état leur compilation,
+   édition de liens et exécution pour constituer une référence
+   vérifiable, sans écraser les originaux sous `old/`.
+2. Une fois cette base historique fonctionnelle, reconstruire
+   progressivement les composants sous `new/`, depuis zéro,
+   avec une interface de flux commune `JSON + NUL + binaire`.
+3. Étendre les capacités du moteur, notamment la profondeur
+   d'état et l'étendue des voisinages, avec une attention
+   particulière à la génération de code et aux performances.
+
+Ces points sont des orientations pour un futur journal de travail,
+pas une directive à exécuter dès maintenant.
